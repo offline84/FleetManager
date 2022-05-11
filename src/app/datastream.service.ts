@@ -7,11 +7,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class DatastreamService {
 
   connectionstring: string;
-  configUrl = 'assets/config.json';
 
   constructor( private http: HttpClient) {
-    this.connectionstring = "https://localhost:5001/"
-    console.log(this.http.get(this.configUrl).subscribe((data: any) => data.urlToApi));
+    this.connectionstring = "https://localhost:5001/api/"
   }
 
   GetAllVehicles = () => {

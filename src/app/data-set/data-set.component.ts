@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatastreamService } from '../datastream.service';
 import { Voertuig } from '../objects/voertuig';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-data-set',
@@ -9,14 +9,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataSetComponent implements OnInit {
 
-public voertuigen: any;
-configUrl = 'assets/config.json';
+  voertuigen: any;
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private datastream: DatastreamService) {
+    console.log(this.voertuigen);
+  }
 
   ngOnInit(): void {
-
-      console.log(this.http.get(this.configUrl).subscribe((data: any) => data.urlToApi));
+    this.datastream.GetAllVehicles().subscribe(vehicles => {
+      this.voertuigen = vehicles;
+      console.log(vehicles);
+    });
   }
 
 }
