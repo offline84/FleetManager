@@ -7,6 +7,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule } from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -18,7 +19,8 @@ import {MatPaginatorModule } from '@angular/material/paginator';
     MatBottomSheetModule,
     MatDialogModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule,
   ],
 
   exports: [
@@ -27,7 +29,9 @@ import {MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MatBottomSheetModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 

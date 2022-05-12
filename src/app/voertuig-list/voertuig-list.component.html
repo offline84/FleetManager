@@ -1,60 +1,60 @@
-<p>voertuig-list works!</p>
-<div class="table">
+<h2>Voertuigen</h2>
+<div class="mat-elevation-z8 table">
 
-  <mat-table [dataSource]="voertuigenList" class="mat-elevation-z8 table">
-    <!-- <mat-grid-list cols="11", rowHeight="3:1"></mat-grid-list> -->
-    <ng-container matColumnDef="chassisnummer">
-      <th mat-header-cell *matHeaderCellDef>Chassisnummer</th>
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table">
+
+    <ng-container class="column" matColumnDef="chassisnummer">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Chassisnummer</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.chassisnummer}}</td>
     </ng-container>
 
     <ng-container matColumnDef="merk">
-      <th mat-header-cell *matHeaderCellDef>Merk</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Merk</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.merk}}</td>
     </ng-container>
 
     <ng-container matColumnDef="model">
-      <th mat-header-cell *matHeaderCellDef>model</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>model</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.model}}</td>
     </ng-container>
 
     <ng-container matColumnDef="nummerplaat">
-      <th mat-header-cell *matHeaderCellDef>nummerplaat</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>nummerplaat</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.nummerplaat}}</td>
     </ng-container>
 
     <ng-container matColumnDef="bouwjaar">
-      <th mat-header-cell *matHeaderCellDef>bouwjaar</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>bouwjaar</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.bouwjaar}}</td>
     </ng-container>
 
     <ng-container matColumnDef="brandstof">
-      <th mat-header-cell *matHeaderCellDef>brandstof</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>brandstof</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.brandstof.typeBrandstof}}</td>
     </ng-container>
 
     <ng-container matColumnDef="kleur">
-      <th mat-header-cell *matHeaderCellDef>kleur</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>kleur</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.kleur}}</td>
     </ng-container>
 
     <ng-container matColumnDef="aantalDeuren">
-      <th mat-header-cell *matHeaderCellDef>aantalDeuren</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>aantalDeuren</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.aantalDeuren}}</td>
     </ng-container>
 
     <ng-container matColumnDef="categorie">
-      <th mat-header-cell *matHeaderCellDef>categorie</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>categorie</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.categorie.typeWagen}}</td>
     </ng-container>
 
     <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>status</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>status</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.status.staat}}</td>
     </ng-container>
 
     <ng-container matColumnDef="koppeling">
-      <th mat-header-cell *matHeaderCellDef>koppeling</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>gekoppeld?</th>
       <td mat-cell *matCellDef="let voertuig">{{voertuig.koppeling != null}}</td>
     </ng-container>
 
@@ -65,5 +65,11 @@
         *matRowDef="let row; columns: columnsToDisplay;"></tr>
 
       </mat-table>
-      <!-- <mat-paginator></mat-paginator> -->
+      <div></div>
+      <mat-paginator [length]="100"
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+      </mat-paginator>
+
 </div>

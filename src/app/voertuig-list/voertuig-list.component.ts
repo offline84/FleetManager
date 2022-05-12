@@ -1,7 +1,8 @@
 import {AfterViewInit, Input, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
+import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { Voertuig } from '../objects/voertuig';
+import { DatastreamService } from '../datastream.service';
 
 @Component({
   selector: 'app-voertuig-list',
@@ -10,15 +11,28 @@ import { Voertuig } from '../objects/voertuig';
 })
 export class VoertuigListComponent implements AfterViewInit{
 
-  @Input() voertuigenList: any;
-  dataSource: any
+  @ViewChild(MatPaginator) paging!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  constructor(private datastream: DatastreamService) {}
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource(this.voertuigenList);
-    this.dataSource.paginator = this.paginator;
+    this.datastream.GetAllVehicles().subscribe((data: any) =>{
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paging;
+      this.dataSource.sort = this.sort;
+    });
+    this.dataSource.sortingDataAccessor = (instance, property) => {
+      switch(property){
+        case 'status': return instance.status.staat;
+        case 'brandstof': return instance.brandstof.typeBrandstof;
+        case 'categorie' : return instance.categorie.typeWagen;
+        case 'koppeling' : return instance.koppeling != null;
+        default: return instance[property];
+      }
+    };
   }
 
   columnsToDisplay = [
