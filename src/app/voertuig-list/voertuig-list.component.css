@@ -3,9 +3,15 @@
 }
 
 .mat-row .mat-cell {
-  border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
+  text-align: center;
+  width: 9%;
   cursor: pointer;
+}
+.mat-header-cell{
+  text-align: center;
+  width: 9%;
+  position: sticky;
 }
 
 .mat-row:hover .mat-cell {
