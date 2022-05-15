@@ -21,6 +21,7 @@ export class DatastreamService {
 
   GetAllVehicles = () => {
     return this.http.get(this.connectionstring +"voertuig/active");
+
   }
 
   GetStatusses = () => {

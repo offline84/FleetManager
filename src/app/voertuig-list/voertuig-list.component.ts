@@ -11,6 +11,8 @@ import { DatastreamService } from '../datastream.service';
 })
 export class VoertuigListComponent implements AfterViewInit{
 
+  @Input() passedData: any;
+  @Input() columnsToDisplay: any;
   @ViewChild(MatPaginator) paging!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -19,35 +21,33 @@ export class VoertuigListComponent implements AfterViewInit{
   constructor(private datastream: DatastreamService) {}
 
   ngAfterViewInit() {
-    this.datastream.GetAllVehicles().subscribe((data: any) =>{
-      this.dataSource.data = data;
-      this.dataSource.paginator = this.paging;
-      this.dataSource.sort = this.sort;
-    });
-    this.dataSource.sortingDataAccessor = (instance, property) => {
+    if(!this.passedData){
+      this.datastream.GetAllVehicles().subscribe((data: any) =>{
+        this.dataSource.data = data;
+        this.dataSource.paginator = this.paging;
+        this.dataSource.sort = this.sort;
+      });
+    }
+    else{
+      this.dataSource.data = this.passedData;
+        this.dataSource.paginator = this.paging;
+        this.dataSource.sort = this.sort;
+    }
+
+    this.dataSource.sortingDataAccessor = (entity, property) => {
       switch(property){
-        case 'status': return instance.status.staat;
-        case 'brandstof': return instance.brandstof.typeBrandstof;
-        case 'categorie' : return instance.categorie.typeWagen;
-        case 'koppeling' : return instance.koppeling != null;
-        default: return instance[property];
+        case 'status': return entity.status.staat;
+        case 'brandstof': return entity.brandstof.typeBrandstof;
+        case 'categorie' : return entity.categorie.typeWagen;
+        case 'koppeling' : return entity.koppeling != null;
+        default: return entity[property];
       }
     };
   }
 
-  columnsToDisplay = [
-    "chassisnummer",
-    "merk",
-    "model",
-    "nummerplaat",
-    "bouwjaar",
-    "brandstof",
-    "kleur",
-    "aantalDeuren",
-    "categorie",
-    "status",
-    "koppeling"
-  ];
+  FilterDataHandler(filter: any): void {
+    this.dataSource = filter;
+  }
 
   selectedVoertuig: any;
 

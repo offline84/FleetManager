@@ -4,13 +4,14 @@
 
 .mat-row .mat-cell {
   border-top: 1px solid transparent;
-  text-align: center;
-  width: 9%;
+  text-align: left !important;
+  padding: 2px;
+  width: 10%;
   cursor: pointer;
 }
 .mat-header-cell{
-  text-align: center;
-  width: 9%;
+  text-align: center !important;
+  width: 10%;
   position: sticky;
 }
 
@@ -20,4 +21,14 @@
 
 .row-is-selected{
   background: #283593;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#searchbar{
+  float: right;
 }
