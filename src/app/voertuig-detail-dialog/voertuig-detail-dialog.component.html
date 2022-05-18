@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>{{entity}} toevoegen</h2>
+
+  <div [formGroup]="voertuigForm">
+
+    <div class="form-block">
+      <h3> identificatie</h3>
+      <div class="formsection">
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>chassisnummer</mat-label>
+            <input matInput type="text" formControlName="chassisnummer">
+            <mat-error *ngIf="voertuigForm.value.chassisnummer">chassisnummer is of wrong length</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>merk</mat-label>
+            <input matInput type="text" formControlName="merk">
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>model</mat-label>
+            <input matInput type="text" formControlName="model">
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>nummerplaat</mat-label>
+            <input matInput type="text" formControlName="nummerplaat">
+            <mat-error *ngIf="voertuigForm.value.nummerplaat">nummerplaat is of wrong length</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-middle-block">
+      <h3> uiterlijk</h3>
+      <div class="formsection">
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>kleur</mat-label>
+            <input matInput type="text" formControlName="kleur">
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>aantal deuren</mat-label>
+            <input matInput type="number" formControlName="aantalDeuren">
+          </mat-form-field>
+        </div>
+        <div class="field" formGroupName="categorie">
+          <mat-form-field appearance="fill">
+            <mat-select placeholder="categorie *">
+              <mat-option value = null></mat-option>
+              <mat-option *ngFor="let cat of categories" value="{{cat}}">{{cat.typeWagen}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- </mat-grid-tile>
+</mat-grid-list> -->

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,14 +9,16 @@ import { MaterialModule } from './material/material.module';
 import { Home } from './app.home';
 import { VoertuigComponent } from './voertuig/voertuig.component';
 import { VoertuigListComponent } from './voertuig-list/voertuig-list.component';
-import { SearchbarComponent } from './searchbar/searchbar.component'
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import { VoertuigDetailDialogComponent } from './voertuig-detail-dialog/voertuig-detail-dialog.component'
 
 @NgModule({
   declarations: [
     Home,
     VoertuigComponent,
     VoertuigListComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    VoertuigDetailDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { SearchbarComponent } from './searchbar/searchbar.component'
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [],
   providers: [

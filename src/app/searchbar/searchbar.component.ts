@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { IVoertuig } from '../objects/iVoertuig';
 
 @Component({
@@ -23,23 +24,47 @@ export class SearchbarComponent implements OnInit {
   }
 
   FilterResults = () => {
-    console.log(this.dataToFilter);
     let property: string;
-
-    if(this.selected == 'status')
-      property = "status.staat";
-    else if(this.selected == 'brandstof')
-      property = "brandstof[typeBrandstof]";
-    else if(this.selected == 'categorie')
-        property = "categorie[typeWagen]";
-    else
-      property = this.selected;
+    let filterArray: any;
+    let dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
 
-    this.dataToFilter.filterpredicate = function (data: any, filter: string) {
-      return data[property] == filter;
+    //TO DO make filters work for nested objects.
+
+    if(this.selected == 'status'){
+      filterArray = this.dataToFilter.data;
+      dataSource.data = this.dataToFilter.data.filter((v: IVoertuig) => v.status.staat.includes(this.search));
+      console.log(dataSource.data);
+      this.passFilteredData.emit(dataSource.filter == this.search);
     }
 
-    this.passFilteredData.emit(this.dataToFilter.filter = this.search);
+    if(this.selected == 'brandstof'){
+      filterArray = this.dataToFilter.filteredData;
+      filterArray = filterArray.filter((v: any) => v.brandstof.typeBrandstof).includes(this.search);
+      console.log(filterArray);
+
+      dataSource.data = filterArray;
+      console.log(filterArray);
+      console.log(dataSource.data);
+    }
+    let categorie;
+    if(this.selected == 'categorie'){
+      this.dataToFilter.filterpredicate = (data: any, filter: string) => {
+        return data.map((v: IVoertuig) => v.categorie.typeWagen).includes(filter);
+      }
+      categorie = this.dataToFilter.data.map((v: IVoertuig) => v.categorie.typeWagen).includes(this.search);
+      console.log(categorie);
+    }
+
+    if(this.selected != 'categorie' && this.selected != 'brandstof' && this.selected != 'status'){
+      this.dataToFilter.filterpredicate = (data: any, filter: string) => {
+        return data[this.selected] == filter;
+      };
+
+    }
+    this.passFilteredData.emit(this.dataToFilter.filter = this.search,);
+
+
+    console.log(this.dataToFilter.filterpredicate);
   }
 }
