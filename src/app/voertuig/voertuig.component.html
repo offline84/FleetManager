@@ -1,1 +1,9 @@
-<p>voertuig works!</p>
+<div>
+  <div>
+    <h2>Voertuigen</h2>
+  </div>
+</div>
+
+<button mat-raised-button color="primary" id="add-button" (click)="AddNewEntityDialog()"><mat-icon>add_circle</mat-icon> nieuw voertuig</button>
+
+<app-voertuig-list [passedData]="voertuigen" [columnsToDisplay]="properties"></app-voertuig-list>

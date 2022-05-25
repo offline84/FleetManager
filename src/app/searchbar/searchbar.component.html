@@ -1,0 +1,15 @@
+<div>
+  <mat-form-field class="searchbar">
+    <input matInput type="text" (keydown.enter)="this.passFilteredData.emit(this.dataToFilter.filter = this.search.trim())" placeholder="vul uw zoekterm hier in" [(ngModel)]="search">
+  </mat-form-field>
+
+  <mat-form-field class="searchbar">
+    <mat-select [(value)]="selected" placeholder="uit kolom">
+      <mat-option value = ""></mat-option>
+      <mat-option *ngFor="let prop of properties" value="{{prop}}">{{prop}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" (click)="FilterResults()"><mat-icon>search</mat-icon></button>
+</div>
+

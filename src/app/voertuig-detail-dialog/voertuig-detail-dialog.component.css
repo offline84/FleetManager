@@ -1,0 +1,33 @@
+.form-block {
+  float: left;
+  padding: 2em;
+}
+
+.formsection {
+  border: 1px solid rgb(3, 0, 0);
+  border-radius: 25px;
+}
+
+.field {
+
+  padding: 1em 1em 1em;
+}
+
+h3 {
+  text-align: center;
+  text-decoration-color: blue;
+}
+
+.form-middle-block{
+  float: left;
+  padding: 2em;
+}
+
+.formbuttons{
+  padding: 2em 1.5em 0em 0em;
+  float: right;
+}
+
+#error{
+  color: red;
+}

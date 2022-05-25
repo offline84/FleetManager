@@ -8,6 +8,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule } from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatIconModule} from '@angular/material/icon';
+import { MatInputModule} from '@angular/material/input';
+import { MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -21,6 +24,9 @@ import {MatSortModule} from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule
   ],
 
   exports: [
@@ -31,7 +37,10 @@ import {MatSortModule} from '@angular/material/sort';
     MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule
   ]
 })
 

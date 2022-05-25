@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DatastreamService} from '../datastream.service';
+import { VoertuigDetailDialogComponent } from '../voertuig-detail-dialog/voertuig-detail-dialog.component';
 
 @Component({
   selector: 'app-voertuig',
@@ -7,9 +10,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VoertuigComponent implements OnInit {
 
-  constructor() { }
+  entity: string = "voertuig";
+  properties = [
+    "chassisnummer",
+    "merk",
+    "model",
+    "nummerplaat",
+    "bouwjaar",
+    "brandstof",
+    "kleur",
+    "aantalDeuren",
+    "categorie",
+    "status",
+    "koppeling"
+  ];
 
-  ngOnInit(): void {
+  voertuigen: any;
+
+  constructor(private datastream: DatastreamService, private dialog: MatDialog) {
+    this.datastream.GetAllVehicles().subscribe((data) =>{
+      this.voertuigen = data;
+    });
   }
 
+
+  ngOnInit(): void {
+
+  }
+
+  AddNewEntityDialog = () => {
+    const config = new MatDialogConfig();
+
+    config.autoFocus = true;
+
+    config.data = {
+      properties: this.properties,
+      entity: this.entity
+    };
+
+    this.dialog.open(VoertuigDetailDialogComponent, config);
+  }
 }
