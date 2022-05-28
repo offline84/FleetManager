@@ -5,12 +5,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import {Routes, RouterModule} from "@angular/router";
 
 import { Home } from './app.home';
-import { VoertuigComponent } from './voertuig/voertuig.component';
-import { VoertuigListComponent } from './voertuig-list/voertuig-list.component';
+import { VoertuigComponent } from './voertuigen/voertuig/voertuig.component';
+import { VoertuigListComponent } from './voertuigen/voertuig-list/voertuig-list.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
-import { VoertuigDetailDialogComponent } from './voertuig-detail-dialog/voertuig-detail-dialog.component'
+import { VoertuigDetailDialogComponent } from './voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { BestuurderComponent } from './bestuurders/bestuurder/bestuurder.component';
+import { TankkaartComponent } from './tankkaarten/tankkaart/tankkaart.component';
+import { HomeComponent } from './home/home.component'
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent},
+  { path: 'voertuigen', component: VoertuigComponent},
+  { path: 'tankkaarten', component: TankkaartComponent},
+  { path: 'bestuurders', component: BestuurderComponent}
+]
 
 @NgModule({
   declarations: [
@@ -18,7 +30,11 @@ import { VoertuigDetailDialogComponent } from './voertuig-detail-dialog/voertuig
     VoertuigComponent,
     VoertuigListComponent,
     SearchbarComponent,
-    VoertuigDetailDialogComponent
+    VoertuigDetailDialogComponent,
+    NavigationComponent,
+    BestuurderComponent,
+    TankkaartComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +43,8 @@ import { VoertuigDetailDialogComponent } from './voertuig-detail-dialog/voertuig
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   exports: [],
   providers: [
