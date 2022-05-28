@@ -23,6 +23,11 @@ export class SearchbarComponent implements OnInit {
 
   }
 
+  detectChanges(e: string) {
+    this.passFilteredData.emit(this.dataToFilter.filter = e);
+    console.log(this.search);
+ }
+
   FilterResults = () => {
     let property: string;
     let filterArray: any;
@@ -31,40 +36,23 @@ export class SearchbarComponent implements OnInit {
 
     //TO DO make filters work for nested objects.
 
-    if(this.selected == 'status'){
-      filterArray = this.dataToFilter.data;
-      dataSource.data = this.dataToFilter.data.filter((v: IVoertuig) => v.status.staat.includes(this.search));
-      console.log(dataSource.data);
-      this.passFilteredData.emit(dataSource.filter == this.search);
-    }
+    this.dataToFilter.filterPredicate = (data: IVoertuig, filter: string): boolean => {
+      const dataStr = Object.keys(data).reduce((currentTerm: string, key: string) => {
+        return (currentTerm + (data as { [key: string]: any })[key] + '◬');
+      }, '').toLowerCase();
 
-    if(this.selected == 'brandstof'){
-      filterArray = this.dataToFilter.filteredData;
-      filterArray = filterArray.filter((v: any) => v.brandstof.typeBrandstof).includes(this.search);
-      console.log(filterArray);
+      const transformedFilter = filter.trim().toLowerCase();
 
-      dataSource.data = filterArray;
-      console.log(filterArray);
-      console.log(dataSource.data);
+      return dataStr.indexOf(transformedFilter) != -1;
     }
-    let categorie;
-    if(this.selected == 'categorie'){
-      this.dataToFilter.filterpredicate = (data: any, filter: string) => {
-        return data.map((v: IVoertuig) => v.categorie.typeWagen).includes(filter);
-      }
-      categorie = this.dataToFilter.data.map((v: IVoertuig) => v.categorie.typeWagen).includes(this.search);
-      console.log(categorie);
-    }
+    filterArray = this.dataToFilter.data;
+    const dataStr = Object.keys(filterArray[0]).reduce((currentTerm: string, key: string) => {
+      return (currentTerm + (filterArray as { [key: string]: any })[key] + '◬');
+    }, '').toLowerCase();
+    console.log(dataStr);
+    console.log(filterArray);
 
-    if(this.selected != 'categorie' && this.selected != 'brandstof' && this.selected != 'status'){
-      this.dataToFilter.filterpredicate = (data: any, filter: string) => {
-        return data[this.selected] == filter;
-      };
-
-    }
     this.passFilteredData.emit(this.dataToFilter.filter = this.search,);
 
-
-    console.log(this.dataToFilter.filterpredicate);
   }
 }
