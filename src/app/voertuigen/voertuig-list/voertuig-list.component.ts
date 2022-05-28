@@ -2,7 +2,7 @@ import {AfterViewInit, Input, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { DatastreamService } from '../datastream.service';
+import { DatastreamService } from '../../datastream.service';
 
 @Component({
   selector: 'app-voertuig-list',

@@ -1,8 +1,8 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DatastreamService } from '../datastream.service';
+import { DatastreamService } from '../../datastream.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { Voertuig } from '../objects/voertuig';
+import { Voertuig } from '../../objects/voertuig';
 
 
 @Component({
