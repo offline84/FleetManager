@@ -2,7 +2,7 @@ import {AfterViewInit, Input, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { BehaviorSubject, observable } from 'rxjs';
+import { DataExchangeService } from '../data-exchange.service';
 import { DatastreamService } from '../datastream.service';
 
 @Component({
@@ -12,28 +12,26 @@ import { DatastreamService } from '../datastream.service';
 })
 export class VoertuigListComponent implements AfterViewInit{
 
-  @Input() passedData: any;
+  tableData: Array<any> = new Array<any>();
   @Input() columnsToDisplay: any;
   @ViewChild(MatPaginator) paging!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
-  constructor(private datastream: DatastreamService) {}
+  constructor(private datastream: DatastreamService, private dataService: DataExchangeService) {}
 
   ngAfterViewInit() {
-    if(!this.passedData){
-      this.datastream.GetAllVehicles().subscribe((data: any) =>{
-        this.dataSource.data = data;
-        this.dataSource.paginator = this.paging;
-        this.dataSource.sort = this.sort;
-      });
-    }
-    else{
-      this.dataSource.data = this.passedData;
-        this.dataSource.paginator = this.paging;
-        this.dataSource.sort = this.sort;
-    }
+
+    this.datastream.GetAllVehicles().subscribe((data: any) =>{
+      this.tableData = data;
+      this.dataSource.data = this.tableData;
+      this.dataSource.paginator = this.paging;
+      this.dataSource.sort = this.sort;
+    });
+
+    console.log(this.tableData);
+    console.log(this.dataSource);
 
     this.dataSource.sortingDataAccessor = (entity, property) => {
       switch(property){
@@ -44,8 +42,15 @@ export class VoertuigListComponent implements AfterViewInit{
         default: return entity[property];
       }
     };
-    console.log(this.passedData.length);
-    let changedPassedDataListener = new BehaviorSubject<any>(this.passedData);
+    this.dataService.observableData.subscribe((data: any) =>{
+      if(data.type == "voertuig")
+        if(data.value){
+          console.log("data reached tabledata because contains a value");
+          this.tableData.push(data.value);
+          this.dataSource.data = this.tableData;
+        }
+      console.log("data from dialog: ", data)
+    });
   }
 
   FilterDataHandler(filter: any): void {

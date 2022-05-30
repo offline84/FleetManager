@@ -87,7 +87,6 @@ export class VoertuigDetailDialogComponent implements OnInit {
 
     let vehicle = this.CreateObjectToSend();
 
-      console.log(vehicle);
     this.datastream.PostVehicle(vehicle).subscribe( (res: any) =>{
 
       if(res){
