@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DatastreamService} from '../datastream.service';
 import { VoertuigDetailDialogComponent } from '../voertuig-detail-dialog/voertuig-detail-dialog.component';
@@ -10,7 +10,7 @@ import { VoertuigDetailDialogComponent } from '../voertuig-detail-dialog/voertui
 })
 export class VoertuigComponent implements OnInit {
 
-  entity: string = "voertuig";
+  @Input() entity: any;
   properties = [
     "chassisnummer",
     "merk",
@@ -32,10 +32,7 @@ export class VoertuigComponent implements OnInit {
       this.voertuigen = data;
     });
   }
-
-
   ngOnInit(): void {
-
   }
 
   AddNewEntityDialog = () => {
@@ -44,10 +41,19 @@ export class VoertuigComponent implements OnInit {
     config.autoFocus = true;
 
     config.data = {
-      properties: this.properties,
+      mode: "add",
       entity: this.entity
     };
 
-    this.dialog.open(VoertuigDetailDialogComponent, config);
+    let dialogRef = this.dialog.open(VoertuigDetailDialogComponent, config);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.entity = result;
+      console.log(this.voertuigen.length);
+      if(result !== undefined) {
+        this.voertuigen.push(this.entity);
+      }
+      console.log(this.voertuigen.length);
+    });
   }
 }

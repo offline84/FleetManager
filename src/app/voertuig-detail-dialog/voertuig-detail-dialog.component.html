@@ -1,4 +1,5 @@
-<h2 mat-dialog-title>{{entity}} toevoegen</h2>
+<h2 *ngIf="mode == 'add'" mat-dialog-title>Voertuig toevoegen</h2>
+<h2 *ngIf="mode == 'view'" mat-dialog-title>Voertuig details</h2>
 <div mat-dialog-content>
   <div [formGroup]="voertuigForm">
 
@@ -8,27 +9,30 @@
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>chassisnummer</mat-label>
-            <input matInput type="text" formControlName="chassisnummer">
-            <mat-error *ngIf="voertuigForm.value.chassisnummer">chassisnummer is of wrong length</mat-error>
+            <input matInput type="text" [readOnly]="readonly" formControlName="chassisnummer">
+            <mat-error *ngIf="voertuigForm.get('chassisnummer')?.hasError('pattern')">chassisnummer is incorrect</mat-error>
+            <mat-error *ngIf="voertuigForm.get('chassisnummer')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>merk</mat-label>
-            <input matInput type="text" formControlName="merk">
+            <input matInput type="text" [readOnly]="readonly" formControlName="merk">
+            <mat-error *ngIf="voertuigForm.get('merk')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>model</mat-label>
-            <input matInput type="text" formControlName="model">
+            <input matInput type="text" [readOnly]="readonly" formControlName="model">
+            <mat-error *ngIf="voertuigForm.get('model')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>nummerplaat</mat-label>
-            <input matInput type="text" formControlName="nummerplaat">
-            <mat-error *ngIf="voertuigForm.value.nummerplaat">nummerplaat is of wrong length</mat-error>
+            <input matInput type="text" [readOnly]="readonly" formControlName="nummerplaat">
+            <mat-error *ngIf="voertuigForm.get('nummerplaat')?.hasError('pattern')">nummerplaat is incorrect</mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -40,13 +44,14 @@
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>kleur</mat-label>
-            <input matInput type="text" formControlName="kleur">
+            <input matInput type="text" [readOnly]="readonly" formControlName="kleur">
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>aantal deuren</mat-label>
-            <input matInput type="number" formControlName="aantalDeuren">
+            <input matInput type="number" [readOnly]="readonly" formControlName="aantalDeuren">
+            <mat-error *ngIf="voertuigForm.get('aantalDeuren')?.hasError('min')">getal kan geen negatieve waarde hebben</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
@@ -55,6 +60,7 @@
               <mat-option value = null></mat-option>
               <mat-option *ngFor="let cat of categories" value="{{cat.typeWagen}}">{{cat.typeWagen}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="voertuigForm.get('typeWagen')?.hasError('required')">categorie is vereist</mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -66,12 +72,14 @@
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>bouwjaar</mat-label>
-            <input matInput type="number" formControlName="bouwjaar">
+            <input matInput type="number" [readOnly]="readonly"formControlName="bouwjaar">
+            <mat-error *ngIf="voertuigForm.get('bouwjaar')?.hasError('min')">paard en kar zijn geen geldige voertuigen</mat-error>
+            <mat-error *ngIf="voertuigForm.get('bouwjaar')?.hasError('max')">bouwjaar kan niet in de toekomst liggen</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field appearance="fill">
-            <mat-select placeholder="status" formControlName="staat">
+            <mat-select placeholder="status" [disabled]="readonly" formControlName="staat">
               <mat-option value = null></mat-option>
               <mat-option *ngFor="let state of statussen" value="{{state.staat}}">{{state.staat}}</mat-option>
             </mat-select>
@@ -83,16 +91,17 @@
               <mat-option value = null></mat-option>
               <mat-option *ngFor="let fuel of brandstoffen" value="{{fuel.typeBrandstof}}">{{fuel.typeBrandstof}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="voertuigForm.get('typeBrandstof')?.hasError('required')">brandstof is vereist</mat-error>
           </mat-form-field>
         </div>
       </div>
     </div>
     <div class="clearfix">
     </div>
-    <div class="formbuttons">
+    <div *ngIf="mode == 'add'" class="formbuttons">
       <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!voertuigForm.valid">Submit</button>
     </div>
-    <div class="formbuttons">
+    <div *ngIf="mode == 'view'" class="formbuttons">
       <button mat-raised-button color="accent" type="button" >Koppel aan bestuurder</button>
     </div>
     <div class="clearfix">
@@ -101,7 +110,7 @@
   </div>
 </div>
 <div mat-dialog-footer>
-  <p #error></p>
+  <p #message></p>
 </div>
   <!-- </mat-grid-tile>
 </mat-grid-list> -->
