@@ -1,7 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DataExchangeService } from '../data-exchange.service';
-import { DatastreamService} from '../datastream.service';
+import { DataExchangeService } from '../../data-exchange.service';
 import { VoertuigDetailDialogComponent } from '../voertuig-detail-dialog/voertuig-detail-dialog.component';
 
 @Component({

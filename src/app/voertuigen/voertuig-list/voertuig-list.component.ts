@@ -3,9 +3,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { DataExchangeService } from '../data-exchange.service';
-import { DatastreamService } from '../datastream.service';
-import { IVoertuig } from '../objects/iVoertuig';
+import { DataExchangeService } from '../../data-exchange.service';
+import { DatastreamService } from '../../datastream.service';
+import { IVoertuig } from '../../objects/iVoertuig';
 import { VoertuigDetailDialogComponent } from '../voertuig-detail-dialog/voertuig-detail-dialog.component';
 
 @Component({

@@ -1,10 +1,10 @@
 import { Component, Directive, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DatastreamService } from '../datastream.service';
+import { DatastreamService } from '../../datastream.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { Voertuig } from '../objects/voertuig';
-import { IVoertuig } from '../objects/iVoertuig';
-import { DataExchangeService } from '../data-exchange.service';
+import { Voertuig } from '../../objects/voertuig';
+import { IVoertuig } from '../../objects/iVoertuig';
+import { DataExchangeService } from '../../data-exchange.service';
 
 
 @Component({
@@ -133,9 +133,10 @@ export class VoertuigDetailDialogComponent implements OnInit {
     this.bestuurderLink = link[0];
   }
 
+  //To Do route naar bestuurders en open daar automatisch met het behavioursubject de detail dialog voor de meegegeven bestuurder.
   OpenBestuurdersDetails = () => {
-    this.dataService.follow("view bestuurders");
-    this.dataService.sendData("view bestuurders", this.bestuurderLink);
+    this.dataService.follow("view bestuurder");
+    this.dataService.sendData("view bestuurder", this.bestuurderLink);
   }
 
   onSave = () => {
