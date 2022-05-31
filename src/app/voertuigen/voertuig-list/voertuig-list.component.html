@@ -64,17 +64,15 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row
-        (click)="selectedVoertuig"
-        [class.row-is-selected]="selectedVoertuig"
-        *matRowDef="let row; columns: columnsToDisplay;"></tr>
-
-      </mat-table>
-      <div></div>
-      <mat-paginator [length]="100"
-              [pageSize]="5"
-              [pageSizeOptions]="[5, 10, 25, 50, 100]"
-              aria-label="Select page">
-      </mat-paginator>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"
+        (click)="ViewDetails(row)">
+    </tr>
+  </mat-table>
+  <div></div>
+  <mat-paginator [length]="100"
+          [pageSize]="5"
+          [pageSizeOptions]="[5, 10, 25, 50, 100]"
+          aria-label="Select page">
+  </mat-paginator>
 
 </div>
