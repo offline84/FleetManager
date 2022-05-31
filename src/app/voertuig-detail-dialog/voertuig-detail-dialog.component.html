@@ -1,5 +1,20 @@
-<h2 *ngIf="mode == 'add'" mat-dialog-title>Voertuig toevoegen</h2>
-<h2 *ngIf="mode == 'view'" mat-dialog-title>Voertuig details</h2>
+<div mat-dialog-content>
+  <div mat-dialog-title class="title">
+    <h2 *ngIf="forCreation">Voertuig toevoegen</h2>
+    <h2 *ngIf="!modifiable">Voertuig details</h2>
+    <h2 *ngIf="modifiable && !forCreation">Voertuig Updaten</h2>
+  </div>
+  <div *ngIf="!modifiable">
+    <div class="formbuttons-top">
+      <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>edit</mat-icon></button>
+    </div>
+    <div class="formbuttons-top">
+      <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>delete</mat-icon></button>
+    </div>
+    <div class="clearfix">
+    </div>
+  </div>
+</div>
 <div mat-dialog-content>
   <div [formGroup]="voertuigForm">
 
@@ -9,7 +24,7 @@
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>chassisnummer</mat-label>
-            <input matInput type="text" [readOnly]="readonly" formControlName="chassisnummer">
+            <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="chassisnummer">
             <mat-error *ngIf="voertuigForm.get('chassisnummer')?.hasError('pattern')">chassisnummer is incorrect</mat-error>
             <mat-error *ngIf="voertuigForm.get('chassisnummer')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
@@ -17,21 +32,21 @@
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>merk</mat-label>
-            <input matInput type="text" [readOnly]="readonly" formControlName="merk">
+            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="merk">
             <mat-error *ngIf="voertuigForm.get('merk')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>model</mat-label>
-            <input matInput type="text" [readOnly]="readonly" formControlName="model">
+            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="model">
             <mat-error *ngIf="voertuigForm.get('model')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>nummerplaat</mat-label>
-            <input matInput type="text" [readOnly]="readonly" formControlName="nummerplaat">
+            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="nummerplaat">
             <mat-error *ngIf="voertuigForm.get('nummerplaat')?.hasError('pattern')">nummerplaat is incorrect</mat-error>
           </mat-form-field>
         </div>
@@ -44,19 +59,19 @@
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>kleur</mat-label>
-            <input matInput type="text" [readOnly]="readonly" formControlName="kleur">
+            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="kleur">
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>aantal deuren</mat-label>
-            <input matInput type="number" [readOnly]="readonly" formControlName="aantalDeuren">
+            <input [ngClass]="viewOnly" matInput type="number" [readonly]="!modifiable" formControlName="aantalDeuren">
             <mat-error *ngIf="voertuigForm.get('aantalDeuren')?.hasError('min')">getal kan geen negatieve waarde hebben</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field appearance="fill">
-            <mat-select placeholder="categorie *" formControlName="typeWagen">
+            <mat-select placeholder="categorie *" [disabled]="!modifiable" formControlName="typeWagen">
               <mat-option value = null></mat-option>
               <mat-option *ngFor="let cat of categories" value="{{cat.typeWagen}}">{{cat.typeWagen}}</mat-option>
             </mat-select>
@@ -72,14 +87,14 @@
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>bouwjaar</mat-label>
-            <input matInput type="number" [readOnly]="readonly"formControlName="bouwjaar">
+            <input [ngClass]="viewOnly" matInput type="number" [readonly]="!modifiable" formControlName="bouwjaar">
             <mat-error *ngIf="voertuigForm.get('bouwjaar')?.hasError('min')">paard en kar zijn geen geldige voertuigen</mat-error>
             <mat-error *ngIf="voertuigForm.get('bouwjaar')?.hasError('max')">bouwjaar kan niet in de toekomst liggen</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field appearance="fill">
-            <mat-select placeholder="status" [disabled]="readonly" formControlName="staat">
+            <mat-select placeholder="status" [disabled]="!modifiable" formControlName="staat">
               <mat-option value = null></mat-option>
               <mat-option *ngFor="let state of statussen" value="{{state.staat}}">{{state.staat}}</mat-option>
             </mat-select>
@@ -87,7 +102,7 @@
         </div>
         <div class="field">
           <mat-form-field appearance="fill">
-            <mat-select placeholder="brandstof *" formControlName="typeBrandstof">
+            <mat-select placeholder="brandstof *" [disabled]="!modifiable" formControlName="typeBrandstof">
               <mat-option value = null></mat-option>
               <mat-option *ngFor="let fuel of brandstoffen" value="{{fuel.typeBrandstof}}">{{fuel.typeBrandstof}}</mat-option>
             </mat-select>
@@ -98,11 +113,32 @@
     </div>
     <div class="clearfix">
     </div>
-    <div *ngIf="mode == 'add'" class="formbuttons">
+    <div *ngIf="modifiable && !voertuig" class="formbuttons">
       <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!voertuigForm.valid">Submit</button>
     </div>
-    <div *ngIf="mode == 'view'" class="formbuttons">
-      <button mat-raised-button color="accent" type="button" >Koppel aan bestuurder</button>
+    <div *ngIf="modifiable && !forCreation" class="formbuttons">
+      <button mat-raised-button color="primary" type="submit" (click)="onSave()" [disabled]="!voertuigForm.valid">Save<span class="spacer"></span><mat-icon>save</mat-icon></button>
+    </div>
+    <div>
+      <div *ngIf="!modifiable" class="formbuttons">
+        <button mat-raised-button type="button" (click)="linkUnlinkDriver()">
+          <mat-icon *ngIf="!voertuig.koppeling">link</mat-icon>
+          <mat-icon *ngIf="voertuig.koppeling">link_off</mat-icon>
+          <span class="spacer"></span> Bestuurder</button>
+      </div>
+      <div class="formbuttons koppel field" *ngIf="viewOnly">
+          <mat-form-field class="link-bestuurder" appearance="fill">
+            <mat-select *ngIf="!voertuig.koppeling" (selectionChange)="onSelectionChange($event.value)">
+              <mat-option value = null></mat-option>
+              <mat-option *ngFor="let bestuurder of unlinkedBestuurders" value={{bestuurder.rijksregisternummer}}>{{bestuurder.naam}} {{bestuurder.achternaam}}</mat-option>
+            </mat-select>
+            <input matInput *ngIf="voertuig.koppeling" type="text"
+            value="{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}"
+            [readonly]="viewOnly"
+            (click)="OpenBestuurdersDetails()">
+          </mat-form-field>
+      </div>
+
     </div>
     <div class="clearfix">
     </div>
@@ -112,5 +148,3 @@
 <div mat-dialog-footer>
   <p #message></p>
 </div>
-  <!-- </mat-grid-tile>
-</mat-grid-list> -->

@@ -38,7 +38,7 @@ export class VoertuigComponent implements OnInit {
     config.autoFocus = true;
 
     config.data = {
-      mode: "add",
+      modifiable: true,
       entity: null
     };
 
@@ -47,8 +47,9 @@ export class VoertuigComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.entity = result;
       if(result !== undefined) {
-        this.dataService.follow("voertuig");
-        this.dataService.sendData("voertuig", this.entity);
+        console.log(result);
+        this.dataService.follow("add voertuig");
+        this.dataService.sendData("add voertuig", this.entity);
       }
     });
   }

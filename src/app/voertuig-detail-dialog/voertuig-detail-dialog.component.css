@@ -18,16 +18,48 @@ h3 {
   text-decoration-color: blue;
 }
 
-.form-middle-block{
+.form-middle-block {
   float: left;
   padding: 2em;
 }
 
-.formbuttons{
-  padding: 2em 1.5em 0em 0em;
+.formbuttons {
+  padding: 2em 1.5em 1.5em 0em;
   float: right;
 }
 
-#error{
+.formbuttons-top {
+  padding: 0em 0.75em 0.5em 1em;
+  float: right;
+}
+
+.title {
+  padding: 0em 0.5em 0.5em 0.5em;
+  width: 75%;
+  float: left;
+}
+
+#error {
   color: red;
+}
+
+.changeColor {
+  background-color: rgb(255, 255, 255);
+  color: rgb(113, 109, 109);
+}
+
+.mat-dialog-title {
+  border-bottom: 0.01em solid black;
+}
+
+.spacer {
+  margin: 0.5em;
+}
+
+.koppel {
+  width: 25em;
+  float: center;
+}
+.link-bestuurder {
+  width: 100%;
 }

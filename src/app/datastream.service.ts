@@ -20,9 +20,14 @@ export class DatastreamService {
     this.connectionstring = _connectionstring;
   }
 
+  //#region Voertuigen
+
   GetAllVehicles = () => {
     return this.http.get(this.connectionstring +"voertuig/active");
+  }
 
+  GetSingleVehicle = (vehicleId: string) => {
+    return this.http.get(this.connectionstring +"voertuig/" + vehicleId);
   }
 
   GetStatusses = () => {
@@ -41,6 +46,32 @@ export class DatastreamService {
     return this.http.post(this.connectionstring + "voertuig", voertuig).pipe(catchError(this.handleError));
   }
 
+  UpdateVehicle = (voertuig: any) => {
+    return this.http.patch(this.connectionstring + "voertuig/update", voertuig).pipe(catchError(this.handleError));
+  }
+
+  DeleteVehicle = (vehicleId: string) =>{
+    return this.http.delete(this.connectionstring +"voertuig/" + vehicleId);
+  }
+  //#endregion Voertuigen
+
+  //#region Bestuurders
+  GetAllBestuurders = () => {
+    return this.http.get(this.connectionstring + "bestuurder/activebestuurders");
+  }
+  //#endregion Bestuurders
+
+  //#region Koppelingen
+
+  UnlinkVehicle = (vehicleId: string) => {
+    return this.http.get(this.connectionstring + "voertuig/koppellos/" + vehicleId).pipe(catchError(this.handleError));
+  }
+
+  LinkVehicle = ( idNumber: string, vehicleId: string) => {
+    return this.http.get(this.connectionstring + "voertuig/koppel/" + idNumber + "/" + vehicleId).pipe(catchError(this.handleError));
+  }
+
+  //#endregion Koppelingen
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

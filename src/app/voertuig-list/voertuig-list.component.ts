@@ -1,9 +1,12 @@
 import {AfterViewInit, Input, Component, ViewChild} from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { DataExchangeService } from '../data-exchange.service';
 import { DatastreamService } from '../datastream.service';
+import { IVoertuig } from '../objects/iVoertuig';
+import { VoertuigDetailDialogComponent } from '../voertuig-detail-dialog/voertuig-detail-dialog.component';
 
 @Component({
   selector: 'app-voertuig-list',
@@ -12,14 +15,16 @@ import { DatastreamService } from '../datastream.service';
 })
 export class VoertuigListComponent implements AfterViewInit{
 
-  tableData: Array<any> = new Array<any>();
   @Input() columnsToDisplay: any;
   @ViewChild(MatPaginator) paging!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
-  constructor(private datastream: DatastreamService, private dataService: DataExchangeService) {}
+  tableData: Array<any> = new Array<any>();
+  selectedVoertuig: any;
+
+  constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) {}
 
   ngAfterViewInit() {
 
@@ -43,13 +48,17 @@ export class VoertuigListComponent implements AfterViewInit{
       }
     };
     this.dataService.observableData.subscribe((data: any) =>{
-      if(data.type == "voertuig")
-        if(data.value){
-          console.log("data reached tabledata because contains a value");
-          this.tableData.push(data.value);
-          this.dataSource.data = this.tableData;
+      console.log("sent data: ", data);
+      if(data){
+        if(data.type == "add voertuig"){
+          if(data.value){
+            console.log(this.tableData.length);
+            this.tableData.push(data.value);
+            console.log(this.tableData.length);
+            this.dataSource.data = this.tableData;
+          }
         }
-      console.log("data from dialog: ", data)
+      }
     });
   }
 
@@ -57,7 +66,31 @@ export class VoertuigListComponent implements AfterViewInit{
     this.dataSource = filter;
   }
 
-  selectedVoertuig: any;
+  //opent de voertuig-detail-dialog met settings voor viewing. bij het sluiten van de dialog wordt de data in de tabel bijgewerkt.
+  ViewDetails = (selectedRow: IVoertuig) =>{
+    const config = new MatDialogConfig();
+    this.selectedVoertuig = selectedRow;
+
+    config.autoFocus = true;
+    config.data = {
+      modifiable: false,
+      entity: selectedRow
+    };
+
+    let dialogRef = this.dialog.open(VoertuigDetailDialogComponent, config);
+
+    dialogRef.afterClosed().subscribe((data: any) => {
+
+      this.tableData.forEach((element, index) => {
+        if(element.chassisnummer == data.chassisnummer) {
+          this.tableData[index] = data;
+        }
+      });
+
+      this.dataSource.data = this.tableData;
+    })
+  }
+
 
 
 
