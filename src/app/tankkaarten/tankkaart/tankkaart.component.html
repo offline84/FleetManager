@@ -1,1 +1,9 @@
-<p>tankkaart works!</p>
+<div>
+  <div>
+    <h2>Tankkaarten</h2>
+  </div>
+</div>
+
+<button mat-raised-button color="primary" id="add-button" (click)="AddNewEntityDialog()"><mat-icon>add_circle</mat-icon>nieuwe tankkaart</button>
+
+<app-tankkaart-list [passedData]="tankkaarten" [columnsToDisplay]="properties"></app-tankkaart-list >

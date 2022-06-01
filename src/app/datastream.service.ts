@@ -22,7 +22,6 @@ export class DatastreamService {
 
   GetAllVehicles = () => {
     return this.http.get(this.connectionstring +"voertuig/active");
-
   }
 
   GetStatusses = () => {
@@ -37,8 +36,16 @@ export class DatastreamService {
     return this.http.get(this.connectionstring + "voertuig/brandstoffen");
   }
 
+  GetAllFuelCards = () => {
+    return this.http.get(this.connectionstring +"tankkaart/active");
+  }
+
   PostVehicle = (voertuig: any) => {
     return this.http.post(this.connectionstring + "voertuig", voertuig).pipe(catchError(this.handleError));
+  }
+
+  PostFuelCard = (tankkaart: any) => {
+    return this.http.post(this.connectionstring + "tankkaart", tankkaart).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
