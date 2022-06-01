@@ -62,17 +62,29 @@ export class DatastreamService {
   //#endregion Bestuurders
 
   //#region Tankkaarten
-  
+
   GetAllFuelCards = () => {
     return this.http.get(this.connectionstring +"tankkaart/active");
+  }
+
+  GetSingleFuelCard = (tankkaartId: string) => {
+    return this.http.get(this.connectionstring +"tankkaart/" + tankkaartId);
   }
 
   PostFuelCard = (tankkaart: any) => {
     return this.http.post(this.connectionstring + "tankkaart", tankkaart).pipe(catchError(this.handleError));
   }
-  
+
+  UpdateFuelCard  = (tankkaart: any) => {
+    return this.http.patch(this.connectionstring + "tankkaart/update", tankkaart).pipe(catchError(this.handleError));
+  }
+
+  DeleteFuelCard  = (tankkaartId: string) =>{
+    return this.http.delete(this.connectionstring +"tankkaart/delete/" + tankkaartId);
+  }
+
   //#endregion Tankkaarten
-  
+
   //#region Koppelingen
 
   UnlinkVehicle = (vehicleId: string) => {
@@ -83,9 +95,17 @@ export class DatastreamService {
     return this.http.get(this.connectionstring + "voertuig/koppel/" + idNumber + "/" + vehicleId).pipe(catchError(this.handleError));
   }
 
+  UnlinkFuelCard = (tankkaartId: string) => {
+    return this.http.get(this.connectionstring + "voertuig/koppellos/" + tankkaartId).pipe(catchError(this.handleError));
+  }
+
+  LinkFuelCard = ( idNumber: string, tankkaartId: string) => {
+    return this.http.get(this.connectionstring + "voertuig/koppel/" + idNumber + "/" + tankkaartId).pipe(catchError(this.handleError));
+  }
+
   //#endregion Koppelingen
-  
-  
+
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
