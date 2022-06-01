@@ -66,12 +66,15 @@ export class VoertuigDetailDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
+    //We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
+    // Indien ja, patchen we deze in de form.
     if(this.voertuig){
       this.patchObjectToForm(this.voertuig);
     };
 
-    // zet de mode waarin de dialog zich op dit moment bevindt. de mogelijkheden zijn: view, add en edit. de mode wordt weergegeven
-    // in de MAT_DIALOG_DATA bij opening van de dialog.
+    // zet de mode waarin de dialog zich op dit moment bevindt. de mogelijkheden zijn: boolean modifialbe.
+    //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
+
     this.IsModifiable(this.modifiable);
 
     this.datastream.GetCategories().subscribe((data: any) => {
@@ -86,6 +89,9 @@ export class VoertuigDetailDialogComponent implements OnInit {
       this.statussen = data;
     });
 
+    // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
+    //+ de bestuurder die al dan niet reeds gekoppeld is met de entiteit. deze worden opgeslagen in unlinkedBestuurders
+    //en de bestuurder van de koppeling in de var. bestuurderLink.
     this.datastream.GetAllBestuurders().subscribe((data: any) =>{
       this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.chassisnummer == null || u.koppeling.chassisnummer == this.voertuig.chassisnummer);
       if(this.voertuig){
@@ -96,6 +102,7 @@ export class VoertuigDetailDialogComponent implements OnInit {
       }
     });
 
+    //listener voor het sluiten van de dialog + transfer object naar de tabel.
     this.dialogRef.backdropClick().subscribe(() => {
         this.dialogRef.close(this.voertuig);
     });
@@ -128,6 +135,11 @@ export class VoertuigDetailDialogComponent implements OnInit {
     this.viewOnly = "";
   }
 
+  openDeleteScreen = () => {
+
+  }
+
+  //Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat, implementeren we de selectie handmatig via een eventlistener.
   onSelectionChange = (event: any) => {
     let link = this.unlinkedBestuurders.filter((u: any) => u.rijksregisternummer == event);
     this.bestuurderLink = link[0];
@@ -157,16 +169,17 @@ export class VoertuigDetailDialogComponent implements OnInit {
       }
     );
   }
+
+  // Omdat we enkel het correcte resultaat willen weergeven en deze in de tabel updaten voor geslaagde patch-bewerkingen naar de API,
+  //gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
   linkUnlinkDriver = () =>{
-    console.log("link/unlink: ");
-    console.log(this.bestuurderLink);
+
     if(this.bestuurderLink){
       if(this.voertuig.koppeling){
-        console.log("unlink koppeling: ", this.voertuig.koppeling);
+
         this.datastream.UnlinkVehicle(this.voertuig.chassisnummer).subscribe(() =>{
 
           this.voertuig.koppeling = null;
-          console.log("unlink: ", this.bestuurderLink);
 
         }, error =>{
           if(error){
@@ -180,7 +193,6 @@ export class VoertuigDetailDialogComponent implements OnInit {
       }
       else{
         this.datastream.LinkVehicle(this.bestuurderLink.rijksregisternummer, this.voertuig.chassisnummer).subscribe(() =>{
-
         }, error =>{
           if(error){
             this.message.nativeElement.innerHTML = error.message;
@@ -212,9 +224,9 @@ export class VoertuigDetailDialogComponent implements OnInit {
       this.viewOnly ="changeColor";
     }
   }
-
-   //indien een voertuig is meegegeven wordt deze via deze method gepatched met de voertuigForm.
-    //De niet gepatchede controls worden handmatig ingegeven.
+  
+  //indien een voertuig is meegegeven wordt deze via deze method gepatched met de voertuigForm.
+  //De niet gepatchede controls worden handmatig ingegeven.
   patchObjectToForm = (entity: Voertuig) =>{
     this.voertuigForm.patchValue(this.voertuig);
     this.voertuigForm.controls["typeBrandstof"].setValue(this.voertuig.brandstof.typeBrandstof);
@@ -223,10 +235,11 @@ export class VoertuigDetailDialogComponent implements OnInit {
       this.voertuigForm.controls["staat"].setValue(this.voertuig.status.staat);
   }
 
+  // Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden
+  // en resulteert tot een error van de API.
   CreateObjectToSend =(): IVoertuig => {
     let vehicle = new Voertuig;
-
-    // Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden.
+    
     if(!this.voertuigForm.controls["nummerplaat"].value){
       if(this.voertuigForm.controls["staat"].value != "aankoop"){
         this.message.nativeElement.innerHTML = "error: Indien het voertuig niet de status 'aankoop' heeft, dient men een nummerplaat mee te geven";
