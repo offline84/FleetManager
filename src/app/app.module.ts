@@ -15,7 +15,9 @@ import { VoertuigDetailDialogComponent } from './voertuigen/voertuig-detail-dial
 import { NavigationComponent } from './navigation/navigation.component';
 import { BestuurderComponent } from './bestuurders/bestuurder/bestuurder.component';
 import { TankkaartComponent } from './tankkaarten/tankkaart/tankkaart.component';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+import { TankkaartListComponent } from './tankkaarten/tankkaart-list/tankkaart-list.component';
+import { TankkaartDetailDialogComponent } from './tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component'
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -34,7 +36,9 @@ const appRoutes: Routes = [
     NavigationComponent,
     BestuurderComponent,
     TankkaartComponent,
-    HomeComponent
+    HomeComponent,
+    TankkaartListComponent,
+    TankkaartDetailDialogComponent
   ],
   imports: [
     BrowserModule,
