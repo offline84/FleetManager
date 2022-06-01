@@ -60,7 +60,18 @@ export class DatastreamService {
     return this.http.get(this.connectionstring + "bestuurder/activebestuurders");
   }
   //#endregion Bestuurders
+  //#region Tankkaarten
+  
+  GetAllFuelCards = () => {
+    return this.http.get(this.connectionstring +"tankkaart/active");
+  }
 
+  PostFuelCard = (tankkaart: any) => {
+    return this.http.post(this.connectionstring + "tankkaart", tankkaart).pipe(catchError(this.handleError));
+  }
+  
+  //#endregion Tankkaarten
+ 
   //#region Koppelingen
 
   UnlinkVehicle = (vehicleId: string) => {
@@ -72,6 +83,7 @@ export class DatastreamService {
   }
 
   //#endregion Koppelingen
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

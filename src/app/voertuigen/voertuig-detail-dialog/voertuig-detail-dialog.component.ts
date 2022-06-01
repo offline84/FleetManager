@@ -74,6 +74,7 @@ export class VoertuigDetailDialogComponent implements OnInit {
 
     // zet de mode waarin de dialog zich op dit moment bevindt. de mogelijkheden zijn: boolean modifialbe.
     //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
+
     this.IsModifiable(this.modifiable);
 
     this.datastream.GetCategories().subscribe((data: any) => {
@@ -191,8 +192,7 @@ export class VoertuigDetailDialogComponent implements OnInit {
         );
       }
       else{
-        this.datastream.LinkVehicle(this.bestuurderLink.rijksregisternummer, this.voertuig.chassisnummer).subscribe((a: any) =>{
-          console.log(a.result);
+        this.datastream.LinkVehicle(this.bestuurderLink.rijksregisternummer, this.voertuig.chassisnummer).subscribe(() =>{
         }, error =>{
           if(error){
             this.message.nativeElement.innerHTML = error.message;
@@ -224,7 +224,7 @@ export class VoertuigDetailDialogComponent implements OnInit {
       this.viewOnly ="changeColor";
     }
   }
-
+  
   //indien een voertuig is meegegeven wordt deze via deze method gepatched met de voertuigForm.
   //De niet gepatchede controls worden handmatig ingegeven.
   patchObjectToForm = (entity: Voertuig) =>{
@@ -239,7 +239,7 @@ export class VoertuigDetailDialogComponent implements OnInit {
   // en resulteert tot een error van de API.
   CreateObjectToSend =(): IVoertuig => {
     let vehicle = new Voertuig;
-
+    
     if(!this.voertuigForm.controls["nummerplaat"].value){
       if(this.voertuigForm.controls["staat"].value != "aankoop"){
         this.message.nativeElement.innerHTML = "error: Indien het voertuig niet de status 'aankoop' heeft, dient men een nummerplaat mee te geven";
