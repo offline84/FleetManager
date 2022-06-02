@@ -1,15 +1,8 @@
 <div>
   <mat-form-field class="searchbar">
-    <input matInput type="text" [ngModel]="search" (ngModelChange)="detectChanges($event)" placeholder="vul uw zoekterm hier in">
+    <input matInput type="text" [(ngModel)]="search" (ngModelChange)="detectChanges($event)" placeholder="vul uw zoekterm hier in">
   </mat-form-field>
 
-  <mat-form-field class="searchbar">
-    <mat-select [ngModel]="selected" placeholder="uit kolom">
-      <mat-option value = ""></mat-option>
-      <mat-option *ngFor="let prop of properties" value="{{prop}}">{{prop}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <button mat-flat-button color="primary" (click)="FilterResults()"><mat-icon>search</mat-icon></button>
+  <button mat-flat-button color="primary" (click)="clearQuery()"><mat-icon>cancel</mat-icon></button>
 </div>
 

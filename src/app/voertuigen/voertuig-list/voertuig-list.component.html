@@ -1,6 +1,6 @@
 <div class="clearfix">
   <div id="searchbar">
-    <app-searchbar [properties]="columnsToDisplay" [dataToFilter]="dataSource" (passFilteredData)="FilterDataHandler($event)"></app-searchbar>
+    <app-searchbar [entity]="entityType" [dataToFilter]="dataSource" (passFilteredData)="FilterDataHandler($event)"></app-searchbar>
   </div>
 </div>
 
