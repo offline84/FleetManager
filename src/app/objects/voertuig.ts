@@ -16,5 +16,5 @@ export class Voertuig implements IVoertuig {
   laatstGeupdate!: Date;
 
   constructor()
-  {  }
+  { }
 }

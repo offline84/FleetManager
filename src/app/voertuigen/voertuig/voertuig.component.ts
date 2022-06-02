@@ -1,5 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DatastreamService } from 'src/app/datastream.service';
 import { DataExchangeService } from '../../data-exchange.service';
 import { VoertuigDetailDialogComponent } from '../voertuig-detail-dialog/voertuig-detail-dialog.component';
 
@@ -11,6 +12,8 @@ import { VoertuigDetailDialogComponent } from '../voertuig-detail-dialog/voertui
 export class VoertuigComponent implements OnInit {
 
   @Input() entity: any;
+  merken: any;
+
   properties = [
     "chassisnummer",
     "merk",
@@ -25,10 +28,16 @@ export class VoertuigComponent implements OnInit {
     "koppeling"
   ];
 
-  constructor(private dialog: MatDialog, private dataService: DataExchangeService) {
+  constructor(private dialog: MatDialog, private dataService: DataExchangeService, private datastream: DatastreamService) {
   }
 
   ngOnInit(): void {
+    this.datastream.GetAllVehicles().subscribe((data: any) => {
+
+      var mapM = data.map((u: any) => u.merk) as string[];
+      this.merken = [...new Set(mapM)];
+      this.merken.sort();
+    });
   }
 
   AddNewEntityDialog = () => {
@@ -38,7 +47,8 @@ export class VoertuigComponent implements OnInit {
 
     config.data = {
       modifiable: true,
-      entity: null
+      entity: null,
+      merken: this.merken
     };
 
     let dialogRef = this.dialog.open(VoertuigDetailDialogComponent, config);
@@ -47,8 +57,7 @@ export class VoertuigComponent implements OnInit {
       this.entity = result;
       if(result !== undefined) {
         console.log(result);
-        this.dataService.follow("add voertuig");
-        this.dataService.sendData("add voertuig", this.entity);
+        this.dataService.sendData("voertuig", "add", this.entity);
       }
     });
   }
