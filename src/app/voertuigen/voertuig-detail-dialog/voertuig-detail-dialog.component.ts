@@ -171,6 +171,7 @@ export class VoertuigDetailDialogComponent implements OnInit {
         this.dialogRef.close();
       }
     });
+
   }
 
   //Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat, implementeren we de selectie handmatig via een eventlistener.
