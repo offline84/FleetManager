@@ -21,6 +21,7 @@ export class VoertuigListComponent implements AfterViewInit{
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
+  entityType: string = 'voertuig';
   tableData: Array<any> = new Array<any>();
   selectedVoertuig: any;
   merken: any;
@@ -81,7 +82,7 @@ export class VoertuigListComponent implements AfterViewInit{
     });
   }
 
-  //behandelt de algemene filtering komend van de searchbar !!!IN PROGRESS!!!;
+  //behandelt de algemene filtering komend van de searchbar;
   FilterDataHandler(filter: any): void {
     this.dataSource = filter;
   }

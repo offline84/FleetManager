@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { IVoertuig } from '../objects/iVoertuig';
 
 @Component({
@@ -10,11 +9,9 @@ import { IVoertuig } from '../objects/iVoertuig';
 export class SearchbarComponent implements OnInit {
 
   @Output("dataSource") passFilteredData: EventEmitter<any> = new EventEmitter();
-  @Input() properties: any;
   @Input() dataToFilter: any;
+  @Input() entity: any;
   search: string = "";
-  selected: string = "";
-  voertuig: any;
 
 
   constructor() {}
@@ -24,35 +21,33 @@ export class SearchbarComponent implements OnInit {
   }
 
   detectChanges(e: string) {
+    if(this.entity == "voertuig"){
+      this.dataToFilter.filterPredicate = (data: IVoertuig, filter: string) => {
+        return data.chassisnummer.toLocaleLowerCase().includes(filter) ||
+        data.merk.toLocaleLowerCase().includes(filter) ||
+        data.model.toLocaleLowerCase().includes(filter) ||
+        data.nummerplaat.toLocaleLowerCase().includes(filter) ||
+        data.kleur.toLocaleLowerCase().includes(filter) ||
+        data.aantalDeuren.toString().toLocaleLowerCase().includes(filter) ||
+        data.bouwjaar.toString().toLocaleLowerCase().includes(filter) ||
+        data.categorie.typeWagen.toLocaleLowerCase().includes(filter) ||
+        data.brandstof.typeBrandstof.toLocaleLowerCase().includes(filter) ||
+        data.status.staat.toLocaleLowerCase().includes(filter);
+      }
+    }
+    if(this.entity == "tankkaart"){
+
+    }
+    if(this.entity == "bestuurder"){
+
+    }
+
     this.passFilteredData.emit(this.dataToFilter.filter = e);
-    console.log(this.search);
+    console.log("query: ", this.search);
  }
 
-  FilterResults = () => {
-    let property: string;
-    let filterArray: any;
-    let dataSource: MatTableDataSource<any> = new MatTableDataSource();
-
-
-    //TO DO make filters work for nested objects.
-
-    this.dataToFilter.filterPredicate = (data: IVoertuig, filter: string): boolean => {
-      const dataStr = Object.keys(data).reduce((currentTerm: string, key: string) => {
-        return (currentTerm + (data as { [key: string]: any })[key] + '◬');
-      }, '').toLowerCase();
-
-      const transformedFilter = filter.trim().toLowerCase();
-
-      return dataStr.indexOf(transformedFilter) != -1;
-    }
-    filterArray = this.dataToFilter.data;
-    const dataStr = Object.keys(filterArray[0]).reduce((currentTerm: string, key: string) => {
-      return (currentTerm + (filterArray as { [key: string]: any })[key] + '◬');
-    }, '').toLowerCase();
-    console.log(dataStr);
-    console.log(filterArray);
-
-    this.passFilteredData.emit(this.dataToFilter.filter = this.search,);
-
-  }
+ clearQuery = () => {
+   this.search = "";
+   this.detectChanges(this.search);
+ }
 }
