@@ -102,12 +102,12 @@ export class VoertuigDetailDialogComponent implements OnInit {
     //+ de bestuurder die al dan niet reeds gekoppeld is met de entiteit. deze worden opgeslagen in unlinkedBestuurders
     //en de bestuurder van de koppeling in de var. bestuurderLink.
     if(!this.voertuig){
-      this.datastream.GetAllBestuurders().subscribe((data: any) =>{
+      this.datastream.GetDrivers().subscribe((data: any) =>{
         this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.chassisnummer == null);
       });
     }
     else{
-      this.datastream.GetAllBestuurders().subscribe((data: any) =>{
+      this.datastream.GetDrivers().subscribe((data: any) =>{
         this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.chassisnummer == null || u.koppeling.chassisnummer == this.voertuig.chassisnummer);
         if(this.voertuig){
           if(this.voertuig.koppeling){

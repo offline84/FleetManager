@@ -57,8 +57,8 @@ export class DatastreamService {
 
   //#region Bestuurders
 
-  GetAllBestuurders = () => {
-    return this.http.get(this.connectionstring + "bestuurder/activebestuurders");
+  GetDrivers = () => {
+    return this.http.get(this.connectionstring + "bestuurder/active");
   }
 
   GetDriverLicences = () => {

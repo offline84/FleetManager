@@ -1,5 +1,6 @@
 #add-button {
     float: left;
+
   }
   
   .clearfix::after {
@@ -7,4 +8,8 @@
     clear: both;
     display: table;
   }
-  
+
+ button {
+    background-color: #1661EB;
+    color: #ffffff;
+  } 

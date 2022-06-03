@@ -6,14 +6,12 @@ export class Bestuurder implements IBestuurder {
   naam!: string;
   achternaam!: string;
   adres!: Adres;
-  koppeling!: string;
+  koppeling!: any;
   isGearchiveerd!: boolean;
   geboorteDatum!: Date;
   laatstGeupdate!: Date;
-  toewijzingenRijbewijs!:[{
-    rijbewijsId: string;
-  }];
-  
-  constructor()
-  {  }
+  toewijzingenRijbewijs!: any[];
+  rijbewijzen!: any[];
+  rijbewijs!: string;
+  constructor()  {    }
 }

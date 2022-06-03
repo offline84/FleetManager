@@ -14,9 +14,13 @@ export class BestuurderComponent implements OnInit {
   @Input() entity: any;
   properties = [
     "rijksregisternummer",
-    "naam",
     "achternaam",
+    "naam",
     "geboorteDatum",
+    "adres",
+    "rijbewijs",
+    "koppelingVoertuig",
+    "koppelingTankkaart"
   ];
 
   constructor(private dialog: MatDialog, private dataService: DataExchangeService) {
@@ -41,8 +45,7 @@ export class BestuurderComponent implements OnInit {
       this.entity = result;
       if(result !== undefined) {
         console.log(result);
-        this.dataService.follow("add bestuurder");
-        this.dataService.sendData("add bestuurder", this.entity);
+        this.dataService.sendData("bestuurder", "add", this.entity);
       }
     });
   }

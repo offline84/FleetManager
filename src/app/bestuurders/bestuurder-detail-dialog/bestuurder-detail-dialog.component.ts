@@ -2,9 +2,9 @@ import { Component, Directive, ElementRef, Inject, OnInit, ViewChild } from '@an
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DatastreamService } from '../../datastream.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { Bestuurder } from '../../objects/bestuurder';
-import { IBestuurder } from '../../objects/iBestuurder';
+import { Bestuurder} from '../../objects/bestuurder';
 import { DataExchangeService } from '../../data-exchange.service';
+import { Adres } from 'src/app/objects/adres';
 
 
 @Component({
@@ -22,6 +22,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
   forCreation: boolean = true;
   notEditable!: string;
   viewOnly!: string;
+  adres = new Adres();
   bestuurder = new Bestuurder();
 
   rijbewijzen: any;
@@ -51,6 +52,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     straat:  new FormControl('',[Validators.required]),
     huisnummer: new FormControl('',[Validators.required]),
     stad: new FormControl('',[Validators.required]),
+    postcode: new FormControl('',[Validators.required]),
   });
 
   constructor(private datastream: DatastreamService, private dialogRef: MatDialogRef<BestuurderDetailDialogComponent>, private dataService: DataExchangeService, @Inject(MAT_DIALOG_DATA) private data: any) {
@@ -219,7 +221,10 @@ export class BestuurderDetailDialogComponent implements OnInit {
     // this.bestuurderForm.controls["typeWagen"].setValue(this.bestuurderForm.categorie.typeWagen);
     // if(this.bestuurderForm.status)
     //   this.voertuigForm.controls["staat"].setValue(this.voertuig.status.staat);
+    this.adresForm.patchValue(this.bestuurder.adres);
   }
+
+
 
 //   // Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden
 //   // en resulteert tot een error van de API.

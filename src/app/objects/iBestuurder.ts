@@ -5,10 +5,10 @@ export interface IBestuurder {
   naam: string;
   achternaam: string;
   adres: Adres;
-  koppeling: string;
-  toewijzingenRijbewijs:[{
-    rijbewijsId: string;
-  }];
+  koppeling: any;
+  toewijzingenRijbewijs: any[];
+  rijbewijzen: any[];
+  rijbewijs: string;
   isGearchiveerd: boolean;
   geboorteDatum: Date;
 }
