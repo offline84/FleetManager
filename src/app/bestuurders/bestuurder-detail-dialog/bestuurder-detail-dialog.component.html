@@ -1,0 +1,250 @@
+<ng-container>
+<div mat-dialog-content>
+    <div mat-dialog-title >
+      <mat-toolbar>
+      <h2 *ngIf="forCreation">Bestuurder toevoegen</h2>
+      <h2 *ngIf="!modifiable">Bestuurder details</h2>
+      <h2 *ngIf="modifiable && !forCreation">Bestuurder pdaten</h2>
+    </mat-toolbar>
+    </div>
+    <div *ngIf="!modifiable">
+      <div class="formbuttons-top">
+        <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>edit</mat-icon></button>
+      </div>
+      <div class="formbuttons-top">
+        <button mat-mini-fab color="warning" type="button" (click)="openDeleteScreen()"><mat-icon>delete</mat-icon></button>
+      </div>
+      <div class="clearfix">
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-content>
+    <div [formGroup]="bestuurderForm">
+      <div class="form-block">
+          <div class="field">
+            <mat-form-field  appearance="fill">
+              <mat-label>rijksregisternummer</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="rijksregisternummer">
+              <mat-error *ngIf="bestuurderForm.get('rijksregisternummer')?.hasError('pattern')">rijksregisternummer is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('rijksregisternummer')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <mat-form-field  appearance="fill">
+              <mat-label>naam</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="naam">
+              <mat-error *ngIf="bestuurderForm.get('naam')?.hasError('pattern')">naam is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('naam')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <mat-form-field  appearance="fill">
+              <mat-label>achternaam</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="achternaam">
+              <mat-error *ngIf="bestuurderForm.get('achternaam')?.hasError('pattern')">achternaam is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('achternaam')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+             <mat-form-field appearance="fill" class="datepickerMat">
+              <mat-label>geboorteDatum</mat-label>
+              <input matInput [matDatepicker]="picker" [readonly]="!modifiable" formControlName="geboorteDatum" >
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="bestuurderForm.get('geboorteDatum')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <mat-form-field  appearance="fill">
+              <mat-label>straat</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.straat">
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('pattern')">straat is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button" >link naar voertuig</button>
+            <mat-form-field  appearance="fill">
+              <mat-label>stad</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.stad">
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('pattern')">stad is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button">link naar tankkaart</button>
+          </div>
+          <div class="field">
+            <mat-form-field  appearance="fill">
+              <mat-label>straat</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.straat">
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('pattern')">straat is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button" >link naar voertuig</button>
+            <mat-form-field  appearance="fill">
+              <mat-label>stad</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.stad">
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('pattern')">stad is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button">link naar tankkaart</button>
+          </div>
+          <div class="field">
+            <mat-form-field  appearance="fill">
+              <mat-label>straat</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.straat">
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('pattern')">straat is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button" >link naar voertuig</button>
+            <mat-form-field  appearance="fill">
+              <mat-label>stad</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.stad">
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('pattern')">stad is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button">link naar tankkaart</button>
+          </div>
+          <div class="field">
+            <mat-form-field  appearance="fill">
+              <mat-label>straat</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.straat">
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('pattern')">straat is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button" >link naar voertuig</button>
+            <mat-form-field  appearance="fill">
+              <mat-label>stad</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.stad">
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('pattern')">stad is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button">link naar tankkaart</button>
+          </div>
+          <div class="field">
+            <mat-form-field  appearance="fill">
+              <mat-label>straat</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.straat">
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('pattern')">straat is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button" >link naar voertuig</button>
+            <mat-form-field  appearance="fill"> 
+              <mat-label>stad</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.stad">
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('pattern')">stad is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button">link naar tankkaart</button>
+          </div>
+          <div class="field">
+            <mat-form-field  appearance="fill">
+              <mat-label>straat</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.straat">
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('pattern')">straat is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button" >link naar voertuig</button>
+            <mat-form-field  appearance="fill">
+              <mat-label>stad</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.stad">
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('pattern')">stad is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button">link naar tankkaart</button>
+          </div>
+          <div class="field">
+            <mat-form-field  appearance="fill">
+              <mat-label>straat</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.straat">
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('pattern')">straat is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button" >link naar voertuig</button>
+            <mat-form-field  appearance="fill">
+              <mat-label>stad</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.stad">
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('pattern')">stad is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button">link naar tankkaart</button>
+          </div>
+          <div class="field">
+            <mat-form-field  appearance="fill">
+              <mat-label>straat</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.straat">
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('pattern')">straat is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.straat')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button" >link naar voertuig</button>
+            <mat-form-field  appearance="fill">
+              <mat-label>stad</mat-label>
+              <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="adres.stad">
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('pattern')">stad is incorrect</mat-error>
+              <mat-error *ngIf="bestuurderForm.get('adres.stad')?.hasError('required')">Veld is vereist</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="link_button">link naar tankkaart</button>
+          </div>
+      </div>
+      <div [formGroup]="adresForm">
+      <div class="form-block">
+        <div class="field">
+      <div class="field">
+        <mat-form-field  appearance="fill">
+          <mat-label>straat</mat-label>
+          <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="straat">
+          <mat-error *ngIf="adresForm.get('straat')?.hasError('pattern')">straat is incorrect</mat-error>
+          <mat-error *ngIf="adresForm.get('straat')?.hasError('required')">Veld is vereist</mat-error>
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>huisnummer</mat-label>
+          <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="huisnummer">
+          <mat-error *ngIf="adresForm.get('huisnummer')?.hasError('pattern')">huisnummer is incorrect</mat-error>
+          <mat-error *ngIf="adresForm.get('huisnummer')?.hasError('required')">Veld is vereist</mat-error>
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>stad</mat-label>
+          <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="stad">
+          <mat-error *ngIf="adresForm.get('stad')?.hasError('pattern')">stad is incorrect</mat-error>
+          <mat-error *ngIf="adresForm.get('stad')?.hasError('required')">Veld is vereist</mat-error>
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <mat-label>postcode</mat-label>
+          <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="postcode">
+          <mat-error *ngIf="bestuurderForm.get('postcode')?.hasError('pattern')">postcode is incorrect</mat-error>
+          <mat-error *ngIf="bestuurderForm.get('postcode')?.hasError('required')">Veld is vereist</mat-error>
+        </mat-form-field>
+        </div>
+        </div>
+        </div>
+      </div>
+      <div class="clearfix">
+      </div>
+      <div *ngIf="modifiable && !bestuurder" class="formbuttons">
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!bestuurderForm.valid">Submit</button>
+      </div>
+      <div *ngIf="modifiable && !forCreation" class="formbuttons">
+        <button mat-raised-button color="primary" type="submit" (click)="onSave()" [disabled]="!bestuurderForm.valid">Save<span class="spacer"></span><mat-icon>save</mat-icon></button>
+      </div>
+      <!-- <div>
+        <div *ngIf="!modifiable" class="formbuttons">
+          <button mat-raised-button type="button" (click)="linkUnlinkDriver()">
+            <mat-icon *ngIf="!voertuig.koppeling">link</mat-icon>
+            <mat-icon *ngIf="voertuig.koppeling">link_off</mat-icon>
+            <span class="spacer"></span> Bestuurder</button>
+        </div>
+        <div class="formbuttons koppel field" *ngIf="viewOnly">
+            <mat-form-field class="link-bestuurder" appearance="fill">
+              <mat-select *ngIf="!voertuig.koppeling" (selectionChange)="onSelectionChange($event.value)">
+                <mat-option value = null></mat-option>
+                <mat-option *ngFor="let bestuurder of unlinkedBestuurders" value={{bestuurder.rijksregisternummer}}>{{bestuurder.naam}} {{bestuurder.achternaam}}</mat-option>
+              </mat-select>
+              <input matInput *ngIf="voertuig.koppeling" type="text"
+              value="{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}"
+              [readonly]="viewOnly"
+              (click)="OpenBestuurdersDetails()">
+            </mat-form-field>
+        </div>
+  
+      </div> -->
+      <div class="clearfix">
+      </div>
+  
+    </div>
+  </div>
+  <div mat-dialog-footer>
+    <p #message></p>
+  </div>
+</ng-container>
