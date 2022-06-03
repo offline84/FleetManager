@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DatastreamService} from '../../datastream.service';
 import {TankkaartDetailDialogComponent} from "../tankkaart-detail-dialog/tankkaart-detail-dialog.component";
+import {DataExchangeService} from "../../data-exchange.service";
+import {VoertuigDetailDialogComponent} from "../../voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component";
 
 @Component({
   selector: 'app-tankkaart',
@@ -10,8 +12,8 @@ import {TankkaartDetailDialogComponent} from "../tankkaart-detail-dialog/tankkaa
 })
 export class TankkaartComponent implements OnInit {
 
-  entity: string = "tankkaart";
-  properties = [
+  @Input() entity: any;
+  properties =  [
     "kaartnummer",
     "geldigheidsdatum",
     "pincode",
@@ -20,12 +22,7 @@ export class TankkaartComponent implements OnInit {
     "koppeling"
   ];
 
-  tankkaarten:any;
-
-  constructor(private datastream: DatastreamService, private dialog: MatDialog) {
-    this.datastream.GetAllFuelCards().subscribe((data) => {
-      this.tankkaarten = data;
-    })
+  constructor(private dialog: MatDialog, private dataService: DataExchangeService) {
   }
 
   ngOnInit(): void {
@@ -35,11 +32,21 @@ export class TankkaartComponent implements OnInit {
     const config = new MatDialogConfig();
 
     config.autoFocus = true;
+
     config.data = {
-      properties: this.properties,
-      entity: this.entity
+      modifiable: true,
+      entity: null
     };
 
-    this.dialog.open(TankkaartDetailDialogComponent, config);
+    let dialogRef = this.dialog.open(TankkaartDetailDialogComponent, config);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.entity = result;
+      if(result !== undefined) {
+        console.log(result);
+        this.dataService.follow("add tankkaart");
+        this.dataService.sendData("add tankkaart", this.entity);
+      }
+    });
   }
 }
