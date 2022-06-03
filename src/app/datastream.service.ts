@@ -64,6 +64,10 @@ export class DatastreamService {
   GetDriverLicences = () => {
     return this.http.get(this.connectionstring + "bestuurder/rijbewijzen");
   }
+
+  GetSingleDriver = (rijksregisternummer: string) => {
+    return this.http.get(this.connectionstring +"bestuurder/" + rijksregisternummer);
+  }
   //#endregion Bestuurders
 
   //#region Tankkaarten

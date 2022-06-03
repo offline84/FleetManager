@@ -113,7 +113,7 @@ this.datastream.GetDrivers().subscribe((data: any) =>{
     dialogRef.afterClosed().subscribe((data: any) => {
 
       this.tableData.forEach((element, index) => {
-        if(element.rijksregisternummer == data.rijksregisternummer) {
+        if(data != undefined && element.rijksregisternummer == data.rijksregisternummer) {
           this.tableData[index] = data;
         }
       });

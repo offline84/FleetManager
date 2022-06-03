@@ -71,7 +71,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
       this.brandstoffen = data;
     });
 
-    this.datastream.GetAllBestuurders().subscribe((data: any) =>{
+    this.datastream.GetDrivers().subscribe((data: any) =>{
       this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.kaartnummer == null || u.koppeling.kaartnummer == this.tankkaart.kaartnummer);
       if(this.tankkaart){
         if(this.tankkaart.koppeling){
@@ -120,9 +120,9 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
   //To Do route naar bestuurders en open daar automatisch met het behavioursubject de detail dialog voor de meegegeven bestuurder.
   OpenBestuurdersDetails = () => {
-    this.dataService.follow("view bestuurder");
-    this.dataService.sendData("view bestuurder", this.bestuurderLink);
+    this.dataService.sendData("bestuurder","view", this.bestuurderLink);
   }
+
 
   onSave = () => {
     let fuelcard = this.CreateObjectToSend();

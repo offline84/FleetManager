@@ -256,6 +256,7 @@ export class VoertuigDetailDialogComponent implements OnInit {
       this.forCreation = false;
       this.notEditable = "changeColor";
       this.viewOnly ="changeColor";
+      console.log(this.viewOnly);
     }
   }
 

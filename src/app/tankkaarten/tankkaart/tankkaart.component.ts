@@ -44,8 +44,7 @@ export class TankkaartComponent implements OnInit {
       this.entity = result;
       if(result !== undefined) {
         console.log(result);
-        this.dataService.follow("add tankkaart");
-        this.dataService.sendData("add tankkaart", this.entity);
+        this.dataService.sendData("tankkaart", "add", this.entity);
       }
     });
   }
