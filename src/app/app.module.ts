@@ -18,7 +18,9 @@ import { TankkaartComponent } from './tankkaarten/tankkaart/tankkaart.component'
 import { HomeComponent } from './home/home.component';
 import { TankkaartListComponent } from './tankkaarten/tankkaart-list/tankkaart-list.component';
 import { TankkaartDetailDialogComponent } from './tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component';
-import { DeleteConfirmationSheetComponent } from './voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component'
+import { DeleteConfirmationSheetComponent } from './voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component';
+import { TankkaartDeleteConfirmationSheetComponent } from './tankkaarten/tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     HomeComponent,
     TankkaartListComponent,
     TankkaartDetailDialogComponent,
-    DeleteConfirmationSheetComponent
+    DeleteConfirmationSheetComponent,
+    TankkaartDeleteConfirmationSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ const appRoutes: Routes = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatDatepickerModule
   ],
   exports: [],
   providers: [

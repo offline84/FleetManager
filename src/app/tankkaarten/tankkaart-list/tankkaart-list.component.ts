@@ -16,18 +16,20 @@ import {TankkaartDetailDialogComponent} from "../tankkaart-detail-dialog/tankkaa
 export class TankkaartListComponent implements AfterViewInit {
 
   @Input() columnsToDisplay: any;
-  @Input() entityType: string = 'tankkaart';
   @ViewChild(MatPaginator) paging!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
+  entityType: string = 'tankkaart';
   tableData: Array<any> = new Array<any>();
   selectedTankkaart: any;
 
   constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) {}
 
   ngAfterViewInit() {
+
+    //data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
     this.datastream.GetAllFuelCards().subscribe((data: any) =>{
       this.tableData = data;
       this.dataSource.data = this.tableData;
@@ -35,26 +37,38 @@ export class TankkaartListComponent implements AfterViewInit {
       this.dataSource.sort = this.sort;
     });
 
-    console.log(this.tableData);
-    console.log(this.dataSource);
-
+    //Customizing voor sorteren van kolommen die voortkomen uit een object.
+    /*
     this.dataSource.sortingDataAccessor = (entity, property) => {
       switch(property){
-        //case 'brandstof': return entity.brandstof.typeBrandstof;
-        //case 'mogelijkebrandstoffen': return entity.mogelijkebrandstoffen.brandstof.typeBrandstof;
-        case 'mogelijkebrandstoffen': return null;
-        case 'koppeling' : return entity.koppeling != null;
+        //mogelijke brandstoffen ?
+        case 'brandstof': return entity.brandstof.typeBrandstof;
         default: return entity[property];
       }
     };
+    */
+
+    // haalt de entiteit voor modificatie van de tabel binnen en kijkt welke bewerking op de tabel dient te worden uitgevoerd.
+    // Hiervoor wordt gebruik gemaakt van de DataExchangeService.
     this.dataService.observableData.subscribe((data: any) =>{
       console.log("sent data: ", data);
       if(data){
-        if(data.type == "add tankkaart"){
-          if(data.value){
-            console.log(this.tableData.length);
-            this.tableData.push(data.value);
-            console.log(this.tableData.length);
+        if(data.value){
+          if(data.entity == "tankkaart"){
+            if(data.action == "add"){
+              if(data.value){
+                this.tableData.unshift(data.value);
+
+              }
+            }
+
+            if(data.action == "delete"){
+              if(data.value){
+                let index = this.tableData.findIndex(t=> t.kaartnummer == data.value.kaartnummer);
+                this.tableData.splice(index, 1);
+              }
+            }
+
             this.dataSource.data = this.tableData;
           }
         }
@@ -62,11 +76,13 @@ export class TankkaartListComponent implements AfterViewInit {
     });
   }
 
+  //behandelt de algemene filtering komend van de searchbar;
   FilterDataHandler(filter: any): void {
     this.dataSource = filter;
   }
 
-  //opent de tankkaart-detail-dialog met settings voor viewing. bij het sluiten van de dialog wordt de data in de tabel bijgewerkt.
+  //opent de tankkaart-detail-dialog met settings voor viewing.
+  //Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt via de dataexchangeservice.
   ViewDetails = (selectedRow: ITankkaart) =>{
     const config = new MatDialogConfig();
     this.selectedTankkaart = selectedRow;
@@ -80,12 +96,16 @@ export class TankkaartListComponent implements AfterViewInit {
     let dialogRef = this.dialog.open(TankkaartDetailDialogComponent, config);
 
     dialogRef.afterClosed().subscribe((data: any) => {
-      this.tableData.forEach((element, index) => {
-        if(element.kaartnummer == data.kaartnummer) {
-          this.tableData[index] = data;
-        }
-      });
-      this.dataSource.data = this.tableData;
-    })
+
+      if(data){
+        this.tableData.forEach((element, index) => {
+          if(element.chassisnummer == data.chassisnummer) {
+            this.tableData[index] = data;
+          }
+        });
+
+        this.dataSource.data = this.tableData;
+      }
+    });
   }
 }

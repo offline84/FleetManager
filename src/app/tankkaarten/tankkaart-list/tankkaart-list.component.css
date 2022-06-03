@@ -1,5 +1,6 @@
 .table {
-  width: 100%;
+  width: 99.5%;
+  padding-left: 0.5em;
 }
 
 .mat-row .mat-cell {
@@ -26,5 +27,6 @@
 }
 
 #searchbar{
-  float: right;
+  float: right
 }
+

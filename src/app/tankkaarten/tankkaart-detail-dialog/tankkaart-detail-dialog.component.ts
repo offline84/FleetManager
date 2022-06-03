@@ -1,11 +1,12 @@
-import { Component, Directive, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DatastreamService } from '../../datastream.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import {Tankkaart} from "../../objects/tankkaart";
 import {ITankkaart} from "../../objects/iTankkaart";
 import { DataExchangeService } from '../../data-exchange.service';
-
+import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
+import {TankkaartDeleteConfirmationSheetComponent} from "../tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component";
 
 @Component({
   selector: 'app-tankkaart-detail-dialog',
@@ -49,38 +50,54 @@ export class TankkaartDetailDialogComponent implements OnInit {
     geldigheidsdatum: new FormControl('',[Validators.required]),
     pincode: new FormControl('',[Validators.required]),
     typeBrandstof: new FormControl('',[Validators.required]),
-
   });
 
-  constructor(private datastream: DatastreamService, private dialogRef: MatDialogRef<TankkaartDetailDialogComponent>, private dataService: DataExchangeService, @Inject(MAT_DIALOG_DATA) private data: any) {
+  constructor(private datastream: DatastreamService,
+              private dialogRef: MatDialogRef<TankkaartDetailDialogComponent>,
+              private dataService: DataExchangeService,
+              private bottomSheet: MatBottomSheet,
+              @Inject(MAT_DIALOG_DATA) private data: any) {
     this.tankkaart = data.entity;
     this.modifiable = data.modifiable;
   }
 
   ngOnInit(): void {
 
+    //We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
+    // Indien ja, patchen we deze in de form.
     if(this.tankkaart){
       this.patchObjectToForm(this.tankkaart);
     };
 
-    // zet de mode waarin de dialog zich op dit moment bevindt. de mogelijkheden zijn: view, add en edit. de mode wordt weergegeven
-    // in de MAT_DIALOG_DATA bij opening van de dialog.
+    // zet de mode waarin de dialog zich op dit moment bevindt. de mogelijkheden zijn: boolean modifialbe.
+    //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
     this.IsModifiable(this.modifiable);
 
     this.datastream.GetFuels().subscribe((data: any) => {
       this.brandstoffen = data;
     });
 
-    this.datastream.GetAllBestuurders().subscribe((data: any) =>{
-      this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.kaartnummer == null || u.koppeling.kaartnummer == this.tankkaart.kaartnummer);
-      if(this.tankkaart){
-        if(this.tankkaart.koppeling){
-          let link = data.filter((u: any) => u.koppeling.kaartnummer == this.tankkaart.kaartnummer);
-          this.bestuurderLink = link[0];
+    // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
+    //+ de bestuurder die al dan niet reeds gekoppeld is met de entiteit. deze worden opgeslagen in unlinkedBestuurders
+    //en de bestuurder van de koppeling in de var. bestuurderLink.
+    if(!this.tankkaart){
+      this.datastream.GetAllBestuurders().subscribe((data: any) =>{
+        this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.kaartnummer == null);
+      });
+    }
+    else{
+      this.datastream.GetAllBestuurders().subscribe((data: any) =>{
+        this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.kaartnummer == null || u.koppeling.kaartnummer == this.tankkaart.kaartnummer);
+        if(this.tankkaart){
+          if(this.tankkaart.koppeling){
+            let link = data.filter((u: any) => u.koppeling.kaartnummer == this.tankkaart.kaartnummer);
+            this.bestuurderLink = link[0];
+          }
         }
-      }
-    });
+      });
+    }
 
+    //listener voor het sluiten van de dialog + transfer object naar de tabel.
     this.dialogRef.backdropClick().subscribe(() => {
       this.dialogRef.close(this.tankkaart);
     });
@@ -113,6 +130,25 @@ export class TankkaartDetailDialogComponent implements OnInit {
     this.viewOnly = "";
   }
 
+  openDeleteScreen = () => {
+    const config = new MatBottomSheetConfig();
+    config.autoFocus = true;
+    config.disableClose = true;
+
+    config.data = {
+      entitytype: "tankkaart",
+      entity: this.tankkaart
+    };
+
+    let bottomsheetRef = this.bottomSheet.open(TankkaartDeleteConfirmationSheetComponent, config);
+    bottomsheetRef.afterDismissed().subscribe((deleted: boolean) =>{
+      if(deleted){
+        this.dialogRef.close();
+      }
+    });
+  }
+
+  //Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat, implementeren we de selectie handmatig via een eventlistener.
   onSelectionChange = (event: any) => {
     let link = this.unlinkedBestuurders.filter((u: any) => u.rijksregisternummer == event);
     this.bestuurderLink = link[0];
@@ -120,8 +156,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
   //To Do route naar bestuurders en open daar automatisch met het behavioursubject de detail dialog voor de meegegeven bestuurder.
   OpenBestuurdersDetails = () => {
-    this.dataService.follow("view bestuurder");
-    this.dataService.sendData("view bestuurder", this.bestuurderLink);
+    this.dataService.sendData("bestuurder","view", this.bestuurderLink);
   }
 
   onSave = () => {
@@ -142,30 +177,30 @@ export class TankkaartDetailDialogComponent implements OnInit {
       }
     );
   }
+
+  // Omdat we enkel het correcte resultaat willen weergeven en deze in de tabel updaten voor geslaagde patch-bewerkingen naar de API,
+  //gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
   linkUnlinkDriver = () =>{
-    console.log("link/unlink: ");
-    console.log(this.bestuurderLink);
+
     if(this.bestuurderLink){
       if(this.tankkaart.koppeling){
-        console.log("unlink koppeling: ", this.tankkaart.koppeling);
+
         this.datastream.UnlinkFuelCard(this.tankkaart.kaartnummer).subscribe(() =>{
 
             this.tankkaart.koppeling = null;
-            console.log("unlink: ", this.bestuurderLink);
 
           }, error =>{
             if(error){
               this.message.nativeElement.innerHTML = error.message;
             }
           }, () =>{
-            let success = this.bestuurderLink.naam + " " + this.bestuurderLink.achternaam + " is ontkoppeld van het voertuig";
+            let success = this.bestuurderLink.naam + " " + this.bestuurderLink.achternaam + " is ontkoppeld van de tankkaart";
             this.message.nativeElement.innerHTML = success;
           }
         );
       }
       else{
         this.datastream.LinkFuelCard(this.bestuurderLink.rijksregisternummer, this.tankkaart.kaartnummer).subscribe(() =>{
-
           }, error =>{
             if(error){
               this.message.nativeElement.innerHTML = error.message;
@@ -198,7 +233,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     }
   }
 
-  //indien een voertuig is meegegeven wordt deze via deze method gepatched met de voertuigForm.
+  //indien een tankkaart is meegegeven wordt deze via deze method gepatched met de tankkaartForm.
   //De niet gepatchede controls worden handmatig ingegeven.
   patchObjectToForm = (entity: Tankkaart) =>{
     this.tankkaartForm.patchValue(this.tankkaart);
