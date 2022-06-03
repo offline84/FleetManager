@@ -19,10 +19,6 @@
   border-color: currentColor;
 }
 
-.row-is-selected{
-  background: #283593;
-}
-
 .clearfix::after {
   content: "";
   clear: both;

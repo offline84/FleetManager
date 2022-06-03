@@ -1,1 +1,128 @@
-<p>tankkaart-detail-dialog works!</p>
+<div mat-dialog-content>
+  <div mat-dialog-title class="title">
+    <h2 *ngIf="forCreation">Tankkaart toevoegen</h2>
+    <h2 *ngIf="!modifiable">Tankkaart details</h2>
+    <h2 *ngIf="modifiable && !forCreation">Tankkaart Updaten</h2>
+  </div>
+  <div *ngIf="!modifiable">
+    <div class="formbuttons-top">
+      <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>edit</mat-icon></button>
+    </div>
+    <div class="formbuttons-top">
+      <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>delete</mat-icon></button>
+    </div>
+    <div class="clearfix">
+    </div>
+  </div>
+</div>
+<div mat-dialog-content>
+  <div [formGroup]="tankkaartForm">
+
+    <div class="form-block">
+      <h3> identificatie</h3>
+      <div class="formsection">
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>kaartnummer</mat-label>
+            <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="kaartnummer">
+            <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('required')">Veld is vereist</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>geldigheidsdatum</mat-label>
+            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="geldigheidsdatum">
+            <mat-error *ngIf="tankkaartForm.get('geldigheidsdatum')?.hasError('required')">Veld is vereist</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>pincode</mat-label>
+            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="pincode">
+            <mat-error *ngIf="tankkaartForm.get('pincode')?.hasError('required')">Veld is vereist</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+<!--
+    <div class="form-middle-block">
+      <h3> uiterlijk</h3>
+      <div class="formsection">
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>kleur</mat-label>
+            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="kleur">
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field  appearance="fill">
+            <mat-label>aantal deuren</mat-label>
+            <input [ngClass]="viewOnly" matInput type="number" [readonly]="!modifiable" formControlName="aantalDeuren">
+            <mat-error *ngIf="voertuigForm.get('aantalDeuren')?.hasError('min')">getal kan geen negatieve waarde hebben</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field appearance="fill">
+            <mat-select placeholder="categorie *" [disabled]="!modifiable" formControlName="typeWagen">
+              <mat-option value = null></mat-option>
+              <mat-option *ngFor="let cat of categories" value="{{cat.typeWagen}}">{{cat.typeWagen}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="voertuigForm.get('typeWagen')?.hasError('required')">categorie is vereist</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+-->
+    <div class="form-middle-block">
+      <h3> overige</h3>
+      <div class="formsection">
+        <!--
+        <div class="field">
+          <mat-form-field appearance="fill">
+            <mat-select placeholder="brandstof *" [disabled]="!modifiable" formControlName="typeBrandstof">
+              <mat-option value = null></mat-option>
+              <mat-option *ngFor="let fuel of brandstoffen" value="{{fuel.typeBrandstof}}">{{fuel.typeBrandstof}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="voertuigForm.get('typeBrandstof')?.hasError('required')">brandstof is vereist</mat-error>
+          </mat-form-field>
+        </div>
+        -->
+      </div>
+    </div>
+    <div class="clearfix">
+    </div>
+    <div *ngIf="modifiable && !tankkaart" class="formbuttons">
+      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!tankkaartForm.valid">Submit</button>
+    </div>
+    <div *ngIf="modifiable && !forCreation" class="formbuttons">
+      <button mat-raised-button color="primary" type="submit" (click)="onSave()" [disabled]="!tankkaartForm.valid">Save<span class="spacer"></span><mat-icon>save</mat-icon></button>
+    </div>
+    <div>
+      <div *ngIf="!modifiable" class="formbuttons">
+        <button mat-raised-button type="button" (click)="linkUnlinkDriver()">
+          <mat-icon *ngIf="!tankkaart.koppeling">link</mat-icon>
+          <mat-icon *ngIf="tankkaart.koppeling">link_off</mat-icon>
+          <span class="spacer"></span> Bestuurder</button>
+      </div>
+      <div class="formbuttons koppel field" *ngIf="viewOnly">
+        <mat-form-field class="link-bestuurder" appearance="fill">
+          <mat-select *ngIf="!tankkaart.koppeling" (selectionChange)="onSelectionChange($event.value)">
+            <mat-option value = null></mat-option>
+            <mat-option *ngFor="let bestuurder of unlinkedBestuurders" value={{bestuurder.rijksregisternummer}}>{{bestuurder.naam}} {{bestuurder.achternaam}}</mat-option>
+          </mat-select>
+          <input matInput *ngIf="tankkaart.koppeling" type="text"
+                 value="{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}"
+                 [readonly]="viewOnly"
+                 (click)="OpenBestuurdersDetails()">
+        </mat-form-field>
+      </div>
+
+    </div>
+    <div class="clearfix">
+    </div>
+
+  </div>
+</div>
+<div mat-dialog-footer>
+  <p #message></p>
+</div>

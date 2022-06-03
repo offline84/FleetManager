@@ -1,8 +1,12 @@
 import {AfterViewInit, Input, Component, ViewChild} from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSort, Sort} from '@angular/material/sort';
+import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { DataExchangeService } from '../../data-exchange.service';
 import { DatastreamService } from '../../datastream.service';
+import {ITankkaart} from "../../objects/iTankkaart";
+import {TankkaartDetailDialogComponent} from "../tankkaart-detail-dialog/tankkaart-detail-dialog.component";
 
 @Component({
   selector: 'app-tankkaart-list',
@@ -11,7 +15,6 @@ import { DatastreamService } from '../../datastream.service';
 })
 export class TankkaartListComponent implements AfterViewInit {
 
-  @Input() passedData: any;
   @Input() columnsToDisplay: any;
   @Input() entityType: string = 'tankkaart';
   @ViewChild(MatPaginator) paging!: MatPaginator;
@@ -19,21 +22,21 @@ export class TankkaartListComponent implements AfterViewInit {
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
-  constructor(private datastream: DatastreamService) {}
+  tableData: Array<any> = new Array<any>();
+  selectedTankkaart: any;
+
+  constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) {}
 
   ngAfterViewInit() {
-    if(!this.passedData){
-      this.datastream.GetAllFuelCards().subscribe((data: any) =>{
-        this.dataSource.data = data;
-        this.dataSource.paginator = this.paging;
-        this.dataSource.sort = this.sort;
-      });
-    }
-    else{
-      this.dataSource.data = this.passedData;
+    this.datastream.GetAllFuelCards().subscribe((data: any) =>{
+      this.tableData = data;
+      this.dataSource.data = this.tableData;
       this.dataSource.paginator = this.paging;
       this.dataSource.sort = this.sort;
-    }
+    });
+
+    console.log(this.tableData);
+    console.log(this.dataSource);
 
     this.dataSource.sortingDataAccessor = (entity, property) => {
       switch(property){
@@ -44,9 +47,45 @@ export class TankkaartListComponent implements AfterViewInit {
         default: return entity[property];
       }
     };
+    this.dataService.observableData.subscribe((data: any) =>{
+      console.log("sent data: ", data);
+      if(data){
+        if(data.type == "add tankkaart"){
+          if(data.value){
+            console.log(this.tableData.length);
+            this.tableData.push(data.value);
+            console.log(this.tableData.length);
+            this.dataSource.data = this.tableData;
+          }
+        }
+      }
+    });
   }
+
   FilterDataHandler(filter: any): void {
     this.dataSource = filter;
   }
-  selectedTankkaart: any;
+
+  //opent de tankkaart-detail-dialog met settings voor viewing. bij het sluiten van de dialog wordt de data in de tabel bijgewerkt.
+  ViewDetails = (selectedRow: ITankkaart) =>{
+    const config = new MatDialogConfig();
+    this.selectedTankkaart = selectedRow;
+
+    config.autoFocus = true;
+    config.data = {
+      modifiable: false,
+      entity: selectedRow
+    };
+
+    let dialogRef = this.dialog.open(TankkaartDetailDialogComponent, config);
+
+    dialogRef.afterClosed().subscribe((data: any) => {
+      this.tableData.forEach((element, index) => {
+        if(element.kaartnummer == data.kaartnummer) {
+          this.tableData[index] = data;
+        }
+      });
+      this.dataSource.data = this.tableData;
+    })
+  }
 }
