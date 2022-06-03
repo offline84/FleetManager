@@ -17,8 +17,7 @@ import { BestuurderComponent } from './bestuurders/bestuurder/bestuurder.compone
 import { TankkaartComponent } from './tankkaarten/tankkaart/tankkaart.component';
 import { HomeComponent } from './home/home.component';
 import { TankkaartListComponent } from './tankkaarten/tankkaart-list/tankkaart-list.component';
-import { TankkaartDetailDialogComponent } from './tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component';
-import { DeleteConfirmationSheetComponent } from './voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component'
+import { TankkaartDetailDialogComponent } from './tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component'
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -39,8 +38,7 @@ const appRoutes: Routes = [
     TankkaartComponent,
     HomeComponent,
     TankkaartListComponent,
-    TankkaartDetailDialogComponent,
-    DeleteConfirmationSheetComponent
+    TankkaartDetailDialogComponent
   ],
   imports: [
     BrowserModule,
