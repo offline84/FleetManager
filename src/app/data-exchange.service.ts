@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 interface dataToObserve{
-  type: string;
+  entity: string;
+  action: string;
   value: any;
 }
 
@@ -11,7 +12,7 @@ interface dataToObserve{
 })
 
 export class DataExchangeService {
-  private dataToObserve: dataToObserve = {type: "", value: null};
+  private dataToObserve: dataToObserve = {entity: "", action: "", value: null};
   private listOfData: Array<any> = [];
 
   private dataSource: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -19,22 +20,10 @@ export class DataExchangeService {
 
   constructor() { }
 
-  follow = (typedescription: string) =>{
-    if(this.listOfData.map(d => d.type).includes(typedescription)){
-      this.dataToObserve = this.listOfData.find((o: any) => o.type === typedescription);
-    }
-    else{
-      this.dataToObserve = {type: typedescription, value: null};
-      this.listOfData.push(this.dataToObserve);
-    }
-  }
-
-  sendData = (type: string, data: any) => {
-
-    if(this.dataToObserve.type == type){
+  sendData = (entity: string, action: string, data: any) => {
+      this.dataToObserve.entity = entity;
+      this.dataToObserve.action = action;
       this.dataToObserve.value = data;
-      console.log(this.dataToObserve);
       this.dataSource.next(this.dataToObserve);
-    }
   }
 }

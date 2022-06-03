@@ -13,6 +13,7 @@ export class TankkaartListComponent implements AfterViewInit {
 
   @Input() passedData: any;
   @Input() columnsToDisplay: any;
+  @Input() entityType: string = 'tankkaart';
   @ViewChild(MatPaginator) paging!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
