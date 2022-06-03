@@ -21,23 +21,29 @@ export class VoertuigListComponent implements AfterViewInit{
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
+  entityType: string = 'voertuig';
   tableData: Array<any> = new Array<any>();
   selectedVoertuig: any;
+  merken: any;
 
   constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) {}
 
   ngAfterViewInit() {
 
+    //data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
     this.datastream.GetAllVehicles().subscribe((data: any) =>{
       this.tableData = data;
       this.dataSource.data = this.tableData;
       this.dataSource.paginator = this.paging;
       this.dataSource.sort = this.sort;
+
+      //hier worden de autocomlete merken opgehaald voor de modifiable dialog
+      var mapM = data.map((u: any) => u.merk) as string[];
+      this.merken = [...new Set(mapM)];
+      this.merken.sort();
     });
 
-    console.log(this.tableData);
-    console.log(this.dataSource);
-
+    //Customizing voor sorteren van kolommen die voortkomen uit een object.
     this.dataSource.sortingDataAccessor = (entity, property) => {
       switch(property){
         case 'status': return entity.status.staat;
@@ -47,14 +53,28 @@ export class VoertuigListComponent implements AfterViewInit{
         default: return entity[property];
       }
     };
+
+    // haalt de entiteit voor modificatie van de tabel binnen en kijkt welke bewerking op de tabel dient te worden uitgevoerd.
+    // Hiervoor wordt gebruik gemaakt van de DataExchangeService.
     this.dataService.observableData.subscribe((data: any) =>{
       console.log("sent data: ", data);
       if(data){
-        if(data.type == "add voertuig"){
-          if(data.value){
-            console.log(this.tableData.length);
-            this.tableData.push(data.value);
-            console.log(this.tableData.length);
+        if(data.value){
+          if(data.entity == "voertuig"){
+            if(data.action == "add"){
+              if(data.value){
+                this.tableData.unshift(data.value);
+
+              }
+            }
+
+            if(data.action == "delete"){
+              if(data.value){
+                let index = this.tableData.findIndex(v=> v.chassisnummer == data.value.chassisnummer);
+                this.tableData.splice(index, 1);
+              }
+            }
+
             this.dataSource.data = this.tableData;
           }
         }
@@ -62,11 +82,14 @@ export class VoertuigListComponent implements AfterViewInit{
     });
   }
 
+
+  //behandelt de algemene filtering komend van de searchbar;
   FilterDataHandler(filter: any): void {
     this.dataSource = filter;
   }
 
-  //opent de voertuig-detail-dialog met settings voor viewing. bij het sluiten van de dialog wordt de data in de tabel bijgewerkt.
+  //opent de voertuig-detail-dialog met settings voor viewing.
+  //Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt via de dataexchangeservice.
   ViewDetails = (selectedRow: IVoertuig) =>{
     const config = new MatDialogConfig();
     this.selectedVoertuig = selectedRow;
@@ -74,26 +97,23 @@ export class VoertuigListComponent implements AfterViewInit{
     config.autoFocus = true;
     config.data = {
       modifiable: false,
-      entity: selectedRow
+      entity: selectedRow,
+      merken: this.merken
     };
 
     let dialogRef = this.dialog.open(VoertuigDetailDialogComponent, config);
 
     dialogRef.afterClosed().subscribe((data: any) => {
 
-      this.tableData.forEach((element, index) => {
-        if(element.chassisnummer == data.chassisnummer) {
-          this.tableData[index] = data;
-        }
-      });
+      if(data){
+        this.tableData.forEach((element, index) => {
+          if(element.chassisnummer == data.chassisnummer) {
+            this.tableData[index] = data;
+          }
+        });
 
-      this.dataSource.data = this.tableData;
-    })
+        this.dataSource.data = this.tableData;
+      }
+    });
   }
-
-
-
-
 }
-
-

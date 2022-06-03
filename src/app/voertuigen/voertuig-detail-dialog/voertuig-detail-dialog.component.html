@@ -9,7 +9,7 @@
       <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>edit</mat-icon></button>
     </div>
     <div class="formbuttons-top">
-      <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>delete</mat-icon></button>
+      <button mat-mini-fab color="warning" type="button" (click)="openDeleteScreen()"><mat-icon>delete</mat-icon></button>
     </div>
     <div class="clearfix">
     </div>
@@ -32,7 +32,10 @@
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>merk</mat-label>
-            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="merk">
+            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="merk" [matAutocomplete]="autocompleteMerk">
+            <mat-autocomplete #autocompleteMerk="matAutocomplete">
+              <mat-option *ngFor="let merk of autocompleteOptions | async" [value]="merk">{{merk}}</mat-option>
+            </mat-autocomplete>
             <mat-error *ngIf="voertuigForm.get('merk')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>

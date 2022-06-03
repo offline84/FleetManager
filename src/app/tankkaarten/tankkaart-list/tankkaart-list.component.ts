@@ -16,6 +16,7 @@ import {TankkaartDetailDialogComponent} from "../tankkaart-detail-dialog/tankkaa
 export class TankkaartListComponent implements AfterViewInit {
 
   @Input() columnsToDisplay: any;
+  @Input() entityType: string = 'tankkaart';
   @ViewChild(MatPaginator) paging!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 

@@ -60,7 +60,6 @@ export class DatastreamService {
     return this.http.get(this.connectionstring + "bestuurder/activebestuurders");
   }
   //#endregion Bestuurders
-
   //#region Tankkaarten
 
   GetAllFuelCards = () => {
@@ -84,6 +83,7 @@ export class DatastreamService {
   }
 
   //#endregion Tankkaarten
+ 
 
   //#region Koppelingen
 
@@ -104,7 +104,6 @@ export class DatastreamService {
   }
 
   //#endregion Koppelingen
-
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
