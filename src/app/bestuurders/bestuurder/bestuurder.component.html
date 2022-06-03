@@ -1,1 +1,10 @@
-<p>bestuurder works!</p>
+<div>
+    <div>
+      <h2>Bestuurder</h2>
+    </div>
+  </div>
+  
+  <button mat-raised-button color="primary" id="add-button" (click)="AddNewEntityDialog()"><mat-icon>add_circle</mat-icon> nieuw bestuurder</button>
+  
+  <app-bestuurder-list [columnsToDisplay]="properties"></app-bestuurder-list>
+  

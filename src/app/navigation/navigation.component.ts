@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
+  active = 0;
+ 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onTabChange(event: any){
   }
 
 }

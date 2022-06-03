@@ -56,10 +56,16 @@ export class DatastreamService {
   //#endregion Voertuigen
 
   //#region Bestuurders
+
   GetAllBestuurders = () => {
     return this.http.get(this.connectionstring + "bestuurder/activebestuurders");
   }
+
+  GetDriverLicences = () => {
+    return this.http.get(this.connectionstring + "bestuurder/rijbewijzen");
+  }
   //#endregion Bestuurders
+
   //#region Tankkaarten
   
   GetAllFuelCards = () => {

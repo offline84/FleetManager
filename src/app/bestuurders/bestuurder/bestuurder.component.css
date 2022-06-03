@@ -1,0 +1,10 @@
+#add-button {
+    float: left;
+  }
+  
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  

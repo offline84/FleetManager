@@ -1,0 +1,30 @@
+/* Navigation button styles */
+mat-toolbar {
+    color: #eee;
+    background-color: #1661EB;
+}
+
+button {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
+    min-width: 10rem;
+    display: inline-block;
+    background-color: #5D98F1;
+    color: #eee;
+    text-decoration: none;
+}
+
+a:hover button {
+    background-color: #1661EB;
+    color: #eee;
+}
+
+a.active button {
+    background-color: #1661EB;
+    color: #eee;
+}
+
+
+

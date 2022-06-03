@@ -1,0 +1,32 @@
+.table {
+    width: 99.5%;
+    padding-left: 0.5em;
+  }
+  
+  .mat-row .mat-cell {
+    border-top: 1px solid transparent;
+    text-align: left !important;
+    padding: 2px;
+    width: 10%;
+    cursor: pointer;
+  }
+  .mat-header-cell{
+    text-align: center !important;
+    width: 10%;
+    position: sticky;
+  }
+  
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+  
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  #searchbar{
+    float: right;
+  }
+  
