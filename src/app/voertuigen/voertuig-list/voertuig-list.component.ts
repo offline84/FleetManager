@@ -82,6 +82,7 @@ export class VoertuigListComponent implements AfterViewInit{
     });
   }
 
+
   //behandelt de algemene filtering komend van de searchbar;
   FilterDataHandler(filter: any): void {
     this.dataSource = filter;
@@ -115,10 +116,4 @@ export class VoertuigListComponent implements AfterViewInit{
       }
     });
   }
-
-
-
-
 }
-
-
