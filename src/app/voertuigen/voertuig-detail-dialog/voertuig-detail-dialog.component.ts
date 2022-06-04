@@ -8,6 +8,7 @@ import { DataExchangeService } from '../../data-exchange.service';
 import { map, Observable, startWith } from 'rxjs';
 import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
 import { DeleteConfirmationSheetComponent } from 'src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -68,6 +69,7 @@ export class VoertuigDetailDialogComponent implements OnInit {
               private dialogRef: MatDialogRef<VoertuigDetailDialogComponent>,
               private dataService: DataExchangeService,
               private bottomSheet: MatBottomSheet,
+              private router: Router,
               @Inject(MAT_DIALOG_DATA) private data: any) {
     this.voertuig = data.entity;
     this.modifiable = data.modifiable;
@@ -180,9 +182,13 @@ export class VoertuigDetailDialogComponent implements OnInit {
     this.bestuurderLink = link[0];
   }
 
-  //To Do route naar bestuurders en open daar automatisch met het behavioursubject de detail dialog voor de meegegeven bestuurder.
+  // Deze method opent bij het klikken op de link in de voertuig-detail-dialog view mode, de view mode in de bestuurdersectie van de applicatie van desbetreffende bestuurder.
+  // Eerst zorgen we ervoor dat de huidige dialog gesloten wordt, dan geven we via de data exchange service de opdracht om de view dialog te openen
+  // en vervolgens navigeren we naar de bestuurderssectie van de applicatie.
   OpenBestuurdersDetails = () => {
+    this.dialogRef.close();
     this.dataService.sendData("bestuurder","view", this.bestuurderLink);
+    let navi =this.router.navigate(['/bestuurders']);
   }
 
   onSave = () => {
