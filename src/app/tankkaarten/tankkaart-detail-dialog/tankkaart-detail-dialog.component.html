@@ -29,19 +29,12 @@
           </mat-form-field>
         </div>
         <div class="field">
-          <!-- Date-Picker...
           <mat-form-field  appearance="fill"  class="datepickerMat">
             <mat-label>geldigheidsdatum</mat-label>
             <input [ngClass]="viewOnly" matInput [matDatepicker]="picker" [readonly]="!modifiable" formControlName="geldigheidsdatum">
-            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="tankkaartForm.get('geldigheidsdatum')?.hasError('required')">Veld is vereist</mat-error>
-          </mat-form-field>
-          -->
-          <mat-form-field  appearance="fill">
-            <mat-label>geldigheidsdatum</mat-label>
-            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="geldigheidsdatum">
             <mat-error *ngIf="tankkaartForm.get('geldigheidsdatum')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
 

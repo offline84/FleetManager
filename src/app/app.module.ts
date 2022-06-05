@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import {Routes, RouterModule} from "@angular/router";
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { Home } from './app.home';
 import { VoertuigComponent } from './voertuigen/voertuig/voertuig.component';
@@ -20,7 +21,6 @@ import { TankkaartListComponent } from './tankkaarten/tankkaart-list/tankkaart-l
 import { TankkaartDetailDialogComponent } from './tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component';
 import { DeleteConfirmationSheetComponent } from './voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component';
 import { TankkaartDeleteConfirmationSheetComponent } from './tankkaarten/tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component';
-import {MatDatepickerModule} from "@angular/material/datepicker";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -54,11 +54,12 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    MatDatepickerModule
+
   ],
   exports: [],
   providers: [
-    {provide: "API_Url", useValue: "https://localhost:5001/api/"}
+    {provide: "API_Url", useValue: "https://localhost:5001/api/"},
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [Home],
 })

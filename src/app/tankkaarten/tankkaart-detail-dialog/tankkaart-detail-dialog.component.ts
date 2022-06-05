@@ -237,6 +237,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
   //De niet gepatchede controls worden handmatig ingegeven.
   patchObjectToForm = (entity: Tankkaart) =>{
     this.tankkaartForm.patchValue(this.tankkaart);
+    this.tankkaartForm.controls["geldigheidsdatum"].setValue(entity.geldigheidsDatum.toString());
     //this.tankkaartForm.controls["typeBrandstof"].setValue(this.voertuig.brandstof.typeBrandstof);
   }
 
@@ -253,7 +254,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     }
 
     fuelcard.kaartnummer = this.tankkaartForm.controls["kaartnummer"].value;
-    fuelcard.geldigheidsdatum = this.tankkaartForm.controls["geldigheidsdatum"].value;
+    fuelcard.geldigheidsDatum = this.tankkaartForm.controls["geldigheidsdatum"].value;
     fuelcard.pincode = this.tankkaartForm.controls["pincode"].value;
 
     //vehicle.brandstof = this.brandstoffen.find((v: any) => v.typeBrandstof == this.voertuigForm.controls["typeBrandstof"].value);

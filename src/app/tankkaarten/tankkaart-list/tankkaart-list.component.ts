@@ -1,12 +1,12 @@
-import {AfterViewInit, Input, Component, ViewChild} from '@angular/core';
+import { AfterViewInit, Input, Component, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { DataExchangeService } from '../../data-exchange.service';
 import { DatastreamService } from '../../datastream.service';
-import {ITankkaart} from "../../objects/iTankkaart";
-import {TankkaartDetailDialogComponent} from "../tankkaart-detail-dialog/tankkaart-detail-dialog.component";
+import { ITankkaart } from "../../objects/iTankkaart";
+import { TankkaartDetailDialogComponent } from "../tankkaart-detail-dialog/tankkaart-detail-dialog.component";
 
 @Component({
   selector: 'app-tankkaart-list',
@@ -25,12 +25,25 @@ export class TankkaartListComponent implements AfterViewInit {
   tableData: Array<any> = new Array<any>();
   selectedTankkaart: any;
 
-  constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) {}
+  constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) { }
 
   ngAfterViewInit() {
 
     //data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
-    this.datastream.GetAllFuelCards().subscribe((data: any) =>{
+    this.datastream.GetAllFuelCards().subscribe((data: any) => {
+
+      data.forEach((tankkaart: ITankkaart) => {
+        let stringbuilder = "";
+
+        tankkaart.mogelijkeBrandstoffen.forEach((brandstof: any) => {
+          console.log(stringbuilder);
+          console.log(brandstof.typeBrandstof);
+          stringbuilder = stringbuilder.concat(brandstof.typeBrandstof, ", ");
+        });
+        tankkaart = tankkaart as ITankkaart;
+        tankkaart.brandstoffenForView = stringbuilder.slice(0, -2);
+      });
+      console.log(data);
       this.tableData = data;
       this.dataSource.data = this.tableData;
       this.dataSource.paginator = this.paging;
@@ -50,21 +63,21 @@ export class TankkaartListComponent implements AfterViewInit {
 
     // haalt de entiteit voor modificatie van de tabel binnen en kijkt welke bewerking op de tabel dient te worden uitgevoerd.
     // Hiervoor wordt gebruik gemaakt van de DataExchangeService.
-    this.dataService.observableData.subscribe((data: any) =>{
+    this.dataService.observableData.subscribe((data: any) => {
       console.log("sent data: ", data);
-      if(data){
-        if(data.value){
-          if(data.entity == "tankkaart"){
-            if(data.action == "add"){
-              if(data.value){
+      if (data) {
+        if (data.value) {
+          if (data.entity == "tankkaart") {
+            if (data.action == "add") {
+              if (data.value) {
                 this.tableData.unshift(data.value);
 
               }
             }
 
-            if(data.action == "delete"){
-              if(data.value){
-                let index = this.tableData.findIndex(t=> t.kaartnummer == data.value.kaartnummer);
+            if (data.action == "delete") {
+              if (data.value) {
+                let index = this.tableData.findIndex(t => t.kaartnummer == data.value.kaartnummer);
                 this.tableData.splice(index, 1);
               }
             }
@@ -83,7 +96,7 @@ export class TankkaartListComponent implements AfterViewInit {
 
   //opent de tankkaart-detail-dialog met settings voor viewing.
   //Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt via de dataexchangeservice.
-  ViewDetails = (selectedRow: ITankkaart) =>{
+  ViewDetails = (selectedRow: ITankkaart) => {
     const config = new MatDialogConfig();
     this.selectedTankkaart = selectedRow;
 
@@ -97,9 +110,9 @@ export class TankkaartListComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe((data: any) => {
 
-      if(data){
+      if (data) {
         this.tableData.forEach((element, index) => {
-          if(element.chassisnummer == data.chassisnummer) {
+          if (element.chassisnummer == data.chassisnummer) {
             this.tableData[index] = data;
           }
         });

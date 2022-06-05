@@ -1,14 +1,15 @@
 export interface ITankkaart {
   kaartnummer : string;
-  geldigheidsdatum: Date;
+  geldigheidsDatum: Date;
   pincode: number;
-  mogelijkebrandstoffen:
-    {
-      brandstof: {
-        id: string;
-        typeBrandstof: string;
-      }
-    };
+  mogelijkeBrandstoffen: any;
+    // {
+    //   brandstof: {
+    //     id: string;
+    //     typeBrandstof: string;
+    //   }
+    // };
+  brandstoffenForView: string;
   isGeblokkeerd: boolean;
   isGearchiveerd: boolean;
   koppeling: any;
