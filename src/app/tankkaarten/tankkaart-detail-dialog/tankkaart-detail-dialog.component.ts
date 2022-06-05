@@ -11,7 +11,7 @@ import {TankkaartDeleteConfirmationSheetComponent} from "../tankkaart-delete-con
 @Component({
   selector: 'app-tankkaart-detail-dialog',
   templateUrl: './tankkaart-detail-dialog.component.html',
-  styleUrls: ['./tankkaart-detail-dialog.component.css']
+  styleUrls: ['./tankkaart-detail-dialog.component.css'],
 })
 
 export class TankkaartDetailDialogComponent implements OnInit {
@@ -48,8 +48,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
   tankkaartForm = new FormGroup({
     kaartnummer: new FormControl('',[Validators.required]),
     geldigheidsdatum: new FormControl('',[Validators.required]),
-    pincode: new FormControl('',[Validators.required]),
-    typeBrandstof: new FormControl('',[Validators.required]),
+    pincode: new FormControl('',[Validators.required])
   });
 
   constructor(private datastream: DatastreamService,

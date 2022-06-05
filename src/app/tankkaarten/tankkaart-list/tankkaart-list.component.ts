@@ -35,13 +35,14 @@ export class TankkaartListComponent implements AfterViewInit {
       data.forEach((tankkaart: ITankkaart) => {
         let stringbuilder = "";
 
-        tankkaart.mogelijkeBrandstoffen.forEach((brandstof: any) => {
+        tankkaart.mogelijkeBrandstoffen.forEach((mb: any ) => {
           console.log(stringbuilder);
-          console.log(brandstof.typeBrandstof);
-          stringbuilder = stringbuilder.concat(brandstof.typeBrandstof, ", ");
+          const {typeBrandstof} = mb.brandstof;
+          console.log(typeBrandstof);
+          stringbuilder = stringbuilder.concat(typeBrandstof, ", ");
         });
         tankkaart = tankkaart as ITankkaart;
-        tankkaart.brandstoffenForView = stringbuilder.slice(0, -2);
+        tankkaart.brandstoffenForView = stringbuilder.slice(0, - 2);
       });
       console.log(data);
       this.tableData = data;
@@ -49,17 +50,6 @@ export class TankkaartListComponent implements AfterViewInit {
       this.dataSource.paginator = this.paging;
       this.dataSource.sort = this.sort;
     });
-
-    //Customizing voor sorteren van kolommen die voortkomen uit een object.
-    /*
-    this.dataSource.sortingDataAccessor = (entity, property) => {
-      switch(property){
-        //mogelijke brandstoffen ?
-        case 'brandstof': return entity.brandstof.typeBrandstof;
-        default: return entity[property];
-      }
-    };
-    */
 
     // haalt de entiteit voor modificatie van de tabel binnen en kijkt welke bewerking op de tabel dient te worden uitgevoerd.
     // Hiervoor wordt gebruik gemaakt van de DataExchangeService.

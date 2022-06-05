@@ -83,7 +83,7 @@ export class DatastreamService {
   }
 
   //#endregion Tankkaarten
- 
+
 
   //#region Koppelingen
 
@@ -96,11 +96,11 @@ export class DatastreamService {
   }
 
   UnlinkFuelCard = (tankkaartId: string) => {
-    return this.http.get(this.connectionstring + "voertuig/koppellos/" + tankkaartId).pipe(catchError(this.handleError));
+    return this.http.get(this.connectionstring + "tankkaart/koppellos/" + tankkaartId).pipe(catchError(this.handleError));
   }
 
   LinkFuelCard = ( idNumber: string, tankkaartId: string) => {
-    return this.http.get(this.connectionstring + "voertuig/koppel/" + idNumber + "/" + tankkaartId).pipe(catchError(this.handleError));
+    return this.http.get(this.connectionstring + "tankkaart/koppel/" + idNumber + "/" + tankkaartId).pipe(catchError(this.handleError));
   }
 
   //#endregion Koppelingen
