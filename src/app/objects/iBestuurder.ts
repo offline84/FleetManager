@@ -1,4 +1,6 @@
 import { Adres } from "./adres";
+import { Rijbewijs } from "./rijbewijs";
+import { ToewijzingRijbewijs } from "./toewijzingRijbewijs";
 
 export interface IBestuurder {
   rijksregisternummer: string;
@@ -6,9 +8,8 @@ export interface IBestuurder {
   achternaam: string;
   adres: Adres;
   koppeling: any;
-  toewijzingenRijbewijs: any[];
-  rijbewijzen: any[];
-  rijbewijs: string;
+  toewijzingenRijbewijs: Array<ToewijzingRijbewijs>;
+  rijbewijs: Rijbewijs;
   isGearchiveerd: boolean;
   geboorteDatum: Date;
 }

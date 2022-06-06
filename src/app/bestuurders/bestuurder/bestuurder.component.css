@@ -1,15 +1,30 @@
+/* .form-block {
+  margin-left: 2rem;
+  margin-right: 2rem;
+} */
+
 #add-button {
-    float: left;
+  float: right;
+  text-align: center;
+  top: 6rem;
+  position: absolute;
+  right: 2rem;
+  min-width: 14rem;
+  max-height: 36px;
+}
 
-  }
-  
-  .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
- button {
-    background-color: #1661EB;
-    color: #ffffff;
-  } 
+button {
+  background-color: #1661EB;
+  color: #ffffff;
+}
+
+mat-icon {
+  position: relative;
+  left: -5px;
+}

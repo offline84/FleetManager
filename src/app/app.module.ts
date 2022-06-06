@@ -6,8 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import {Routes, RouterModule} from "@angular/router";
-import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatDatepickerModule } from "@angular/material/datepicker";
 
 import { Home } from './app.home';
 import { VoertuigComponent } from './voertuigen/voertuig/voertuig.component';
@@ -22,7 +20,7 @@ import { TankkaartComponent } from './tankkaarten/tankkaart/tankkaart.component'
 import { HomeComponent } from './home/home.component';
 import { TankkaartListComponent } from './tankkaarten/tankkaart-list/tankkaart-list.component';
 import { TankkaartDetailDialogComponent } from './tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component'
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import {  MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -55,15 +53,13 @@ const appRoutes: Routes = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatDatepickerModule,
     MatNativeDateModule,
     RouterModule.forRoot(appRoutes)
   ],
   exports: [],
   providers: [
     {provide: "API_Url", useValue: "https://localhost:5001/api/"},
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    { provide: MAT_DATE_LOCALE, useValue: 'fr' },
   ],
   bootstrap: [Home],
 })

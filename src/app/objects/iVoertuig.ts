@@ -14,7 +14,7 @@ export interface IVoertuig {
   };
   kleur: string;
   aantalDeuren: number;
-  koppeling: string;
+  koppeling: any;
   status: {
     id: string;
     staat: string;

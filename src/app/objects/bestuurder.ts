@@ -1,17 +1,22 @@
-import {IBestuurder} from "./iBestuurder"
-import {Adres} from "./adres"
+import { IBestuurder } from "./iBestuurder"
+import { Adres } from "./adres"
+import { ToewijzingRijbewijs } from "./toewijzingRijbewijs"
+import { Rijbewijs } from "./rijbewijs";
 export class Bestuurder implements IBestuurder {
 
   rijksregisternummer!: string;
   naam!: string;
   achternaam!: string;
-  adres!: Adres;
+  adres: Adres = new Adres();
   koppeling!: any;
   isGearchiveerd!: boolean;
   geboorteDatum!: Date;
   laatstGeupdate!: Date;
-  toewijzingenRijbewijs!: any[];
-  rijbewijzen!: any[];
-  rijbewijs!: string;
-  constructor()  {    }
+  toewijzingenRijbewijs: Array<ToewijzingRijbewijs> = [];
+  rijbewijzen: Array<Rijbewijs> = [];
+  rijbewijs!: Rijbewijs;
+
+  constructor() {
+
+  }
 }

@@ -1,8 +1,11 @@
-<div>
-  <mat-form-field class="searchbar">
-    <input matInput type="text" [(ngModel)]="search" (ngModelChange)="detectChanges($event)" placeholder="vul uw zoekterm hier in">
-  </mat-form-field>
-
-  <button mat-flat-button color="primary" (click)="clearQuery()"><mat-icon>cancel</mat-icon></button>
-</div>
-
+<mat-toolbar class="search-toolbar">
+  <div class="searchbar-cancel">
+    <mat-form-field class="searchbar">
+      <input matInput type="text" [(ngModel)]="search" (ngModelChange)="detectChanges($event)"
+        placeholder="Vul uw zoekterm hier in">
+    </mat-form-field>
+    <button mat-flat-button (click)="clearQuery()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BestuurderDetailDialogComponent } from './bestuurder-detail-dialog.component';
 
 describe('BestuurderDetailDialogComponent', () => {

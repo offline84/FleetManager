@@ -1,10 +1,16 @@
-<div>
-    <div>
-      <h2>Bestuurder</h2>
+<!-- <div>
+  <div>
+    <h2>Bestuurder</h2>
+  </div>
+</div> -->
+
+<div class="form-block">
+    <button mat-raised-button id="add-button" (click)="AddNewEntityDialog()">
+      <mat-icon>add</mat-icon>BESTUURDER TOEVOEGEN
+    </button>
+  <div class="formsection">
+    <div class="field">
+      <app-bestuurder-list [columnsToDisplay]="properties"></app-bestuurder-list>
     </div>
   </div>
-  
-  <button mat-raised-button id="add-button" (click)="AddNewEntityDialog()"><mat-icon>add_circle</mat-icon> nieuwe bestuurder</button>
-  
-  <app-bestuurder-list [columnsToDisplay]="properties"></app-bestuurder-list>
-  
+</div>

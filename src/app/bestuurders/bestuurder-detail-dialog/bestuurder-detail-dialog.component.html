@@ -26,65 +26,72 @@
     <div [formGroup]="bestuurderForm">
       <div class="field">
         <mat-form-field appearance="fill">
-          <mat-label>rijksregisternummer</mat-label>
-          <input [ngClass]="notEditable" matInput type="text" [readonly]="!modifiable"
+          <mat-label>Rijksregisternummer</mat-label>
+          <input matInput type="number" [readonly]="!modifiable" [disabled]="!forCreation"
             formControlName="rijksregisternummer">
           <mat-hint>Geen spaties of speciale tekens.</mat-hint>
-          <mat-error *ngIf="bestuurderForm.get('rijksregisternummer')?.hasError('pattern')">rijksregisternummer is
+          <mat-error *ngIf="bestuurderForm.get('rijksregisternummer')?.hasError('max')">rijksregisternummer is
             incorrect</mat-error>
-          <mat-error *ngIf="bestuurderForm.get('rijksregisternummer')?.hasError('required')">Veld is vereist
-          </mat-error>
+          <mat-error *ngIf="bestuurderForm.get('rijksregisternummer')?.hasError('min')">rijksregisternummer is
+            incorrect</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>naam</mat-label>
-          <input [ngClass]="notEditable" matInput type="text" [readonly]="!modifiable" formControlName="naam">
+          <mat-label>Naam</mat-label>
+          <input matInput type="text" [readonly]="!modifiable" [disabled]="!modifiable" formControlName="naam">
           <mat-error *ngIf="bestuurderForm.get('naam')?.hasError('pattern')">naam is incorrect</mat-error>
           <mat-error *ngIf="bestuurderForm.get('naam')?.hasError('required')">Veld is vereist</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>achternaam</mat-label>
-          <input [ngClass]="notEditable" matInput type="text" [readonly]="!modifiable" formControlName="achternaam">
+          <mat-label>Achternaam</mat-label>
+          <input matInput type="text" [readonly]="!modifiable" formControlName="achternaam">
           <mat-error *ngIf="bestuurderForm.get('achternaam')?.hasError('pattern')">achternaam is incorrect</mat-error>
           <mat-error *ngIf="bestuurderForm.get('achternaam')?.hasError('required')">Veld is vereist</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill" class="datepickerMat">
-          <mat-label>geboorteDatum</mat-label>
-          <input [ngClass]="notEditable" matInput [matDatepicker]="picker" [readonly]="!modifiable"
-            formControlName="geboorteDatum">
-          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-label>Geboorte datum</mat-label>
+          <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" [disabled]="!modifiable"
+            formControlName="geboorteDatum" [readonly]="true" />
+          <mat-datepicker #picker startView="multi-year"></mat-datepicker>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="bestuurderForm.get('geboorteDatum')?.hasError('required')">Veld is vereist</mat-error>
         </mat-form-field>
-
       </div>
       <div [formGroup]="adresForm">
         <div class="field">
           <mat-form-field appearance="fill">
-            <mat-label>straat</mat-label>
-            <input [ngClass]="notEditable" matInput type="text" [readonly]="!modifiable" formControlName="straat">
+            <mat-label>Straat</mat-label>
+            <input matInput type="text" [readonly]="!modifiable" formControlName="straat">
             <mat-error *ngIf="adresForm.get('straat')?.hasError('pattern')">straat is incorrect</mat-error>
             <mat-error *ngIf="adresForm.get('straat')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill">
-            <mat-label>huisnummer</mat-label>
-            <input [ngClass]="notEditable" matInput type="text" [readonly]="!modifiable" formControlName="huisnummer">
+            <mat-label>Huisnummer</mat-label>
+            <input matInput type="number" [readonly]="!modifiable" formControlName="huisnummer">
             <mat-error *ngIf="adresForm.get('huisnummer')?.hasError('pattern')">huisnummer is incorrect</mat-error>
             <mat-error *ngIf="adresForm.get('huisnummer')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill">
-            <mat-label>stad</mat-label>
-            <input [ngClass]="notEditable" matInput type="text" [readonly]="!modifiable" formControlName="stad">
+            <mat-label>Stad</mat-label>
+            <input matInput type="text" [readonly]="!modifiable" formControlName="stad">
             <mat-error *ngIf="adresForm.get('stad')?.hasError('pattern')">stad is incorrect</mat-error>
             <mat-error *ngIf="adresForm.get('stad')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill">
-            <mat-label>postcode</mat-label>
-            <input [ngClass]="notEditable" matInput type="text" [readonly]="!modifiable" formControlName="postcode">
+            <mat-label>Postcode</mat-label>
+            <input matInput type="number" [readonly]="!modifiable" formControlName="postcode">
             <mat-error *ngIf="bestuurderForm.get('postcode')?.hasError('pattern')">postcode is incorrect</mat-error>
             <mat-error *ngIf="bestuurderForm.get('postcode')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>
+      </div>
+      <div class="field">
+        <mat-form-field appearance="fill">
+          <mat-label>Rijbewijs</mat-label>
+          <mat-select placeholder="rijbewijs *" [disabled]="!modifiable" formControlName="typeRijbewijs" multiple>
+            <mat-option *ngFor="let rij of rijbewijzen" value="{{rij.typeRijbewijs}}">{{rij.typeRijbewijs}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="bestuurderForm.get('typeRijbewijs')?.hasError('required')">rijbewijs is vereist</mat-error>
+        </mat-form-field>
       </div>
       <div>
         <div class="field">
@@ -98,7 +105,8 @@
 
           <div class="formbuttons koppel field" *ngIf="viewOnly">
             <mat-form-field class="link-voertuig" appearance="fill">
-              <mat-select *ngIf="!bestuurder.koppeling" (selectionChange)="onSelectionChangeVoertuig($event.value)">
+              <mat-select *ngIf="!bestuurder.koppeling.chassisnummer"
+                (selectionChange)="onSelectionChangeVoertuig($event.value)">
                 <mat-option value=null></mat-option>
                 <mat-option *ngFor="let voertuig of unlinkedVoertuigen" value={{voertuig.chassisnummer}}>
                   {{voertuig.chassisnummer}}</mat-option>
@@ -107,7 +115,7 @@
                 [readonly]="viewOnly" (click)="OpenVoertuigenDetails()">
             </mat-form-field>
           </div>
-          <div *ngIf="!modifiable" class="formbuttons">
+          <!-- <div *ngIf="!modifiable" class="formbuttons">
             <button mat-raised-button type="button" (click)="linkUnlinkTankkaart()">
               <mat-icon *ngIf="!bestuurder.koppeling.kaartnummer">link</mat-icon>
               <mat-icon *ngIf="bestuurder.koppeling.kaartnummer">link_off</mat-icon>
@@ -124,25 +132,23 @@
               <input matInput *ngIf="bestuurder.koppeling" type="text" value="{{tankkaartLink.kaartnummer}}"
                 [readonly]="viewOnly" (click)="OpenTankkaartenDetails()">
             </mat-form-field>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="clearfix">
       </div>
       <div *ngIf="modifiable && !bestuurder" class="formbuttons">
         <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
-          [disabled]="!bestuurderForm.valid">Submit</button>
+          [disabled]="!bestuurderForm.valid && !adresForm.valid && !bestuurderForm.get('typeRijbewijs')?.hasError('required')">Submit</button>
       </div>
       <div *ngIf="modifiable && !forCreation" class="formbuttons">
         <button mat-raised-button color="primary" type="submit" (click)="onSave()"
-          [disabled]="!bestuurderForm.valid">Save<span class="spacer"></span>
+          [disabled]="!bestuurderForm.valid && !adresForm.valid">Save<span class="spacer"></span>
           <mat-icon>save</mat-icon>
         </button>
       </div>
-
       <div class="clearfix">
       </div>
-
     </div>
   </div>
   <div mat-dialog-footer>
