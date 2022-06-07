@@ -244,16 +244,18 @@ export class TankkaartDetailDialogComponent implements OnInit {
     let fuelcard = new Tankkaart();
 
     // Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden.
-    if(!this.tankkaartForm.controls["kaartnummer"].value){
-      this.tankkaartForm.controls["nummerplaat"].setValue("");
-    }
-
-    if(!this.tankkaartForm.controls["pincode"].value){
-      this.tankkaartForm.controls["pincode"].setValue(0);
-    }
+    //Niet nodig.
+    // if(!this.tankkaartForm.controls["kaartnummer"].value){
+    //   this.tankkaartForm.controls["kaartnummer"].setValue("");
+    // }
+    //
+    // if(!this.tankkaartForm.controls["pincode"].value){
+    //   this.tankkaartForm.controls["pincode"].setValue(0);
+    // }
 
     fuelcard.kaartnummer = this.tankkaartForm.controls["kaartnummer"].value;
     fuelcard.geldigheidsDatum = this.tankkaartForm.controls["geldigheidsdatum"].value;
+    fuelcard.geldigheidsDatum = fuelcard.geldigheidsDatum;
     fuelcard.pincode = this.tankkaartForm.controls["pincode"].value;
 
     //vehicle.brandstof = this.brandstoffen.find((v: any) => v.typeBrandstof == this.voertuigForm.controls["typeBrandstof"].value);

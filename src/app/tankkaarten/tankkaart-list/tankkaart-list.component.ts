@@ -36,19 +36,21 @@ export class TankkaartListComponent implements AfterViewInit {
         let stringbuilder = "";
 
         tankkaart.mogelijkeBrandstoffen.forEach((mb: any ) => {
-          console.log(stringbuilder);
           const {typeBrandstof} = mb.brandstof;
-          console.log(typeBrandstof);
           stringbuilder = stringbuilder.concat(typeBrandstof, ", ");
         });
         tankkaart = tankkaart as ITankkaart;
         tankkaart.brandstoffenForView = stringbuilder.slice(0, - 2);
+        console.log("tankkaart:" + tankkaart.brandstoffenForView);
       });
-      console.log(data);
       this.tableData = data;
       this.dataSource.data = this.tableData;
       this.dataSource.paginator = this.paging;
       this.dataSource.sort = this.sort;
+      /*this.dataSource.data.forEach((obj: ITankkaart) => {
+        console.log("TankkaartNR")
+      })*/
+      console.log(this.dataSource.data);
     });
 
     // haalt de entiteit voor modificatie van de tabel binnen en kijkt welke bewerking op de tabel dient te worden uitgevoerd.
@@ -61,17 +63,14 @@ export class TankkaartListComponent implements AfterViewInit {
             if (data.action == "add") {
               if (data.value) {
                 this.tableData.unshift(data.value);
-
               }
             }
-
             if (data.action == "delete") {
               if (data.value) {
                 let index = this.tableData.findIndex(t => t.kaartnummer == data.value.kaartnummer);
                 this.tableData.splice(index, 1);
               }
             }
-
             this.dataSource.data = this.tableData;
           }
         }
@@ -102,7 +101,7 @@ export class TankkaartListComponent implements AfterViewInit {
 
       if (data) {
         this.tableData.forEach((element, index) => {
-          if (element.chassisnummer == data.chassisnummer) {
+          if (element.kaartnummer == data.kaartnummer) {
             this.tableData[index] = data;
           }
         });

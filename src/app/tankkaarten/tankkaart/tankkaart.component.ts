@@ -17,7 +17,7 @@ export class TankkaartComponent implements OnInit {
     "kaartnummer",
     "geldigheidsdatum",
     "pincode",
-    //"mogelijkebrandstoffen",
+    "brandstoffenForView",
     "isGeblokkeerd",
     "koppeling"
   ];
