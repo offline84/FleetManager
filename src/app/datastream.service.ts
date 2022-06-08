@@ -6,16 +6,25 @@ import { catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 
-// De DatastreamService haalt de data op uit de databank van de API. Aangezien deze data async binnenkomt is het
-// raadzaam gebruik te maken van subscribties (zie observer pattern, gang of four).
 
+/**
+ * De DatastreamService haalt de data op uit de databank van de API. Aangezien deze data async binnenkomt is het
+ * raadzaam gebruik te maken van abonnementen (zie observer pattern, gang of four).
+ */
 export class DatastreamService {
 
+  /**
+   * bevat de connectiestring naar de API. Wordt geïnitialiseerd via de constructor.
+   */
   private connectionstring: string;
 
   // Hier wordt de API- connectiestring geïnjecteerd d.m.v. de provider in ngModule. Indien men de
   // connectiestring naar de API wil veranderen dient deze ginds aangepast te worden.
-
+  /**
+   *
+   * @param http  verzorgt de crud operaties naar de API toe.
+   * @param _connectionstring Wordt geïnjecteerd via de provider in app.module.ts en bevat de connectiestring naar de API.
+   */
   constructor( private http: HttpClient, @Inject("API_Url") _connectionstring: string) {
     this.connectionstring = _connectionstring;
   }
@@ -61,7 +70,7 @@ export class DatastreamService {
   }
   //#endregion Bestuurders
   //#region Tankkaarten
-  
+
   GetAllFuelCards = () => {
     return this.http.get(this.connectionstring +"tankkaart/active");
   }
@@ -69,9 +78,9 @@ export class DatastreamService {
   PostFuelCard = (tankkaart: any) => {
     return this.http.post(this.connectionstring + "tankkaart", tankkaart).pipe(catchError(this.handleError));
   }
-  
+
   //#endregion Tankkaarten
- 
+
   //#region Koppelingen
 
   UnlinkVehicle = (vehicleId: string) => {
@@ -84,17 +93,34 @@ export class DatastreamService {
 
   //#endregion Koppelingen
 
+
+  /**
+   * Zorgt ervoor dat de error zichtbaar is in de logfiles.
+   *
+   * @example
+   * if (error.status === 0) {
+   *  console.error('An error occurred:', error.error);       => client side error
+   *
+   * @example
+   * else {
+   *  console.error(
+   *     `Backend returned code ${error.status}, body was: `, error.error);       => server side error
+   * }
+   *
+   * @example
+   * return throwError(() => error);          => error with response body
+   *
+   * @param error is de HttpErrorResponse die bij fout in verzending meegegeven wordt aan de HttpResponse.
+   * @returns Observable van de error voor admin gerichte berichten.
+   */
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
+
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
-    // Return an observable with a user-facing error message.
     return throwError(() => error);
   }
 }

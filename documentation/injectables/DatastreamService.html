@@ -159,7 +159,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/datastream.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/datastream.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -173,6 +173,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -187,6 +188,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>verzorgt de crud operaties naar de API toe.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>_connectionstring</td>
@@ -199,6 +204,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Wordt geïnjecteerd via de provider in app.module.ts en bevat de connectiestring naar de API.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -236,14 +245,20 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/app/datastream.service.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/app/datastream.service.ts:116</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Zorgt ervoor dat de error zichtbaar is in de logfiles.</p>
+<div><pre class="line-numbers"><code class="language-html">if (error.status === 0) {
+ console.error(&#39;An error occurred:&#39;, error.error);       =&gt; client side error</code></pre></div><div><pre class="line-numbers"><code class="language-html">else {
+ console.error(
+    `Backend returned code ${error.status}, body was: `, error.error);       =&gt; server side error
+}</code></pre></div><div><pre class="line-numbers"><code class="language-html">return throwError(() =&gt; error);          =&gt; error with response body</code></pre></div></div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -254,6 +269,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -268,18 +284,37 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>is de HttpErrorResponse die bij fout in verzending meegegeven wordt aan de HttpResponse.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div>
+                        <b>Example :</b>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">if (error.status === 0) {
+ console.error(&amp;#39;An error occurred:&amp;#39;, error.error);       =&amp;gt; client side error</code></pre>
+                        </div>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">else {
+ console.error(
+    &lt;code&gt;Backend returned code ${error.status}, body was: &lt;/code&gt;, error.error);       =&amp;gt; server side error
+}</code></pre>
+                        </div>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">return throwError(() =&amp;gt; error);          =&amp;gt; error with response body</code></pre>
+                        </div>
                     </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>Observable van de error voor admin gerichte berichten.</p>
+
                     </div>
                 </td>
             </tr>
@@ -311,10 +346,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/datastream.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/datastream.service.ts:19</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>bevat de connectiestring naar de API. Wordt geïnitialiseerd via de constructor.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -336,7 +377,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/datastream.service.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/datastream.service.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -361,7 +402,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/datastream.service.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/datastream.service.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -386,7 +427,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/datastream.service.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/datastream.service.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -411,7 +452,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/datastream.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/datastream.service.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -436,7 +477,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/datastream.service.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/datastream.service.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -461,7 +502,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/datastream.service.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/datastream.service.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -486,7 +527,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/datastream.service.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/datastream.service.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -511,7 +552,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/datastream.service.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/datastream.service.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -536,7 +577,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/datastream.service.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/datastream.service.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -561,7 +602,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/datastream.service.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/datastream.service.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -586,7 +627,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/datastream.service.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/datastream.service.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -611,7 +652,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/datastream.service.ts:77</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/datastream.service.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -636,7 +677,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/datastream.service.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/datastream.service.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -657,16 +698,25 @@ import { catchError, throwError } from &#x27;rxjs&#x27;;
   providedIn: &#x27;root&#x27;
 })
 
-// De DatastreamService haalt de data op uit de databank van de API. Aangezien deze data async binnenkomt is het
-// raadzaam gebruik te maken van subscribties (zie observer pattern, gang of four).
 
+/**
+ * De DatastreamService haalt de data op uit de databank van de API. Aangezien deze data async binnenkomt is het
+ * raadzaam gebruik te maken van abonnementen (zie observer pattern, gang of four).
+ */
 export class DatastreamService {
 
+  /**
+   * bevat de connectiestring naar de API. Wordt geïnitialiseerd via de constructor.
+   */
   private connectionstring: string;
 
   // Hier wordt de API- connectiestring geïnjecteerd d.m.v. de provider in ngModule. Indien men de
   // connectiestring naar de API wil veranderen dient deze ginds aangepast te worden.
-
+  /**
+   *
+   * @param http  verzorgt de crud operaties naar de API toe.
+   * @param _connectionstring Wordt geïnjecteerd via de provider in app.module.ts en bevat de connectiestring naar de API.
+   */
   constructor( private http: HttpClient, @Inject(&quot;API_Url&quot;) _connectionstring: string) {
     this.connectionstring &#x3D; _connectionstring;
   }
@@ -712,7 +762,7 @@ export class DatastreamService {
   }
   //#endregion Bestuurders
   //#region Tankkaarten
-  
+
   GetAllFuelCards &#x3D; () &#x3D;&gt; {
     return this.http.get(this.connectionstring +&quot;tankkaart/active&quot;);
   }
@@ -720,9 +770,9 @@ export class DatastreamService {
   PostFuelCard &#x3D; (tankkaart: any) &#x3D;&gt; {
     return this.http.post(this.connectionstring + &quot;tankkaart&quot;, tankkaart).pipe(catchError(this.handleError));
   }
-  
+
   //#endregion Tankkaarten
- 
+
   //#region Koppelingen
 
   UnlinkVehicle &#x3D; (vehicleId: string) &#x3D;&gt; {
@@ -735,17 +785,34 @@ export class DatastreamService {
 
   //#endregion Koppelingen
 
+
+  /**
+   * Zorgt ervoor dat de error zichtbaar is in de logfiles.
+   *
+   * @example
+   * if (error.status &#x3D;&#x3D;&#x3D; 0) {
+   *  console.error(&#x27;An error occurred:&#x27;, error.error);       &#x3D;&gt; client side error
+   *
+   * @example
+   * else {
+   *  console.error(
+   *     &#x60;Backend returned code ${error.status}, body was: &#x60;, error.error);       &#x3D;&gt; server side error
+   * }
+   *
+   * @example
+   * return throwError(() &#x3D;&gt; error);          &#x3D;&gt; error with response body
+   *
+   * @param error is de HttpErrorResponse die bij fout in verzending meegegeven wordt aan de HttpResponse.
+   * @returns Observable van de error voor admin gerichte berichten.
+   */
   private handleError(error: HttpErrorResponse) {
     if (error.status &#x3D;&#x3D;&#x3D; 0) {
-      // A client-side or network error occurred. Handle it accordingly.
       console.error(&#x27;An error occurred:&#x27;, error.error);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
+
       console.error(
         &#x60;Backend returned code ${error.status}, body was: &#x60;, error.error);
     }
-    // Return an observable with a user-facing error message.
     return throwError(() &#x3D;&gt; error);
   }
 }

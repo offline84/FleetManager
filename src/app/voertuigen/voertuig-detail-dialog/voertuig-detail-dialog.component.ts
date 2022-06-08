@@ -45,24 +45,24 @@ export class VoertuigDetailDialogComponent implements OnInit {
   /**
    * ngclass
    *
-   * notEditable verandert de kleur van niet aanpasbare input
+   * notEditable verandert de kleur van niet aanpasbare input naar CSS class changeColor
    *
    * @example
    * forCreation = false
    * modifiable = true
-   *                    => kleur van input = grijs
+   * notEditable = "changeColor"       => kleur van input = grijs
    */
   notEditable!: string;
 
   /**
    * ngClass
    *
-   * viewOnly verandert de kleur van niet aanpasbare input
+   * viewOnly verandert de kleur van niet aanpasbare input naar CSS class changeColor
    *
    * @example
    * modifiable = false
    * forCreation = false
-   *                     => kleur van input = grijs
+   * viewOnly = "changeColor"           => kleur van input = grijs
    */
   viewOnly!: string;
 

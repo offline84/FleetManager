@@ -1429,10 +1429,10 @@ wordt opgevuld tijdens OnInit.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>ngclass</p>
-<p>notEditable verandert de kleur van niet aanpasbare input</p>
+<p>notEditable verandert de kleur van niet aanpasbare input naar CSS class changeColor</p>
 <div><pre class="line-numbers"><code class="language-html">forCreation = false
 modifiable = true
-                   =&gt; kleur van input = grijs</code></pre></div></div>
+notEditable = &quot;changeColor&quot;       =&gt; kleur van input = grijs</code></pre></div></div>
                 </td>
             </tr>
 
@@ -1570,10 +1570,10 @@ wordt opgevuld tijdens OnInit.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>ngClass</p>
-<p>viewOnly verandert de kleur van niet aanpasbare input</p>
+<p>viewOnly verandert de kleur van niet aanpasbare input naar CSS class changeColor</p>
 <div><pre class="line-numbers"><code class="language-html">modifiable = false
 forCreation = false
-                    =&gt; kleur van input = grijs</code></pre></div></div>
+viewOnly = &quot;changeColor&quot;           =&gt; kleur van input = grijs</code></pre></div></div>
                 </td>
             </tr>
 
@@ -1709,24 +1709,24 @@ export class VoertuigDetailDialogComponent implements OnInit {
   /**
    * ngclass
    *
-   * notEditable verandert de kleur van niet aanpasbare input
+   * notEditable verandert de kleur van niet aanpasbare input naar CSS class changeColor
    *
    * @example
    * forCreation &#x3D; false
    * modifiable &#x3D; true
-   *                    &#x3D;&gt; kleur van input &#x3D; grijs
+   * notEditable &#x3D; &quot;changeColor&quot;       &#x3D;&gt; kleur van input &#x3D; grijs
    */
   notEditable!: string;
 
   /**
    * ngClass
    *
-   * viewOnly verandert de kleur van niet aanpasbare input
+   * viewOnly verandert de kleur van niet aanpasbare input naar CSS class changeColor
    *
    * @example
    * modifiable &#x3D; false
    * forCreation &#x3D; false
-   *                     &#x3D;&gt; kleur van input &#x3D; grijs
+   * viewOnly &#x3D; &quot;changeColor&quot;           &#x3D;&gt; kleur van input &#x3D; grijs
    */
   viewOnly!: string;
 

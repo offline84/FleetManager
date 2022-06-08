@@ -230,13 +230,24 @@ interface dataToObserve{
 })
 
 export class DataExchangeService {
+  
+  /**
+   * Dit Object vertelt waar en wat er dient gedaan te worden in de componenten, samen met de entiteit die daarvoor
+   * dient gebruikt te worden.
+   */
   private dataToObserve: dataToObserve &#x3D; {entity: &quot;&quot;, action: &quot;&quot;, value: null};
-  private listOfData: Array&lt;any&gt; &#x3D; [];
 
+  /**
+   * Is het BehaviourSubject dat we gaan volgen met de Observable observableData.
+   * Houdt veranderingen van het Object dataToObserve bij.
+   * Omdat we bij de start nog geen data willen meegeven als we de componenten initialiseren, geven we dit subject waarde null mee bij instantiëring.
+   */
   private dataSource: BehaviorSubject&lt;any&gt; &#x3D; new BehaviorSubject&lt;any&gt;(null);
-  observableData: Observable&lt;dataToObserve&gt; &#x3D; this.dataSource.asObservable();
 
-  constructor() { }
+  /**
+   * Verwittigt ons wanneer er veranderingen worden aangebracht aan de property dataToObserve d.m.v. abonnering.
+   */
+  observableData: Observable&lt;dataToObserve&gt; &#x3D; this.dataSource.asObservable();
 
   sendData &#x3D; (entity: string, action: string, data: any) &#x3D;&gt; {
       this.dataToObserve.entity &#x3D; entity;
