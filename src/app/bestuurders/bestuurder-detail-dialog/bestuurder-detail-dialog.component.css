@@ -56,13 +56,22 @@ h3 {
   float: center;
 }
 
-/* .link-tankkaart {
-  width: 100%;
+.button-link-field {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  min-width: 170px;
 }
 
-.link-voertuig {
-  width: 100%;
-} */
+.buttons-submit {
+float: right;
+}
+
+.button-submit {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  min-width: 120px;
+}
+
 
 mat-toolbar {
   color: #ffff;

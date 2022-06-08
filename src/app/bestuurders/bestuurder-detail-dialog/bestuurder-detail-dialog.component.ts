@@ -50,19 +50,23 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
   // deze Formgroep behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
   // de benodigde properties weer te geven. Later worden deze terug omgezet in objecten. zie function: CreateObjectToSend
-  bestuurderForm = this.formBuilder.group({
-    rijksregisternummer: ['', [Validators.required, Validators.max(99999999999), Validators.min(9999999999)]],
-    naam: ['', [Validators.required]],
-    achternaam: ['', [Validators.required]],
-    geboorteDatum: ['', MAT_DATEPICKER_VALIDATORS],
-    typeRijbewijs: [null, Validators.required]
+  bestuurderForm = new FormGroup({
+    rijksregisternummer: new FormControl('', [Validators.required, Validators.max(99999999999), Validators.min(10000000000)]),
+    naam: new FormControl('', [Validators.required]),
+    achternaam: new FormControl('', [Validators.required]),
+    geboorteDatum:new FormControl('', MAT_DATEPICKER_VALIDATORS)   
   });
 
   adresForm = new FormGroup({
-    straat: new FormControl('', [Validators.required]),
-    huisnummer: new FormControl('', [Validators.required, Validators.min(0), Validators.max(999999)]),
-    stad: new FormControl('', [Validators.required]),
-    postcode: new FormControl('', [Validators.required]),
+    straat: new FormControl(''),
+    huisnummer: new FormControl('', [ Validators.min(1), Validators.max(999999)]),
+    stad: new FormControl(''),
+    postcode: new FormControl('', [ Validators.min(1000), Validators.max(9999)]),
+  });
+
+  
+  rijbewijsForm = new FormGroup({
+    typeRijbewijs: new FormControl(['', Validators.required])
   });
 
   ngOnInit(): void {
@@ -281,8 +285,8 @@ export class BestuurderDetailDialogComponent implements OnInit {
           dataArray.push(rijbewijs.typeRijbewijs);
         }
       });
-      // this.bestuurderForm.controls["typeRijbewijs"].markAsTouched;
-      this.bestuurderForm.controls["typeRijbewijs"].setValue(dataArray);
+      this.rijbewijsForm.controls["typeRijbewijs"].markAsTouched;
+      this.rijbewijsForm.controls["typeRijbewijs"].setValue(dataArray);
     }
     // this.bestuurderForm.controls["typeBrandstof"].setValue(this.bestuurderForm.adres.typeBrandstof);
 
@@ -303,7 +307,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     bestuurder.adres.huisnummer = this.adresForm.controls["huisnummer"].value;
     bestuurder.adres.postcode = this.adresForm.controls["postcode"].value;
     bestuurder.adres.stad = this.adresForm.controls["stad"].value;
-    this.bestuurderForm.controls["typeRijbewijs"].value.forEach((typeRijbewijs: any) => {
+    this.rijbewijsForm.controls["typeRijbewijs"].value.forEach((typeRijbewijs: any) => {
       let rij = this.rijbewijzen.find((v: Rijbewijs) => v.typeRijbewijs == typeRijbewijs);
       if (rij) {
         let toewijzingRijbewijs = new ToewijzingRijbewijs();

@@ -30,27 +30,26 @@ export class BestuurderListComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-     this.datastream.GetDriverLicences().subscribe((licences: any) => {
+    this.datastream.GetDriverLicences().subscribe((licences: any) => {
       this.driverLicenses = licences;
 
-      this.datastream.GetDrivers().subscribe((data: any) => {
+      this.datastream.GetDrivers().subscribe((bestuurders: any) => {
         let listDrivers: Array<any> = [];
-        data.forEach((bestuurder: any) => {
+        if (bestuurders) {
+          bestuurders.forEach((bestuurder: any) => {
             let dataString = "";
-          // const listDriverLicenses: Array<any> = [];
-          bestuurder.toewijzingenRijbewijs.forEach((rijbewijs: any) => {
-            let driverLicense = this.driverLicenses.find(d => d.id == rijbewijs.rijbewijsId);
-            // listDriverLicenses.push(driverLicense);
-            if (driverLicense) {
-              dataString = dataString.concat(driverLicense.typeRijbewijs, ", ");
-            }
+            bestuurder.toewijzingenRijbewijs.forEach((rijbewijs: any) => {
+              let driverLicense = this.driverLicenses.find(d => d.id == rijbewijs.rijbewijsId);
+              if (driverLicense) {
+                dataString = dataString.concat(driverLicense.typeRijbewijs, ", ");
+              }
+            });
+            bestuurder.rijbewijzen = this.driverLicenses;
+            bestuurder.rijbewijs = dataString.slice(0, -2);
+            listDrivers.push(bestuurder);
           });
-          bestuurder.rijbewijzen = this.driverLicenses;
-          bestuurder.rijbewijs = dataString.slice(0, -2);
-          listDrivers.push(bestuurder);
-        });
+        }
         this.tableData = listDrivers;
-      
         this.dataSource.data = this.tableData;
         this.dataSource.paginator = this.paging;
         this.dataSource.sort = this.sort;
@@ -70,7 +69,6 @@ export class BestuurderListComponent implements AfterViewInit {
             if (data.action == "add") {
               if (data.value) {
                 this.tableData.unshift(data.value);
-
               }
             }
 

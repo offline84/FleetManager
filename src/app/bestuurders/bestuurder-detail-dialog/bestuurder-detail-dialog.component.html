@@ -7,20 +7,6 @@
         <h2 *ngIf="modifiable && !forCreation">Bestuurder updaten</h2>
       </mat-toolbar>
     </div>
-    <div *ngIf="!modifiable">
-      <div class="formbuttons-top">
-        <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()">
-          <mat-icon>edit</mat-icon>
-        </button>
-      </div>
-      <div class="formbuttons-top">
-        <button mat-mini-fab color="warning" type="button" (click)="openDeleteScreen()">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-      <div class="clearfix">
-      </div>
-    </div>
   </div>
   <div mat-dialog-content>
     <div [formGroup]="bestuurderForm">
@@ -74,80 +60,102 @@
             <mat-label>Stad</mat-label>
             <input matInput type="text" [readonly]="!modifiable" formControlName="stad">
             <mat-error *ngIf="adresForm.get('stad')?.hasError('pattern')">stad is incorrect</mat-error>
-            <mat-error *ngIf="adresForm.get('stad')?.hasError('required')">Veld is vereist</mat-error>
+            <mat-error *ngIf="bestuurderForm.get('stad')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Postcode</mat-label>
             <input matInput type="number" [readonly]="!modifiable" formControlName="postcode">
             <mat-error *ngIf="bestuurderForm.get('postcode')?.hasError('pattern')">postcode is incorrect</mat-error>
-            <mat-error *ngIf="bestuurderForm.get('postcode')?.hasError('required')">Veld is vereist</mat-error>
+            <mat-error *ngIf="adresForm.get('postcode')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>
       </div>
-      <div class="field">
-        <mat-form-field appearance="fill">
-          <mat-label>Rijbewijs</mat-label>
-          <mat-select placeholder="rijbewijs *" [disabled]="!modifiable" formControlName="typeRijbewijs" multiple>
-            <mat-option *ngFor="let rij of rijbewijzen" value="{{rij.typeRijbewijs}}">{{rij.typeRijbewijs}}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="bestuurderForm.get('typeRijbewijs')?.hasError('required')">rijbewijs is vereist</mat-error>
-        </mat-form-field>
-      </div>
-      <div>
+      <div [formGroup]="rijbewijsForm">
         <div class="field">
-          <div *ngIf="!modifiable" class="formbuttons">
-            <button mat-raised-button type="button" (click)="linkUnlinkVoertuig()">
-              <mat-icon *ngIf="!bestuurder.koppeling.chassisnummer">link</mat-icon>
-              <mat-icon *ngIf="bestuurder.koppeling.chassisnummer">link_off</mat-icon>
-              <span class="spacer"></span> Voertuig
-            </button>
-          </div>
-
-          <div class="formbuttons koppel field" *ngIf="viewOnly">
-            <mat-form-field class="link-voertuig" appearance="fill">
-              <mat-select *ngIf="!bestuurder.koppeling.chassisnummer"
-                (selectionChange)="onSelectionChangeVoertuig($event.value)">
-                <mat-option value=null></mat-option>
-                <mat-option *ngFor="let voertuig of unlinkedVoertuigen" value={{voertuig.chassisnummer}}>
-                  {{voertuig.chassisnummer}}</mat-option>
-              </mat-select>
-              <input matInput *ngIf="bestuurder.koppeling" type="text" value="{{voertuigLink.chassisnummer}}"
-                [readonly]="viewOnly" (click)="OpenVoertuigenDetails()">
-            </mat-form-field>
-          </div>
-          <!-- <div *ngIf="!modifiable" class="formbuttons">
-            <button mat-raised-button type="button" (click)="linkUnlinkTankkaart()">
-              <mat-icon *ngIf="!bestuurder.koppeling.kaartnummer">link</mat-icon>
-              <mat-icon *ngIf="bestuurder.koppeling.kaartnummer">link_off</mat-icon>
-              <span class="spacer"></span> Tankkaart
-            </button>
-          </div>
-          <div class="formbuttons koppel field" *ngIf="viewOnly">
-            <mat-form-field class="link-tankkaart" appearance="fill">
-              <mat-select *ngIf="!bestuurder.koppeling" (selectionChange)="onSelectionChangeTankkaart($event.value)">
-                <mat-option value=null></mat-option>
-                <mat-option *ngFor="let tankkaart of unlinkedTankkaarten" value={{tankkaart.kaartnummer}}>
-                  {{tankkaart.kaartnummer}}</mat-option>
-              </mat-select>
-              <input matInput *ngIf="bestuurder.koppeling" type="text" value="{{tankkaartLink.kaartnummer}}"
-                [readonly]="viewOnly" (click)="OpenTankkaartenDetails()">
-            </mat-form-field>
-          </div> -->
+          <mat-form-field appearance="fill">
+            <mat-label>Rijbewijs</mat-label>
+            <mat-select placeholder="rijbewijs *" [disabled]="!modifiable" formControlName="typeRijbewijs" multiple>
+              <mat-option *ngFor="let rij of rijbewijzen" value="{{rij.typeRijbewijs}}">{{rij.typeRijbewijs}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="bestuurderForm.get('typeRijbewijs')?.hasError('required')">rijbewijs is vereist
+            </mat-error>
+          </mat-form-field>
         </div>
-      </div>
-      <div class="clearfix">
-      </div>
-      <div *ngIf="modifiable && !bestuurder" class="formbuttons">
-        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
-          [disabled]="!bestuurderForm.valid && !adresForm.valid && !bestuurderForm.get('typeRijbewijs')?.hasError('required')">Submit</button>
-      </div>
-      <div *ngIf="modifiable && !forCreation" class="formbuttons">
-        <button mat-raised-button color="primary" type="submit" (click)="onSave()"
-          [disabled]="!bestuurderForm.valid && !adresForm.valid">Save<span class="spacer"></span>
-          <mat-icon>save</mat-icon>
-        </button>
-      </div>
-      <div class="clearfix">
+        <div class="clearfix">
+        </div>
+        <div class="field link-section" *ngIf="viewOnly">
+          <mat-form-field class="link-field" appearance="fill">
+            <mat-label>Voertuig</mat-label>
+            <mat-select *ngIf="!bestuurder.koppeling.chassisnummer"
+              (selectionChange)="onSelectionChangeVoertuig($event.value)">
+              <mat-option value=null></mat-option>
+              <mat-option *ngFor="let voertuig of unlinkedVoertuigen" value={{voertuig.chassisnummer}}>
+                {{voertuig.merk}} {{voertuig.model}} - {{voertuig.brandstof.typeBrandstof}}
+                <!-- -  {{voertuig.chassisnummer}} -->
+              </mat-option>
+            </mat-select>
+            <input matInput *ngIf="bestuurder.koppeling.chassisnummer" type="text"
+              value="{{voertuigLink.chassisnummer}}" [readonly]="viewOnly" (click)="OpenVoertuigenDetails()">
+          </mat-form-field>
+          <button mat-raised-button class="button-link-field formbuttons" (click)="linkUnlinkVoertuig()"
+            *ngIf="!modifiable">
+            <mat-icon *ngIf="!bestuurder.koppeling.chassisnummer">link</mat-icon>
+            <mat-icon *ngIf="bestuurder.koppeling.chassisnummer">link_off</mat-icon>
+            <span class="spacer"></span> Voertuig
+          </button>
+          <mat-form-field class="link-field" appearance="fill">
+            <mat-label>Tankkaart</mat-label>
+            <mat-select *ngIf="!bestuurder.koppeling.kaartnummer"
+              (selectionChange)="onSelectionChangeTankkaart($event.value)">
+              <mat-option value=null></mat-option>
+              <mat-option *ngFor="let tankkaart of unlinkedTankkaarten" value={{tankkaart.kaartnummer}}>
+                {{tankkaart.typeBrandstof}} - {{tankkaart.kaartnummer}}
+              </mat-option>
+            </mat-select>
+            <input matInput *ngIf="bestuurder.koppeling.kaartnummer" type="text" value="{{tankkaartLink.kaartnummer}}"
+              [readonly]="viewOnly" (click)="OpenTankkaartenDetails()">
+          </mat-form-field>
+          <button mat-raised-button class="button-link-field formbuttons" (click)="linkUnlinkTankkaart()"
+            *ngIf="!modifiable">
+            <mat-icon *ngIf="!bestuurder.koppeling.kaartnummer">link</mat-icon>
+            <mat-icon *ngIf="bestuurder.koppeling.kaartnummer">link_off</mat-icon>
+            <span class="spacer"></span> Tankkaart
+          </button>
+        </div>
+        <div class="clearfix">
+        </div>
+        <div class="field">
+          <div *ngIf="!modifiable">
+            <div class="formbuttons buttons-submit">
+              <button mat-raised-button class="button-submit" color="primary" type="button"
+                (click)="openUpdateScreen()">Edit
+                <span class="spacer"></span>
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-raised-button class="button-submit" color="warn" type="button"
+                (click)="openDeleteScreen()">Delete
+                <span class="spacer"></span>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+            <div class="clearfix">
+            </div>
+          </div>
+        </div>
+        <div *ngIf="modifiable && !bestuurder" class="formbuttons buttons-submit">
+          <button mat-raised-button class="button-submit" color="primary" type="submit" (click)="onSubmit()"
+            [disabled]="!bestuurderForm.valid && bestuurderForm.get('typeRijbewijs')  ">Submit</button>
+        </div>
+        <div *ngIf="modifiable && !forCreation" class="formbuttons">
+          <button mat-raised-button class="button-submit" color="primary" type="submit" (click)="onSave()"
+            [disabled]="!bestuurderForm.valid && !bestuurderForm.valid">Save
+            <!-- <span class="spacer"></span> -->
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+        <div class="clearfix">
+        </div>
       </div>
     </div>
   </div>
