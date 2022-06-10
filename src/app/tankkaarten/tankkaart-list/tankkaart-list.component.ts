@@ -29,7 +29,8 @@ export class TankkaartListComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    //data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
+    // data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
+    // brandstoffenForView wordt opgebouwd. Comma separated list van type brandstoffen
     this.datastream.GetAllFuelCards().subscribe((data: any) => {
       data.forEach((tankkaart: ITankkaart) => {
         let stringbuilder = "";
@@ -78,6 +79,7 @@ export class TankkaartListComponent implements AfterViewInit {
 
   //opent de tankkaart-detail-dialog met settings voor viewing.
   //Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt via de dataexchangeservice.
+  //Ook hier wordt de brandstoffenForView opgebouwd
   ViewDetails = (selectedRow: ITankkaart) => {
     const config = new MatDialogConfig();
     this.selectedTankkaart = selectedRow;

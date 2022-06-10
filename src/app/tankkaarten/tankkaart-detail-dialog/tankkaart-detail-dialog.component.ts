@@ -116,7 +116,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
    */
   tankkaartForm = new FormGroup({
     kaartnummer: new FormControl('',[Validators.required]),
-    geldigheidsdatum: new FormControl(new Date().toISOString().slice(0,-5),[Validators.required]),
+    geldigheidsdatum: new FormControl('',[Validators.required]),
     pincode: new FormControl('',),
     isGeblokkeerd: new FormControl(false,[Validators.required]),
     typeBrandstof: new FormControl('',),
