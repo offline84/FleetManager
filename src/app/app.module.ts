@@ -59,6 +59,7 @@ const appRoutes: Routes = [
   exports: [],
   providers: [
     {provide: "API_Url", useValue: "https://localhost:5001/api/"},
+    {provide: "Adres_API_Url", useValue: "https://api.basisregisters.vlaanderen.be/v1"},
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [Home],

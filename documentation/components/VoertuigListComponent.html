@@ -1,0 +1,1014 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>client-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">client-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  VoertuigListComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/voertuigen/voertuig-list/voertuig-list.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-voertuig-list</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./voertuig-list.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./voertuig-list.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                            <li>
+                                <a href="#entityType" >entityType</a>
+                            </li>
+                            <li>
+                                <a href="#merken" >merken</a>
+                            </li>
+                            <li>
+                                <a href="#paging" >paging</a>
+                            </li>
+                            <li>
+                                <a href="#selectedVoertuig" >selectedVoertuig</a>
+                            </li>
+                            <li>
+                                <a href="#sort" >sort</a>
+                            </li>
+                            <li>
+                                <a href="#tableData" >tableData</a>
+                            </li>
+                            <li>
+                                <a href="#ViewDetails" >ViewDetails</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#FilterDataHandler" >FilterDataHandler</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#columnsToDisplay" >columnsToDisplay</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(datastream: <a href="../injectables/DatastreamService.html" target="_self">DatastreamService</a>, dataService: <a href="../injectables/DataExchangeService.html" target="_self">DataExchangeService</a>, dialog: MatDialog)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>datastream</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DatastreamService.html" target="_self" >DatastreamService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DataExchangeService.html" target="_self" >DataExchangeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="columnsToDisplay"></a>
+                        <b>columnsToDisplay</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:18</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FilterDataHandler"></a>
+                    <span class="name">
+                        <span ><b>FilterDataHandler</b></span>
+                        <a href="#FilterDataHandler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>FilterDataHandler(filter: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:87</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>filter</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:31</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatTableDataSource&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="entityType"></a>
+                    <span class="name">
+                        <span ><b>entityType</b></span>
+                        <a href="#entityType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;voertuig&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="merken"></a>
+                    <span class="name">
+                        <span ><b>merken</b></span>
+                        <a href="#merken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paging"></a>
+                    <span class="name">
+                        <span ><b>paging</b></span>
+                        <a href="#paging"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatPaginator</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(MatPaginator)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedVoertuig"></a>
+                    <span class="name">
+                        <span ><b>selectedVoertuig</b></span>
+                        <a href="#selectedVoertuig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sort"></a>
+                    <span class="name">
+                        <span ><b>sort</b></span>
+                        <a href="#sort"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatSort</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(MatSort)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tableData"></a>
+                    <span class="name">
+                        <span ><b>tableData</b></span>
+                        <a href="#tableData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Array&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Array&lt;any&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ViewDetails"></a>
+                    <span class="name">
+                        <span ><b>ViewDetails</b></span>
+                        <a href="#ViewDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/voertuigen/voertuig-list/voertuig-list.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {AfterViewInit, Input, Component, ViewChild} from &#x27;@angular/core&#x27;;
+import { MatDialog, MatDialogConfig } from &#x27;@angular/material/dialog&#x27;;
+import {MatPaginator} from &#x27;@angular/material/paginator&#x27;;
+import {MatSort, Sort} from &#x27;@angular/material/sort&#x27;;
+import {MatTableDataSource} from &#x27;@angular/material/table&#x27;;
+import { DataExchangeService } from &#x27;../../data-exchange.service&#x27;;
+import { DatastreamService } from &#x27;../../datastream.service&#x27;;
+import { IVoertuig } from &#x27;../../objects/iVoertuig&#x27;;
+import { VoertuigDetailDialogComponent } from &#x27;../voertuig-detail-dialog/voertuig-detail-dialog.component&#x27;;
+
+@Component({
+  selector: &#x27;app-voertuig-list&#x27;,
+  templateUrl: &#x27;./voertuig-list.component.html&#x27;,
+  styleUrls: [&#x27;./voertuig-list.component.css&#x27;]
+})
+export class VoertuigListComponent implements AfterViewInit{
+
+  @Input() columnsToDisplay: any;
+  @ViewChild(MatPaginator) paging!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  dataSource: MatTableDataSource&lt;any&gt; &#x3D; new MatTableDataSource();
+
+  entityType: string &#x3D; &#x27;voertuig&#x27;;
+  tableData: Array&lt;any&gt; &#x3D; new Array&lt;any&gt;();
+  selectedVoertuig: any;
+  merken: any;
+
+  constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) {}
+
+  ngAfterViewInit() {
+
+    //data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
+    this.datastream.GetAllVehicles().subscribe((data: any) &#x3D;&gt;{
+      this.tableData &#x3D; data;
+      this.dataSource.data &#x3D; this.tableData;
+      this.dataSource.paginator &#x3D; this.paging;
+      this.dataSource.sort &#x3D; this.sort;
+
+      //hier worden de autocomlete merken opgehaald voor de modifiable dialog
+      var mapM &#x3D; data.map((u: any) &#x3D;&gt; u.merk) as string[];
+      this.merken &#x3D; [...new Set(mapM)];
+      this.merken.sort();
+    });
+
+    //Customizing voor sorteren van kolommen die voortkomen uit een object.
+    this.dataSource.sortingDataAccessor &#x3D; (entity, property) &#x3D;&gt; {
+      switch(property){
+        case &#x27;status&#x27;: return entity.status.staat;
+        case &#x27;brandstof&#x27;: return entity.brandstof.typeBrandstof;
+        case &#x27;categorie&#x27; : return entity.categorie.typeWagen;
+        case &#x27;koppeling&#x27; : return entity.koppeling !&#x3D; null;
+        default: return entity[property];
+      }
+    };
+
+    // haalt de entiteit voor modificatie van de tabel binnen en kijkt welke bewerking op de tabel dient te worden uitgevoerd.
+    // Hiervoor wordt gebruik gemaakt van de DataExchangeService.
+    this.dataService.observableData.subscribe((data: any) &#x3D;&gt;{
+      console.log(&quot;sent data: &quot;, data);
+      if(data){
+        if(data.value){
+          if(data.entity &#x3D;&#x3D; &quot;voertuig&quot;){
+            if(data.action &#x3D;&#x3D; &quot;add&quot;){
+              if(data.value){
+                this.tableData.unshift(data.value);
+
+              }
+            }
+
+            if(data.action &#x3D;&#x3D; &quot;delete&quot;){
+              if(data.value){
+                let index &#x3D; this.tableData.findIndex(v&#x3D;&gt; v.chassisnummer &#x3D;&#x3D; data.value.chassisnummer);
+                this.tableData.splice(index, 1);
+              }
+            }
+
+            this.dataSource.data &#x3D; this.tableData;
+          }
+        }
+      }
+    });
+  }
+
+
+  //behandelt de algemene filtering komend van de searchbar;
+  FilterDataHandler(filter: any): void {
+    this.dataSource &#x3D; filter;
+  }
+
+  //opent de voertuig-detail-dialog met settings voor viewing.
+  //Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt via de dataexchangeservice.
+  ViewDetails &#x3D; (selectedRow: IVoertuig) &#x3D;&gt;{
+    const config &#x3D; new MatDialogConfig();
+    this.selectedVoertuig &#x3D; selectedRow;
+
+    config.autoFocus &#x3D; true;
+    config.data &#x3D; {
+      modifiable: false,
+      entity: selectedRow,
+      merken: this.merken
+    };
+
+    let dialogRef &#x3D; this.dialog.open(VoertuigDetailDialogComponent, config);
+
+    dialogRef.afterClosed().subscribe((data: any) &#x3D;&gt; {
+
+      if(data){
+        this.tableData.forEach((element, index) &#x3D;&gt; {
+          if(element.chassisnummer &#x3D;&#x3D; data.chassisnummer) {
+            this.tableData[index] &#x3D; data;
+          }
+        });
+
+        this.dataSource.data &#x3D; this.tableData;
+      }
+    });
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;clearfix&quot;&gt;
+  &lt;div id&#x3D;&quot;searchbar&quot;&gt;
+    &lt;app-searchbar [entity]&#x3D;&quot;entityType&quot; [dataToFilter]&#x3D;&quot;dataSource&quot; (passFilteredData)&#x3D;&quot;FilterDataHandler($event)&quot;&gt;&lt;/app-searchbar&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;mat-elevation-z8 table&quot;&gt;
+
+  &lt;mat-table [dataSource]&#x3D;&quot;dataSource&quot; matSort class&#x3D;&quot;mat-elevation-z8 table&quot;&gt;
+
+    &lt;ng-container class&#x3D;&quot;column&quot; matColumnDef&#x3D;&quot;chassisnummer&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Chassisnummer&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.chassisnummer}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;merk&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Merk&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.merk}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;model&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;model&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.model}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;nummerplaat&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;nummerplaat&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.nummerplaat}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;bouwjaar&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;bouwjaar&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.bouwjaar}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;brandstof&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;brandstof&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.brandstof.typeBrandstof}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;kleur&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;kleur&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.kleur}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;aantalDeuren&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;aantalDeuren&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.aantalDeuren}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;categorie&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;categorie&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.categorie.typeWagen}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;status&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;status&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.status.staat}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;ng-container matColumnDef&#x3D;&quot;koppeling&quot;&gt;
+      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;gekoppeld?&lt;/th&gt;
+      &lt;td mat-cell *matCellDef&#x3D;&quot;let voertuig&quot;&gt;{{voertuig.koppeling !&#x3D; null}}&lt;/td&gt;
+    &lt;/ng-container&gt;
+
+    &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;columnsToDisplay&quot;&gt;&lt;/tr&gt;
+    &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: columnsToDisplay;&quot;
+        (click)&#x3D;&quot;ViewDetails(row)&quot;&gt;
+    &lt;/tr&gt;
+  &lt;/mat-table&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;mat-paginator [length]&#x3D;&quot;100&quot;
+          [pageSize]&#x3D;&quot;15&quot;
+          [pageSizeOptions]&#x3D;&quot;[5, 10, 15, 25, 50, 100]&quot;
+          aria-label&#x3D;&quot;Select page&quot;&gt;
+  &lt;/mat-paginator&gt;
+
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./voertuig-list.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.table {
+  width: 99.5%;
+  padding-left: 0.5em;
+}
+
+.mat-row .mat-cell {
+  border-top: 1px solid transparent;
+  text-align: left !important;
+  padding: 2px;
+  width: 10%;
+  cursor: pointer;
+}
+.mat-header-cell{
+  text-align: center !important;
+  width: 10%;
+  position: sticky;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+.clearfix::after {
+  content: &quot;&quot;;
+  clear: both;
+  display: table;
+}
+
+#searchbar{
+  float: right;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="clearfix">  <div id="searchbar">    <app-searchbar [entity]="entityType" [dataToFilter]="dataSource" (passFilteredData)="FilterDataHandler($event)"></app-searchbar>  </div></div><div class="mat-elevation-z8 table">  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table">    <ng-container class="column" matColumnDef="chassisnummer">      <th mat-header-cell *matHeaderCellDef mat-sort-header>Chassisnummer</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.chassisnummer}}</td>    </ng-container>    <ng-container matColumnDef="merk">      <th mat-header-cell *matHeaderCellDef mat-sort-header>Merk</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.merk}}</td>    </ng-container>    <ng-container matColumnDef="model">      <th mat-header-cell *matHeaderCellDef mat-sort-header>model</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.model}}</td>    </ng-container>    <ng-container matColumnDef="nummerplaat">      <th mat-header-cell *matHeaderCellDef mat-sort-header>nummerplaat</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.nummerplaat}}</td>    </ng-container>    <ng-container matColumnDef="bouwjaar">      <th mat-header-cell *matHeaderCellDef mat-sort-header>bouwjaar</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.bouwjaar}}</td>    </ng-container>    <ng-container matColumnDef="brandstof">      <th mat-header-cell *matHeaderCellDef mat-sort-header>brandstof</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.brandstof.typeBrandstof}}</td>    </ng-container>    <ng-container matColumnDef="kleur">      <th mat-header-cell *matHeaderCellDef mat-sort-header>kleur</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.kleur}}</td>    </ng-container>    <ng-container matColumnDef="aantalDeuren">      <th mat-header-cell *matHeaderCellDef mat-sort-header>aantalDeuren</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.aantalDeuren}}</td>    </ng-container>    <ng-container matColumnDef="categorie">      <th mat-header-cell *matHeaderCellDef mat-sort-header>categorie</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.categorie.typeWagen}}</td>    </ng-container>    <ng-container matColumnDef="status">      <th mat-header-cell *matHeaderCellDef mat-sort-header>status</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.status.staat}}</td>    </ng-container>    <ng-container matColumnDef="koppeling">      <th mat-header-cell *matHeaderCellDef mat-sort-header>gekoppeld?</th>      <td mat-cell *matCellDef="let voertuig">{{voertuig.koppeling != null}}</td>    </ng-container>    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"        (click)="ViewDetails(row)">    </tr>  </mat-table>  <div></div>  <mat-paginator [length]="100"          [pageSize]="15"          [pageSizeOptions]="[5, 10, 15, 25, 50, 100]"          aria-label="Select page">  </mat-paginator></div></div>'
+    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'VoertuigListComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'VoertuigListComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

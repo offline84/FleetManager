@@ -1,0 +1,2481 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>client-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">client-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  VoertuigDetailDialogComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-voertuig-detail-dialog</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./voertuig-detail-dialog.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./voertuig-detail-dialog.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#autocompleteList" >autocompleteList</a>
+                            </li>
+                            <li>
+                                <a href="#autocompleteOptions" >autocompleteOptions</a>
+                            </li>
+                            <li>
+                                <a href="#bestuurderLink" >bestuurderLink</a>
+                            </li>
+                            <li>
+                                <a href="#brandstof" >brandstof</a>
+                            </li>
+                            <li>
+                                <a href="#brandstoffen" >brandstoffen</a>
+                            </li>
+                            <li>
+                                <a href="#categorie" >categorie</a>
+                            </li>
+                            <li>
+                                <a href="#categories" >categories</a>
+                            </li>
+                            <li>
+                                <a href="#forCreation" >forCreation</a>
+                            </li>
+                            <li>
+                                <a href="#message" >message</a>
+                            </li>
+                            <li>
+                                <a href="#modifiable" >modifiable</a>
+                            </li>
+                            <li>
+                                <a href="#notEditable" >notEditable</a>
+                            </li>
+                            <li>
+                                <a href="#status" >status</a>
+                            </li>
+                            <li>
+                                <a href="#statussen" >statussen</a>
+                            </li>
+                            <li>
+                                <a href="#unlinkedBestuurders" >unlinkedBestuurders</a>
+                            </li>
+                            <li>
+                                <a href="#viewOnly" >viewOnly</a>
+                            </li>
+                            <li>
+                                <a href="#voertuig" >voertuig</a>
+                            </li>
+                            <li>
+                                <a href="#voertuigForm" >voertuigForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_autocomplete" >_autocomplete</a>
+                            </li>
+                            <li>
+                                <a href="#CreateObjectToSend" >CreateObjectToSend</a>
+                            </li>
+                            <li>
+                                <a href="#IsModifiable" >IsModifiable</a>
+                            </li>
+                            <li>
+                                <a href="#linkUnlinkDriver" >linkUnlinkDriver</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSave" >onSave</a>
+                            </li>
+                            <li>
+                                <a href="#onSelectionChange" >onSelectionChange</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#OpenBestuurdersDetails" >OpenBestuurdersDetails</a>
+                            </li>
+                            <li>
+                                <a href="#openDeleteScreen" >openDeleteScreen</a>
+                            </li>
+                            <li>
+                                <a href="#openUpdateScreen" >openUpdateScreen</a>
+                            </li>
+                            <li>
+                                <a href="#patchObjectToForm" >patchObjectToForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(datastream: <a href="../injectables/DatastreamService.html" target="_self">DatastreamService</a>, dialogRef: <a href="../classes/Voertuig.html" target="_self">MatDialogRef&lt;VoertuigDetailDialogComponent&gt;</a>, dataService: <a href="../injectables/DataExchangeService.html" target="_self">DataExchangeService</a>, bottomSheet: MatBottomSheet, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:159</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>datastream</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DatastreamService.html" target="_self" >DatastreamService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Httpclient naar de back- end toe.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>dialogRef</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Voertuig.html" target="_self" >MatDialogRef&lt;VoertuigDetailDialogComponent&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>referentie naar het dialog venster zelf.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>dataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DataExchangeService.html" target="_self" >DataExchangeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Service voor het behandelen van data tussen componenten zonder parent - child relatie.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>bottomSheet</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatBottomSheet</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>instantie nodig voor de initialisatie van het BottomsheetComponent.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>instantie die de routes van de applicatie verzorgt.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>data</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>de data die wordt meegegeven bij het openen van het dialogvenster.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_autocomplete"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_autocomplete</b></span>
+                        <a href="#_autocomplete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_autocomplete(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="472"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:472</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Filtert de autocompleteList met de ingevoerde string.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>de string komende van de observable autocompleteOptions.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>string[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>de lijst van matches met de ingevoerde string.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CreateObjectToSend"></a>
+                    <span class="name">
+                        <span ><b>CreateObjectToSend</b></span>
+                        <a href="#CreateObjectToSend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>CreateObjectToSend()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="426"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:426</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bereidt de entiteit voor voor verzending naar de back- end.
+Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden
+en resulteert tot een error van de API.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/IVoertuig.html" target="_self" >IVoertuig</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>new Entity();</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IsModifiable"></a>
+                    <span class="name">
+                        <span ><b>IsModifiable</b></span>
+                        <a href="#IsModifiable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>IsModifiable(ismodifiable: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="396"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:396</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>behandelt de modus waarin de DialogComponent zich op dit moment bevindt.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ismodifiable</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>boolean voor de check of de entiteit bewerkbaar is op dat moment.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="linkUnlinkDriver"></a>
+                    <span class="name">
+                        <span ><b>linkUnlinkDriver</b></span>
+                        <a href="#linkUnlinkDriver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>linkUnlinkDriver()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="348"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:348</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Koppelt of ontkoppelt en bestuurder aan de entiteit.</p>
+<p>Omdat we enkel het correcte resultaat willen weergeven en deze in de tabel updaten voor geslaagde patch-bewerkingen naar de API,
+gebruiken we de depricated manier van httpclient. + errormessagebehandeling.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="180"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:180</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSave"></a>
+                    <span class="name">
+                        <span ><b>onSave</b></span>
+                        <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSave()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="323"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:323</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Slaat de veranderingen aan de entiteit op en patchet deze veranderingen op de entiteit.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSelectionChange"></a>
+                    <span class="name">
+                        <span ><b>onSelectionChange</b></span>
+                        <a href="#onSelectionChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSelectionChange(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="302"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:302</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat,
+ implementeren we de selectie handmatig via een eventlistener.</p>
+<div><pre class="line-numbers"><code class="language-html"></code></pre></div><div class="formbuttons koppel field" *ngIf="viewOnly">
+<mat-form-field *ngIf="!voertuig.koppeling" class="link-bestuurder" appearance="fill">
+<mat-select (selectionChange)="onSelectionChange($event.value)">
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <b>Example :</b>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">&lt;div class=&quot;formbuttons koppel field&quot; *ngIf=&quot;viewOnly&quot;&gt;
+     &lt;mat-form-field *ngIf=&quot;!voertuig.koppeling&quot; class=&quot;link-bestuurder&quot; appearance=&quot;fill&quot;&gt;
+       &lt;mat-select (selectionChange)=&quot;onSelectionChange($event.value)&quot;&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="237"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:237</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Omvat de creatie van het te verzenden object en de wissel van mode &quot;add&quot; naar &quot;view&quot; + errorbehandeling.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OpenBestuurdersDetails"></a>
+                    <span class="name">
+                        <span ><b>OpenBestuurdersDetails</b></span>
+                        <a href="#OpenBestuurdersDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>OpenBestuurdersDetails()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="314"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:314</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Deze method opent bij het klikken op de gelinkte bestuurder in de detail-dialog view mode, de view mode in de bestuurdersectie van de applicatie van desbetreffende bestuurder.
+Eerst zorgen we ervoor dat de huidige dialog gesloten wordt, dan geven we via de data exchange service de opdracht om de view dialog te openen
+en vervolgens navigeren we naar de bestuurderssectie van de applicatie.</p>
+<p><a href="../injectables/DataExchangeService.html">DataExchangeService</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDeleteScreen"></a>
+                    <span class="name">
+                        <span ><b>openDeleteScreen</b></span>
+                        <a href="#openDeleteScreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDeleteScreen()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="271"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:271</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opent de geïnjecteerde instantie van de MatBottomSheetModule voor verwijdering van het voertuig en definieert de te verwijderen entiteit.</p>
+<p>[DeleteConfirmationSheetComponent] <a href="../components/DeleteConfirmationSheetComponent.html">DeleteConfirmationSheetComponent</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openUpdateScreen"></a>
+                    <span class="name">
+                        <span ><b>openUpdateScreen</b></span>
+                        <a href="#openUpdateScreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openUpdateScreen()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="259"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:259</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Past de modus voor modificatie van detailweergave naar editeren aan.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="patchObjectToForm"></a>
+                    <span class="name">
+                        <span ><b>patchObjectToForm</b></span>
+                        <a href="#patchObjectToForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>patchObjectToForm(entity: <a href="../classes/Voertuig.html" target="_self">Voertuig</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="411"
+                            class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:411</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>indien een entiteit is meegegeven wordt deze via deze method gepatched met de Form(s).
+De niet automatisch gepatchede controls worden handmatig ingegeven.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>entity</td>
+                                    <td>
+                                                <code><a href="../classes/Voertuig.html" target="_self" >Voertuig</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>de entiteit die in de form dient gegoten te worden.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="autocompleteList"></a>
+                    <span class="name">
+                        <span ><b>autocompleteList</b></span>
+                        <a href="#autocompleteList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Omvat de lijst voor de autocomplete functie, aangemaakt in VoertuigListComponent en meegegeven met de data van de geïnjecteerde provider
+MAT_DIALOG_DATA.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="autocompleteOptions"></a>
+                    <span class="name">
+                        <span ><b>autocompleteOptions</b></span>
+                        <a href="#autocompleteOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;string[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Observable&lt;string[]&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Observeert veranderingen in de input voor de autocomplete.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bestuurderLink"></a>
+                    <span class="name">
+                        <span ><b>bestuurderLink</b></span>
+                        <a href="#bestuurderLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bevat de bestuurder die gelinkt is aan de property voertuig.
+wordt geïnitialiseerd tijdens OnInit.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="brandstof"></a>
+                    <span class="name">
+                        <span ><b>brandstof</b></span>
+                        <a href="#brandstof"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    id: &quot;&quot;,
+    typeBrandstof: &quot;&quot;
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:121</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Template voor brandstof</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="brandstoffen"></a>
+                    <span class="name">
+                        <span ><b>brandstoffen</b></span>
+                        <a href="#brandstoffen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Omvat alle geseede brandstoftypes uit de database.
+wordt opgevuld tijdens OnInit.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="categorie"></a>
+                    <span class="name">
+                        <span ><b>categorie</b></span>
+                        <a href="#categorie"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    id: &quot;&quot;,
+    typeWagen: &quot;&quot;
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:129</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Template voor categorie</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="categories"></a>
+                    <span class="name">
+                        <span ><b>categories</b></span>
+                        <a href="#categories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Omvat alle geseede categorien uit de database.
+wordt opgevuld tijdens OnInit.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="forCreation"></a>
+                    <span class="name">
+                        <span ><b>forCreation</b></span>
+                        <a href="#forCreation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngModel</p>
+<p>forCreation behandelt de modus waarin de input van een voertuig kan aangemaakt worden.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="message"></a>
+                    <span class="name">
+                        <span ><b>message</b></span>
+                        <a href="#message"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;message&#x27;, {static: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngClass</p>
+<p>HTML Class voor het omschrijven van gebeurtenissen gericht naar de gebruiker.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modifiable"></a>
+                    <span class="name">
+                        <span ><b>modifiable</b></span>
+                        <a href="#modifiable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngModel</p>
+<p>modifiable behandelt de modus waarin de input van een voertuig kan aangepast worden.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notEditable"></a>
+                    <span class="name">
+                        <span ><b>notEditable</b></span>
+                        <a href="#notEditable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngclass</p>
+<p>notEditable verandert de kleur van niet aanpasbare input naar CSS class changeColor</p>
+<div><pre class="line-numbers"><code class="language-html">forCreation = false
+modifiable = true
+notEditable = &quot;changeColor&quot;       =&gt; kleur van input = grijs</code></pre></div></div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="status"></a>
+                    <span class="name">
+                        <span ><b>status</b></span>
+                        <a href="#status"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    id: &quot;&quot;,
+    staat: &quot;&quot;
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Template voor status</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="statussen"></a>
+                    <span class="name">
+                        <span ><b>statussen</b></span>
+                        <a href="#statussen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Omvat alle geseede statussen uit de database.
+wordt opgevuld tijdens OnInit.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unlinkedBestuurders"></a>
+                    <span class="name">
+                        <span ><b>unlinkedBestuurders</b></span>
+                        <a href="#unlinkedBestuurders"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Omvat de lijst van alle Bestuurders die niet gelinkt zijn aan een voertuig uit de database.
+wordt opgevuld tijdens OnInit.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewOnly"></a>
+                    <span class="name">
+                        <span ><b>viewOnly</b></span>
+                        <a href="#viewOnly"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngClass</p>
+<p>viewOnly verandert de kleur van niet aanpasbare input naar CSS class changeColor</p>
+<div><pre class="line-numbers"><code class="language-html">modifiable = false
+forCreation = false
+viewOnly = &quot;changeColor&quot;           =&gt; kleur van input = grijs</code></pre></div></div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="voertuig"></a>
+                    <span class="name">
+                        <span ><b>voertuig</b></span>
+                        <a href="#voertuig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Voertuig()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>indien een voertuig wordt meegegeven door de parent (VoertuigListComponent) of door de DataExchangeService
+wordt deze in deze variabele gegoten.</p>
+<p><a href="../injectables/DataExchangeService.html">DataExchangeService</a></p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="voertuigForm"></a>
+                    <span class="name">
+                        <span ><b>voertuigForm</b></span>
+                        <a href="#voertuigForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormGroup({
+    chassisnummer: new FormControl(&#x27;&#x27;,[Validators.required, Validators.pattern(&quot;[A-Ha-hJ-Nj-nPR-Zr-z0-9]{13}[0-9]{4}&quot;)]),
+    merk: new FormControl(&#x27;&#x27;,[Validators.required]),
+    model: new FormControl(&#x27;&#x27;,[Validators.required]),
+    nummerplaat: new FormControl(&#x27;&#x27;,[Validators.pattern(&quot;([1-9O-Zo-z])?[-|\s]?([a-zA-Z]{3})[-|\s]([0-9]{3})|([1-9O-Zo-z])?([a-zA-Z]{3})([0-9]{3})&quot;)]),
+    bouwjaar: new FormControl(new Date().getFullYear(), [Validators.max( new Date().getFullYear()), Validators.min(1886)]),
+    aantalDeuren: new FormControl( 5 , [Validators.min(0)]),
+    kleur: new FormControl(&#x27;&#x27;),
+    typeBrandstof: new FormControl(&#x27;&#x27;,[Validators.required]),
+    typeWagen: new FormControl(&#x27;&#x27;,[Validators.required]),
+    staat: new FormControl(&#x27;&#x27;)
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component.ts:148</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
+de benodigde properties weer te geven. Later worden deze terug omgezet in objecten.</p>
+<p>[CreateObjectToSend] <a href="CreateObjectToSend()">CreateObjectToSend()</a></p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Directive, ElementRef, Inject, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+import { MatDialogRef, MAT_DIALOG_DATA } from &#x27;@angular/material/dialog&#x27;;
+import { DatastreamService } from &#x27;../../datastream.service&#x27;;
+import { FormGroup, FormControl, Validators } from &#x27;@angular/forms&#x27;
+import { Voertuig } from &#x27;../../objects/voertuig&#x27;;
+import { IVoertuig } from &#x27;../../objects/iVoertuig&#x27;;
+import { DataExchangeService } from &#x27;../../data-exchange.service&#x27;;
+import { map, Observable, startWith } from &#x27;rxjs&#x27;;
+import { MatBottomSheet, MatBottomSheetConfig } from &#x27;@angular/material/bottom-sheet&#x27;;
+import { DeleteConfirmationSheetComponent } from &#x27;src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+
+
+@Component({
+  selector: &#x27;app-voertuig-detail-dialog&#x27;,
+  templateUrl: &#x27;./voertuig-detail-dialog.component.html&#x27;,
+  styleUrls: [&#x27;./voertuig-detail-dialog.component.css&#x27;]
+})
+
+export class VoertuigDetailDialogComponent implements OnInit {
+
+  /**
+   * ngClass
+   *
+   * HTML Class voor het omschrijven van gebeurtenissen gericht naar de gebruiker.
+   *
+   * @return {string} message (nullable)   dynamisch gegenereerd bericht.
+   */
+  @ViewChild(&#x27;message&#x27;, { static: false}) message!: ElementRef;
+
+  /**
+   * ngModel
+   *
+   * modifiable behandelt de modus waarin de input van een voertuig kan aangepast worden.
+   */
+  modifiable: boolean &#x3D; true;
+
+  /**
+   * ngModel
+   *
+   * forCreation behandelt de modus waarin de input van een voertuig kan aangemaakt worden.
+   */
+  forCreation: boolean &#x3D; true;
+
+  /**
+   * ngclass
+   *
+   * notEditable verandert de kleur van niet aanpasbare input naar CSS class changeColor
+   *
+   * @example
+   * forCreation &#x3D; false
+   * modifiable &#x3D; true
+   * notEditable &#x3D; &quot;changeColor&quot;       &#x3D;&gt; kleur van input &#x3D; grijs
+   */
+  notEditable!: string;
+
+  /**
+   * ngClass
+   *
+   * viewOnly verandert de kleur van niet aanpasbare input naar CSS class changeColor
+   *
+   * @example
+   * modifiable &#x3D; false
+   * forCreation &#x3D; false
+   * viewOnly &#x3D; &quot;changeColor&quot;           &#x3D;&gt; kleur van input &#x3D; grijs
+   */
+  viewOnly!: string;
+
+  /**
+  * indien een voertuig wordt meegegeven door de parent (VoertuigListComponent) of door de DataExchangeService
+  * wordt deze in deze variabele gegoten.
+  *
+  * [DataExchangeService]{@link DataExchangeService}
+  */
+  voertuig &#x3D; new Voertuig();
+
+  /**
+  * Omvat de lijst voor de autocomplete functie, aangemaakt in VoertuigListComponent en meegegeven met de data van de geïnjecteerde provider
+  * MAT_DIALOG_DATA.
+  */
+  autocompleteList: any;
+
+  /**
+   * Omvat alle geseede categorien uit de database.
+   * wordt opgevuld tijdens OnInit.
+   */
+  categories: any;
+
+  /**
+   * Omvat alle geseede brandstoftypes uit de database.
+   * wordt opgevuld tijdens OnInit.
+   */
+  brandstoffen: any;
+
+  /**
+   * Omvat alle geseede statussen uit de database.
+   * wordt opgevuld tijdens OnInit.
+   */
+  statussen: any;
+
+  /**
+   * Omvat de lijst van alle Bestuurders die niet gelinkt zijn aan een voertuig uit de database.
+   * wordt opgevuld tijdens OnInit.
+   */
+  unlinkedBestuurders: any;
+
+  /**
+   * Bevat de bestuurder die gelinkt is aan de property voertuig.
+   * wordt geïnitialiseerd tijdens OnInit.
+   */
+  bestuurderLink: any &#x3D; null;
+
+  /**
+   * Observeert veranderingen in de input voor de autocomplete.
+   */
+  autocompleteOptions: Observable&lt;string[]&gt; &#x3D; new Observable&lt;string[]&gt;();
+
+  /**
+   * Template voor brandstof
+   */
+  brandstof&#x3D;{
+    id: &quot;&quot;,
+    typeBrandstof: &quot;&quot;
+  };
+
+  /**
+   * Template voor categorie
+   */
+  categorie&#x3D;{
+    id: &quot;&quot;,
+    typeWagen: &quot;&quot;
+  };
+
+  /**
+   * Template voor status
+   */
+  status&#x3D;{
+    id: &quot;&quot;,
+    staat: &quot;&quot;
+  };
+
+  /**
+   * Behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
+   * de benodigde properties weer te geven. Later worden deze terug omgezet in objecten.
+   *
+   * [CreateObjectToSend] {@link CreateObjectToSend()}
+   */
+  voertuigForm &#x3D; new FormGroup({
+    chassisnummer: new FormControl(&#x27;&#x27;,[Validators.required, Validators.pattern(&quot;[A-Ha-hJ-Nj-nPR-Zr-z0-9]{13}[0-9]{4}&quot;)]),
+    merk: new FormControl(&#x27;&#x27;,[Validators.required]),
+    model: new FormControl(&#x27;&#x27;,[Validators.required]),
+    nummerplaat: new FormControl(&#x27;&#x27;,[Validators.pattern(&quot;([1-9O-Zo-z])?[-|\s]?([a-zA-Z]{3})[-|\s]([0-9]{3})|([1-9O-Zo-z])?([a-zA-Z]{3})([0-9]{3})&quot;)]),
+    bouwjaar: new FormControl(new Date().getFullYear(), [Validators.max( new Date().getFullYear()), Validators.min(1886)]),
+    aantalDeuren: new FormControl( 5 , [Validators.min(0)]),
+    kleur: new FormControl(&#x27;&#x27;),
+    typeBrandstof: new FormControl(&#x27;&#x27;,[Validators.required]),
+    typeWagen: new FormControl(&#x27;&#x27;,[Validators.required]),
+    staat: new FormControl(&#x27;&#x27;)
+  });
+
+  /**
+   * @param datastream Httpclient naar de back- end toe.
+   * @param dialogRef referentie naar het dialog venster zelf.
+   * @param dataService Service voor het behandelen van data tussen componenten zonder parent - child relatie.
+   * @param bottomSheet instantie nodig voor de initialisatie van het BottomsheetComponent.
+   * @param router instantie die de routes van de applicatie verzorgt.
+   * @param data {any} de data die wordt meegegeven bij het openen van het dialogvenster.
+   */
+  constructor(private datastream: DatastreamService,
+              private dialogRef: MatDialogRef&lt;VoertuigDetailDialogComponent&gt;,
+              private dataService: DataExchangeService,
+              private bottomSheet: MatBottomSheet,
+              private router: Router,
+              @Inject(MAT_DIALOG_DATA) private data: any) {
+    this.voertuig &#x3D; data.entity;
+    this.modifiable &#x3D; data.modifiable;
+    this.autocompleteList &#x3D; data.merken;
+  }
+
+  ngOnInit(): void {
+
+    //We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
+    // Indien ja, patchen we deze in de form.
+    if(this.voertuig){
+      this.patchObjectToForm(this.voertuig);
+    };
+
+    // zet de mode waarin de dialog zich op dit moment bevindt.
+    //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
+    this.IsModifiable(this.modifiable);
+
+    this.datastream.GetCategories().subscribe((data: any) &#x3D;&gt; {
+      this.categories &#x3D; data;
+    });
+
+    this.datastream.GetFuels().subscribe((data: any) &#x3D;&gt; {
+      this.brandstoffen &#x3D; data;
+    });
+
+    this.datastream.GetStatusses().subscribe((data: any) &#x3D;&gt; {
+      this.statussen &#x3D; data;
+    });
+
+    // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
+    //+ de bestuurder die al dan niet reeds gekoppeld is met de entiteit. deze worden opgeslagen in unlinkedBestuurders
+    //en de bestuurder van de koppeling in de var. bestuurderLink.
+    if(!this.voertuig){
+      this.datastream.GetAllBestuurders().subscribe((data: any) &#x3D;&gt;{
+        this.unlinkedBestuurders &#x3D; data.filter((u: any) &#x3D;&gt; u.koppeling.chassisnummer &#x3D;&#x3D; null);
+      });
+    }
+    else{
+      this.datastream.GetAllBestuurders().subscribe((data: any) &#x3D;&gt;{
+        this.unlinkedBestuurders &#x3D; data.filter((u: any) &#x3D;&gt; u.koppeling.chassisnummer &#x3D;&#x3D; null || u.koppeling.chassisnummer &#x3D;&#x3D; this.voertuig.chassisnummer);
+        if(this.voertuig){
+          if(this.voertuig.koppeling){
+            let link &#x3D; data.filter((u: any) &#x3D;&gt; u.koppeling.chassisnummer &#x3D;&#x3D; this.voertuig.chassisnummer);
+            this.bestuurderLink &#x3D; link[0];
+          }
+        }
+      });
+    }
+
+    //listener voor de autocompete functie
+    this.autocompleteOptions &#x3D; this.voertuigForm.controls[&quot;merk&quot;].valueChanges.pipe(startWith(&#x27;&#x27;),
+    map(value &#x3D;&gt; this._autocomplete(value)));
+
+    //listener voor het sluiten van de dialog + transfer object naar de tabel.
+    this.dialogRef.backdropClick().subscribe(() &#x3D;&gt; {
+        this.dialogRef.close(this.voertuig);
+    });
+  }
+
+  /**
+   * Omvat de creatie van het te verzenden object en de wissel van mode &quot;add&quot; naar &quot;view&quot; + errorbehandeling.
+   */
+  onSubmit(): void {
+
+    let vehicle &#x3D; this.CreateObjectToSend();
+
+    this.datastream.PostVehicle(vehicle).subscribe( (res: any) &#x3D;&gt;{
+
+      if(res){
+        this.voertuig &#x3D; res;
+      }
+    }, error &#x3D;&gt; {
+      this.message.nativeElement.innerHTML &#x3D; error.error;
+    }, () &#x3D;&gt; {
+      this.IsModifiable(false);
+      let success &#x3D; &#x27;nieuw voertuig met chassisnummer &quot;&#x27; + this.voertuig.chassisnummer +&#x27;&quot; is successvol toegevoegd aan de database.&#x27;;
+      this.message.nativeElement.innerHTML &#x3D; success;
+      }
+    );
+  }
+
+  /**
+   * Past de modus voor modificatie van detailweergave naar editeren aan.
+   */
+  openUpdateScreen(): void {
+    this.forCreation &#x3D; false;
+    this.IsModifiable(true);
+    this.notEditable &#x3D; &quot;changeColor&quot;;
+    this.viewOnly &#x3D; &quot;&quot;;
+  }
+
+  /**
+   * Opent de geïnjecteerde instantie van de MatBottomSheetModule voor verwijdering van het voertuig en definieert de te verwijderen entiteit.
+   *
+   * [DeleteConfirmationSheetComponent] {@link DeleteConfirmationSheetComponent}
+   */
+  openDeleteScreen(): void {
+    const config &#x3D; new MatBottomSheetConfig();
+    config.autoFocus &#x3D; true;
+    config.disableClose &#x3D; true;
+
+    config.data &#x3D; {
+      entitytype: &quot;voertuig&quot;,
+      entity: this.voertuig
+    };
+
+    let bottomsheetRef &#x3D; this.bottomSheet.open(DeleteConfirmationSheetComponent, config);
+    bottomsheetRef.afterDismissed().subscribe((deleted: boolean) &#x3D;&gt;{
+      if(deleted){
+        this.dialogRef.close();
+      }
+    });
+
+  }
+
+  /**
+   * Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat,
+   *  implementeren we de selectie handmatig via een eventlistener.
+   *
+   * @param event
+   *
+   * @example
+   *
+   * &lt;div class&#x3D;&quot;formbuttons koppel field&quot; *ngIf&#x3D;&quot;viewOnly&quot;&gt;
+          &lt;mat-form-field *ngIf&#x3D;&quot;!voertuig.koppeling&quot; class&#x3D;&quot;link-bestuurder&quot; appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-select (selectionChange)&#x3D;&quot;onSelectionChange($event.value)&quot;&gt;
+   */
+  onSelectionChange (event: any): void {
+    let link &#x3D; this.unlinkedBestuurders.filter((u: any) &#x3D;&gt; u.rijksregisternummer &#x3D;&#x3D; event);
+    this.bestuurderLink &#x3D; link[0];
+  }
+
+  /**
+   * Deze method opent bij het klikken op de gelinkte bestuurder in de detail-dialog view mode, de view mode in de bestuurdersectie van de applicatie van desbetreffende bestuurder.
+   * Eerst zorgen we ervoor dat de huidige dialog gesloten wordt, dan geven we via de data exchange service de opdracht om de view dialog te openen
+   * en vervolgens navigeren we naar de bestuurderssectie van de applicatie.
+   *
+   * {@link DataExchangeService}
+   */
+  OpenBestuurdersDetails(): void {
+    this.dialogRef.close();
+    this.dataService.sendData(&quot;bestuurder&quot;,&quot;view&quot;, this.bestuurderLink);
+    let navi &#x3D;this.router.navigate([&#x27;/bestuurders&#x27;]);
+  }
+
+  /**
+   * Slaat de veranderingen aan de entiteit op en patchet deze veranderingen op de entiteit.
+   */
+  onSave(): void {
+    let vehicle &#x3D; this.CreateObjectToSend();
+
+    this.datastream.UpdateVehicle(vehicle).subscribe( (res: any) &#x3D;&gt;{
+
+      if(res){
+        this.voertuig &#x3D; res;
+        this.patchObjectToForm(res);
+      }
+    }, error &#x3D;&gt; {
+      this.message.nativeElement.innerHTML &#x3D; error.error;
+    }, () &#x3D;&gt; {
+      this.IsModifiable(false);
+      let success &#x3D; &#x27;voertuig met chassisnummer &quot;&#x27; + this.voertuig.chassisnummer +&#x27;&quot; is geupdate&#x27;;
+      this.message.nativeElement.innerHTML &#x3D; success;
+      }
+    );
+  }
+
+  /**
+   * Koppelt of ontkoppelt en bestuurder aan de entiteit.
+   *
+   * Omdat we enkel het correcte resultaat willen weergeven en deze in de tabel updaten voor geslaagde patch-bewerkingen naar de API,
+   * gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
+   */
+  linkUnlinkDriver(): void {
+
+    if(this.bestuurderLink){
+      if(this.voertuig.koppeling){
+
+        this.datastream.UnlinkVehicle(this.voertuig.chassisnummer).subscribe(() &#x3D;&gt;{
+
+          this.voertuig.koppeling &#x3D; null;
+
+        }, error &#x3D;&gt;{
+          if(error){
+            this.message.nativeElement.innerHTML &#x3D; error.message;
+          }
+        }, () &#x3D;&gt;{
+          let success &#x3D; this.bestuurderLink.naam + &quot; &quot; + this.bestuurderLink.achternaam + &quot; is ontkoppeld van het voertuig&quot;;
+          this.message.nativeElement.innerHTML &#x3D; success;
+        }
+        );
+      }
+      else{
+        this.datastream.LinkVehicle(this.bestuurderLink.rijksregisternummer, this.voertuig.chassisnummer).subscribe(() &#x3D;&gt;{
+        }, error &#x3D;&gt;{
+          if(error){
+            this.message.nativeElement.innerHTML &#x3D; error.message;
+          }
+        }, () &#x3D;&gt;{
+          let success &#x3D; this.bestuurderLink.naam + &quot; &quot; + this.bestuurderLink.achternaam + &quot; is nu gekoppeld aan het voertuig&quot;;
+          this.message.nativeElement.innerHTML &#x3D; success;
+
+          this.datastream.GetSingleVehicle(this.voertuig.chassisnummer).subscribe((res: any) &#x3D;&gt;{
+            if(res){
+              this.voertuig &#x3D; res;
+            }
+            else{
+              this.message.nativeElement.innerHTML &#x3D; &quot;Error: Voertuig onbekend in de database&quot;;
+            }
+          });
+        }
+        );
+      }
+    }
+  }
+
+  /**
+   * behandelt de modus waarin de DialogComponent zich op dit moment bevindt.
+   *
+   * @param ismodifiable {boolean} boolean voor de check of de entiteit bewerkbaar is op dat moment.
+   */
+  IsModifiable(ismodifiable: boolean): void {
+    this.modifiable &#x3D; ismodifiable
+    if(!ismodifiable){
+      this.forCreation &#x3D; false;
+      this.notEditable &#x3D; &quot;changeColor&quot;;
+      this.viewOnly &#x3D;&quot;changeColor&quot;;
+    }
+  }
+
+  /**
+   * indien een entiteit is meegegeven wordt deze via deze method gepatched met de Form(s).
+   * De niet automatisch gepatchede controls worden handmatig ingegeven.
+   *
+   * @param entity de entiteit die in de form dient gegoten te worden.
+   */
+  patchObjectToForm(entity: Voertuig): void {
+    this.voertuigForm.patchValue(this.voertuig);
+    this.voertuigForm.controls[&quot;typeBrandstof&quot;].setValue(this.voertuig.brandstof.typeBrandstof);
+    this.voertuigForm.controls[&quot;typeWagen&quot;].setValue(this.voertuig.categorie.typeWagen);
+    if(this.voertuig.status)
+      this.voertuigForm.controls[&quot;staat&quot;].setValue(this.voertuig.status.staat);
+  }
+
+  /**
+   * Bereidt de entiteit voor voor verzending naar de back- end.
+   * Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden
+   * en resulteert tot een error van de API.
+   *
+   * @returns new Entity();
+   */
+  CreateObjectToSend(): IVoertuig {
+    let vehicle &#x3D; new Voertuig;
+
+    if(!this.voertuigForm.controls[&quot;nummerplaat&quot;].value){
+      if(this.voertuigForm.controls[&quot;staat&quot;].value !&#x3D; &quot;aankoop&quot;){
+        this.message.nativeElement.innerHTML &#x3D; &quot;error: Indien het voertuig niet de status &#x27;aankoop&#x27; heeft, dient men een nummerplaat mee te geven&quot;;
+      }
+      else{
+        this.voertuigForm.controls[&quot;nummerplaat&quot;].setValue(&quot;&quot;);
+      }
+    }
+
+    if(!this.voertuigForm.controls[&quot;aantalDeuren&quot;].value){
+      this.voertuigForm.controls[&quot;aantalDeuren&quot;].setValue(0);
+    }
+
+    if(!this.voertuigForm.controls[&quot;kleur&quot;].value){
+      this.voertuigForm.controls[&quot;kleur&quot;].setValue(&quot;&quot;);
+    }
+
+    if(!this.voertuigForm.controls[&quot;staat&quot;].value){
+      this.voertuigForm.controls[&quot;staat&quot;].setValue(&quot;in bedrijf&quot;);
+    }
+
+    vehicle.chassisnummer &#x3D; this.voertuigForm.controls[&quot;chassisnummer&quot;].value;
+    vehicle.model &#x3D; this.voertuigForm.controls[&quot;model&quot;].value;
+    vehicle.merk &#x3D; this.voertuigForm.controls[&quot;merk&quot;].value;
+    vehicle.model &#x3D; this.voertuigForm.controls[&quot;model&quot;].value;
+    vehicle.bouwjaar &#x3D; this.voertuigForm.controls[&quot;bouwjaar&quot;].value;
+    vehicle.nummerplaat &#x3D; this.voertuigForm.controls[&quot;nummerplaat&quot;].value;
+    vehicle.aantalDeuren &#x3D; this.voertuigForm.controls[&quot;aantalDeuren&quot;].value;
+    vehicle.kleur &#x3D; this.voertuigForm.controls[&quot;kleur&quot;].value;
+    vehicle.brandstof &#x3D; this.brandstoffen.find((v: any) &#x3D;&gt; v.typeBrandstof &#x3D;&#x3D; this.voertuigForm.controls[&quot;typeBrandstof&quot;].value);
+    vehicle.categorie &#x3D; this.categories.find((v: any) &#x3D;&gt; v.typeWagen &#x3D;&#x3D; this.voertuigForm.controls[&quot;typeWagen&quot;].value);
+    vehicle.status &#x3D; this.statussen.find((v: any) &#x3D;&gt; v.staat &#x3D;&#x3D; this.voertuigForm.controls[&quot;staat&quot;].value);
+
+    return vehicle;
+  }
+
+  /**
+   * Filtert de autocompleteList met de ingevoerde string.
+   *
+   * @param value de string komende van de observable autocompleteOptions.
+   *
+   * @returns {string[]} de lijst van matches met de ingevoerde string.
+   */
+  private _autocomplete(value: string): string[] {
+    const filterValue &#x3D; value.toLowerCase();
+    return this.autocompleteList.filter((merk: string )&#x3D;&gt; merk.toLowerCase().includes(filterValue));
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div mat-dialog-content&gt;
+  &lt;div mat-dialog-title class&#x3D;&quot;title&quot;&gt;
+    &lt;h2 *ngIf&#x3D;&quot;forCreation&quot;&gt;Voertuig toevoegen&lt;/h2&gt;
+    &lt;h2 *ngIf&#x3D;&quot;!modifiable&quot;&gt;Voertuig details&lt;/h2&gt;
+    &lt;h2 *ngIf&#x3D;&quot;modifiable &amp;&amp; !forCreation&quot;&gt;Voertuig Updaten&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div *ngIf&#x3D;&quot;!modifiable&quot;&gt;
+    &lt;div class&#x3D;&quot;formbuttons-top&quot;&gt;
+      &lt;button mat-mini-fab color&#x3D;&quot;warning&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;openUpdateScreen()&quot;&gt;&lt;mat-icon&gt;edit&lt;/mat-icon&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;formbuttons-top&quot;&gt;
+      &lt;button mat-mini-fab color&#x3D;&quot;warning&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;openDeleteScreen()&quot;&gt;&lt;mat-icon&gt;delete&lt;/mat-icon&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;clearfix&quot;&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div mat-dialog-content&gt;
+  &lt;div [formGroup]&#x3D;&quot;voertuigForm&quot;&gt;
+
+    &lt;div class&#x3D;&quot;form-block&quot;&gt;
+      &lt;h3&gt; identificatie&lt;/h3&gt;
+      &lt;div class&#x3D;&quot;formsection&quot;&gt;
+        &lt;div class&#x3D;&quot;field&quot;&gt;
+          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;chassisnummer&lt;/mat-label&gt;
+            &lt;input [ngClass]&#x3D;&quot;notEditable&quot; matInput type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;!forCreation&quot; formControlName&#x3D;&quot;chassisnummer&quot;&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;chassisnummer&#x27;)?.hasError(&#x27;pattern&#x27;)&quot;&gt;chassisnummer is incorrect&lt;/mat-error&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;chassisnummer&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;Veld is vereist&lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;field&quot;&gt;
+          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;merk&lt;/mat-label&gt;
+            &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;merk&quot; [matAutocomplete]&#x3D;&quot;autocompleteMerk&quot;&gt;
+            &lt;mat-autocomplete #autocompleteMerk&#x3D;&quot;matAutocomplete&quot;&gt;
+              &lt;mat-option *ngFor&#x3D;&quot;let merk of autocompleteOptions | async&quot; [value]&#x3D;&quot;merk&quot;&gt;{{merk}}&lt;/mat-option&gt;
+            &lt;/mat-autocomplete&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;merk&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;Veld is vereist&lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;field&quot;&gt;
+          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;model&lt;/mat-label&gt;
+            &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;model&quot;&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;model&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;Veld is vereist&lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;field&quot;&gt;
+          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;nummerplaat&lt;/mat-label&gt;
+            &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;nummerplaat&quot;&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;nummerplaat&#x27;)?.hasError(&#x27;pattern&#x27;)&quot;&gt;nummerplaat is incorrect&lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;form-middle-block&quot;&gt;
+      &lt;h3&gt; uiterlijk&lt;/h3&gt;
+      &lt;div class&#x3D;&quot;formsection&quot;&gt;
+        &lt;div class&#x3D;&quot;field&quot;&gt;
+          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;kleur&lt;/mat-label&gt;
+            &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;kleur&quot;&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;field&quot;&gt;
+          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;aantal deuren&lt;/mat-label&gt;
+            &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput type&#x3D;&quot;number&quot; [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;aantalDeuren&quot;&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;aantalDeuren&#x27;)?.hasError(&#x27;min&#x27;)&quot;&gt;getal kan geen negatieve waarde hebben&lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;field&quot;&gt;
+          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-select placeholder&#x3D;&quot;categorie *&quot; [disabled]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;typeWagen&quot;&gt;
+              &lt;mat-option value &#x3D; null&gt;&lt;/mat-option&gt;
+              &lt;mat-option *ngFor&#x3D;&quot;let cat of categories&quot; value&#x3D;&quot;{{cat.typeWagen}}&quot;&gt;{{cat.typeWagen}}&lt;/mat-option&gt;
+            &lt;/mat-select&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;typeWagen&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;categorie is vereist&lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;form-middle-block&quot;&gt;
+      &lt;h3&gt; overige&lt;/h3&gt;
+      &lt;div class&#x3D;&quot;formsection&quot;&gt;
+        &lt;div class&#x3D;&quot;field&quot;&gt;
+          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-label&gt;bouwjaar&lt;/mat-label&gt;
+            &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput type&#x3D;&quot;number&quot; [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;bouwjaar&quot;&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;bouwjaar&#x27;)?.hasError(&#x27;min&#x27;)&quot;&gt;paard en kar zijn geen geldige voertuigen&lt;/mat-error&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;bouwjaar&#x27;)?.hasError(&#x27;max&#x27;)&quot;&gt;bouwjaar kan niet in de toekomst liggen&lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;field&quot;&gt;
+          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-select placeholder&#x3D;&quot;status&quot; [disabled]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;staat&quot;&gt;
+              &lt;mat-option value &#x3D; null&gt;&lt;/mat-option&gt;
+              &lt;mat-option *ngFor&#x3D;&quot;let state of statussen&quot; value&#x3D;&quot;{{state.staat}}&quot;&gt;{{state.staat}}&lt;/mat-option&gt;
+            &lt;/mat-select&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;field&quot;&gt;
+          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-select placeholder&#x3D;&quot;brandstof *&quot; [disabled]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;typeBrandstof&quot;&gt;
+              &lt;mat-option value &#x3D; null&gt;&lt;/mat-option&gt;
+              &lt;mat-option *ngFor&#x3D;&quot;let fuel of brandstoffen&quot; value&#x3D;&quot;{{fuel.typeBrandstof}}&quot;&gt;{{fuel.typeBrandstof}}&lt;/mat-option&gt;
+            &lt;/mat-select&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;typeBrandstof&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;brandstof is vereist&lt;/mat-error&gt;
+          &lt;/mat-form-field&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;clearfix&quot;&gt;
+    &lt;/div&gt;
+    &lt;div *ngIf&#x3D;&quot;modifiable &amp;&amp; !voertuig&quot; class&#x3D;&quot;formbuttons&quot;&gt;
+      &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot; (click)&#x3D;&quot;onSubmit()&quot; [disabled]&#x3D;&quot;!voertuigForm.valid&quot;&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div *ngIf&#x3D;&quot;modifiable &amp;&amp; !forCreation&quot; class&#x3D;&quot;formbuttons&quot;&gt;
+      &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot; (click)&#x3D;&quot;onSave()&quot; [disabled]&#x3D;&quot;!voertuigForm.valid&quot;&gt;Save&lt;span class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt;&lt;mat-icon&gt;save&lt;/mat-icon&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;link&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;!modifiable&quot; class&#x3D;&quot;formbuttons&quot;&gt;
+        &lt;button mat-raised-button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;linkUnlinkDriver()&quot;&gt;
+          &lt;mat-icon *ngIf&#x3D;&quot;!voertuig.koppeling&quot;&gt;link&lt;/mat-icon&gt;
+          &lt;mat-icon *ngIf&#x3D;&quot;voertuig.koppeling&quot;&gt;link_off&lt;/mat-icon&gt;
+          &lt;span class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt; Bestuurder&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;formbuttons koppel field&quot; *ngIf&#x3D;&quot;viewOnly&quot;&gt;
+          &lt;mat-form-field *ngIf&#x3D;&quot;!voertuig.koppeling&quot; class&#x3D;&quot;link-bestuurder&quot; appearance&#x3D;&quot;fill&quot;&gt;
+            &lt;mat-select (selectionChange)&#x3D;&quot;onSelectionChange($event.value)&quot;&gt;
+              &lt;mat-option value &#x3D; null&gt;&lt;/mat-option&gt;
+              &lt;mat-option *ngFor&#x3D;&quot;let bestuurder of unlinkedBestuurders&quot; value&#x3D;{{bestuurder.rijksregisternummer}}&gt;{{bestuurder.naam}} {{bestuurder.achternaam}}&lt;/mat-option&gt;
+            &lt;/mat-select&gt;
+          &lt;/mat-form-field&gt;
+          &lt;button mat-stroked-button *ngIf&#x3D;&quot;voertuig.koppeling&quot; type&#x3D;&quot;text&quot; (click)&#x3D;&quot;OpenBestuurdersDetails()&quot;&gt;{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}&lt;/button&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;clearfix&quot;&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div mat-dialog-footer&gt;
+  &lt;p #message&gt;&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./voertuig-detail-dialog.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.form-block {
+  float: left;
+  padding: 2em;
+}
+
+.formsection {
+  border: 1px solid rgb(3, 0, 0);
+  border-radius: 25px;
+}
+
+.field {
+
+  padding: 1em 1em 1em;
+}
+
+h3 {
+  text-align: center;
+  text-decoration-color: blue;
+}
+
+.form-middle-block {
+  float: left;
+  padding: 2em;
+}
+
+.formbuttons {
+  padding: 2em 1.5em 1.5em 0em;
+  float: right;
+}
+
+.formbuttons-top {
+  padding: 0em 0.75em 0.5em 1em;
+  float: right;
+}
+
+.title {
+  padding: 0em 0.5em 0.5em 0.5em;
+  width: 75%;
+  float: left;
+}
+
+#error {
+  color: red;
+}
+
+.changeColor {
+  background-color: rgb(255, 255, 255);
+  color: rgb(113, 109, 109);
+}
+
+.mat-dialog-title {
+  border-bottom: 0.01em solid black;
+}
+
+.spacer {
+  margin: 0.5em;
+}
+
+.koppel {
+  width: 25em;
+  float: center;
+}
+.link-bestuurder {
+  width: 100%;
+}
+
+.link {
+  background-color: #707fcc !important;
+  color:#707fcc !important;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div mat-dialog-content>  <div mat-dialog-title class="title">    <h2 *ngIf="forCreation">Voertuig toevoegen</h2>    <h2 *ngIf="!modifiable">Voertuig details</h2>    <h2 *ngIf="modifiable && !forCreation">Voertuig Updaten</h2>  </div>  <div *ngIf="!modifiable">    <div class="formbuttons-top">      <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>edit</mat-icon></button>    </div>    <div class="formbuttons-top">      <button mat-mini-fab color="warning" type="button" (click)="openDeleteScreen()"><mat-icon>delete</mat-icon></button>    </div>    <div class="clearfix">    </div>  </div></div><div mat-dialog-content>  <div [formGroup]="voertuigForm">    <div class="form-block">      <h3> identificatie</h3>      <div class="formsection">        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>chassisnummer</mat-label>            <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="chassisnummer">            <mat-error *ngIf="voertuigForm.get(\'chassisnummer\')?.hasError(\'pattern\')">chassisnummer is incorrect</mat-error>            <mat-error *ngIf="voertuigForm.get(\'chassisnummer\')?.hasError(\'required\')">Veld is vereist</mat-error>          </mat-form-field>        </div>        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>merk</mat-label>            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="merk" [matAutocomplete]="autocompleteMerk">            <mat-autocomplete #autocompleteMerk="matAutocomplete">              <mat-option *ngFor="let merk of autocompleteOptions | async" [value]="merk">{{merk}}</mat-option>            </mat-autocomplete>            <mat-error *ngIf="voertuigForm.get(\'merk\')?.hasError(\'required\')">Veld is vereist</mat-error>          </mat-form-field>        </div>        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>model</mat-label>            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="model">            <mat-error *ngIf="voertuigForm.get(\'model\')?.hasError(\'required\')">Veld is vereist</mat-error>          </mat-form-field>        </div>        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>nummerplaat</mat-label>            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="nummerplaat">            <mat-error *ngIf="voertuigForm.get(\'nummerplaat\')?.hasError(\'pattern\')">nummerplaat is incorrect</mat-error>          </mat-form-field>        </div>      </div>    </div>    <div class="form-middle-block">      <h3> uiterlijk</h3>      <div class="formsection">        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>kleur</mat-label>            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="kleur">          </mat-form-field>        </div>        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>aantal deuren</mat-label>            <input [ngClass]="viewOnly" matInput type="number" [readonly]="!modifiable" formControlName="aantalDeuren">            <mat-error *ngIf="voertuigForm.get(\'aantalDeuren\')?.hasError(\'min\')">getal kan geen negatieve waarde hebben</mat-error>          </mat-form-field>        </div>        <div class="field">          <mat-form-field appearance="fill">            <mat-select placeholder="categorie *" [disabled]="!modifiable" formControlName="typeWagen">              <mat-option value = null></mat-option>              <mat-option *ngFor="let cat of categories" value="{{cat.typeWagen}}">{{cat.typeWagen}}</mat-option>            </mat-select>            <mat-error *ngIf="voertuigForm.get(\'typeWagen\')?.hasError(\'required\')">categorie is vereist</mat-error>          </mat-form-field>        </div>      </div>    </div>    <div class="form-middle-block">      <h3> overige</h3>      <div class="formsection">        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>bouwjaar</mat-label>            <input [ngClass]="viewOnly" matInput type="number" [readonly]="!modifiable" formControlName="bouwjaar">            <mat-error *ngIf="voertuigForm.get(\'bouwjaar\')?.hasError(\'min\')">paard en kar zijn geen geldige voertuigen</mat-error>            <mat-error *ngIf="voertuigForm.get(\'bouwjaar\')?.hasError(\'max\')">bouwjaar kan niet in de toekomst liggen</mat-error>          </mat-form-field>        </div>        <div class="field">          <mat-form-field appearance="fill">            <mat-select placeholder="status" [disabled]="!modifiable" formControlName="staat">              <mat-option value = null></mat-option>              <mat-option *ngFor="let state of statussen" value="{{state.staat}}">{{state.staat}}</mat-option>            </mat-select>          </mat-form-field>        </div>        <div class="field">          <mat-form-field appearance="fill">            <mat-select placeholder="brandstof *" [disabled]="!modifiable" formControlName="typeBrandstof">              <mat-option value = null></mat-option>              <mat-option *ngFor="let fuel of brandstoffen" value="{{fuel.typeBrandstof}}">{{fuel.typeBrandstof}}</mat-option>            </mat-select>            <mat-error *ngIf="voertuigForm.get(\'typeBrandstof\')?.hasError(\'required\')">brandstof is vereist</mat-error>          </mat-form-field>        </div>      </div>    </div>    <div class="clearfix">    </div>    <div *ngIf="modifiable && !voertuig" class="formbuttons">      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!voertuigForm.valid">Submit</button>    </div>    <div *ngIf="modifiable && !forCreation" class="formbuttons">      <button mat-raised-button color="primary" type="submit" (click)="onSave()" [disabled]="!voertuigForm.valid">Save<span class="spacer"></span><mat-icon>save</mat-icon></button>    </div>    <div class="link">      <div *ngIf="!modifiable" class="formbuttons">        <button mat-raised-button type="button" (click)="linkUnlinkDriver()">          <mat-icon *ngIf="!voertuig.koppeling">link</mat-icon>          <mat-icon *ngIf="voertuig.koppeling">link_off</mat-icon>          <span class="spacer"></span> Bestuurder</button>      </div>      <div class="formbuttons koppel field" *ngIf="viewOnly">          <mat-form-field *ngIf="!voertuig.koppeling" class="link-bestuurder" appearance="fill">            <mat-select (selectionChange)="onSelectionChange($event.value)">              <mat-option value = null></mat-option>              <mat-option *ngFor="let bestuurder of unlinkedBestuurders" value={{bestuurder.rijksregisternummer}}>{{bestuurder.naam}} {{bestuurder.achternaam}}</mat-option>            </mat-select>          </mat-form-field>          <button mat-stroked-button *ngIf="voertuig.koppeling" type="text" (click)="OpenBestuurdersDetails()">{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}</button>      </div>    </div>    <div class="clearfix">    </div>  </div></div><div mat-dialog-footer>  <p #message></p></div></div>'
+    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'VoertuigDetailDialogComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'VoertuigDetailDialogComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

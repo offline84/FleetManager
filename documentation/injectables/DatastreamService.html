@@ -1,0 +1,1195 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>client-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">client-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >DatastreamService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/datastream.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#adresApiUrl" >adresApiUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#connectionstring" >connectionstring</a>
+                            </li>
+                            <li>
+                                <a href="#DeleteVehicle" >DeleteVehicle</a>
+                            </li>
+                            <li>
+                                <a href="#GetAllBestuurders" >GetAllBestuurders</a>
+                            </li>
+                            <li>
+                                <a href="#GetAllFuelCards" >GetAllFuelCards</a>
+                            </li>
+                            <li>
+                                <a href="#GetAllVehicles" >GetAllVehicles</a>
+                            </li>
+                            <li>
+                                <a href="#GetCategories" >GetCategories</a>
+                            </li>
+                            <li>
+                                <a href="#GetCityByPostalCode" >GetCityByPostalCode</a>
+                            </li>
+                            <li>
+                                <a href="#GetFuels" >GetFuels</a>
+                            </li>
+                            <li>
+                                <a href="#GetSingleVehicle" >GetSingleVehicle</a>
+                            </li>
+                            <li>
+                                <a href="#GetStatusses" >GetStatusses</a>
+                            </li>
+                            <li>
+                                <a href="#GetStreetNameByPostalcodeAndQuery" >GetStreetNameByPostalcodeAndQuery</a>
+                            </li>
+                            <li>
+                                <a href="#LinkVehicle" >LinkVehicle</a>
+                            </li>
+                            <li>
+                                <a href="#PostFuelCard" >PostFuelCard</a>
+                            </li>
+                            <li>
+                                <a href="#PostVehicle" >PostVehicle</a>
+                            </li>
+                            <li>
+                                <a href="#UnlinkVehicle" >UnlinkVehicle</a>
+                            </li>
+                            <li>
+                                <a href="#UpdateVehicle" >UpdateVehicle</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#handleError" >handleError</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, _connectionstring: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, _adresAPI: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/datastream.service.ts:27</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Hier wordt de API- connectiestring geïnjecteerd d.m.v. de provider in ngModule. Indien men de
+connectiestring naar de API wil veranderen dient deze ginds aangepast te worden.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>verzorgt de crud operaties naar de API toe.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>_connectionstring</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Wordt geïnjecteerd via de provider in app.module.ts en bevat de connectiestring naar de API.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>_adresAPI</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Wordt geïnjecteerd via de provider in app.module.ts en bevat de connectiestring naar de open API &quot;basisregisters vlaanderen&quot;.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleError"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>handleError</b></span>
+                        <a href="#handleError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleError(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="168"
+                            class="link-to-prism">src/app/datastream.service.ts:168</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zorgt ervoor dat de error zichtbaar is in de logfiles.</p>
+<div><pre class="line-numbers"><code class="language-html">if (error.status === 0) {
+ console.error(&#39;An error occurred:&#39;, error.error);       =&gt; client side error</code></pre></div><div><pre class="line-numbers"><code class="language-html">else {
+ console.error(
+    `Backend returned code ${error.status}, body was: `, error.error);       =&gt; server side error
+}</code></pre></div><div><pre class="line-numbers"><code class="language-html">return throwError(() =&gt; error);          =&gt; error with response body</code></pre></div></div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is de HttpErrorResponse die bij fout in verzending meegegeven wordt aan de HttpResponse.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <b>Example :</b>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">if (error.status === 0) {
+ console.error(&amp;#39;An error occurred:&amp;#39;, error.error);       =&amp;gt; client side error</code></pre>
+                        </div>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">else {
+ console.error(
+    &lt;code&gt;Backend returned code ${error.status}, body was: &lt;/code&gt;, error.error);       =&amp;gt; server side error
+}</code></pre>
+                        </div>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">return throwError(() =&amp;gt; error);          =&amp;gt; error with response body</code></pre>
+                        </div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable van de error voor admin gerichte berichten.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="adresApiUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>adresApiUrl</b></span>
+                        <a href="#adresApiUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/datastream.service.ts:27</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>bevat de connectiestring naar de open API van basisregisters vlaanderen. Wordt geïnitialiseerd via de constructor.
+deze Api bevat informatie over adressen, nodig voor autocomplete in de BestuurderDetailDialogComponent.</p>
+<p><a href="https://docs.basisregisters.vlaanderen.be/docs/api-documentation.html#operation/ListPostalCodes">https://docs.basisregisters.vlaanderen.be/docs/api-documentation.html#operation/ListPostalCodes</a></p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connectionstring"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>connectionstring</b></span>
+                        <a href="#connectionstring"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/datastream.service.ts:19</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>bevat de connectiestring naar de API. Wordt geïnitialiseerd via de constructor.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DeleteVehicle"></a>
+                    <span class="name">
+                        <span ><b>DeleteVehicle</b></span>
+                        <a href="#DeleteVehicle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/datastream.service.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetAllBestuurders"></a>
+                    <span class="name">
+                        <span ><b>GetAllBestuurders</b></span>
+                        <a href="#GetAllBestuurders"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/datastream.service.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetAllFuelCards"></a>
+                    <span class="name">
+                        <span ><b>GetAllFuelCards</b></span>
+                        <a href="#GetAllFuelCards"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/datastream.service.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetAllVehicles"></a>
+                    <span class="name">
+                        <span ><b>GetAllVehicles</b></span>
+                        <a href="#GetAllVehicles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/datastream.service.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetCategories"></a>
+                    <span class="name">
+                        <span ><b>GetCategories</b></span>
+                        <a href="#GetCategories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/datastream.service.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetCityByPostalCode"></a>
+                    <span class="name">
+                        <span ><b>GetCityByPostalCode</b></span>
+                        <a href="#GetCityByPostalCode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/datastream.service.ts:127</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>zoekt de naam van de gemeente op waarbij meegegeven postcode behoort.</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>postalCode</td>
+                                                    <td>
+                                                            <code><p>de postcode van de gemeente</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetFuels"></a>
+                    <span class="name">
+                        <span ><b>GetFuels</b></span>
+                        <a href="#GetFuels"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/datastream.service.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetSingleVehicle"></a>
+                    <span class="name">
+                        <span ><b>GetSingleVehicle</b></span>
+                        <a href="#GetSingleVehicle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/datastream.service.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetStatusses"></a>
+                    <span class="name">
+                        <span ><b>GetStatusses</b></span>
+                        <a href="#GetStatusses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/datastream.service.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetStreetNameByPostalcodeAndQuery"></a>
+                    <span class="name">
+                        <span ><b>GetStreetNameByPostalcodeAndQuery</b></span>
+                        <a href="#GetStreetNameByPostalcodeAndQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/datastream.service.ts:139</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zoekt naar een straatnaam als deze minstens 4 tekens bevat.
+De postcode dient steeds meegegeven te worden.</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>postalCode</td>
+                                                    <td>
+                                                            <code><p>de postcode van de gemeente waarin men een adres wil zoeken.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>streetQuery</td>
+                                                    <td>
+                                                            <code><p>een deel of de volledige straatnaam.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LinkVehicle"></a>
+                    <span class="name">
+                        <span ><b>LinkVehicle</b></span>
+                        <a href="#LinkVehicle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/datastream.service.ts:113</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Koppelt een bestuurder aan een voertuig.</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>idNumber</td>
+                                                    <td>
+                                                            <code><p>het rijksregisternummer van een bestuurder.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>vehicleId</td>
+                                                    <td>
+                                                            <code><p>het chassisnummer van het te koppelen voertuig.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PostFuelCard"></a>
+                    <span class="name">
+                        <span ><b>PostFuelCard</b></span>
+                        <a href="#PostFuelCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/datastream.service.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PostVehicle"></a>
+                    <span class="name">
+                        <span ><b>PostVehicle</b></span>
+                        <a href="#PostVehicle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/datastream.service.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UnlinkVehicle"></a>
+                    <span class="name">
+                        <span ><b>UnlinkVehicle</b></span>
+                        <a href="#UnlinkVehicle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/datastream.service.ts:102</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>koppelt een voertuig los van de bestuurder.</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>vehicleId</td>
+                                                    <td>
+                                                            <code><p>het chassisnummer van het los te koppelen voertuig.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UpdateVehicle"></a>
+                    <span class="name">
+                        <span ><b>UpdateVehicle</b></span>
+                        <a href="#UpdateVehicle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/datastream.service.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@angular/core&#x27;;
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from &#x27;@angular/common/http&#x27;;
+import { catchError, throwError } from &#x27;rxjs&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+
+
+/**
+ * De DatastreamService haalt de data op uit de databank van de API. Aangezien deze data async binnenkomt is het
+ * raadzaam gebruik te maken van abonnementen (zie observer pattern, gang of four).
+ */
+export class DatastreamService {
+
+  /**
+   * bevat de connectiestring naar de API. Wordt geïnitialiseerd via de constructor.
+   */
+  private connectionstring: string;
+
+  /**
+   * bevat de connectiestring naar de open API van basisregisters vlaanderen. Wordt geïnitialiseerd via de constructor.
+   * deze Api bevat informatie over adressen, nodig voor autocomplete in de BestuurderDetailDialogComponent.
+   *
+   * {@link https://docs.basisregisters.vlaanderen.be/docs/api-documentation.html#operation/ListPostalCodes}
+   */
+  private adresApiUrl: string;
+
+
+  /**
+   *Hier wordt de API- connectiestring geïnjecteerd d.m.v. de provider in ngModule. Indien men de
+   *connectiestring naar de API wil veranderen dient deze ginds aangepast te worden.
+   * @param http  verzorgt de crud operaties naar de API toe.
+   * @param _connectionstring Wordt geïnjecteerd via de provider in app.module.ts en bevat de connectiestring naar de API.
+   * @param _adresAPI Wordt geïnjecteerd via de provider in app.module.ts en bevat de connectiestring naar de open API &quot;basisregisters vlaanderen&quot;.
+   */
+  constructor( private http: HttpClient, @Inject(&quot;API_Url&quot;) _connectionstring: string, @Inject(&quot;Adres_API_Url&quot;) _adresAPI: string) {
+    this.connectionstring &#x3D; _connectionstring;
+    this.adresApiUrl &#x3D; _adresAPI;
+  }
+
+  //#region Voertuigen
+
+  GetAllVehicles &#x3D; () &#x3D;&gt; {
+    return this.http.get(this.connectionstring +&quot;voertuig/active&quot;);
+  }
+
+  GetSingleVehicle &#x3D; (vehicleId: string) &#x3D;&gt; {
+    return this.http.get(this.connectionstring +&quot;voertuig/&quot; + vehicleId);
+  }
+
+  GetStatusses &#x3D; () &#x3D;&gt; {
+    return this.http.get(this.connectionstring +&quot;voertuig/statusses&quot;);
+  }
+
+  GetCategories &#x3D; () &#x3D;&gt; {
+    return this.http.get(this.connectionstring + &quot;voertuig/categories&quot;);
+  }
+
+  GetFuels &#x3D; () &#x3D;&gt; {
+    return this.http.get(this.connectionstring + &quot;voertuig/brandstoffen&quot;);
+  }
+
+  PostVehicle &#x3D; (voertuig: any) &#x3D;&gt; {
+    return this.http.post(this.connectionstring + &quot;voertuig&quot;, voertuig).pipe(catchError(this.handleError));
+  }
+
+  UpdateVehicle &#x3D; (voertuig: any) &#x3D;&gt; {
+    return this.http.patch(this.connectionstring + &quot;voertuig/update&quot;, voertuig).pipe(catchError(this.handleError));
+  }
+
+  DeleteVehicle &#x3D; (vehicleId: string) &#x3D;&gt;{
+    return this.http.delete(this.connectionstring +&quot;voertuig/&quot; + vehicleId);
+  }
+  //#endregion Voertuigen
+
+  //#region Bestuurders
+  GetAllBestuurders &#x3D; () &#x3D;&gt; {
+    return this.http.get(this.connectionstring + &quot;bestuurder/activebestuurders&quot;);
+  }
+  //#endregion Bestuurders
+  //#region Tankkaarten
+
+  GetAllFuelCards &#x3D; () &#x3D;&gt; {
+    return this.http.get(this.connectionstring +&quot;tankkaart/active&quot;);
+  }
+
+  PostFuelCard &#x3D; (tankkaart: any) &#x3D;&gt; {
+    return this.http.post(this.connectionstring + &quot;tankkaart&quot;, tankkaart).pipe(catchError(this.handleError));
+  }
+
+  //#endregion Tankkaarten
+
+  //#region Koppelingen
+
+  /**
+   * koppelt een voertuig los van de bestuurder.
+   *
+   * @param vehicleId het chassisnummer van het los te koppelen voertuig.
+   * @returns null
+   */
+  UnlinkVehicle &#x3D; (vehicleId: string) &#x3D;&gt; {
+    return this.http.patch(this.connectionstring + &quot;voertuig/koppellos/&quot; + vehicleId, null).pipe(catchError(this.handleError));
+  }
+
+  /**
+   * Koppelt een bestuurder aan een voertuig.
+   *
+   * @param idNumber het rijksregisternummer van een bestuurder.
+   * @param vehicleId het chassisnummer van het te koppelen voertuig.
+   * @returns null
+   */
+  LinkVehicle &#x3D; ( idNumber: string, vehicleId: string) &#x3D;&gt; {
+    return this.http.patch(this.connectionstring + &quot;voertuig/koppel/&quot; + idNumber + &quot;/&quot; + vehicleId, null).pipe(catchError(this.handleError));
+  }
+
+  //#endregion Koppelingen
+
+  //#region OpenApi
+
+    /**
+     * zoekt de naam van de gemeente op waarbij meegegeven postcode behoort.
+     *
+     * @param postalCode de postcode van de gemeente
+     * @returns lijst van objecten met gemeentes passend bij de meegegeven postcode.
+     */
+    GetCityByPostalCode &#x3D; (postalCode: string) &#x3D;&gt; {
+      return this.http.get(this.adresApiUrl + &quot;/postinfo/&quot; + postalCode);
+    }
+
+    /**
+     * Zoekt naar een straatnaam als deze minstens 4 tekens bevat.
+     * De postcode dient steeds meegegeven te worden.
+     *
+     * @param postalCode de postcode van de gemeente waarin men een adres wil zoeken.
+     * @param streetQuery een deel of de volledige straatnaam.
+     * @returns lijst van objecten die straatnamen bevatten passend bij de query.
+     */
+    GetStreetNameByPostalcodeAndQuery &#x3D; (postalCode: string, streetQuery: string) &#x3D;&gt; {
+      let params &#x3D; new HttpParams()
+        .set(&#x27;postcode&#x27;, postalCode)
+        .set(&#x27;straatnaam&#x27;, streetQuery);
+
+      return this.http.get(this.adresApiUrl + &quot;/adresmatch&quot;, {params});
+    }
+  //#endregion OpenApi
+
+
+  /**
+   * Zorgt ervoor dat de error zichtbaar is in de logfiles.
+   *
+   * @example
+   * if (error.status &#x3D;&#x3D;&#x3D; 0) {
+   *  console.error(&#x27;An error occurred:&#x27;, error.error);       &#x3D;&gt; client side error
+   *
+   * @example
+   * else {
+   *  console.error(
+   *     &#x60;Backend returned code ${error.status}, body was: &#x60;, error.error);       &#x3D;&gt; server side error
+   * }
+   *
+   * @example
+   * return throwError(() &#x3D;&gt; error);          &#x3D;&gt; error with response body
+   *
+   * @param error is de HttpErrorResponse die bij fout in verzending meegegeven wordt aan de HttpResponse.
+   * @returns Observable van de error voor admin gerichte berichten.
+   */
+  private handleError(error: HttpErrorResponse) {
+    if (error.status &#x3D;&#x3D;&#x3D; 0) {
+      console.error(&#x27;An error occurred:&#x27;, error.error);
+    } else {
+
+      console.error(
+        &#x60;Backend returned code ${error.status}, body was: &#x60;, error.error);
+    }
+    return throwError(() &#x3D;&gt; error);
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'DatastreamService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
