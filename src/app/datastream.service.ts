@@ -74,7 +74,7 @@ export class DatastreamService {
   }
 
   UpdateDriver = (bestuurder: any) => {
-    return this.http.patch(this.connectionstring + "bestuurder", bestuurder).pipe(catchError(this.handleError));
+    return this.http.patch(this.connectionstring + "bestuurder/update", bestuurder).pipe(catchError(this.handleError));
   }
   //#endregion Bestuurders
 

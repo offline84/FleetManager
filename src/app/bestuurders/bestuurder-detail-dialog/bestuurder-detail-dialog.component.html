@@ -13,7 +13,7 @@
       <div class="field">
         <mat-form-field appearance="fill">
           <mat-label>Rijksregisternummer</mat-label>
-          <input matInput type="number" [readonly]="!modifiable" [disabled]="!forCreation"
+          <input matInput type="number" [readonly]="!modifiable" [disabled]="!forCreation" min="9999999999" max="99999999999"
             formControlName="rijksregisternummer">
           <mat-hint>Geen spaties of speciale tekens.</mat-hint>
           <mat-error *ngIf="bestuurderForm.get('rijksregisternummer')?.hasError('max')">rijksregisternummer is
@@ -35,6 +35,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill" class="datepickerMat">
           <mat-label>Geboorte datum</mat-label>
+          
           <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" [disabled]="!modifiable"
             formControlName="geboorteDatum" [readonly]="true" />
           <mat-datepicker #picker startView="multi-year"></mat-datepicker>
@@ -74,17 +75,38 @@
         <div class="field">
           <mat-form-field appearance="fill">
             <mat-label>Rijbewijs</mat-label>
-            <mat-select placeholder="rijbewijs *" [disabled]="!modifiable" formControlName="typeRijbewijs" multiple>
+            <mat-select placeholder="rijbewijs *" [disabled]="!modifiable" formControlName="typeRijbewijs" multiple
+              required>
               <mat-option *ngFor="let rij of rijbewijzen" value="{{rij.typeRijbewijs}}">{{rij.typeRijbewijs}}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="bestuurderForm.get('typeRijbewijs')?.hasError('required')">rijbewijs is vereist
+            <mat-error *ngIf="rijbewijsForm.get('typeRijbewijs')?.hasError('required')">rijbewijs is vereist
             </mat-error>
           </mat-form-field>
-        </div>
-        <div class="clearfix">
+          <div class="clearfix">
+          </div>
+          <div *ngIf="!modifiable">
+            <div class="formbuttons buttons-submit">
+              <button mat-raised-button class="button-submit button-color" type="button"
+                (click)="openUpdateScreen()">Edit
+                <span class="spacer"></span>
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-raised-button class="button-submit" color="warn" type="button"
+                (click)="openDeleteScreen()">Delete
+                <span class="spacer"></span>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
         </div>
         <div class="field link-section" *ngIf="viewOnly">
+          <br>
+          <br>
+          <br>
+          <h2>Koppelingen</h2>
+          <hr>
+          <br>
           <mat-form-field class="link-field" appearance="fill">
             <mat-label>Voertuig</mat-label>
             <mat-select *ngIf="!bestuurder.koppeling.chassisnummer"
@@ -92,7 +114,6 @@
               <mat-option value=null></mat-option>
               <mat-option *ngFor="let voertuig of unlinkedVoertuigen" value={{voertuig.chassisnummer}}>
                 {{voertuig.merk}} {{voertuig.model}} - {{voertuig.brandstof.typeBrandstof}}
-                <!-- -  {{voertuig.chassisnummer}} -->
               </mat-option>
             </mat-select>
             <input matInput *ngIf="bestuurder.koppeling.chassisnummer" type="text"
@@ -125,32 +146,10 @@
         </div>
         <div class="clearfix">
         </div>
-        <div class="field">
-          <div *ngIf="!modifiable">
-            <div class="formbuttons buttons-submit">
-              <button mat-raised-button class="button-submit" color="primary" type="button"
-                (click)="openUpdateScreen()">Edit
-                <span class="spacer"></span>
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-raised-button class="button-submit" color="warn" type="button"
-                (click)="openDeleteScreen()">Delete
-                <span class="spacer"></span>
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
-            <div class="clearfix">
-            </div>
-          </div>
-        </div>
-        <div *ngIf="modifiable && !bestuurder" class="formbuttons buttons-submit">
-          <button mat-raised-button class="button-submit" color="primary" type="submit" (click)="onSubmit()"
-            [disabled]="!bestuurderForm.valid && bestuurderForm.get('typeRijbewijs')  ">Submit</button>
-        </div>
-        <div *ngIf="modifiable && !forCreation" class="formbuttons">
-          <button mat-raised-button class="button-submit" color="primary" type="submit" (click)="onSave()"
-            [disabled]="!bestuurderForm.valid && !bestuurderForm.valid">Save
-            <!-- <span class="spacer"></span> -->
+        <div *ngIf="modifiable && !forCreation" class="formbuttons  buttons-submit">
+          <button mat-raised-button class="button-submit button-color"  type="submit" (click)="onSave()"
+            [disabled]="!bestuurderForm.valid && !rijbewijsForm.get('typeRijbewijs')?.hasError('required')">Save
+            <span class="spacer"></span>
             <mat-icon>save</mat-icon>
           </button>
         </div>

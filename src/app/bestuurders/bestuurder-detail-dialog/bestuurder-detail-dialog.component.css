@@ -72,6 +72,11 @@ float: right;
   min-width: 120px;
 }
 
+.button-color {
+  color: #ffff;
+  background-color: #1661EB;
+}
+
 
 mat-toolbar {
   color: #ffff;

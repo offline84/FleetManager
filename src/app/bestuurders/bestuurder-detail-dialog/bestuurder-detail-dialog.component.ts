@@ -1,15 +1,14 @@
 import * as moment from 'moment';
-import { Component, Directive, ElementRef, Inject, ModuleWithComponentFactories, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DatastreamService } from '../../datastream.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Bestuurder } from '../../objects/bestuurder';
 import { DataExchangeService } from '../../data-exchange.service';
 import { Adres } from 'src/app/objects/adres';
-import { Observable } from 'rxjs';
+import { map, Observable, startWith, switchMap } from 'rxjs';
 import { IBestuurder } from 'src/app/objects/iBestuurder';
 import { Rijbewijs } from 'src/app/objects/rijbewijs';
-import { MAT_DATEPICKER_VALIDATORS } from '@angular/material/datepicker';
 import { ToewijzingRijbewijs } from 'src/app/objects/toewijzingRijbewijs';
 
 
@@ -54,25 +53,25 @@ export class BestuurderDetailDialogComponent implements OnInit {
     rijksregisternummer: new FormControl('', [Validators.required, Validators.max(99999999999), Validators.min(10000000000)]),
     naam: new FormControl('', [Validators.required]),
     achternaam: new FormControl('', [Validators.required]),
-    geboorteDatum:new FormControl('', MAT_DATEPICKER_VALIDATORS)   
+    geboorteDatum: new FormControl('', [Validators.required])
   });
 
   adresForm = new FormGroup({
     straat: new FormControl(''),
-    huisnummer: new FormControl('', [ Validators.min(1), Validators.max(999999)]),
+    huisnummer: new FormControl('', [Validators.min(1), Validators.max(999999)]),
     stad: new FormControl(''),
-    postcode: new FormControl('', [ Validators.min(1000), Validators.max(9999)]),
+    postcode: new FormControl('', [Validators.min(1000), Validators.max(9999)]),
   });
 
-  
+
   rijbewijsForm = new FormGroup({
     typeRijbewijs: new FormControl(['', Validators.required])
   });
 
   ngOnInit(): void {
-    let now = moment();
-    this.minDate = new Date('01/01/1900');
-    this.maxDate = now.toDate();
+    let year = moment().year();
+    this.minDate = new Date('01/01/'+(year-100));
+    this.maxDate = moment().toDate();
 
     // We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
     // Indien ja, patchen we deze in de form.
@@ -84,8 +83,8 @@ export class BestuurderDetailDialogComponent implements OnInit {
     //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
     this.IsModifiable(this.modifiable);
 
-    this.datastream.GetDriverLicences().subscribe((data: any) => {
-      this.rijbewijzen = data;
+    this.datastream.GetDriverLicences().subscribe((rijbewijs: any) => {
+      this.rijbewijzen = rijbewijs;
     });
 
     // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
@@ -93,38 +92,53 @@ export class BestuurderDetailDialogComponent implements OnInit {
     //en de bestuurder van de koppeling in de var. voertuigLink.
     if (!this.bestuurder) {
       this.datastream.GetAllVehicles().subscribe((data: any) => {
-        this.unlinkedVoertuigen = data.filter((u: any) => u.koppeling == null || u.koppeling.chassisnummer == null)
+        this.unlinkedVoertuigen = data.filter((u: any) => u.koppeling == null)
       });
     } else {
       this.datastream.GetAllVehicles().subscribe((data: any) => {
-        this.unlinkedVoertuigen = data.filter((u: any) => u.koppeling == null || u.koppeling.chassisnummer == null || u.koppeling.rijksregisternummer == this.bestuurder.rijksregisternummer);
+        this.unlinkedVoertuigen = data.filter((voertuig: any) => voertuig.koppeling == null || this.bestuurder.koppeling.chassisnummer == voertuig.chassisnummer);
         if (this.bestuurder) {
           if (this.bestuurder.koppeling) {
-            let link = data.filter((u: any) => { u.koppeling != null && u.koppeling.rijksregisternummer == this.bestuurder.koppeling.rijksregisternummer });
+            let link = data.filter((voertuig: any) => voertuig.chassisnummer == this.bestuurder.koppeling.chassisnummer);
+            if(link){
             this.voertuigLink = link[0];
+            }
           }
         }
       });
     }
 
-    // if (!this.bestuurder) {
-    //   this.datastream.GetAllFuelCards().subscribe((data: any) => {
-    //     this.unlinkedTankkaarten = data.filter((u: any) => u.koppeling.rijksregisternummer == null);
-    //   });
-    // } else {
-    //   this.datastream.GetAllFuelCards().subscribe((data: any) => {
-    //     this.unlinkedTankkaarten = data.filter((u: any) => u.koppeling.rijksregisternummer == null || u.koppeling.rijksregisternummer == this.bestuurder.rijksregisternummer);
-    //     if (this.bestuurder) {
-    //       if (this.bestuurder.koppeling) {
-    //         let link = data.filter((u: any) => u.koppeling.rijksregisternummer == this.bestuurder.rijksregisternummer);
-    //         if (link != null) {
-    //           this.tankkaartLink = link[0];
-    //         }
-    //       }
-    //     }
-    //   });
-    // }
+    if (!this.bestuurder) {
+      this.datastream.GetAllFuelCards().subscribe((data: any) => {
+        this.unlinkedTankkaarten = data.filter((u: any) => u.koppeling == null)
+      });
+    } else {
+      this.datastream.GetAllFuelCards().subscribe((data: any) => {
+        this.unlinkedTankkaarten = data.filter((tankkaart: any) => tankkaart.koppeling == null || this.bestuurder.koppeling.kaartnummer == tankkaart.kaartnummer);
+        if (this.bestuurder) {
+          if (this.bestuurder.koppeling) {
+            let link = data.filter((tankkaart: any) => tankkaart.kaartnummer == this.bestuurder.koppeling.kaartnummer);
+            this.tankkaartLink = link[0];
+          }
+        }
+      });
+    }
 
+
+   
+  
+  
+
+
+     this.bestuurderForm.controls["rijksregisternummer"].valueChanges.pipe(
+      startWith(''),
+      map(value => {      
+      let dateOfBirth = value;
+      if(dateOfBirth >=  10000000000 && dateOfBirth < 99999999999){
+      // this.AutoCompleteDateOfBirth(dateOfBirth.toString());
+      this._autoCompleteDateOfBirth(value.toString());
+      console.log(value);
+      } })).subscribe();
     //listener voor de autocompete functie
     // this.autocompleteOptions = this.bestuurderForm.controls["straat"].valueChanges.pipe(startWith(''),
     //   map(value => this._autocomplete(value)));
@@ -134,6 +148,8 @@ export class BestuurderDetailDialogComponent implements OnInit {
       this.dialogRef.close(this.bestuurder);
     });
   }
+
+ 
 
   //Omvat de creatie van het te verzenden object en de wissel van mode "add" naar "view" + errorbehandeling.
   onSubmit = () => {
@@ -163,15 +179,31 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
   }
 
+  onSelectionChangeGeboorteDatum() {
+
+  }
+
+
+
+
   //Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat, implementeren we de selectie handmatig via een eventlistener.
   onSelectionChangeVoertuig = (event: any) => {
-    let link = this.unlinkedVoertuigen.filter((u: any) => u.chassisnummer == event);
-    this.voertuigLink = link[0];
+    if (this.tankkaartLink != null) {
+      this.unlinkedVoertuigen.filter((v: any) => v.brandstoffen)
+      console.log('Check uitvoeren op gekozen item -> indien een bepaalde brandstof gekozen is, mag de andere itemLijst alleen maar dezelfde items.brandstof bevatten')
+    }
+
+    let link = this.unlinkedVoertuigen.find((u: any) => u.chassisnummer == event);
+    this.voertuigLink = link;
   }
 
   onSelectionChangeTankkaart = (event: any) => {
-    let link = this.unlinkedTankkaarten.filter((u: any) => u.kaartnummer == event);
-    this.tankkaartLink = link[0];
+    if (this.voertuigLink != null) {
+      console.log(this.voertuigLink);
+      console.log('Check uitvoeren op gekozen item -> indien een bepaalde brandstof gekozen is, mag de andere itemLijst alleen maar dezelfde items.brandstof bevatten');
+    }
+    let link = this.unlinkedTankkaarten.find((u: any) => u.kaartnummer == event);
+    this.tankkaartLink = link;
   }
 
 
@@ -205,7 +237,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
   //gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
   linkUnlinkVoertuig = () => {
     if (this.voertuigLink) {
-      if (this.bestuurder.koppeling) {
+      if (this.bestuurder.koppeling.chassisnummer) {
         this.datastream.UnlinkVehicle(this.bestuurder.koppeling.chassisnummer).subscribe(() => {
           this.bestuurder.koppeling.chassisnummer = null;
         }, error => {
@@ -216,12 +248,13 @@ export class BestuurderDetailDialogComponent implements OnInit {
         });
       } else {
         this.datastream.LinkVehicle(this.bestuurder.rijksregisternummer, this.voertuigLink.chassisnummer).subscribe(() => {
+          this.bestuurder.koppeling.chassisnummer = this.voertuigLink.chassisnummer;
         }, error => {
           if (error) { this.message.nativeElement.innerHTML = error.message; }
         }, () => {
           let success = "Voertuig met chassisnummer: " + this.voertuigLink.chassisnummer + " is nu gekoppeld aan de bestuurder";
           this.message.nativeElement.innerHTML = success;
-          this.datastream.GetSingleDriver(this.voertuigLink.chassisnummer).subscribe((res: any) => {
+          this.datastream.GetSingleDriver(this.bestuurder.rijksregisternummer).subscribe((res: any) => {
             if (res) {
               this.bestuurder = res;
             } else {
@@ -251,7 +284,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
         }, () => {
           let success = "Tankkaarnummer: " + this.tankkaartLink.kaartnummer + " is nu gekoppeld aan de bestuurder";
           this.message.nativeElement.innerHTML = success;
-          this.datastream.GetSingleDriver(this.tankkaartLink.kaartnummer).subscribe((res: any) => {
+          this.datastream.GetSingleDriver(this.bestuurder.rijksregisternummer).subscribe((res: any) => {
             if (res) {
               this.bestuurder = res;
             } else {
@@ -269,7 +302,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     if (!ismodifiable) {
       this.forCreation = false;
       this.notEditable = "changeColor";
-      this.viewOnly ="changeColor";
+      this.viewOnly = "changeColor";
     }
   }
 
@@ -285,10 +318,8 @@ export class BestuurderDetailDialogComponent implements OnInit {
           dataArray.push(rijbewijs.typeRijbewijs);
         }
       });
-      this.rijbewijsForm.controls["typeRijbewijs"].markAsTouched;
       this.rijbewijsForm.controls["typeRijbewijs"].setValue(dataArray);
     }
-    // this.bestuurderForm.controls["typeBrandstof"].setValue(this.bestuurderForm.adres.typeBrandstof);
 
     this.adresForm.patchValue(this.bestuurder.adres);
   }
@@ -319,8 +350,26 @@ export class BestuurderDetailDialogComponent implements OnInit {
     return bestuurder;
   }
 
-  private _autocomplete(value: string): string[] {
+  private _autocomplete(value: string): Observable<void> {
     const filterValue = value.toLowerCase();
     return this.autocompleteList.filter((merk: string) => merk.toLowerCase().includes(filterValue));
   }
+
+  private _autoCompleteDateOfBirth(value: string)  {
+    if (value.length == 11) {
+      let date = value.slice(0,6);
+      let yearPart2 = date.slice(0,2);
+      let month = date.slice(2,4);
+      let day = date.slice(4,6);
+      let yearPart1 = Number(yearPart2)-100 > 0 ? "20":"19";
+       date = day.concat("/"+ month+"/"+19+yearPart2);
+  
+      // this.bestuurderForm.controls["geboorteDatum"].markAsTouched;
+      // this.bestuurderForm.controls["geboorteDatum"].touched;
+      this.bestuurderForm.controls["geboorteDatum"].setValue(date);
+
+      console.log(this.bestuurderForm);
+        }
+  }
 }
+
