@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 
 @Injectable({
@@ -18,15 +18,25 @@ export class DatastreamService {
    */
   private connectionstring: string;
 
-  // Hier wordt de API- connectiestring geïnjecteerd d.m.v. de provider in ngModule. Indien men de
-  // connectiestring naar de API wil veranderen dient deze ginds aangepast te worden.
   /**
+   * bevat de connectiestring naar de open API van basisregisters vlaanderen. Wordt geïnitialiseerd via de constructor.
+   * deze Api bevat informatie over adressen, nodig voor autocomplete in de BestuurderDetailDialogComponent.
    *
+   * {@link https://docs.basisregisters.vlaanderen.be/docs/api-documentation.html#operation/ListPostalCodes}
+   */
+  private adresApiUrl: string;
+
+
+  /**
+   *Hier wordt de API- connectiestring geïnjecteerd d.m.v. de provider in ngModule. Indien men de
+   *connectiestring naar de API wil veranderen dient deze ginds aangepast te worden.
    * @param http  verzorgt de crud operaties naar de API toe.
    * @param _connectionstring Wordt geïnjecteerd via de provider in app.module.ts en bevat de connectiestring naar de API.
+   * @param _adresAPI Wordt geïnjecteerd via de provider in app.module.ts en bevat de connectiestring naar de open API "basisregisters vlaanderen".
    */
-  constructor( private http: HttpClient, @Inject("API_Url") _connectionstring: string) {
+  constructor( private http: HttpClient, @Inject("API_Url") _connectionstring: string, @Inject("Adres_API_Url") _adresAPI: string) {
     this.connectionstring = _connectionstring;
+    this.adresApiUrl = _adresAPI;
   }
 
   //#region Voertuigen
@@ -98,12 +108,25 @@ export class DatastreamService {
 
   //#region Koppelingen
 
+  /**
+   * koppelt een voertuig los van de bestuurder.
+   *
+   * @param vehicleId het chassisnummer van het los te koppelen voertuig.
+   * @returns null
+   */
   UnlinkVehicle = (vehicleId: string) => {
-    return this.http.get(this.connectionstring + "voertuig/koppellos/" + vehicleId).pipe(catchError(this.handleError));
+    return this.http.patch(this.connectionstring + "voertuig/koppellos/" + vehicleId, null).pipe(catchError(this.handleError));
   }
 
+  /**
+   * Koppelt een bestuurder aan een voertuig.
+   *
+   * @param idNumber het rijksregisternummer van een bestuurder.
+   * @param vehicleId het chassisnummer van het te koppelen voertuig.
+   * @returns null
+   */
   LinkVehicle = ( idNumber: string, vehicleId: string) => {
-    return this.http.get(this.connectionstring + "voertuig/koppel/" + idNumber + "/" + vehicleId).pipe(catchError(this.handleError));
+    return this.http.patch(this.connectionstring + "voertuig/koppel/" + idNumber + "/" + vehicleId, null).pipe(catchError(this.handleError));
   }
 
   UnlinkFuelCard = (tankkaartId: string) => {
@@ -115,6 +138,35 @@ export class DatastreamService {
   }
 
   //#endregion Koppelingen
+
+  //#region OpenApi
+
+    /**
+     * zoekt de naam van de gemeente op waarbij meegegeven postcode behoort.
+     *
+     * @param postalCode de postcode van de gemeente
+     * @returns lijst van objecten met gemeentes passend bij de meegegeven postcode.
+     */
+    GetCityByPostalCode = (postalCode: string) => {
+      return this.http.get(this.adresApiUrl + "/postinfo/" + postalCode);
+    }
+
+    /**
+     * Zoekt naar een straatnaam als deze minstens 4 tekens bevat.
+     * De postcode dient steeds meegegeven te worden.
+     *
+     * @param postalCode de postcode van de gemeente waarin men een adres wil zoeken.
+     * @param streetQuery een deel of de volledige straatnaam.
+     * @returns lijst van objecten die straatnamen bevatten passend bij de query.
+     */
+    GetStreetNameByPostalcodeAndQuery = (postalCode: string, streetQuery: string) => {
+      let params = new HttpParams()
+        .set('postcode', postalCode)
+        .set('straatnaam', streetQuery);
+
+      return this.http.get(this.adresApiUrl + "/adresmatch", {params});
+    }
+  //#endregion OpenApi
 
 
   /**
