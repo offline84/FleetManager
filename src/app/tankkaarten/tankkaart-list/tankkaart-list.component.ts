@@ -31,26 +31,19 @@ export class TankkaartListComponent implements AfterViewInit {
 
     //data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
     this.datastream.GetAllFuelCards().subscribe((data: any) => {
-
       data.forEach((tankkaart: ITankkaart) => {
         let stringbuilder = "";
-
         tankkaart.mogelijkeBrandstoffen.forEach((mb: any ) => {
           const {typeBrandstof} = mb.brandstof;
           stringbuilder = stringbuilder.concat(typeBrandstof, ", ");
         });
         tankkaart = tankkaart as ITankkaart;
         tankkaart.brandstoffenForView = stringbuilder.slice(0, - 2);
-        console.log("tankkaart:" + tankkaart.brandstoffenForView);
       });
       this.tableData = data;
       this.dataSource.data = this.tableData;
       this.dataSource.paginator = this.paging;
       this.dataSource.sort = this.sort;
-      /*this.dataSource.data.forEach((obj: ITankkaart) => {
-        console.log("TankkaartNR")
-      })*/
-      console.log(this.dataSource.data);
     });
 
     // haalt de entiteit voor modificatie van de tabel binnen en kijkt welke bewerking op de tabel dient te worden uitgevoerd.
@@ -98,10 +91,15 @@ export class TankkaartListComponent implements AfterViewInit {
     let dialogRef = this.dialog.open(TankkaartDetailDialogComponent, config);
 
     dialogRef.afterClosed().subscribe((data: any) => {
-
       if (data) {
         this.tableData.forEach((element, index) => {
           if (element.kaartnummer == data.kaartnummer) {
+            let stringbuilder = "";
+            data.mogelijkeBrandstoffen.forEach((mb: any ) => {
+              const {typeBrandstof} = mb.brandstof;
+              stringbuilder = stringbuilder.concat(typeBrandstof, ", ");
+            });
+            data.brandstoffenForView = stringbuilder.slice(0, - 2);
             this.tableData[index] = data;
           }
         });

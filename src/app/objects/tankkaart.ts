@@ -1,16 +1,11 @@
 import { ITankkaart } from "./iTankkaart";
+import {mogelijkeBrandstof} from "./mogelijkeBrandstof";
 
 export class Tankkaart implements ITankkaart {
   kaartnummer!: string;
   geldigheidsDatum!: Date;
   pincode!: number;
-  mogelijkeBrandstoffen!:
-    [{
-      brandstof: {
-        id: string;
-        typeBrandstof: string;
-      }
-    }];
+  mogelijkeBrandstoffen: Array<mogelijkeBrandstof> = [];
   brandstoffenForView!: string;
   isGeblokkeerd!: boolean;
   isGearchiveerd!: boolean;

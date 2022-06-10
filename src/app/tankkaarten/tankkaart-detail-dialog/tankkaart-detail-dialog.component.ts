@@ -1,14 +1,16 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DatastreamService } from '../../datastream.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {DatastreamService} from '../../datastream.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {Tankkaart} from "../../objects/tankkaart";
 import {ITankkaart} from "../../objects/iTankkaart";
-import { DataExchangeService } from '../../data-exchange.service';
-import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
-import {TankkaartDeleteConfirmationSheetComponent} from "../tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component";
-import {IBrandstof} from "../../objects/IBrandstof";
+import {DataExchangeService} from '../../data-exchange.service';
+import {MatBottomSheet, MatBottomSheetConfig} from '@angular/material/bottom-sheet';
+import {
+  TankkaartDeleteConfirmationSheetComponent
+} from "../tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component";
 import {Brandstof} from "../../objects/brandstof";
+import {mogelijkeBrandstof} from "../../objects/mogelijkeBrandstof";
 
 @Component({
   selector: 'app-tankkaart-detail-dialog',
@@ -25,6 +27,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
   forCreation: boolean = true;
   notEditable!: string;
   viewOnly!: string;
+  hide: boolean = true;
   tankkaart = new Tankkaart();
 
   KeuzeBrandstoffen: any;
@@ -42,7 +45,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
   tankkaartForm = new FormGroup({
     kaartnummer: new FormControl('',[Validators.required]),
     geldigheidsdatum: new FormControl(new Date().toISOString().slice(0,-5),[Validators.required]),
-    pincode: new FormControl('',[Validators.min(0)]),
+    pincode: new FormControl('',),
     isGeblokkeerd: new FormControl(false,[Validators.required]),
     typeBrandstof: new FormControl('',),
   });
@@ -104,7 +107,6 @@ export class TankkaartDetailDialogComponent implements OnInit {
     let fuelcard = this.CreateObjectToSend();
 
     this.datastream.PostFuelCard(fuelcard).subscribe( (res: any) =>{
-
         if(res){
           this.tankkaart = res;
         }
@@ -112,8 +114,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
         this.message.nativeElement.innerHTML = error.error;
       }, () => {
         this.IsModifiable(false);
-        let success = 'nieuwe tankkaart met kaartnummer "' + this.tankkaart.kaartnummer +'" is successvol toegevoegd aan de database.';
-        this.message.nativeElement.innerHTML = success;
+      this.message.nativeElement.innerHTML = 'Nieuwe tankkaart met kaartnummer "' + this.tankkaart.kaartnummer + '" is successvol toegevoegd aan de database.';
       }
     );
   }
@@ -167,8 +168,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
         this.message.nativeElement.innerHTML = error.error;
       }, () => {
         this.IsModifiable(false);
-        let success = 'tankkaart met kaartnummer "' + this.tankkaart.kaartnummer +'" is geupdate';
-        this.message.nativeElement.innerHTML = success;
+      this.message.nativeElement.innerHTML = 'Tankkaart met kaartnummer "' + this.tankkaart.kaartnummer + '" is geupdate';
       }
     );
   }
@@ -179,18 +179,14 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
     if(this.bestuurderLink){
       if(this.tankkaart.koppeling){
-
         this.datastream.UnlinkFuelCard(this.tankkaart.kaartnummer).subscribe(() =>{
-
             this.tankkaart.koppeling = null;
-
           }, error =>{
             if(error){
               this.message.nativeElement.innerHTML = error.message;
             }
           }, () =>{
-            let success = this.bestuurderLink.naam + " " + this.bestuurderLink.achternaam + " is ontkoppeld van de tankkaart";
-            this.message.nativeElement.innerHTML = success;
+          this.message.nativeElement.innerHTML = this.bestuurderLink.naam + " " + this.bestuurderLink.achternaam + " is ontkoppeld van de tankkaart";
           }
         );
       }
@@ -201,8 +197,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
               this.message.nativeElement.innerHTML = error.message;
             }
           }, () =>{
-            let success = this.bestuurderLink.naam + " " + this.bestuurderLink.achternaam + " is nu gekoppeld aan de tankkaart";
-            this.message.nativeElement.innerHTML = success;
+          this.message.nativeElement.innerHTML = this.bestuurderLink.naam + " " + this.bestuurderLink.achternaam + " is nu gekoppeld aan de tankkaart";
 
             this.datastream.GetSingleFuelCard(this.tankkaart.kaartnummer).subscribe((res: any) =>{
               if(res){
@@ -242,35 +237,38 @@ export class TankkaartDetailDialogComponent implements OnInit {
         this.tankkaartForm.controls["typeBrandstof"].setValue(lijstBrandstoffen);
       });
     }
-
-
-    //this.tankkaartForm.controls["typeBrandstof"].setValue(this.voertuig.brandstof.typeBrandstof);
   }
 
   CreateObjectToSend =(): ITankkaart => {
     let fuelcard = new Tankkaart();
 
-    // Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden.
-    //Niet nodig.
-    if(!this.tankkaartForm.controls["typeBrandstof"].value){
-      this.tankkaartForm.controls["typeBrandstof"].setValue("");
-    }
-
     fuelcard.kaartnummer = this.tankkaartForm.controls["kaartnummer"].value;
     fuelcard.geldigheidsDatum = this.tankkaartForm.controls["geldigheidsdatum"].value;
-    fuelcard.pincode = this.tankkaartForm.controls["pincode"].value;
     fuelcard.isGeblokkeerd = this.tankkaartForm.controls["isGeblokkeerd"].value;
-    this.tankkaartForm.controls["typeBrandstof"].value.forEach((typeBrandstof: any) => {
-      let brandstof = this.KeuzeBrandstoffen.find((brandstof: any) => brandstof.typeBrandstof == typeBrandstof);
-      if (brandstof) {
-        let geselecteerdeBrandstof = new Brandstof();
-        geselecteerdeBrandstof.brandstof.id = brandstof.id;
-        geselecteerdeBrandstof.brandstof.typeBrandstof = brandstof.typeBrandstof;
-        fuelcard.mogelijkeBrandstoffen.push(geselecteerdeBrandstof);
-      }
-    })
 
-    //vehicle.brandstof = this.brandstoffen.find((v: any) => v.typeBrandstof == this.voertuigForm.controls["typeBrandstof"].value);
+    // Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden.
+
+    if(!this.tankkaartForm.controls["pincode"].value){
+      this.tankkaartForm.controls["pincode"].setValue(9999);
+    } else {
+      fuelcard.pincode = this.tankkaartForm.controls["pincode"].value;
+    }
+
+    if(!this.tankkaartForm.controls["typeBrandstof"].value) {
+      this.tankkaartForm.controls["typeBrandstof"].setValue(null);
+    } else {
+      this.tankkaartForm.controls["typeBrandstof"].value.forEach((typeBrandstof: any) => {
+        let brandstof = this.KeuzeBrandstoffen.find((brandstof: any) => brandstof.typeBrandstof == typeBrandstof);
+        if (brandstof) {
+          let geselecteerdeBrandstof = new Brandstof();
+          let geselecteerdeMogelijkeBrandstof = new mogelijkeBrandstof();
+          geselecteerdeBrandstof.id = brandstof.id;
+          geselecteerdeBrandstof.typeBrandstof = brandstof.typeBrandstof;
+          geselecteerdeMogelijkeBrandstof.brandstof = geselecteerdeBrandstof;
+          fuelcard.mogelijkeBrandstoffen.push(geselecteerdeMogelijkeBrandstof);
+        }
+      })
+    }
 
     return fuelcard;
   }

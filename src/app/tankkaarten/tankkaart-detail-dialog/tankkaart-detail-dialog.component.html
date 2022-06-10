@@ -32,21 +32,20 @@
             <input [ngClass]="viewOnly" matInput [matDatepicker]="picker" [readonly]="!modifiable" formControlName="geldigheidsdatum">
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker #picker [disabled]="!modifiable"></mat-datepicker>
             <mat-error *ngIf="tankkaartForm.get('geldigheidsdatum')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>pincode</mat-label>
-            <input [ngClass]="viewOnly" matInput type="number" [readonly]="!modifiable" formControlName="pincode">
+            <input [ngClass]="viewOnly" matInput [type]="hide ? 'password' : 'text'" [readonly]="!modifiable" formControlName="pincode">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-hint>Default: 9999</mat-hint>
             <mat-error *ngIf="tankkaartForm.get('pincode')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
-        </div>
-        <div class="field">
-          <mat-checkbox color="primary" formControlName="isGeblokkeerd" [disabled]="!modifiable || forCreation">
-            Geblokeerd
-          </mat-checkbox>
         </div>
         <div class="field">
           <mat-form-field appearance="fill">
@@ -55,6 +54,11 @@
               <mat-option *ngFor="let brand of KeuzeBrandstoffen" value="{{brand.typeBrandstof}}">{{brand.typeBrandstof}}</mat-option>
             </mat-select>
           </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-checkbox color="primary" formControlName="isGeblokkeerd" [disabled]="!modifiable || forCreation">
+            Geblokeerd
+          </mat-checkbox>
         </div>
       </div>
     </div>
@@ -139,6 +143,6 @@
 
   </div>
 </div>
-<div mat-dialog-footer>
+<div>
   <p #message></p>
 </div>

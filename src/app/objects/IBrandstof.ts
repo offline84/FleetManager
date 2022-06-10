@@ -1,3 +1,4 @@
 export interface IBrandstof {
-    brandstof: any
+      id: string;
+      typeBrandstof: string;
 }

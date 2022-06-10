@@ -14,7 +14,7 @@ export class TankkaartComponent implements OnInit {
   properties =  [
     "kaartnummer",
     "geldigheidsdatum",
-    "pincode",
+    //"pincode",
     "brandstoffenForView",
     "isGeblokkeerd",
     "koppeling"
