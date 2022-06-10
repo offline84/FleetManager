@@ -86,10 +86,6 @@
                                 <a href="#dataToObserve" >dataToObserve</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#listOfData" >listOfData</a>
-                            </li>
-                            <li>
                                 <a href="#observableData" >observableData</a>
                             </li>
                             <li>
@@ -108,24 +104,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor()</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/data-exchange.service.ts:19</a></div>
-                            </td>
-                        </tr>
-
-            </tbody>
-        </table>
-</section>
 
 
             <section>
@@ -158,10 +136,18 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/data-exchange.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/data-exchange.service.ts:31</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Is het BehaviourSubject dat we gaan volgen met de Observable observableData.
+Houdt veranderingen van het Object dataToObserve bij.</p>
+<p>Omdat we bij de start nog geen data willen meegeven als we de componenten initialiseren, geven we dit subject waarde null mee bij instantiëring.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -179,7 +165,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/dataToObserve.html" target="_self" >dataToObserve</a></code>
+                        <i>Type : </i>    <code>dataToObserve</code>
 
                     </td>
                 </tr>
@@ -190,42 +176,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/data-exchange.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/data-exchange.service.ts:23</a></div>
                         </td>
                     </tr>
 
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listOfData"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>listOfData</b></span>
-                        <a href="#listOfData"><span class="icon ion-ios-link"></span></a>
-                    </span>
+                    <div class="io-description"><p>Dit Object vertelt waar en wat er dient gedaan te worden in de componenten, samen met de entiteit die daarvoor
+dient gebruikt te worden.</p>
+</div>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>Array&lt;any&gt;</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[]</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/data-exchange.service.ts:16</a></div>
-                        </td>
-                    </tr>
-
 
         </tbody>
     </table>
@@ -242,7 +203,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/dataToObserve.html" target="_self" >Observable&lt;dataToObserve&gt;</a></code>
+                        <i>Type : </i>    <code>Observable&lt;dataToObserve&gt;</code>
 
                     </td>
                 </tr>
@@ -253,10 +214,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/data-exchange.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/data-exchange.service.ts:36</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Verwittigt ons wanneer er veranderingen worden aangebracht aan de property dataToObserve d.m.v. abonnering.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -278,11 +245,55 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/data-exchange.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/data-exchange.service.ts:45</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Verzendt de data waarop men zich kan abonneren om deze te ontvangen.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>entity</td>
+                                                    <td>
+                                                            <code><p>de naam van de entiteit die men wil verzenden</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>action</td>
+                                                    <td>
+                                                            <code><p>de actie die uitgevoerd dient te worden op de entiteit.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>data</td>
+                                                    <td>
+                                                            <code><p>de entiteit zelf.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
 </section>
@@ -294,6 +305,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 
+/**
+ *@ignore
+ */
 interface dataToObserve{
   entity: string;
   action: string;
@@ -305,14 +319,33 @@ interface dataToObserve{
 })
 
 export class DataExchangeService {
-  private dataToObserve: dataToObserve &#x3D; {entity: &quot;&quot;, action: &quot;&quot;, value: null};
-  private listOfData: Array&lt;any&gt; &#x3D; [];
 
+  /**
+   * Dit Object vertelt waar en wat er dient gedaan te worden in de componenten, samen met de entiteit die daarvoor
+   * dient gebruikt te worden.
+   */
+  private dataToObserve: dataToObserve &#x3D; {entity: &quot;&quot;, action: &quot;&quot;, value: null};
+
+  /**
+   * Is het BehaviourSubject dat we gaan volgen met de Observable observableData.
+   * Houdt veranderingen van het Object dataToObserve bij.
+   *
+   * Omdat we bij de start nog geen data willen meegeven als we de componenten initialiseren, geven we dit subject waarde null mee bij instantiëring.
+   */
   private dataSource: BehaviorSubject&lt;any&gt; &#x3D; new BehaviorSubject&lt;any&gt;(null);
+
+  /**
+   * Verwittigt ons wanneer er veranderingen worden aangebracht aan de property dataToObserve d.m.v. abonnering.
+   */
   observableData: Observable&lt;dataToObserve&gt; &#x3D; this.dataSource.asObservable();
 
-  constructor() { }
-
+  /**
+   * Verzendt de data waarop men zich kan abonneren om deze te ontvangen.
+   *
+   * @param entity {string} de naam van de entiteit die men wil verzenden
+   * @param action {string} de actie die uitgevoerd dient te worden op de entiteit.
+   * @param data {any} de entiteit zelf.
+   */
   sendData &#x3D; (entity: string, action: string, data: any) &#x3D;&gt; {
       this.dataToObserve.entity &#x3D; entity;
       this.dataToObserve.action &#x3D; action;
