@@ -9,34 +9,34 @@
   <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table">
 
     <ng-container class="column" matColumnDef="kaartnummer">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Kaartnummer</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="kaartnummer">Kaartnummer</th>
       <td mat-cell *matCellDef="let tankkaart">{{tankkaart.kaartnummer}}</td>
     </ng-container>
 
     <ng-container matColumnDef="geldigheidsdatum">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Geldigheidsdatum</th>
-      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.geldigheidsdatum | date : 'dd-MM-yyyy'}}</td>
-    </ng-container>
-
-    <ng-container class="column" matColumnDef="pincode">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Pincode</th>
-      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.pincode}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="isGeblokkeerd">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Geblokeerd</th>
-      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.isGeblokkeerd}}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="geldigheidsdatum">Geldigheidsdatum</th>
+      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.geldigheidsDatum | date : 'dd-MM-yyyy'}}</td>
     </ng-container>
 
     <!--
-    <ng-container matColumnDef="mogelijkebrandstoffen">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Brandstoffen</th>
-      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.mogelijkebrandstoffen.brandstof.typeBrandstof}}</td>
+    <ng-container matColumnDef="pincode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Pincode</th>
+      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.pincode}}</td>
     </ng-container>
     -->
 
+    <ng-container matColumnDef="isGeblokkeerd">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="isGeblokkeerd">Geblokeerd</th>
+      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.isGeblokkeerd}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="brandstoffenForView">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="brandstoffenForView">Brandstoffen</th>
+      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.brandstoffenForView}}</td>
+    </ng-container>
+
     <ng-container matColumnDef="koppeling">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>gekoppeld?</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="koppeling">gekoppeld?</th>
       <td mat-cell *matCellDef="let tankkaart">{{tankkaart.koppeling != null}}</td>
     </ng-container>
 

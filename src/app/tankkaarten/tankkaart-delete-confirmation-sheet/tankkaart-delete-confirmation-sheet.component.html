@@ -1,0 +1,19 @@
+<div #title>
+  <h1 mat-title><b>Opgelet!</b></h1>
+</div>
+<div mat-description>
+  <p *ngIf="entitytype == 'tankkaart'">U staat op het punt om <b>{{entitytype}}</b> met id <b>{{entity.kaartnummer}}</b> te verwijderen.</p>
+  <p><b>Eens verwijderd kunt U onmogelijk zonder administratorrechten een voertuig aanmaken met hetzelfde Id.</b></p>
+</div>
+<div mat-content>
+  <h2 *ngIf="entitytype == 'tankkaart'">Bent U zeker Dat U dit {{entitytype}} wilt verwijderen?</h2>
+  <h2 *ngIf="entitytype != 'tankkaart'">Bent U zeker Dat U deze {{entitytype}} wilt verwijderen?</h2>
+</div>
+<div mat-actions>
+  <div>
+    <button mat-actions #affirmative mat-raised-button color="affirmative" (click)="onConfirmationDelete()">Ja</button>
+  </div>
+  <div>
+    <button #negative mat-raised-button color="negative" (click)="onCancellation()">Nee</button>
+  </div>
+</div>

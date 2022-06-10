@@ -9,7 +9,7 @@
       <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>edit</mat-icon></button>
     </div>
     <div class="formbuttons-top">
-      <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>delete</mat-icon></button>
+      <button mat-mini-fab color="warning" type="button" (click)="openDeleteScreen()"><mat-icon>delete</mat-icon></button>
     </div>
     <div class="clearfix">
     </div>
@@ -17,9 +17,7 @@
 </div>
 <div mat-dialog-content>
   <div [formGroup]="tankkaartForm">
-
     <div class="form-block">
-      <h3> identificatie</h3>
       <div class="formsection">
         <div class="field">
           <mat-form-field  appearance="fill">
@@ -29,18 +27,37 @@
           </mat-form-field>
         </div>
         <div class="field">
-          <mat-form-field  appearance="fill">
+          <mat-form-field  appearance="fill"  class="datepickerMat">
             <mat-label>geldigheidsdatum</mat-label>
-            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="geldigheidsdatum">
+            <input [ngClass]="viewOnly" matInput [matDatepicker]="picker" [readonly]="!modifiable" formControlName="geldigheidsdatum">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker [disabled]="!modifiable"></mat-datepicker>
             <mat-error *ngIf="tankkaartForm.get('geldigheidsdatum')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>pincode</mat-label>
-            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="pincode">
-            <mat-error *ngIf="tankkaartForm.get('pincode')?.hasError('required')">Veld is vereist</mat-error>
+            <input [ngClass]="viewOnly" matInput [type]="hide ? 'password' : 'text'" pattern="[0-9]*" [readonly]="!modifiable" formControlName="pincode">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-hint>Default: 9999</mat-hint>
           </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field appearance="fill">
+            <mat-label>Brandstoffen</mat-label>
+            <mat-select placeholder="brandstoffen" [disabled]="!modifiable" formControlName="typeBrandstof" multiple>
+              <mat-option *ngFor="let brand of KeuzeBrandstoffen" value="{{brand.typeBrandstof}}">{{brand.typeBrandstof}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-checkbox color="primary" formControlName="isGeblokkeerd" [disabled]="!modifiable || forCreation">
+            Geblokeerd
+          </mat-checkbox>
         </div>
       </div>
     </div>
@@ -73,10 +90,10 @@
       </div>
     </div>
 -->
-    <div class="form-middle-block">
+    <!--
+    <div class="form-block">
       <h3> overige</h3>
       <div class="formsection">
-        <!--
         <div class="field">
           <mat-form-field appearance="fill">
             <mat-select placeholder="brandstof *" [disabled]="!modifiable" formControlName="typeBrandstof">
@@ -86,9 +103,11 @@
             <mat-error *ngIf="voertuigForm.get('typeBrandstof')?.hasError('required')">brandstof is vereist</mat-error>
           </mat-form-field>
         </div>
-        -->
+
       </div>
     </div>
+    -->
+
     <div class="clearfix">
     </div>
     <div *ngIf="modifiable && !tankkaart" class="formbuttons">
@@ -123,6 +142,6 @@
 
   </div>
 </div>
-<div mat-dialog-footer>
+<div>
   <p #message></p>
 </div>
