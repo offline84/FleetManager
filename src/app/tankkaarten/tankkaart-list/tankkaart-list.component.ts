@@ -30,7 +30,8 @@ export class TankkaartListComponent implements AfterViewInit {
   ngAfterViewInit() {
 
     // data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
-    // brandstoffenForView wordt opgebouwd. Comma separated list van type brandstoffen
+    // - brandstoffenForView wordt opgebouwd: comma separated list van type brandstoffen
+    // - geldigheidsdatum wordt meegegeven aan de sort.
     this.datastream.GetAllFuelCards().subscribe((data: any) => {
       data.forEach((tankkaart: ITankkaart) => {
         let stringbuilder = "";
@@ -45,6 +46,12 @@ export class TankkaartListComponent implements AfterViewInit {
       this.dataSource.data = this.tableData;
       this.dataSource.paginator = this.paging;
       this.dataSource.sort = this.sort;
+      this.dataSource.sortingDataAccessor = (item,property) => {
+        switch (property) {
+          case 'geldigheidsdatum': return new Date(item.geldigheidsDatum);
+          default: return item[property];
+        }
+      };
     });
 
     // haalt de entiteit voor modificatie van de tabel binnen en kijkt welke bewerking op de tabel dient te worden uitgevoerd.

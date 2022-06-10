@@ -22,12 +22,13 @@
             <mat-label>kaartnummer</mat-label>
             <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="kaartnummer">
             <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('required')">Veld is vereist</mat-error>
+            <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('pattern')">Kaartnummer moet 15-21 lang zijn en bevat volgende characters 0-9, a-z en/of A-Z</mat-error>
           </mat-form-field>
         </div>
         <div class="field">
           <mat-form-field  appearance="fill"  class="datepickerMat">
             <mat-label>geldigheidsdatum</mat-label>
-            <input [ngClass]="viewOnly" matInput [matDatepicker]="picker" [readonly]="!modifiable" formControlName="geldigheidsdatum">
+            <input [ngClass]="viewOnly" matInput [matDatepicker]="picker" [min]="minDate" [readonly]="!modifiable" formControlName="geldigheidsdatum">
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker [disabled]="!modifiable"></mat-datepicker>
@@ -41,7 +42,8 @@
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-hint>Default: 9999</mat-hint>
+            <mat-hint>4 cijferige code, default 9999</mat-hint>
+            <mat-error *ngIf="tankkaartForm.get('pincode')?.hasError('pattern')">De Pincode bestaat uit 4 cijfers</mat-error>
           </mat-form-field>
         </div>
         <div class="field">

@@ -107,6 +107,10 @@ export class TankkaartDetailDialogComponent implements OnInit {
     typeBrandstof: ""
   };
 
+  /**
+   * Min Date for geldigheidsdatum datePicker (will be set to today)
+   */
+  minDate: Date = new Date();
 
   /**
    * Behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
@@ -115,9 +119,9 @@ export class TankkaartDetailDialogComponent implements OnInit {
    * [CreateObjectToSend] {@link CreateObjectToSend()}
    */
   tankkaartForm = new FormGroup({
-    kaartnummer: new FormControl('',[Validators.required]),
+    kaartnummer: new FormControl('',[Validators.required, Validators.pattern("[0-9a-zA-Z]{15,21}")]),
     geldigheidsdatum: new FormControl('',[Validators.required]),
-    pincode: new FormControl('',),
+    pincode: new FormControl('',[Validators.pattern("[0-9]{4}")]),
     isGeblokkeerd: new FormControl(false,[Validators.required]),
     typeBrandstof: new FormControl('',),
   });
@@ -402,6 +406,8 @@ export class TankkaartDetailDialogComponent implements OnInit {
         }
       })
     }
+
+    console.log(fuelcard);
 
     return fuelcard;
   }
