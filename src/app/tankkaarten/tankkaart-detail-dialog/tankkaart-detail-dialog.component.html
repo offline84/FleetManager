@@ -39,12 +39,11 @@
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>pincode</mat-label>
-            <input [ngClass]="viewOnly" matInput [type]="hide ? 'password' : 'text'" [readonly]="!modifiable" formControlName="pincode">
+            <input [ngClass]="viewOnly" matInput [type]="hide ? 'password' : 'text'" pattern="[0-9]*" [readonly]="!modifiable" formControlName="pincode">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-hint>Default: 9999</mat-hint>
-            <mat-error *ngIf="tankkaartForm.get('pincode')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
         </div>
         <div class="field">

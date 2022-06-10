@@ -65,7 +65,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     // Indien ja, patchen we deze in de form.
     if(this.tankkaart){
       this.patchObjectToForm(this.tankkaart);
-    };
+    }
 
     // zet de mode waarin de dialog zich op dit moment bevindt. de mogelijkheden zijn: boolean modifialbe.
     //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
@@ -251,7 +251,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     if(!this.tankkaartForm.controls["pincode"].value){
       this.tankkaartForm.controls["pincode"].setValue(9999);
     } else {
-      fuelcard.pincode = this.tankkaartForm.controls["pincode"].value;
+      fuelcard.pincode = parseInt(this.tankkaartForm.controls["pincode"].value, 10) ;
     }
 
     if(!this.tankkaartForm.controls["typeBrandstof"].value) {
