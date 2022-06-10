@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DatastreamService} from '../../datastream.service';
 import {TankkaartDetailDialogComponent} from "../tankkaart-detail-dialog/tankkaart-detail-dialog.component";
 import {DataExchangeService} from "../../data-exchange.service";
-import {VoertuigDetailDialogComponent} from "../../voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component";
 
 @Component({
   selector: 'app-tankkaart',

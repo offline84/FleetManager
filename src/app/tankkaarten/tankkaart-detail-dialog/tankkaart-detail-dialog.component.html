@@ -17,9 +17,7 @@
 </div>
 <div mat-dialog-content>
   <div [formGroup]="tankkaartForm">
-
     <div class="form-block">
-      <h3> identificatie</h3>
       <div class="formsection">
         <div class="field">
           <mat-form-field  appearance="fill">
@@ -37,13 +35,25 @@
             <mat-datepicker #picker></mat-datepicker>
             <mat-error *ngIf="tankkaartForm.get('geldigheidsdatum')?.hasError('required')">Veld is vereist</mat-error>
           </mat-form-field>
-
         </div>
         <div class="field">
           <mat-form-field  appearance="fill">
             <mat-label>pincode</mat-label>
-            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="pincode">
+            <input [ngClass]="viewOnly" matInput type="number" [readonly]="!modifiable" formControlName="pincode">
             <mat-error *ngIf="tankkaartForm.get('pincode')?.hasError('required')">Veld is vereist</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-checkbox color="primary" formControlName="isGeblokkeerd" [disabled]="!modifiable || forCreation">
+            Geblokeerd
+          </mat-checkbox>
+        </div>
+        <div class="field">
+          <mat-form-field appearance="fill">
+            <mat-label>Brandstoffen</mat-label>
+            <mat-select placeholder="brandstoffen" [disabled]="!modifiable" formControlName="typeBrandstof" multiple>
+              <mat-option *ngFor="let brand of KeuzeBrandstoffen" value="{{brand.typeBrandstof}}">{{brand.typeBrandstof}}</mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
       </div>

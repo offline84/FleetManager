@@ -7,6 +7,8 @@ import {ITankkaart} from "../../objects/iTankkaart";
 import { DataExchangeService } from '../../data-exchange.service';
 import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
 import {TankkaartDeleteConfirmationSheetComponent} from "../tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component";
+import {IBrandstof} from "../../objects/IBrandstof";
+import {Brandstof} from "../../objects/brandstof";
 
 @Component({
   selector: 'app-tankkaart-detail-dialog',
@@ -25,8 +27,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
   viewOnly!: string;
   tankkaart = new Tankkaart();
 
-  brandstoffen: any;
-  //mogelijkebrandstoffen: any;
+  KeuzeBrandstoffen: any;
   unlinkedBestuurders: any;
   bestuurderLink: any = null;
 
@@ -35,20 +36,15 @@ export class TankkaartDetailDialogComponent implements OnInit {
     typeBrandstof: ""
   };
 
-  /*mogelijkebrandstof={
-    brandstof:{
-      id: "",
-      typeBrandstof: ""
-    }
-  };*/
-
 
   // deze Formgroep behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
   // de benodigde properties weer te geven. Later worden deze terug omgezet in objecten. zie function: CreateObjectToSend
   tankkaartForm = new FormGroup({
     kaartnummer: new FormControl('',[Validators.required]),
-    geldigheidsdatum: new FormControl('',[Validators.required]),
-    pincode: new FormControl('',[Validators.required])
+    geldigheidsdatum: new FormControl(new Date().toISOString().slice(0,-5),[Validators.required]),
+    pincode: new FormControl('',[Validators.min(0)]),
+    isGeblokkeerd: new FormControl(false,[Validators.required]),
+    typeBrandstof: new FormControl('',),
   });
 
   constructor(private datastream: DatastreamService,
@@ -73,7 +69,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     this.IsModifiable(this.modifiable);
 
     this.datastream.GetFuels().subscribe((data: any) => {
-      this.brandstoffen = data;
+      this.KeuzeBrandstoffen = data;
     });
 
     // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
@@ -237,6 +233,17 @@ export class TankkaartDetailDialogComponent implements OnInit {
   patchObjectToForm = (entity: Tankkaart) =>{
     this.tankkaartForm.patchValue(this.tankkaart);
     this.tankkaartForm.controls["geldigheidsdatum"].setValue(entity.geldigheidsDatum.toString());
+    if (this.tankkaart.mogelijkeBrandstoffen != null) {
+      let lijstBrandstoffen: string[] = [];
+      this.tankkaart.mogelijkeBrandstoffen.forEach((mb: any ) => {
+        if (mb.brandstof.typeBrandstof != null) {
+          lijstBrandstoffen.push(mb.brandstof.typeBrandstof );
+        }
+        this.tankkaartForm.controls["typeBrandstof"].setValue(lijstBrandstoffen);
+      });
+    }
+
+
     //this.tankkaartForm.controls["typeBrandstof"].setValue(this.voertuig.brandstof.typeBrandstof);
   }
 
@@ -245,18 +252,23 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
     // Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden.
     //Niet nodig.
-    // if(!this.tankkaartForm.controls["kaartnummer"].value){
-    //   this.tankkaartForm.controls["kaartnummer"].setValue("");
-    // }
-    //
-    // if(!this.tankkaartForm.controls["pincode"].value){
-    //   this.tankkaartForm.controls["pincode"].setValue(0);
-    // }
+    if(!this.tankkaartForm.controls["typeBrandstof"].value){
+      this.tankkaartForm.controls["typeBrandstof"].setValue("");
+    }
 
     fuelcard.kaartnummer = this.tankkaartForm.controls["kaartnummer"].value;
     fuelcard.geldigheidsDatum = this.tankkaartForm.controls["geldigheidsdatum"].value;
-    fuelcard.geldigheidsDatum = fuelcard.geldigheidsDatum;
     fuelcard.pincode = this.tankkaartForm.controls["pincode"].value;
+    fuelcard.isGeblokkeerd = this.tankkaartForm.controls["isGeblokkeerd"].value;
+    this.tankkaartForm.controls["typeBrandstof"].value.forEach((typeBrandstof: any) => {
+      let brandstof = this.KeuzeBrandstoffen.find((brandstof: any) => brandstof.typeBrandstof == typeBrandstof);
+      if (brandstof) {
+        let geselecteerdeBrandstof = new Brandstof();
+        geselecteerdeBrandstof.brandstof.id = brandstof.id;
+        geselecteerdeBrandstof.brandstof.typeBrandstof = brandstof.typeBrandstof;
+        fuelcard.mogelijkeBrandstoffen.push(geselecteerdeBrandstof);
+      }
+    })
 
     //vehicle.brandstof = this.brandstoffen.find((v: any) => v.typeBrandstof == this.voertuigForm.controls["typeBrandstof"].value);
 
