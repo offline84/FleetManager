@@ -9,7 +9,6 @@
 }
 
 .field {
-
   padding: 1em 1em 1em;
 }
 
@@ -61,4 +60,9 @@ h3 {
 }
 .link-bestuurder {
   width: 100%;
+}
+
+.link {
+  background-color: #707fcc !important;
+  color:#707fcc !important;
 }
