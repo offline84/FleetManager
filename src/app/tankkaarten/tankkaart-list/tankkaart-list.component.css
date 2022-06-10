@@ -1,5 +1,6 @@
 .table {
-  width: 100%;
+  width: 99.5%;
+  padding-left: 0.5em;
 }
 
 .mat-row .mat-cell {
@@ -19,10 +20,6 @@
   border-color: currentColor;
 }
 
-.row-is-selected{
-  background: #283593;
-}
-
 .clearfix::after {
   content: "";
   clear: both;
@@ -30,5 +27,6 @@
 }
 
 #searchbar{
-  float: right;
+  float: right
 }
+

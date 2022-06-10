@@ -75,11 +75,26 @@ export class DatastreamService {
     return this.http.get(this.connectionstring +"tankkaart/active");
   }
 
+  GetSingleFuelCard = (tankkaartId: string) => {
+    return this.http.get(this.connectionstring +"tankkaart/" + tankkaartId);
+  }
+
   PostFuelCard = (tankkaart: any) => {
     return this.http.post(this.connectionstring + "tankkaart", tankkaart).pipe(catchError(this.handleError));
   }
 
   //#endregion Tankkaarten
+
+  UpdateFuelCard  = (tankkaart: any) => {
+    return this.http.patch(this.connectionstring + "tankkaart/update", tankkaart).pipe(catchError(this.handleError));
+  }
+
+  DeleteFuelCard  = (tankkaartId: string) =>{
+    return this.http.delete(this.connectionstring +"tankkaart/delete/" + tankkaartId);
+  }
+
+  //#endregion Tankkaarten
+
 
   //#region Koppelingen
 
@@ -89,6 +104,14 @@ export class DatastreamService {
 
   LinkVehicle = ( idNumber: string, vehicleId: string) => {
     return this.http.get(this.connectionstring + "voertuig/koppel/" + idNumber + "/" + vehicleId).pipe(catchError(this.handleError));
+  }
+
+  UnlinkFuelCard = (tankkaartId: string) => {
+    return this.http.get(this.connectionstring + "tankkaart/koppellos/" + tankkaartId).pipe(catchError(this.handleError));
+  }
+
+  LinkFuelCard = ( idNumber: string, tankkaartId: string) => {
+    return this.http.get(this.connectionstring + "tankkaart/koppel/" + idNumber + "/" + tankkaartId).pipe(catchError(this.handleError));
   }
 
   //#endregion Koppelingen
