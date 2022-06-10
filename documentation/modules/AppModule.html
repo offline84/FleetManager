@@ -420,7 +420,8 @@ const appRoutes: Routes &#x3D; [
   ],
   exports: [],
   providers: [
-    {provide: &quot;API_Url&quot;, useValue: &quot;https://localhost:5001/api/&quot;}
+    {provide: &quot;API_Url&quot;, useValue: &quot;https://localhost:5001/api/&quot;},
+    {provide: &quot;Adres_API_Url&quot;, useValue: &quot;https://api.basisregisters.vlaanderen.be/v1&quot;}
   ],
   bootstrap: [Home],
 })
