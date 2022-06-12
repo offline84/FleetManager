@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import {Routes, RouterModule} from "@angular/router";
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { Home } from './app.home';
 import { VoertuigComponent } from './voertuigen/voertuig/voertuig.component';
@@ -19,8 +20,10 @@ import { BestuurderDetailDialogComponent } from './bestuurders/bestuurder-detail
 import { TankkaartComponent } from './tankkaarten/tankkaart/tankkaart.component';
 import { HomeComponent } from './home/home.component';
 import { TankkaartListComponent } from './tankkaarten/tankkaart-list/tankkaart-list.component';
-import { TankkaartDetailDialogComponent } from './tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component'
 import {  MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { TankkaartDetailDialogComponent } from './tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component';
+import { DeleteConfirmationSheetComponent } from './voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component';
+import { TankkaartDeleteConfirmationSheetComponent } from './tankkaarten/tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -43,7 +46,9 @@ const appRoutes: Routes = [
     TankkaartComponent,
     HomeComponent,
     TankkaartListComponent,
-    TankkaartDetailDialogComponent
+    TankkaartDetailDialogComponent,
+    DeleteConfirmationSheetComponent,
+    TankkaartDeleteConfirmationSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -54,12 +59,14 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+
   ],
   exports: [],
   providers: [
     {provide: "API_Url", useValue: "https://localhost:5001/api/"},
-    { provide: MAT_DATE_LOCALE, useValue: 'fr' },
+    {provide: "Adres_API_Url", useValue: "https://api.basisregisters.vlaanderen.be/v1"},
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [Home],
 })

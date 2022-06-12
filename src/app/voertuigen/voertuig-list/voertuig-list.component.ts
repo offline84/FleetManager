@@ -74,6 +74,11 @@ export class VoertuigListComponent implements AfterViewInit{
                 this.tableData.splice(index, 1);
               }
             }
+            if(data.action == "view"){
+              if(data.value){
+                this.ViewDetails(data.value);
+              }
+            }
 
             this.dataSource.data = this.tableData;
           }
@@ -81,7 +86,6 @@ export class VoertuigListComponent implements AfterViewInit{
       }
     });
   }
-
 
   //behandelt de algemene filtering komend van de searchbar;
   FilterDataHandler(filter: any): void {
@@ -116,4 +120,10 @@ export class VoertuigListComponent implements AfterViewInit{
       }
     });
   }
+
+
+
+
 }
+
+
