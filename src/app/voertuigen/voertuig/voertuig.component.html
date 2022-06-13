@@ -1,9 +1,10 @@
-<div>
-  <div>
-    <h2>Voertuigen</h2>
+<div class="form-block">
+  <button mat-raised-button id="add-button" (click)="AddNewEntityDialog()">
+    <mat-icon>add</mat-icon>VOERTUIG TOEVOEGEN
+  </button>
+  <div class="formsection">
+    <div class="field">
+      <app-voertuig-list [columnsToDisplay]="properties"></app-voertuig-list>
+    </div>
   </div>
 </div>
-
-<button mat-raised-button color="primary" id="add-button" (click)="AddNewEntityDialog()"><mat-icon>add_circle</mat-icon> nieuw voertuig</button>
-
-<app-voertuig-list [columnsToDisplay]="properties"></app-voertuig-list>

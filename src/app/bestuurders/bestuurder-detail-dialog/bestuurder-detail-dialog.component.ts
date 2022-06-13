@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Bestuurder } from '../../objects/bestuurder';
 import { DataExchangeService } from '../../data-exchange.service';
 import { Adres } from 'src/app/objects/adres';
-import { map, Observable, startWith, switchMap } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import { IBestuurder } from 'src/app/objects/iBestuurder';
 import { Rijbewijs } from 'src/app/objects/rijbewijs';
 import { ToewijzingRijbewijs } from 'src/app/objects/toewijzingRijbewijs';

@@ -1,22 +1,7 @@
-/* .table {
-  width: 99.5%;
-  padding-left: 0.5em;
-} */
 
-/* .mat-row .mat-cell {
-    border-top: 1px solid transparent;
-    text-align: left !important;
-    padding: 2px; */
-/* width: 10%; */
-/* cursor: pointer; */
-/* } */
-/* .mat-table {
-  text-align: center;
-} */
-
-/* .mat-cell {
-  vertical-align: middle;
-} */
+table {
+  width: 100%;
+}
 
 .mat-header-cell {
   width: 10%;
@@ -38,31 +23,6 @@ button {
   background-color: #1661EB;
   color: #ffffff;
 }
-
-/* .mat-paginator-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0px 0px !important;
-  flex-wrap: wrap-reverse;
-  width: 100%;
-} */
-
-/* mat-toolbar {
-  background-color: #1661EB;
-  color: #ffffff;
-} */
-
-
-table {
-  width: 100%;
-}
-
-
-/* .mat-form-field {
-  font-size: 14px;
-  width: 100%;
-} */
 
 .container {
   width: 100%;

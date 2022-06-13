@@ -1,9 +1,11 @@
-<div>
-  <div>
-    <h2>Tankkaarten</h2>
+
+  <div class="form-block">
+    <button mat-raised-button id="add-button" (click)="AddNewEntityDialog()">
+      <mat-icon>add</mat-icon>TANKKAART TOEVOEGEN
+    </button>
+  <div class="formsection">
+    <div class="field">
+      <app-tankkaart-list [columnsToDisplay]="properties"></app-tankkaart-list>
+    </div>
   </div>
 </div>
-
-<button mat-raised-button color="primary" id="add-button" (click)="AddNewEntityDialog()"><mat-icon>add_circle</mat-icon> Nieuwe Tankkaart</button>
-
-<app-tankkaart-list [columnsToDisplay]="properties"></app-tankkaart-list >

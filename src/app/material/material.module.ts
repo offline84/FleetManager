@@ -53,7 +53,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatSelectModule,
     MatAutocompleteModule,
     MatDatepickerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
     MatToolbarModule
   ]
 })

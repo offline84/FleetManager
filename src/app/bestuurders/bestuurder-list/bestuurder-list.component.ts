@@ -33,7 +33,7 @@ export class BestuurderListComponent implements AfterViewInit {
     this.datastream.GetDriverLicences().subscribe((licences: any) => {
       this.driverLicenses = licences;
 
-      this.datastream.GetDrivers().subscribe((bestuurders: any) => {
+      this.datastream.GetAllDrivers().subscribe((bestuurders: any) => {
         let listDrivers: Array<any> = [];
         if (bestuurders) {
           bestuurders.forEach((bestuurder: any) => {
@@ -58,6 +58,8 @@ export class BestuurderListComponent implements AfterViewInit {
     this.dataSource.sortingDataAccessor = (entity, property) => {
       switch (property) {
         case 'rijbewijs': return entity.rijbewijs.typeRijbewijs;
+        case 'geboorteDatum': return entity.geboorteDatum;
+
         default: return entity[property];
       }
     };

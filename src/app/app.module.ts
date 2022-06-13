@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import {Routes, RouterModule} from "@angular/router";
-import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { Home } from './app.home';
 import { VoertuigComponent } from './voertuigen/voertuig/voertuig.component';
