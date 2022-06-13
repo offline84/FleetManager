@@ -118,8 +118,6 @@
           </mat-select>
           <button mat-raised-button *ngIf="bestuurder.koppeling.chassisnummer" type="text"
           (click)="OpenVoertuigenDetails()">{{voertuigLink.chassisnummer}}</button>
-          <input matInput *ngIf="bestuurder.koppeling.chassisnummer" type="text" value="{{voertuigLink.chassisnummer}}"
-            [readonly]="viewOnly" (click)="OpenVoertuigenDetails()">
         </mat-form-field>
         <button mat-raised-button class="button-link-field formbuttons" (click)="linkUnlinkVoertuig()"
           *ngIf="!modifiable">
