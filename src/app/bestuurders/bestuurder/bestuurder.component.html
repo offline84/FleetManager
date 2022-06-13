@@ -1,1 +1,10 @@
-<p>bestuurder works!</p>
+<div class="form-block">
+    <button mat-raised-button id="add-button" (click)="AddNewEntityDialog()">
+      <mat-icon>add</mat-icon>BESTUURDER TOEVOEGEN
+    </button>
+  <div class="formsection">
+    <div class="field">
+      <app-bestuurder-list [columnsToDisplay]="properties"></app-bestuurder-list>
+    </div>
+  </div>
+</div>

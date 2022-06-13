@@ -1,9 +1,10 @@
 <div>
-  <h1>Here comes the header header</h1>
-  <ul>
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/voertuigen">Voertuigen</a>
-    <li><a routerLink="/tankkaarten">Tankkaarten</a></li>
-    <li><a routerLink="/bestuurders">Bestuurders</a></li>
-  </ul>
+  <mat-toolbar>FLEET MANAGEMENT</mat-toolbar>
+
+ <div mat-fields>
+    <!-- <a routerLink="/"><button mat-raised-button >HOME</button></a> -->
+    <a routerLink="/bestuurders" routerLinkActive="active"><button mat-raised-button >BESTUURDERS</button></a>
+    <a routerLink="/voertuigen" routerLinkActive="active"><button mat-raised-button >VOERTUIGEN</button></a>
+    <a routerLink="/tankkaarten" routerLinkActive="active"><button mat-raised-button >TANKKAARTEN</button></a>
+  </div>
 </div>

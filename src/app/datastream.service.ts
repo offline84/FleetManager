@@ -46,7 +46,7 @@ export class DatastreamService {
    * @returns Voertuigen[]
    */
   GetAllVehicles = () => {
-    return this.http.get(this.connectionstring +"voertuig/active");
+    return this.http.get(this.connectionstring + "voertuig/active");
   }
 
   /**
@@ -55,7 +55,7 @@ export class DatastreamService {
    * @returns Voertuig
    */
   GetSingleVehicle = (vehicleId: string) => {
-    return this.http.get(this.connectionstring +"voertuig/" + vehicleId);
+    return this.http.get(this.connectionstring + "voertuig/" + vehicleId);
   }
 
   /**
@@ -63,7 +63,7 @@ export class DatastreamService {
    * @returns Statussen[]
    */
   GetStatusses = () => {
-    return this.http.get(this.connectionstring +"voertuig/statusses");
+    return this.http.get(this.connectionstring + "voertuig/statusses");
   }
 
   /**
@@ -113,32 +113,48 @@ export class DatastreamService {
   //#endregion Voertuigen
 
   //#region Bestuurders
-  GetAllBestuurders = () => {
-    return this.http.get(this.connectionstring + "bestuurder/activeBestuurder");
+  GetAllDrivers = () => {
+    return this.http.get(this.connectionstring + "bestuurder/active");
+  }
+
+  GetDriverLicences = () => {
+    return this.http.get(this.connectionstring + "bestuurder/rijbewijzen");
+  }
+
+  GetSingleDriver = (rijksregisternummer: string) => {
+    return this.http.get(this.connectionstring + "bestuurder/" + rijksregisternummer);
+  }
+
+  PostDriver = (bestuurder: any) => {
+    return this.http.post(this.connectionstring + "bestuurder", bestuurder).pipe(catchError(this.handleError));
+  }
+
+  UpdateDriver = (bestuurder: any) => {
+    return this.http.patch(this.connectionstring + "bestuurder/update", bestuurder).pipe(catchError(this.handleError));
   }
   //#endregion Bestuurders
+
   //#region Tankkaarten
 
   GetAllFuelCards = () => {
-    return this.http.get(this.connectionstring +"tankkaart/active");
+    return this.http.get(this.connectionstring + "tankkaart/active");
   }
 
   GetSingleFuelCard = (tankkaartId: string) => {
-    return this.http.get(this.connectionstring +"tankkaart/" + tankkaartId);
+    return this.http.get(this.connectionstring + "tankkaart/" + tankkaartId);
   }
 
   PostFuelCard = (tankkaart: any) => {
     return this.http.post(this.connectionstring + "tankkaart", tankkaart).pipe(catchError(this.handleError));
   }
 
-  //#endregion Tankkaarten
 
   UpdateFuelCard  = (tankkaart: any) => {
     return this.http.patch(this.connectionstring + "tankkaart/update", tankkaart).pipe(catchError(this.handleError));
   }
 
-  DeleteFuelCard  = (tankkaartId: string) =>{
-    return this.http.delete(this.connectionstring +"tankkaart/delete/" + tankkaartId);
+  DeleteFuelCard = (tankkaartId: string) => {
+    return this.http.delete(this.connectionstring + "tankkaart/delete/" + tankkaartId);
   }
 
   //#endregion Tankkaarten

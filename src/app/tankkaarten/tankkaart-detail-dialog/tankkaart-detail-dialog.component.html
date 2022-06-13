@@ -1,97 +1,105 @@
 <div mat-dialog-content>
-  <div mat-dialog-title class="title">
-    <h2 *ngIf="forCreation">Tankkaart toevoegen</h2>
-    <h2 *ngIf="!modifiable">Tankkaart details</h2>
-    <h2 *ngIf="modifiable && !forCreation">Tankkaart Updaten</h2>
-  </div>
-  <div *ngIf="!modifiable">
-    <div class="formbuttons-top">
-      <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>edit</mat-icon></button>
-    </div>
-    <div class="formbuttons-top">
-      <button mat-mini-fab color="warning" type="button" (click)="openDeleteScreen()"><mat-icon>delete</mat-icon></button>
-    </div>
-    <div class="clearfix">
-    </div>
+  <div mat-dialog-title>
+    <mat-toolbar>
+      <h2 *ngIf="forCreation">Tankkaart toevoegen</h2>
+      <h2 *ngIf="!modifiable">Tankkaart details</h2>
+      <h2 *ngIf="modifiable && !forCreation">Tankkaart Updaten</h2>
+    </mat-toolbar>
   </div>
 </div>
 <div mat-dialog-content>
   <div [formGroup]="tankkaartForm">
-        <div class="field">
-          <mat-form-field  appearance="fill">
-            <mat-label>kaartnummer</mat-label>
-            <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="kaartnummer">
-            <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('required')">Veld is vereist</mat-error>
-            <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('pattern')">Kaartnummer moet 15-21 lang zijn en bevat volgende characters 0-9, a-z en/of A-Z</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="field">
-          <mat-form-field  appearance="fill"  class="datepickerMat">
-            <mat-label>geldigheidsdatum</mat-label>
-            <input [ngClass]="viewOnly" matInput [matDatepicker]="picker" [min]="minDate" [readonly]="!modifiable" formControlName="geldigheidsdatum">
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker [disabled]="!modifiable"></mat-datepicker>
-            <mat-error *ngIf="tankkaartForm.get('geldigheidsdatum')?.hasError('required')">Veld is vereist</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="field">
-          <mat-form-field  appearance="fill">
-            <mat-label>pincode</mat-label>
-            <input [ngClass]="viewOnly" matInput [type]="hide ? 'password' : 'text'" pattern="[0-9]*" [readonly]="!modifiable" formControlName="pincode">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-hint>4 cijferige code, default 9999</mat-hint>
-            <mat-error *ngIf="tankkaartForm.get('pincode')?.hasError('pattern')">De Pincode bestaat uit 4 cijfers</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="field">
-          <mat-form-field appearance="fill">
-            <mat-label>Brandstoffen</mat-label>
-            <mat-select placeholder="brandstoffen" [disabled]="!modifiable" formControlName="typeBrandstof" multiple>
-              <mat-option *ngFor="let brand of KeuzeBrandstoffen" value="{{brand.typeBrandstof}}">{{brand.typeBrandstof}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="field">
-          <mat-checkbox color="primary" formControlName="isGeblokkeerd" [disabled]="!modifiable || forCreation">
-            Geblokeerd
-          </mat-checkbox>
-        </div>
-
-    <div class="clearfix">
+    <div class="field">
+      <mat-form-field appearance="fill">
+        <mat-label>kaartnummer</mat-label>
+        <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="kaartnummer">
+        <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('required')">Veld is vereist</mat-error>
+        <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('pattern')">Kaartnummer moet 15-21 lang zijn en
+          bevat volgende characters 0-9, a-z en/of A-Z</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="datepickerMat">
+        <mat-label>geldigheidsdatum</mat-label>
+        <input [ngClass]="viewOnly" matInput [matDatepicker]="picker" [min]="minDate" [readonly]="!modifiable"
+          formControlName="geldigheidsdatum">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker [disabled]="!modifiable"></mat-datepicker>
+        <mat-error *ngIf="tankkaartForm.get('geldigheidsdatum')?.hasError('required')">Veld is vereist</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>pincode</mat-label>
+        <input [ngClass]="viewOnly" matInput [type]="hide ? 'password' : 'text'" pattern="[0-9]*"
+          [readonly]="!modifiable" formControlName="pincode">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-hint>4 cijferige code, default 9999</mat-hint>
+        <mat-error *ngIf="tankkaartForm.get('pincode')?.hasError('pattern')">De Pincode bestaat uit 4 cijfers
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Brandstoffen</mat-label>
+        <mat-select placeholder="brandstoffen" [disabled]="!modifiable" formControlName="typeBrandstof" multiple>
+          <mat-option *ngFor="let brand of KeuzeBrandstoffen" value="{{brand.typeBrandstof}}">{{brand.typeBrandstof}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <div *ngIf="modifiable && !tankkaart" class="formbuttons">
-      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!tankkaartForm.valid">Submit</button>
-    </div>
-    <div *ngIf="modifiable && !forCreation" class="formbuttons">
-      <button mat-raised-button color="primary" type="submit" (click)="onSave()" [disabled]="!tankkaartForm.valid">Save<span class="spacer"></span><mat-icon>save</mat-icon></button>
-    </div>
-    <div>
-      <div *ngIf="!modifiable" class="formbuttons">
-        <button mat-raised-button type="button" (click)="linkUnlinkDriver()">
-          <mat-icon *ngIf="!tankkaart.koppeling">link</mat-icon>
-          <mat-icon *ngIf="tankkaart.koppeling">link_off</mat-icon>
-          <span class="spacer"></span> Bestuurder</button>
-      </div>
-      <div class="formbuttons koppel field" *ngIf="viewOnly">
-        <mat-form-field class="link-bestuurder" appearance="fill">
-          <mat-select *ngIf="!tankkaart.koppeling" (selectionChange)="onSelectionChange($event.value)">
-            <mat-option value = null></mat-option>
-            <mat-option *ngFor="let bestuurder of unlinkedBestuurders" value={{bestuurder.rijksregisternummer}}>{{bestuurder.naam}} {{bestuurder.achternaam}}</mat-option>
-          </mat-select>
-          <input matInput *ngIf="tankkaart.koppeling" type="text"
-                 value="{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}"
-                 [readonly]="viewOnly"
-                 (click)="OpenBestuurdersDetails()">
-        </mat-form-field>
-      </div>
-
+    <div class="field">
+      <mat-checkbox formControlName="isGeblokkeerd" [disabled]="!modifiable || forCreation">
+        Geblokeerd
+      </mat-checkbox>
     </div>
     <div class="clearfix">
     </div>
-
+    <div *ngIf="modifiable && !tankkaart" class="formbuttons buttons-submit">
+      <button mat-raised-button class="button-submit button-color" type="submit" (click)="onSubmit()" [disabled]="!tankkaartForm.valid">Submit</button>
+    </div>
+    <div *ngIf="!modifiable">
+      <div class="formbuttons buttons-submit">
+        <button mat-raised-button class="button-submit button-color" type="button" (click)="openUpdateScreen()">Edit
+          <span class="spacer"></span>
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-raised-button class="button-submit" color="warn" type="button" (click)="openDeleteScreen()">Delete
+          <span class="spacer"></span>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="field link-section" *ngIf="viewOnly">
+      <br>
+      <br>
+      <h2>Koppelingen</h2>
+      <hr>
+      <br>
+      <mat-form-field class="link-field" appearance="fill">
+        <mat-label>Bestuurder</mat-label>
+        <mat-select *ngIf="!tankkaart.koppeling" (selectionChange)="onSelectionChange($event.value)">
+          <mat-option value=null></mat-option>
+          <mat-option *ngFor="let bestuurder of unlinkedBestuurders" value={{bestuurder.rijksregisternummer}}>
+            {{bestuurder.naam}} {{bestuurder.achternaam}}</mat-option>
+        </mat-select>
+        <button mat-raised-button *ngIf="tankkaart.koppeling" type="text"
+          (click)="OpenBestuurdersDetails()">{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}</button>
+      </mat-form-field>
+      <button mat-raised-button class="button-link-field formbuttons" (click)="linkUnlinkDriver()">
+        <mat-icon *ngIf="!tankkaart.koppeling">link</mat-icon>
+        <mat-icon *ngIf="tankkaart.koppeling">link_off</mat-icon>
+        <span class="spacer"></span> Bestuurder
+      </button>
+    </div>
+    <div class="clearfix">
+    </div>
+    <div *ngIf="modifiable && !forCreation" class="formbuttons buttons-submit">
+      <button mat-raised-button class="button-submit button-color" (click)="onSave()" [disabled]="!tankkaartForm.valid">Save<span
+          class="spacer"></span>
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+    <div class="clearfix">
+    </div>
   </div>
 </div>
 <div>
