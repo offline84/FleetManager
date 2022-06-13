@@ -45,6 +45,7 @@ export class BestuurderListComponent implements AfterViewInit {
               }
             });
             bestuurder.rijbewijzen = this.driverLicenses;
+            console.log(bestuurder.rijbewijzen);
             bestuurder.rijbewijs = dataString.slice(0, -2);
             listDrivers.push(bestuurder);
           });
@@ -78,6 +79,11 @@ export class BestuurderListComponent implements AfterViewInit {
               if (data.value) {
                 let index = this.tableData.findIndex(v => v.rijksregisternummer == data.value.rijksregisternummer);
                 this.tableData.splice(index, 1);
+              }
+            }
+            if(data.action == "view"){
+              if(data.value){
+                this.ViewDetails(data.value);
               }
             }
 
