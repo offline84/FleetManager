@@ -114,7 +114,7 @@ export class DatastreamService {
 
   //#region Bestuurders
   GetAllBestuurders = () => {
-    return this.http.get(this.connectionstring + "bestuurder/activeBestuurder");
+    return this.http.get(this.connectionstring + "bestuurder/active");
   }
   //#endregion Bestuurders
   //#region Tankkaarten
