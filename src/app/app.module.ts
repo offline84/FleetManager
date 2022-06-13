@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import {Routes, RouterModule} from "@angular/router";
-import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { Home } from './app.home';
 import { VoertuigComponent } from './voertuigen/voertuig/voertuig.component';
@@ -15,9 +14,12 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
 import { VoertuigDetailDialogComponent } from './voertuigen/voertuig-detail-dialog/voertuig-detail-dialog.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { BestuurderComponent } from './bestuurders/bestuurder/bestuurder.component';
+import { BestuurderListComponent } from './bestuurders/bestuurder-list/bestuurder-list.component';
+import { BestuurderDetailDialogComponent } from './bestuurders/bestuurder-detail-dialog/bestuurder-detail-dialog.component';
 import { TankkaartComponent } from './tankkaarten/tankkaart/tankkaart.component';
 import { HomeComponent } from './home/home.component';
 import { TankkaartListComponent } from './tankkaarten/tankkaart-list/tankkaart-list.component';
+import {  MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { TankkaartDetailDialogComponent } from './tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component';
 import { DeleteConfirmationSheetComponent } from './voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component';
 import { TankkaartDeleteConfirmationSheetComponent } from './tankkaarten/tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component';
@@ -38,6 +40,8 @@ const appRoutes: Routes = [
     VoertuigDetailDialogComponent,
     NavigationComponent,
     BestuurderComponent,
+    BestuurderDetailDialogComponent,
+    BestuurderListComponent,
     TankkaartComponent,
     HomeComponent,
     TankkaartListComponent,
@@ -53,6 +57,7 @@ const appRoutes: Routes = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    MatNativeDateModule,
     RouterModule.forRoot(appRoutes),
 
   ],

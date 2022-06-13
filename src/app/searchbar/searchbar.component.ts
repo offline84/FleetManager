@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IBestuurder } from '../objects/iBestuurder';
 import { IVoertuig } from '../objects/iVoertuig';
 
 @Component({
@@ -39,8 +40,17 @@ export class SearchbarComponent implements OnInit {
 
     }
     if(this.entity == "bestuurder"){
-
+      this.dataToFilter.filterPredicate = (data: IBestuurder, filter: string) => {
+      const adresString = "";
+      const adres = adresString.concat(data.adres.straat," ",data.adres.huisnummer.toString()," ",data.adres.postcode.toString()," ",data.adres.stad);
+      console.log(adresString);
+        return data.rijksregisternummer.toLocaleLowerCase().includes(filter) ||
+        data.naam.toLocaleLowerCase().includes(filter) ||
+        data.achternaam.toLocaleLowerCase().includes(filter) ||
+        data.geboorteDatum.toString().toLocaleLowerCase().includes(filter) || 
+        adres.toLocaleLowerCase().includes(filter);
     }
+  }
 
     this.passFilteredData.emit(this.dataToFilter.filter = e);
     console.log("query: ", this.search);
