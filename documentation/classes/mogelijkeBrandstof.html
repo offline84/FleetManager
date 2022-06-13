@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >Voertuig</li>
+  <li >mogelijkeBrandstof</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,30 +62,99 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/objects/voertuig.ts</code>
+            <code>src/app/objects/mogelijkeBrandstof.ts</code>
         </p>
 
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Deze klasse wordt voornamelijk gebruikt om op correcte wijze een voertuig aan te maken of te wijzigen, klaar voor verzending naar de back-end.</p>
-<p>Erft over van iVoertuig.</p>
-
-            </p>
 
 
             <p class="comment">
                 <h3>Implements</h3>
             </p>
             <p class="comment">
-                            <code><a href="../interfaces/IVoertuig.html" target="_self" >IVoertuig</a></code>
+                            <code><a href="../interfaces/IMogelijkeBrandstof.html" target="_self" >IMogelijkeBrandstof</a></code>
             </p>
 
 
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#brandstof" >brandstof</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/app/objects/mogelijkeBrandstof.ts:5</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="brandstof"></a>
+                    <span class="name">
+                        <span ><b>brandstof</b></span>
+                        <a href="#brandstof"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Brandstof.html" target="_self" >Brandstof</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/app/objects/mogelijkeBrandstof.ts:5</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
 
 
@@ -97,79 +166,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {IVoertuig} from &quot;./iVoertuig&quot;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {IMogelijkeBrandstof} from &quot;./IMogelijkeBrandstof&quot;;
+import {Brandstof} from &quot;./brandstof&quot;;
 
-/**
- * Deze klasse wordt voornamelijk gebruikt om op correcte wijze een voertuig aan te maken of te wijzigen, klaar voor verzending naar de back-end.
- *
- * Erft over van iVoertuig.
- */
-export class Voertuig implements IVoertuig {
-
-  /**
-   * @ignore
-   */
-  chassisnummer!: string;
-
-  /**
-   * @ignore
-   */
-  merk!: string;
-
-  /**
-   * @ignore
-   */
-  model!: string;
-
-  /**
-   * @ignore
-   */
-  nummerplaat!: string;
-
-  /**
-   * @ignore
-   */
-  bouwjaar!: number;
-
-  /**
-   * @ignore
-   */
-  brandstof!: { id: string; typeBrandstof: string; };
-
-  /**
-   * @ignore
-   */
-  categorie!: { id: string; typeWagen: string; };
-
-  /**
-   * @ignore
-   */
-  kleur!: string;
-
-  /**
-   * @ignore
-   */
-  aantalDeuren!: number;
-
-  /**
-   * @ignore
-   */
-  koppeling!: any;
-
-  /**
-   * @ignore
-   */
-  status!: { id: string; staat: string; };
-
-  /**
-   * @ignore
-   */
-  isGearchiveerd!: boolean;
-
-  /**
-   * @ignore
-   */
-  laatstGeupdate!: Date;
+export class mogelijkeBrandstof implements IMogelijkeBrandstof {
+  brandstof!: Brandstof;
+  constructor() { }
 }
 </code></pre>
     </div>
@@ -209,7 +211,7 @@ export class Voertuig implements IVoertuig {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Voertuig.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'mogelijkeBrandstof.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -41,41 +41,78 @@ export class DatastreamService {
 
   //#region Voertuigen
 
+  /**
+   * Haalt alle niet gearchiveerde voertuigen op uit de database.
+   * @returns Voertuigen[]
+   */
   GetAllVehicles = () => {
     return this.http.get(this.connectionstring + "voertuig/active");
   }
 
+  /**
+   * Haalt een voertuig op uit de database a.d.h.v. het chassisnummer.
+   * @param vehicleId chassisnummer van het voertuig dat men opvragen wil.
+   * @returns Voertuig
+   */
   GetSingleVehicle = (vehicleId: string) => {
     return this.http.get(this.connectionstring + "voertuig/" + vehicleId);
   }
 
+  /**
+   * Haalt alle statussen op uit de database
+   * @returns Statussen[]
+   */
   GetStatusses = () => {
     return this.http.get(this.connectionstring + "voertuig/statusses");
   }
 
+  /**
+   * Haalt alle categorien op uit de database
+   * @returns Categories[]
+   */
   GetCategories = () => {
     return this.http.get(this.connectionstring + "voertuig/categories");
   }
 
+  /**
+   * Haalt alle brandstoffen op uit de database
+   * @returns Brandstoffen[]
+   */
   GetFuels = () => {
     return this.http.get(this.connectionstring + "voertuig/brandstoffen");
   }
 
+  /**
+   * Maakt een nieuw voertuig aan in de database.
+   * @param voertuig object van het type Voertuig
+   * @returns undefined, error
+   */
   PostVehicle = (voertuig: any) => {
     return this.http.post(this.connectionstring + "voertuig", voertuig).pipe(catchError(this.handleError));
   }
 
+  /**
+   * bewerkt een voertuig uit de database. Veranderingen aan het chassisnummer is niet mogelijk.
+   *
+   * @param voertuig object van het type Voertuig
+   * @returns undefined, error
+   */
   UpdateVehicle = (voertuig: any) => {
     return this.http.patch(this.connectionstring + "voertuig/update", voertuig).pipe(catchError(this.handleError));
   }
 
-  DeleteVehicle = (vehicleId: string) => {
-    return this.http.delete(this.connectionstring + "voertuig/" + vehicleId);
+  /**
+   * archiveert een voertuig uit de database. enkel administratoren kunnen deze bewerking ongedaan maken.
+   *
+   * @param vehicleId het chassisnummer van het voertuig
+   * @returns undefined
+   */
+  DeleteVehicle = (vehicleId: string) =>{
+    return this.http.delete(this.connectionstring +"voertuig/" + vehicleId);
   }
   //#endregion Voertuigen
 
   //#region Bestuurders
-
   GetAllDrivers = () => {
     return this.http.get(this.connectionstring + "bestuurder/active");
   }

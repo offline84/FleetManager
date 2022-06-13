@@ -194,7 +194,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -208,6 +208,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -222,6 +223,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>maakt een instantie van het dialoogvenster aan.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>dataService</td>
@@ -234,6 +239,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>injecteert de data exchange service in deze klasse.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>datastream</td>
@@ -246,6 +255,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>injecteert de datastream service in deze klasse.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -274,9 +287,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:17</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Bevat het voertuig dat is aangemaakt.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -308,14 +327,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:56</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Bij initialisatie van dit component wordt de lijst van automerken gegenereerd en gesorteerd.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -349,10 +370,19 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:71</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zorgt voor het openen van een dialoogvenster met de benodigde zaken voor het aanmaken van een nieuw voertuig.
+Eerst wordt het dialoogvenster geconfigureerd,
+daarna wordt de entiteit en de modus, alsook de tabel met automerken meegegeven.
+Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt a.d.h.v. de data exchange service.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -375,10 +405,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:24</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bevat de lijst van automerken die reeds in de database voorkomen.
+deze lijst wordt geïnstantieerd onInit en dient voor de autocomplete bij aanmaak van een nieuw voertuig.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -418,10 +455,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/voertuigen/voertuig/voertuig.component.ts:30</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Geeft al de te gebruiken columns van de tabel weer.
+Wordt gebruikt in de htmlcode voor de aanmaak van de tabel.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -431,7 +475,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit} from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
 import { MatDialog, MatDialogConfig } from &#x27;@angular/material/dialog&#x27;;
 import { DatastreamService } from &#x27;src/app/datastream.service&#x27;;
 import { DataExchangeService } from &#x27;../../data-exchange.service&#x27;;
@@ -444,9 +488,22 @@ import { VoertuigDetailDialogComponent } from &#x27;../voertuig-detail-dialog/vo
 })
 export class VoertuigComponent implements OnInit {
 
+  /**
+   * Bevat het voertuig dat is aangemaakt.
+   */
   @Input() entity: any;
+
+
+  /**
+   * Bevat de lijst van automerken die reeds in de database voorkomen.
+   * deze lijst wordt geïnstantieerd onInit en dient voor de autocomplete bij aanmaak van een nieuw voertuig.
+   */
   merken: any;
 
+  /**
+    * Geeft al de te gebruiken columns van de tabel weer.
+    * Wordt gebruikt in de htmlcode voor de aanmaak van de tabel.
+    */
   properties &#x3D; [
     &quot;chassisnummer&quot;,
     &quot;merk&quot;,
@@ -461,9 +518,18 @@ export class VoertuigComponent implements OnInit {
     &quot;koppeling&quot;
   ];
 
+  /**
+   *
+   * @param datastream injecteert de datastream service in deze klasse.
+   * @param dataService injecteert de data exchange service in deze klasse.
+   * @param dialog maakt een instantie van het dialoogvenster aan.
+   */
   constructor(private dialog: MatDialog, private dataService: DataExchangeService, private datastream: DatastreamService) {
   }
 
+  /**
+   * Bij initialisatie van dit component wordt de lijst van automerken gegenereerd en gesorteerd.
+   */
   ngOnInit(): void {
     this.datastream.GetAllVehicles().subscribe((data: any) &#x3D;&gt; {
 
@@ -473,6 +539,12 @@ export class VoertuigComponent implements OnInit {
     });
   }
 
+  /**
+   * Zorgt voor het openen van een dialoogvenster met de benodigde zaken voor het aanmaken van een nieuw voertuig.
+   * Eerst wordt het dialoogvenster geconfigureerd,
+   * daarna wordt de entiteit en de modus, alsook de tabel met automerken meegegeven.
+   * Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt a.d.h.v. de data exchange service.
+   */
   AddNewEntityDialog &#x3D; () &#x3D;&gt; {
     const config &#x3D; new MatDialogConfig();
 
@@ -488,7 +560,7 @@ export class VoertuigComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
       this.entity &#x3D; result;
-      if(result !&#x3D;&#x3D; undefined) {
+      if (result !&#x3D;&#x3D; undefined) {
         console.log(result);
         this.dataService.sendData(&quot;voertuig&quot;, &quot;add&quot;, this.entity);
       }
@@ -553,7 +625,7 @@ export class VoertuigComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div>  <div>    <h2>Voertuigen</h2>  </div></div><button mat-raised-button color="primary" id="add-button" (click)="AddNewEntityDialog()"><mat-icon>add_circle</mat-icon> nieuw voertuig</button><app-voertuig-list [columnsToDisplay]="properties"></app-voertuig-list></div>'
-    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
+    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'VoertuigComponent'};
 </script>
