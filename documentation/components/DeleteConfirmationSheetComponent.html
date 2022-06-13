@@ -143,12 +143,6 @@
                             <li>
                                 <a href="#entitytype" >entitytype</a>
                             </li>
-                            <li>
-                                <a href="#onCancellation" >onCancellation</a>
-                            </li>
-                            <li>
-                                <a href="#onConfirmationDelete" >onConfirmationDelete</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -162,7 +156,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
+                                <a href="#onCancellation" >onCancellation</a>
+                            </li>
+                            <li>
+                                <a href="#onConfirmationDelete" >onConfirmationDelete</a>
                             </li>
                         </ul>
                     </td>
@@ -187,12 +184,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:27</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>In de constructor wordt de te verwijderen entiteit en het type van deze entiteit uit de binnengekomen data gehaald en opgeslagen in desbetreffende properties.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -201,6 +200,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -215,6 +215,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>injecteert de datastream service in deze klasse.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>dataService</td>
@@ -227,6 +231,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>injecteert de data exchange service in deze klasse.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>voertuigSheetRef</td>
@@ -239,6 +247,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>referentie naar het geopende matbottomsheet in het voertuig detail dialog component</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>data</td>
@@ -251,6 +263,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>de data die wordt meegegeven bij het openen van dit component.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -274,30 +290,72 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
+                    <a name="onCancellation"></a>
                     <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>onCancellation</b></span>
+                        <a href="#onCancellation"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+<code>onCancellation()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:52</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>indien men wenst de entiteit niet te verwijderen wordt de bottom sheet enkel gesloten, zonder verdere acties te ondernemen.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onConfirmationDelete"></a>
+                    <span class="name">
+                        <span ><b>onConfirmationDelete</b></span>
+                        <a href="#onConfirmationDelete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onConfirmationDelete()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:60</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>indien men beslist de entiteit te verwijderen, wordt de entiteit en de eventuele koppeling verwijderd,
+de entiteit wordt uit de tabel verwijderd via de data exchange service en een waarschuwingsbericht wordt weergegeven.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -342,10 +400,15 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:37</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">de data die wordt meegegeven bij het openen van dit component.</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -368,10 +431,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:22</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>de te verwijderen entiteit.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -394,60 +463,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:27</a></div>
                         </td>
                     </tr>
 
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onCancellation"></a>
-                    <span class="name">
-                        <span ><b>onCancellation</b></span>
-                        <a href="#onCancellation"><span class="icon ion-ios-link"></span></a>
-                    </span>
+                    <div class="io-description"><p>het type tot welke deze entiteit behoort, in dit geval &quot;voertuig&quot;</p>
+</div>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:25</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onConfirmationDelete"></a>
-                    <span class="name">
-                        <span ><b>onConfirmationDelete</b></span>
-                        <a href="#onConfirmationDelete"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component.ts:29</a></div>
-                        </td>
-                    </tr>
-
 
         </tbody>
     </table>
@@ -468,24 +493,55 @@ import { VoertuigDetailDialogComponent } from &#x27;../voertuig-detail-dialog/vo
   templateUrl: &#x27;./voertuig-delete-confirmation-sheet.component.html&#x27;,
   styleUrls: [&#x27;./voertuig-delete-confirmation-sheet.component.css&#x27;]
 })
+
+/**
+ * Dit component opent een bottom sheet die waarschuuwt bij de verwijdering van een voertuig dat deze bewerking onomkeerbaar is.
+ * Men kan deze sheet niet sluiten, men dient een keuze te maken, vooraleer verder te gaan.
+ */
 export class DeleteConfirmationSheetComponent implements OnInit {
+
+  /**
+   * de te verwijderen entiteit.
+   */
   entity: any;
+
+  /**
+   * het type tot welke deze entiteit behoort, in dit geval &quot;voertuig&quot;
+   */
   entitytype: string;
 
+  /**
+   * In de constructor wordt de te verwijderen entiteit en het type van deze entiteit uit de binnengekomen data gehaald en opgeslagen in desbetreffende properties.
+   *
+   * @param datastream injecteert de datastream service in deze klasse.
+   * @param dataService injecteert de data exchange service in deze klasse.
+   * @param voertuigSheetRef referentie naar het geopende matbottomsheet in het voertuig detail dialog component
+   * @param data de data die wordt meegegeven bij het openen van dit component.
+   */
   constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private voertuigSheetRef: MatBottomSheetRef&lt;VoertuigDetailDialogComponent&gt;, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any )
   {
     this.entity &#x3D; data.entity;
     this.entitytype &#x3D; data.entitytype;
   }
 
+  /**
+   * @ignore
+   */
   ngOnInit(): void {
   }
 
-  onCancellation &#x3D; () &#x3D;&gt; {
+  /**
+   * indien men wenst de entiteit niet te verwijderen wordt de bottom sheet enkel gesloten, zonder verdere acties te ondernemen.
+   */
+  onCancellation() {
     this.voertuigSheetRef.dismiss(false);
   }
 
-  onConfirmationDelete &#x3D; () &#x3D;&gt; {
+  /**
+   * indien men beslist de entiteit te verwijderen, wordt de entiteit en de eventuele koppeling verwijderd,
+   * de entiteit wordt uit de tabel verwijderd via de data exchange service en een waarschuwingsbericht wordt weergegeven.
+   */
+  onConfirmationDelete() {
     this.datastream.DeleteVehicle(this.entity.chassisnummer).subscribe(null,
       (error) &#x3D;&gt; {
         this.voertuigSheetRef.dismiss(error.message);
@@ -588,7 +644,7 @@ h2 {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div #title>  <h1 mat-title><b>Opgelet!</b></h1></div><div mat-description>  <p *ngIf="entitytype == \'voertuig\'">U staat op het punt om <b>{{entitytype}}</b> met id <b>{{entity.chassisnummer}}</b> te verwijderen.</p>  <p><b>Eens verwijderd kunt U onmogelijk zonder administratorrechten een voertuig aanmaken met hetzelfde Id.</b></p></div><div mat-content>  <h2 *ngIf="entitytype == \'voertuig\'">Bent U zeker Dat U dit {{entitytype}} wilt verwijderen?</h2>  <h2 *ngIf="entitytype != \'voertuig\'">Bent U zeker Dat U deze {{entitytype}} wilt verwijderen?</h2></div><div mat-actions>  <div>    <button mat-actions #affirmative mat-raised-button color="affirmative" (click)="onConfirmationDelete()">Ja</button>  </div>  <div>    <button #negative mat-raised-button color="negative" (click)="onCancellation()">Nee</button>  </div></div></div>'
-    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
+    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DeleteConfirmationSheetComponent'};
 </script>
