@@ -86,6 +86,9 @@
                                 <a href="#connectionstring" >connectionstring</a>
                             </li>
                             <li>
+                                <a href="#DeleteFuelCard" >DeleteFuelCard</a>
+                            </li>
+                            <li>
                                 <a href="#DeleteVehicle" >DeleteVehicle</a>
                             </li>
                             <li>
@@ -107,6 +110,9 @@
                                 <a href="#GetFuels" >GetFuels</a>
                             </li>
                             <li>
+                                <a href="#GetSingleFuelCard" >GetSingleFuelCard</a>
+                            </li>
+                            <li>
                                 <a href="#GetSingleVehicle" >GetSingleVehicle</a>
                             </li>
                             <li>
@@ -114,6 +120,9 @@
                             </li>
                             <li>
                                 <a href="#GetStreetNameByPostalcodeAndQuery" >GetStreetNameByPostalcodeAndQuery</a>
+                            </li>
+                            <li>
+                                <a href="#LinkFuelCard" >LinkFuelCard</a>
                             </li>
                             <li>
                                 <a href="#LinkVehicle" >LinkVehicle</a>
@@ -125,7 +134,13 @@
                                 <a href="#PostVehicle" >PostVehicle</a>
                             </li>
                             <li>
+                                <a href="#UnlinkFuelCard" >UnlinkFuelCard</a>
+                            </li>
+                            <li>
                                 <a href="#UnlinkVehicle" >UnlinkVehicle</a>
+                            </li>
+                            <li>
+                                <a href="#UpdateFuelCard" >UpdateFuelCard</a>
                             </li>
                             <li>
                                 <a href="#UpdateVehicle" >UpdateVehicle</a>
@@ -274,8 +289,8 @@ connectiestring naar de API wil veranderen dient deze ginds aangepast te worden.
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="168"
-                            class="link-to-prism">src/app/datastream.service.ts:168</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">src/app/datastream.service.ts:229</a></div>
                 </td>
             </tr>
 
@@ -427,6 +442,31 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="DeleteFuelCard"></a>
+                    <span class="name">
+                        <span ><b>DeleteFuelCard</b></span>
+                        <a href="#DeleteFuelCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/datastream.service.ts:140</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="DeleteVehicle"></a>
                     <span class="name">
                         <span ><b>DeleteVehicle</b></span>
@@ -441,11 +481,41 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/datastream.service.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/datastream.service.ts:110</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>archiveert een voertuig uit de database. enkel administratoren kunnen deze bewerking ongedaan maken.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>vehicleId</td>
+                                                    <td>
+                                                            <code><p>het chassisnummer van het voertuig</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
@@ -466,7 +536,7 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/datastream.service.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/datastream.service.ts:116</a></div>
                         </td>
                     </tr>
 
@@ -491,7 +561,7 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/datastream.service.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/datastream.service.ts:122</a></div>
                         </td>
                     </tr>
 
@@ -516,10 +586,16 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/datastream.service.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/datastream.service.ts:48</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Haalt alle niet gearchiveerde voertuigen op uit de database.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -541,10 +617,16 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/datastream.service.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/datastream.service.ts:73</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Haalt alle categorien op uit de database</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -566,7 +648,7 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/datastream.service.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/app/datastream.service.ts:188</a></div>
                         </td>
                     </tr>
 
@@ -621,7 +703,38 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/datastream.service.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/datastream.service.ts:81</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Haalt alle brandstoffen op uit de database</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetSingleFuelCard"></a>
+                    <span class="name">
+                        <span ><b>GetSingleFuelCard</b></span>
+                        <a href="#GetSingleFuelCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/datastream.service.ts:126</a></div>
                         </td>
                     </tr>
 
@@ -646,11 +759,41 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/datastream.service.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/datastream.service.ts:57</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Haalt een voertuig op uit de database a.d.h.v. het chassisnummer.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>vehicleId</td>
+                                                    <td>
+                                                            <code><p>chassisnummer van het voertuig dat men opvragen wil.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
@@ -671,10 +814,16 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/datastream.service.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/datastream.service.ts:65</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Haalt alle statussen op uit de database</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -696,7 +845,7 @@ deze Api bevat informatie over adressen, nodig voor autocomplete in de Bestuurde
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/datastream.service.ts:139</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/app/datastream.service.ts:200</a></div>
                         </td>
                     </tr>
 
@@ -745,6 +894,31 @@ De postcode dient steeds meegegeven te worden.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="LinkFuelCard"></a>
+                    <span class="name">
+                        <span ><b>LinkFuelCard</b></span>
+                        <a href="#LinkFuelCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/app/datastream.service.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="LinkVehicle"></a>
                     <span class="name">
                         <span ><b>LinkVehicle</b></span>
@@ -759,7 +933,7 @@ De postcode dient steeds meegegeven te worden.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/datastream.service.ts:113</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/app/datastream.service.ts:166</a></div>
                         </td>
                     </tr>
 
@@ -821,7 +995,7 @@ De postcode dient steeds meegegeven te worden.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/datastream.service.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/datastream.service.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -846,7 +1020,62 @@ De postcode dient steeds meegegeven te worden.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/datastream.service.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/datastream.service.ts:90</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Maakt een nieuw voertuig aan in de database.</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>voertuig</td>
+                                                    <td>
+                                                            <code><p>object van het type Voertuig</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UnlinkFuelCard"></a>
+                    <span class="name">
+                        <span ><b>UnlinkFuelCard</b></span>
+                        <a href="#UnlinkFuelCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/app/datastream.service.ts:170</a></div>
                         </td>
                     </tr>
 
@@ -871,7 +1100,7 @@ De postcode dient steeds meegegeven te worden.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/datastream.service.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/app/datastream.service.ts:155</a></div>
                         </td>
                     </tr>
 
@@ -912,6 +1141,31 @@ De postcode dient steeds meegegeven te worden.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="UpdateFuelCard"></a>
+                    <span class="name">
+                        <span ><b>UpdateFuelCard</b></span>
+                        <a href="#UpdateFuelCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/datastream.service.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="UpdateVehicle"></a>
                     <span class="name">
                         <span ><b>UpdateVehicle</b></span>
@@ -926,11 +1180,41 @@ De postcode dient steeds meegegeven te worden.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/datastream.service.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/datastream.service.ts:100</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>bewerkt een voertuig uit de database. Veranderingen aan het chassisnummer is niet mogelijk.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>voertuig</td>
+                                                    <td>
+                                                            <code><p>object van het type Voertuig</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
 </section>
@@ -982,34 +1266,72 @@ export class DatastreamService {
 
   //#region Voertuigen
 
+  /**
+   * Haalt alle niet gearchiveerde voertuigen op uit de database.
+   * @returns Voertuigen[]
+   */
   GetAllVehicles &#x3D; () &#x3D;&gt; {
     return this.http.get(this.connectionstring +&quot;voertuig/active&quot;);
   }
 
+  /**
+   * Haalt een voertuig op uit de database a.d.h.v. het chassisnummer.
+   * @param vehicleId chassisnummer van het voertuig dat men opvragen wil.
+   * @returns Voertuig
+   */
   GetSingleVehicle &#x3D; (vehicleId: string) &#x3D;&gt; {
     return this.http.get(this.connectionstring +&quot;voertuig/&quot; + vehicleId);
   }
 
+  /**
+   * Haalt alle statussen op uit de database
+   * @returns Statussen[]
+   */
   GetStatusses &#x3D; () &#x3D;&gt; {
     return this.http.get(this.connectionstring +&quot;voertuig/statusses&quot;);
   }
 
+  /**
+   * Haalt alle categorien op uit de database
+   * @returns Categories[]
+   */
   GetCategories &#x3D; () &#x3D;&gt; {
     return this.http.get(this.connectionstring + &quot;voertuig/categories&quot;);
   }
 
+  /**
+   * Haalt alle brandstoffen op uit de database
+   * @returns Brandstoffen[]
+   */
   GetFuels &#x3D; () &#x3D;&gt; {
     return this.http.get(this.connectionstring + &quot;voertuig/brandstoffen&quot;);
   }
 
+  /**
+   * Maakt een nieuw voertuig aan in de database.
+   * @param voertuig object van het type Voertuig
+   * @returns undefined, error
+   */
   PostVehicle &#x3D; (voertuig: any) &#x3D;&gt; {
     return this.http.post(this.connectionstring + &quot;voertuig&quot;, voertuig).pipe(catchError(this.handleError));
   }
 
+  /**
+   * bewerkt een voertuig uit de database. Veranderingen aan het chassisnummer is niet mogelijk.
+   *
+   * @param voertuig object van het type Voertuig
+   * @returns undefined, error
+   */
   UpdateVehicle &#x3D; (voertuig: any) &#x3D;&gt; {
     return this.http.patch(this.connectionstring + &quot;voertuig/update&quot;, voertuig).pipe(catchError(this.handleError));
   }
 
+  /**
+   * archiveert een voertuig uit de database. enkel administratoren kunnen deze bewerking ongedaan maken.
+   *
+   * @param vehicleId het chassisnummer van het voertuig
+   * @returns undefined
+   */
   DeleteVehicle &#x3D; (vehicleId: string) &#x3D;&gt;{
     return this.http.delete(this.connectionstring +&quot;voertuig/&quot; + vehicleId);
   }
@@ -1017,7 +1339,7 @@ export class DatastreamService {
 
   //#region Bestuurders
   GetAllBestuurders &#x3D; () &#x3D;&gt; {
-    return this.http.get(this.connectionstring + &quot;bestuurder/activebestuurders&quot;);
+    return this.http.get(this.connectionstring + &quot;bestuurder/active&quot;);
   }
   //#endregion Bestuurders
   //#region Tankkaarten
@@ -1026,11 +1348,26 @@ export class DatastreamService {
     return this.http.get(this.connectionstring +&quot;tankkaart/active&quot;);
   }
 
+  GetSingleFuelCard &#x3D; (tankkaartId: string) &#x3D;&gt; {
+    return this.http.get(this.connectionstring +&quot;tankkaart/&quot; + tankkaartId);
+  }
+
   PostFuelCard &#x3D; (tankkaart: any) &#x3D;&gt; {
     return this.http.post(this.connectionstring + &quot;tankkaart&quot;, tankkaart).pipe(catchError(this.handleError));
   }
 
   //#endregion Tankkaarten
+
+  UpdateFuelCard  &#x3D; (tankkaart: any) &#x3D;&gt; {
+    return this.http.patch(this.connectionstring + &quot;tankkaart/update&quot;, tankkaart).pipe(catchError(this.handleError));
+  }
+
+  DeleteFuelCard  &#x3D; (tankkaartId: string) &#x3D;&gt;{
+    return this.http.delete(this.connectionstring +&quot;tankkaart/delete/&quot; + tankkaartId);
+  }
+
+  //#endregion Tankkaarten
+
 
   //#region Koppelingen
 
@@ -1053,6 +1390,14 @@ export class DatastreamService {
    */
   LinkVehicle &#x3D; ( idNumber: string, vehicleId: string) &#x3D;&gt; {
     return this.http.patch(this.connectionstring + &quot;voertuig/koppel/&quot; + idNumber + &quot;/&quot; + vehicleId, null).pipe(catchError(this.handleError));
+  }
+
+  UnlinkFuelCard &#x3D; (tankkaartId: string) &#x3D;&gt; {
+    return this.http.get(this.connectionstring + &quot;tankkaart/koppellos/&quot; + tankkaartId).pipe(catchError(this.handleError));
+  }
+
+  LinkFuelCard &#x3D; ( idNumber: string, tankkaartId: string) &#x3D;&gt; {
+    return this.http.get(this.connectionstring + &quot;tankkaart/koppel/&quot; + idNumber + &quot;/&quot; + tankkaartId).pipe(catchError(this.handleError));
   }
 
   //#endregion Koppelingen

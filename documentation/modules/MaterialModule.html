@@ -86,6 +86,9 @@ import {MatIconModule} from &#x27;@angular/material/icon&#x27;;
 import { MatInputModule} from &#x27;@angular/material/input&#x27;;
 import { MatSelectModule} from &#x27;@angular/material/select&#x27;;
 import { MatAutocompleteModule} from &#x27;@angular/material/autocomplete&#x27;;
+import {MatDatepickerModule} from &quot;@angular/material/datepicker&quot;;
+import { MatNativeDateModule } from &#x27;@angular/material/core&#x27;;
+import {MatCheckboxModule} from &quot;@angular/material/checkbox&quot;;
 
 @NgModule({
   declarations: [],
@@ -102,7 +105,10 @@ import { MatAutocompleteModule} from &#x27;@angular/material/autocomplete&#x27;;
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
   ],
 
   exports: [
@@ -117,7 +123,9 @@ import { MatAutocompleteModule} from &#x27;@angular/material/autocomplete&#x27;;
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatCheckboxModule
   ]
 })
 
