@@ -59,13 +59,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-a365bda5a8b53d50d0dc11d7473168f2cbd793e88f3ccf841d0a63313ed0e7f4bb43fc4b9b4e4805c27a0899634fd4599b59ce230c572385532ac5e21b6cb729"' : 'data-target="#xs-components-links-module-AppModule-a365bda5a8b53d50d0dc11d7473168f2cbd793e88f3ccf841d0a63313ed0e7f4bb43fc4b9b4e4805c27a0899634fd4599b59ce230c572385532ac5e21b6cb729"' }>
+                                            'data-target="#components-links-module-AppModule-768f9f69d1b70f40175db1371b99a69fb9e31915d7f8026b4bb02d50f4b6c76fff271e32f0d7cfed55156b0dc9db376ca5b936d483f8d71aa9de7a2166a2f64e"' : 'data-target="#xs-components-links-module-AppModule-768f9f69d1b70f40175db1371b99a69fb9e31915d7f8026b4bb02d50f4b6c76fff271e32f0d7cfed55156b0dc9db376ca5b936d483f8d71aa9de7a2166a2f64e"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-a365bda5a8b53d50d0dc11d7473168f2cbd793e88f3ccf841d0a63313ed0e7f4bb43fc4b9b4e4805c27a0899634fd4599b59ce230c572385532ac5e21b6cb729"' :
-                                            'id="xs-components-links-module-AppModule-a365bda5a8b53d50d0dc11d7473168f2cbd793e88f3ccf841d0a63313ed0e7f4bb43fc4b9b4e4805c27a0899634fd4599b59ce230c572385532ac5e21b6cb729"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-768f9f69d1b70f40175db1371b99a69fb9e31915d7f8026b4bb02d50f4b6c76fff271e32f0d7cfed55156b0dc9db376ca5b936d483f8d71aa9de7a2166a2f64e"' :
+                                            'id="xs-components-links-module-AppModule-768f9f69d1b70f40175db1371b99a69fb9e31915d7f8026b4bb02d50f4b6c76fff271e32f0d7cfed55156b0dc9db376ca5b936d483f8d71aa9de7a2166a2f64e"' }>
                                             <li class="link">
                                                 <a href="components/BestuurderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BestuurderComponent</a>
                                             </li>
@@ -86,6 +86,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             </li>
                                             <li class="link">
                                                 <a href="components/TankkaartComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TankkaartComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/TankkaartDeleteConfirmationSheetComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TankkaartDeleteConfirmationSheetComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/TankkaartDetailDialogComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TankkaartDetailDialogComponent</a>
@@ -122,6 +125,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
+                                <a href="classes/Brandstof.html" data-type="entity-link" >Brandstof</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/mogelijkeBrandstof.html" data-type="entity-link" >mogelijkeBrandstof</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Tankkaart.html" data-type="entity-link" >Tankkaart</a>
                             </li>
                             <li class="link">
@@ -153,6 +162,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/IBrandstof.html" data-type="entity-link" >IBrandstof</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IMogelijkeBrandstof.html" data-type="entity-link" >IMogelijkeBrandstof</a>
+                            </li>
                             <li class="link">
                                 <a href="interfaces/ITankkaart.html" data-type="entity-link" >ITankkaart</a>
                             </li>

@@ -15,17 +15,59 @@ import { VoertuigDetailDialogComponent } from '../voertuig-detail-dialog/voertui
 })
 export class VoertuigListComponent implements AfterViewInit{
 
+  /**
+   * Geeft al de te gebruiken columns van de tabel weer.
+   * Wordt gebruikt in de htmlcode voor de aanmaak van de tabel.
+   */
   @Input() columnsToDisplay: any;
+
+  /**
+   * behandelt de paginaindeling in de htmlcode voor de tabel.
+   * deze set de initiele waarde van het aantal rijen, bevat de verschillende opties voor de weergave van aantal rijen
+   * en het totale aantal van rijen die gebruikt worden voor paginatie.
+   */
   @ViewChild(MatPaginator) paging!: MatPaginator;
+
+  /**
+   * behandelt de sortering per kolom in de htmlcode voor de tabel.
+   */
   @ViewChild(MatSort) sort!: MatSort;
 
+  /**
+   * deze property behandelt alles van de tabel.
+   * Ze bevat de data, filters, paginatie, sortering, ... .
+   */
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
+  /**
+   * Deze property verzorgt de correcte behandeling van inkomende data via de data exchange service.
+   * Bevat het te behandelen dataType, in dit geval: voertuig.
+   */
   entityType: string = 'voertuig';
+
+  /**
+   * Bevat de te manipuleren data voor de tabel.
+   * wordt opgehaald via de datastreamservice.
+   */
   tableData: Array<any> = new Array<any>();
+
+  /**
+   * Bevat het voertuig dat geselecteerd wordt uit de tabel.
+   */
   selectedVoertuig: any;
+
+  /**
+   * Omvat de lijst van automerken die reeds in de database zijn opgenomen.
+   * wordt tegelijkertijd opgehaald met de tableData.
+   */
   merken: any;
 
+  /**
+   *
+   * @param datastream injecteert de datastream service in deze klasse.
+   * @param dataService injecteert de data exchange service in deze klasse.
+   * @param dialog maakt een instantie van het dialoogvenster aan.
+   */
   constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) {}
 
   ngAfterViewInit() {
@@ -60,7 +102,7 @@ export class VoertuigListComponent implements AfterViewInit{
       console.log("sent data: ", data);
       if(data){
         if(data.value){
-          if(data.entity == "voertuig"){
+          if(data.entity == this.entityType){
             if(data.action == "add"){
               if(data.value){
                 this.tableData.unshift(data.value);
@@ -87,13 +129,23 @@ export class VoertuigListComponent implements AfterViewInit{
     });
   }
 
-  //behandelt de algemene filtering komend van de searchbar;
+  /**
+   * set de filter komende van de searchbar component.
+   * @param filter {string} de te filteren query.
+   */
   FilterDataHandler(filter: any): void {
     this.dataSource = filter;
   }
 
-  //opent de voertuig-detail-dialog met settings voor viewing.
-  //Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt via de dataexchangeservice.
+
+  /**
+   * opent de voertuig-detail-dialog met settings voor viewing.
+   * Eerst wordt het dialoogvenster geconfigureerd,
+   * daarna wordt de entiteit en de modus, alsook de tabel met automerken meegegeven.
+   * Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt.
+   *
+   * @param selectedRow de geselecteerde rij uit de tabel.
+   */
   ViewDetails = (selectedRow: IVoertuig) =>{
     const config = new MatDialogConfig();
     this.selectedVoertuig = selectedRow;
@@ -120,10 +172,6 @@ export class VoertuigListComponent implements AfterViewInit{
       }
     });
   }
-
-
-
-
 }
 
 
