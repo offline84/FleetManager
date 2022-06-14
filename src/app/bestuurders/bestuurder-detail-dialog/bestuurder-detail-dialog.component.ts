@@ -10,6 +10,7 @@ import { map, Observable, startWith } from 'rxjs';
 import { IBestuurder } from 'src/app/objects/iBestuurder';
 import { Rijbewijs } from 'src/app/objects/rijbewijs';
 import { ToewijzingRijbewijs } from 'src/app/objects/toewijzingRijbewijs';
+import { IVoertuig } from 'src/app/objects/iVoertuig';
 
 
 @Component({
@@ -83,56 +84,59 @@ export class BestuurderDetailDialogComponent implements OnInit {
     //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
     this.IsModifiable(this.modifiable);
 
+    //Haalt de geseede data van de rijbewijzen op en sorteert deze alfabetisch
     this.datastream.GetDriverLicences().subscribe((rijbewijs: any) => {
       this.rijbewijzen = rijbewijs;
+      this.rijbewijzen.sort(function (a: any, b:any ) {
+        const typeA = a.typeRijbewijs;
+        const typeB = b.typeRijbewijs;
+
+        if(typeA < typeB)
+          return -1
+
+        if(typeA > typeB)
+          return 1
+
+        return 0
+      });
     });
 
     // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
     //+ de bestuurder die al dan niet reeds gekoppeld is met de entiteit. deze worden opgeslagen in unlinkedVoertuigen
     //en de bestuurder van de koppeling in de var. voertuigLink.
-    if (!this.bestuurder) {
-      this.datastream.GetAllVehicles().subscribe((data: any) => {
-        this.unlinkedVoertuigen = data.filter((u: any) => u.koppeling == null)
-      });
-    } else {
-      this.datastream.GetAllVehicles().subscribe((data: any) => {
-        this.unlinkedVoertuigen = data.filter((voertuig: any) => voertuig.koppeling == null || this.bestuurder.koppeling.chassisnummer == voertuig.chassisnummer);
-        if (this.bestuurder) {
-          if (this.bestuurder.koppeling) {
-            let link = data.filter((voertuig: any) => voertuig.chassisnummer == this.bestuurder.koppeling.chassisnummer);
-            if(link){
-            this.voertuigLink = link[0];
-            }
+    if (this.bestuurder) {
+      this.datastream.GetVehiclesForLinkingWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
+        this.unlinkedVoertuigen = data;
+
+        this.datastream.GetSingleVehicle(this.bestuurder.koppeling.chassisnummer).subscribe((data: any) => {
+          if(data){
+            this.voertuigLink = data;
           }
-        }
-      });
-    }
-
-    if (!this.bestuurder) {
-      this.datastream.GetAllFuelCards().subscribe((data: any) => {
-        this.unlinkedTankkaarten = data.filter((u: any) => u.koppeling == null)
-      });
-    } else {
-      this.datastream.GetAllFuelCards().subscribe((data: any) => {
-        this.unlinkedTankkaarten = data.filter((tankkaart: any) => tankkaart.koppeling == null || this.bestuurder.koppeling.kaartnummer == tankkaart.kaartnummer);
-        if (this.bestuurder) {
-          if (this.bestuurder.koppeling) {
-            let link = data.filter((tankkaart: any) => tankkaart.kaartnummer == this.bestuurder.koppeling.kaartnummer);
-            this.tankkaartLink = link[0];
+          else{
+            this.voertuigLink = undefined;
           }
-        }
+
+          this.datastream.GetFuelCardsToLinkWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
+            this.unlinkedTankkaarten = data;
+            console.log(this.unlinkedTankkaarten);
+
+            this.datastream.GetSingleFuelCard(this.bestuurder.koppeling.kaartnummer).subscribe((data: any) => {
+              if(data){
+                this.tankkaartLink = data;
+              }
+              else{
+                this.tankkaartLink = undefined;
+              }
+            });
+          });
+        });
       });
-    }
-
-
-   
-  
-  
+  }
 
 
      this.bestuurderForm.controls["rijksregisternummer"].valueChanges.pipe(
       startWith(''),
-      map(value => {      
+      map(value => {
       let dateOfBirth = value;
       if(dateOfBirth >=  10000000000 && dateOfBirth < 99999999999){
       // this.AutoCompleteDateOfBirth(dateOfBirth.toString());
@@ -149,7 +153,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     });
   }
 
- 
+
 
   //Omvat de creatie van het te verzenden object en de wissel van mode "add" naar "view" + errorbehandeling.
   onSubmit = () => {
@@ -157,6 +161,9 @@ export class BestuurderDetailDialogComponent implements OnInit {
     this.datastream.PostDriver(driver).subscribe((res: any) => {
       if (res) {
         this.bestuurder = res;
+        this.datastream.GetVehiclesForLinkingWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
+          this.unlinkedVoertuigen = data;
+        });
       }
     }, error => {
       this.message.nativeElement.innerHTML = error.error;
@@ -249,6 +256,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
       } else {
         this.datastream.LinkVehicle(this.bestuurder.rijksregisternummer, this.voertuigLink.chassisnummer).subscribe(() => {
           this.bestuurder.koppeling.chassisnummer = this.voertuigLink.chassisnummer;
+          // hier komt ophalen lijst
         }, error => {
           if (error) { this.message.nativeElement.innerHTML = error.message; }
         }, () => {
@@ -278,7 +286,10 @@ export class BestuurderDetailDialogComponent implements OnInit {
           this.message.nativeElement.innerHTML = success;
         });
       } else {
-        this.datastream.LinkVehicle(this.bestuurder.rijksregisternummer, this.tankkaartLink.kaartnummer).subscribe(() => {
+        this.datastream.LinkFuelCard(this.bestuurder.rijksregisternummer, this.tankkaartLink.kaartnummer).subscribe(() => {
+          this.datastream.GetVehiclesForLinkingWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
+            this.unlinkedVoertuigen = data;
+          });
         }, error => {
           if (error) { this.message.nativeElement.innerHTML = error.message; }
         }, () => {
@@ -363,7 +374,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
       let day = date.slice(4,6);
       let yearPart1 = Number(yearPart2)-100 > 0 ? "20":"19";
        date = day.concat("/"+ month+"/"+19+yearPart2);
-  
+
       // this.bestuurderForm.controls["geboorteDatum"].markAsTouched;
       // this.bestuurderForm.controls["geboorteDatum"].touched;
       this.bestuurderForm.controls["geboorteDatum"].setValue(date);

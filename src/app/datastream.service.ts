@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
+import { IBrandstof } from './objects/IBrandstof';
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +83,12 @@ export class DatastreamService {
     return this.http.get(this.connectionstring + "voertuig/brandstoffen");
   }
 
+  GetVehiclesForLinkingWithDriver = (rijksregisternummer: string) => {
+    let params = new HttpParams().set("rijksregisternummer", rijksregisternummer);
+
+    return this.http.get(this.connectionstring + "voertuig/bestuurder", {params});
+  }
+
   /**
    * Maakt een nieuw voertuig aan in de database.
    * @param voertuig object van het type Voertuig
@@ -133,6 +140,13 @@ export class DatastreamService {
         return this.http.get(this.connectionstring + "bestuurder/voertuig", {params});
   }
 
+  GetDriversToLinkWithFuelCard = (kaartnummer: string) => {
+    let params = new HttpParams()
+      .set('kaartnummer', kaartnummer);
+
+    return this.http.get(this.connectionstring + "bestuurder/tankkaart", {params});
+  }
+
   PostDriver = (bestuurder: any) => {
     return this.http.post(this.connectionstring + "bestuurder", bestuurder).pipe(catchError(this.handleError));
   }
@@ -150,6 +164,12 @@ export class DatastreamService {
 
   GetSingleFuelCard = (tankkaartId: string) => {
     return this.http.get(this.connectionstring + "tankkaart/" + tankkaartId);
+  }
+
+  GetFuelCardsToLinkWithDriver = (rijksregisternummer: string) => {
+    let params = new HttpParams().set("rijksregisternummer", rijksregisternummer);
+
+    return this.http.get(this.connectionstring + "tankkaart/bestuurder", {params});
   }
 
   PostFuelCard = (tankkaart: any) => {

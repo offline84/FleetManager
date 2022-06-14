@@ -142,13 +142,14 @@ export class TankkaartDetailDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) private data: any) {
     this.tankkaart = data.entity;
     this.modifiable = data.modifiable;
+    this.bestuurderLink = data.bestuurderLink;
   }
 
   ngOnInit(): void {
 
     //We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
     // Indien ja, patchen we deze in de form.
-    if(this.tankkaart){
+    if (this.tankkaart) {
       this.patchObjectToForm(this.tankkaart);
     }
 
@@ -163,22 +164,12 @@ export class TankkaartDetailDialogComponent implements OnInit {
     // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
     //+ de bestuurder die al dan niet reeds gekoppeld is met de entiteit. deze worden opgeslagen in unlinkedBestuurders
     //en de bestuurder van de koppeling in de var. bestuurderLink.
-    if(!this.tankkaart){
-      this.datastream.GetAllDrivers().subscribe((data: any) =>{
-        this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.kaartnummer == null);
+    if (this.tankkaart) {
+      this.datastream.GetDriversToLinkWithFuelCard(this.tankkaart.kaartnummer).subscribe((data: any) => {
+        this.unlinkedBestuurders = data;
       });
     }
-    else{
-      this.datastream.GetAllDrivers().subscribe((data: any) =>{
-        this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.kaartnummer == null || u.koppeling.kaartnummer == this.tankkaart.kaartnummer);
-        if(this.tankkaart){
-          if(this.tankkaart.koppeling){
-            let link = data.filter((u: any) => u.koppeling.kaartnummer == this.tankkaart.kaartnummer);
-            this.bestuurderLink = link[0];
-          }
-        }
-      });
-    }
+
 
     //listener voor het sluiten van de dialog + transfer object naar de tabel.
     this.dialogRef.backdropClick().subscribe(() => {
@@ -193,16 +184,19 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
     let fuelcard = this.CreateObjectToSend();
 
-    this.datastream.PostFuelCard(fuelcard).subscribe( (res: any) =>{
-        if(res){
-          this.tankkaart = res;
-        }
-      }, error => {
-        this.message.nativeElement.innerHTML = error.error;
-      }, () => {
-        this.IsModifiable(false);
-      this.message.nativeElement.innerHTML = 'Nieuwe tankkaart met kaartnummer "' + this.tankkaart.kaartnummer + '" is successvol toegevoegd aan de database.';
+    this.datastream.PostFuelCard(fuelcard).subscribe((res: any) => {
+      if (res) {
+        this.tankkaart = res;
+        this.datastream.GetDriversToLinkWithFuelCard(this.tankkaart.kaartnummer).subscribe((data: any) => {
+          this.unlinkedBestuurders = data;
+        });
       }
+    }, error => {
+      this.message.nativeElement.innerHTML = error.error;
+    }, () => {
+      this.IsModifiable(false);
+      this.message.nativeElement.innerHTML = 'Nieuwe tankkaart met kaartnummer "' + this.tankkaart.kaartnummer + '" is successvol toegevoegd aan de database.';
+    }
     );
   }
 

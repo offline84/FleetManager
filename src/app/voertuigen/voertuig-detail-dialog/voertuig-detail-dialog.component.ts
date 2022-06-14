@@ -178,6 +178,7 @@ export class VoertuigDetailDialogComponent implements OnInit {
     this.voertuig = data.entity;
     this.modifiable = data.modifiable;
     this.autocompleteList = data.merken;
+    this.bestuurderLink = data.bestuurderLink
   }
 
   ngOnInit(): void {
@@ -238,6 +239,7 @@ export class VoertuigDetailDialogComponent implements OnInit {
         this.voertuig = res;
         this.datastream.GetDriversToLinkWithVehicle(this.voertuig.chassisnummer, this.voertuig.brandstof.typeBrandstof).subscribe((data: any) => {
           this.unlinkedBestuurders = data;
+          this.bestuurderLink = data.find((b: any) => b.koppeling.chassisnummer == vehicle.chassisnummer);
         });
       }
     }, error => {
