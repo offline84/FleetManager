@@ -146,6 +146,11 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // Indien de geldigheidsDatum gekend is, dan is dat de minimum datum, anders vandaag.
+    if (this.tankkaart.geldigheidsDatum != null) {
+      this.minDate = this.tankkaart.geldigheidsDatum;
+    }
+
     //We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
     // Indien ja, patchen we deze in de form.
     if(this.tankkaart){
@@ -214,9 +219,6 @@ export class TankkaartDetailDialogComponent implements OnInit {
     this.IsModifiable(true);
     this.notEditable = "changeColor";
     this.viewOnly = "";
-    if (this.tankkaart.geldigheidsDatum != null) {
-      this.minDate = this.tankkaart.geldigheidsDatum;
-    }
   }
 
   /**
