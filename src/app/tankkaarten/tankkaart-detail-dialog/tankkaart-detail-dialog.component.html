@@ -14,8 +14,7 @@
         <mat-label>kaartnummer</mat-label>
         <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="kaartnummer">
         <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('required')">Veld is vereist</mat-error>
-        <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('pattern')">Kaartnummer moet 15-21 lang zijn en
-          bevat volgende characters 0-9, a-z en/of A-Z</mat-error>
+        <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('pattern')">Kaartnummer moet cijfers 15-21 lang zijn</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" class="datepickerMat">
         <mat-label>geldigheidsdatum</mat-label>

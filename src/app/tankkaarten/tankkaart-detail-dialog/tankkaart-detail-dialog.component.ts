@@ -119,7 +119,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
    * [CreateObjectToSend] {@link CreateObjectToSend()}
    */
   tankkaartForm = new FormGroup({
-    kaartnummer: new FormControl('',[Validators.required, Validators.pattern("[0-9a-zA-Z]{15,21}")]),
+    kaartnummer: new FormControl('',[Validators.required, Validators.pattern("[0-9]{15,21}")]),
     geldigheidsdatum: new FormControl('',[Validators.required]),
     pincode: new FormControl('',[Validators.pattern("[0-9]{4}")]),
     isGeblokkeerd: new FormControl(false,[Validators.required]),
@@ -214,6 +214,9 @@ export class TankkaartDetailDialogComponent implements OnInit {
     this.IsModifiable(true);
     this.notEditable = "changeColor";
     this.viewOnly = "";
+    if (this.tankkaart.geldigheidsDatum != null) {
+      this.minDate = this.tankkaart.geldigheidsDatum;
+    }
   }
 
   /**
