@@ -350,7 +350,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
    * indien een entiteit is meegegeven wordt deze via deze method gepatched met de Form(s).
    * De niet automatisch gepatchede controls worden handmatig ingegeven.
    *
-   * Manueel: geldigheidsDatum en mogelijkeBrandstoffen
+   * Manueel: geldigheidsDatum, mogelijkeBrandstoffen en pincode (0=geen)
    *
    * @param entity de entiteit die in de form dient gegoten te worden.
    */
@@ -365,6 +365,9 @@ export class TankkaartDetailDialogComponent implements OnInit {
         }
         this.tankkaartForm.controls["typeBrandstof"].setValue(lijstBrandstoffen);
       });
+    }
+    if (this.tankkaart.pincode == 0) {
+      this.tankkaartForm.controls["pincode"].setValue("");
     }
   }
 
@@ -386,7 +389,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     fuelcard.isGeblokkeerd = this.tankkaartForm.controls["isGeblokkeerd"].value;
 
     if(!this.tankkaartForm.controls["pincode"].value){
-      this.tankkaartForm.controls["pincode"].setValue(9999);
+      this.tankkaartForm.controls["pincode"].setValue(0);
     } else {
       fuelcard.pincode = parseInt(this.tankkaartForm.controls["pincode"].value, 10) ;
     }
