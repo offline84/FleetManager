@@ -125,6 +125,14 @@ export class DatastreamService {
     return this.http.get(this.connectionstring + "bestuurder/" + rijksregisternummer);
   }
 
+  GetDriversToLinkWithVehicle = (chassisnummer: string, typeBrandstof: string) => {
+    let params = new HttpParams()
+        .set('chassisnummer', chassisnummer)
+        .set('typeBrandstof', typeBrandstof);
+
+        return this.http.get(this.connectionstring + "bestuurder/voertuig", {params});
+  }
+
   PostDriver = (bestuurder: any) => {
     return this.http.post(this.connectionstring + "bestuurder", bestuurder).pipe(catchError(this.handleError));
   }

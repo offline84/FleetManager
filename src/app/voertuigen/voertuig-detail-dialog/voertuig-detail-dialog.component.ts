@@ -9,6 +9,9 @@ import { map, Observable, startWith } from 'rxjs';
 import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
 import { DeleteConfirmationSheetComponent } from 'src/app/voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component';
 import { Router } from '@angular/router';
+import { IBestuurder } from 'src/app/objects/iBestuurder';
+import { ITankkaart } from 'src/app/objects/iTankkaart';
+import { IBrandstof } from 'src/app/objects/IBrandstof';
 
 
 @Component({
@@ -204,22 +207,13 @@ export class VoertuigDetailDialogComponent implements OnInit {
     // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
     //+ de bestuurder die al dan niet reeds gekoppeld is met de entiteit. deze worden opgeslagen in unlinkedBestuurders
     //en de bestuurder van de koppeling in de var. bestuurderLink.
-    if(!this.voertuig){
-      this.datastream.GetAllDrivers().subscribe((data: any) =>{
-        this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.chassisnummer == null);
+    if(this.voertuig){
+      this.datastream.GetDriversToLinkWithVehicle(this.voertuig.chassisnummer, this.voertuig.brandstof.typeBrandstof).subscribe((data: any) => {
+        this.unlinkedBestuurders = data;
       });
     }
-    else{
-      this.datastream.GetAllDrivers().subscribe((data: any) =>{
-        this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.chassisnummer == null || u.koppeling.chassisnummer == this.voertuig.chassisnummer);
-        if(this.voertuig){
-          if(this.voertuig.koppeling){
-            let link = data.filter((u: any) => u.koppeling.chassisnummer == this.voertuig.chassisnummer);
-            this.bestuurderLink = link[0];
-          }
-        }
-      });
-    }
+    console.log(this.unlinkedBestuurders);
+
 
     //listener voor de autocompete functie
     this.autocompleteOptions = this.voertuigForm.controls["merk"].valueChanges.pipe(startWith(''),
@@ -242,6 +236,9 @@ export class VoertuigDetailDialogComponent implements OnInit {
 
       if(res){
         this.voertuig = res;
+        this.datastream.GetDriversToLinkWithVehicle(this.voertuig.chassisnummer, this.voertuig.brandstof.typeBrandstof).subscribe((data: any) => {
+          this.unlinkedBestuurders = data;
+        });
       }
     }, error => {
       this.message.nativeElement.innerHTML = error.error;
@@ -399,7 +396,6 @@ export class VoertuigDetailDialogComponent implements OnInit {
       this.forCreation = false;
       this.notEditable = "changeColor";
       this.viewOnly ="changeColor";
-      console.log(this.viewOnly);
     }
   }
 
