@@ -35,8 +35,8 @@ export class TankkaartListComponent implements AfterViewInit {
     this.datastream.GetAllFuelCards().subscribe((data: any) => {
       data.forEach((tankkaart: ITankkaart) => {
         let stringbuilder = "";
-        tankkaart.mogelijkeBrandstoffen.forEach((mb: any ) => {
-          const {typeBrandstof} = mb.brandstof;
+        tankkaart.mogelijkeBrandstoffen.forEach((mb: any) => {
+          const { typeBrandstof } = mb.brandstof;
           stringbuilder = stringbuilder.concat(typeBrandstof, ", ");
         });
         tankkaart = tankkaart as ITankkaart;
@@ -46,7 +46,7 @@ export class TankkaartListComponent implements AfterViewInit {
       this.dataSource.data = this.tableData;
       this.dataSource.paginator = this.paging;
       this.dataSource.sort = this.sort;
-      this.dataSource.sortingDataAccessor = (item,property) => {
+      this.dataSource.sortingDataAccessor = (item, property) => {
         switch (property) {
           case 'geldigheidsdatum': return new Date(item.geldigheidsDatum);
           default: return item[property];
@@ -91,30 +91,63 @@ export class TankkaartListComponent implements AfterViewInit {
     const config = new MatDialogConfig();
     this.selectedTankkaart = selectedRow;
 
-    config.autoFocus = true;
-    config.data = {
-      modifiable: false,
-      entity: selectedRow
-    };
+    if (this.selectedTankkaart.koppeling) {
+      this.datastream.GetSingleDriver(this.selectedTankkaart.koppeling.rijksregisternummer).subscribe((data: any) => {
 
-    let dialogRef = this.dialog.open(TankkaartDetailDialogComponent, config);
+        config.autoFocus = true;
+        config.data = {
+          modifiable: false,
+          entity: selectedRow,
+          bestuurderLink: data
+        };
 
-    dialogRef.afterClosed().subscribe((data: any) => {
-      if (data) {
-        this.tableData.forEach((element, index) => {
-          if (element.kaartnummer == data.kaartnummer) {
-            let stringbuilder = "";
-            data.mogelijkeBrandstoffen.forEach((mb: any ) => {
-              const {typeBrandstof} = mb.brandstof;
-              stringbuilder = stringbuilder.concat(typeBrandstof, ", ");
+        let dialogRef = this.dialog.open(TankkaartDetailDialogComponent, config);
+
+        dialogRef.afterClosed().subscribe((data: any) => {
+          if (data) {
+            this.tableData.forEach((element, index) => {
+              if (element.kaartnummer == data.kaartnummer) {
+                let stringbuilder = "";
+                data.mogelijkeBrandstoffen.forEach((mb: any) => {
+                  const { typeBrandstof } = mb.brandstof;
+                  stringbuilder = stringbuilder.concat(typeBrandstof, ", ");
+                });
+                data.brandstoffenForView = stringbuilder.slice(0, - 2);
+                this.tableData[index] = data;
+              }
             });
-            data.brandstoffenForView = stringbuilder.slice(0, - 2);
-            this.tableData[index] = data;
+
+            this.dataSource.data = this.tableData;
           }
         });
+      });
+    }
+    else {
+      config.autoFocus = true;
+      config.data = {
+        modifiable: false,
+        entity: selectedRow
+      };
 
-        this.dataSource.data = this.tableData;
-      }
-    });
+      let dialogRef = this.dialog.open(TankkaartDetailDialogComponent, config);
+
+      dialogRef.afterClosed().subscribe((data: any) => {
+        if (data) {
+          this.tableData.forEach((element, index) => {
+            if (element.kaartnummer == data.kaartnummer) {
+              let stringbuilder = "";
+              data.mogelijkeBrandstoffen.forEach((mb: any) => {
+                const { typeBrandstof } = mb.brandstof;
+                stringbuilder = stringbuilder.concat(typeBrandstof, ", ");
+              });
+              data.brandstoffenForView = stringbuilder.slice(0, - 2);
+              this.tableData[index] = data;
+            }
+          });
+
+          this.dataSource.data = this.tableData;
+        }
+      });
+    }
   }
 }
