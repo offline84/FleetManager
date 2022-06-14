@@ -119,7 +119,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
    * [CreateObjectToSend] {@link CreateObjectToSend()}
    */
   tankkaartForm = new FormGroup({
-    kaartnummer: new FormControl('',[Validators.required, Validators.pattern("[0-9a-zA-Z]{15,21}")]),
+    kaartnummer: new FormControl('',[Validators.required, Validators.pattern("[0-9]{15,21}")]),
     geldigheidsdatum: new FormControl('',[Validators.required]),
     pincode: new FormControl('',[Validators.pattern("[0-9]{4}")]),
     isGeblokkeerd: new FormControl(false,[Validators.required]),
@@ -146,6 +146,11 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // Indien de tankkaart gekend is, dan is dat de minimum datum, anders vandaag.
+    if ( this.tankkaart != null) {
+      this.minDate = this.tankkaart.geldigheidsDatum;
+    }
+
     //We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
     // Indien ja, patchen we deze in de form.
     if(this.tankkaart){
@@ -156,6 +161,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
     this.IsModifiable(this.modifiable);
 
+    // Ophalen van de brandstoffen om te kunnen toevoegen aan de brandstof
     this.datastream.GetFuels().subscribe((data: any) => {
       this.KeuzeBrandstoffen = data;
     });
@@ -350,7 +356,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
    * indien een entiteit is meegegeven wordt deze via deze method gepatched met de Form(s).
    * De niet automatisch gepatchede controls worden handmatig ingegeven.
    *
-   * Manueel: geldigheidsDatum en mogelijkeBrandstoffen
+   * Manueel: geldigheidsDatum, mogelijkeBrandstoffen en pincode (0=geen)
    *
    * @param entity de entiteit die in de form dient gegoten te worden.
    */
@@ -365,6 +371,9 @@ export class TankkaartDetailDialogComponent implements OnInit {
         }
         this.tankkaartForm.controls["typeBrandstof"].setValue(lijstBrandstoffen);
       });
+    }
+    if (this.tankkaart.pincode == 0) {
+      this.tankkaartForm.controls["pincode"].setValue("");
     }
   }
 
@@ -386,7 +395,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     fuelcard.isGeblokkeerd = this.tankkaartForm.controls["isGeblokkeerd"].value;
 
     if(!this.tankkaartForm.controls["pincode"].value){
-      this.tankkaartForm.controls["pincode"].setValue(9999);
+      this.tankkaartForm.controls["pincode"].setValue(0);
     } else {
       fuelcard.pincode = parseInt(this.tankkaartForm.controls["pincode"].value, 10) ;
     }

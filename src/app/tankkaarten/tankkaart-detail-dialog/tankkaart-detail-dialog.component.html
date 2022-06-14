@@ -14,8 +14,7 @@
         <mat-label>kaartnummer</mat-label>
         <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="kaartnummer">
         <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('required')">Veld is vereist</mat-error>
-        <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('pattern')">Kaartnummer moet 15-21 lang zijn en
-          bevat volgende characters 0-9, a-z en/of A-Z</mat-error>
+        <mat-error *ngIf="tankkaartForm.get('kaartnummer')?.hasError('pattern')">Kaartnummer is 15-21 cijfers lang</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" class="datepickerMat">
         <mat-label>geldigheidsdatum</mat-label>
@@ -34,7 +33,6 @@
           [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-hint>4 cijferige code, default 9999</mat-hint>
         <mat-error *ngIf="tankkaartForm.get('pincode')?.hasError('pattern')">De Pincode bestaat uit 4 cijfers
         </mat-error>
       </mat-form-field>
@@ -84,7 +82,7 @@
         <button mat-raised-button *ngIf="tankkaart.koppeling" type="text"
           (click)="OpenBestuurdersDetails()">{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}</button>
       </mat-form-field>
-      <button mat-raised-button class="button-link-field formbuttons" (click)="linkUnlinkDriver()">
+      <button mat-raised-button class="button-link-field formbuttons" (click)="linkUnlinkDriver()" *ngIf="!modifiable">
         <mat-icon *ngIf="!tankkaart.koppeling">link</mat-icon>
         <mat-icon *ngIf="tankkaart.koppeling">link_off</mat-icon>
         <span class="spacer"></span> Bestuurder
