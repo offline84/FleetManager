@@ -82,7 +82,7 @@
         <button mat-raised-button *ngIf="tankkaart.koppeling" type="text"
           (click)="OpenBestuurdersDetails()">{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}</button>
       </mat-form-field>
-      <button mat-raised-button class="button-link-field formbuttons" (click)="linkUnlinkDriver()">
+      <button mat-raised-button class="button-link-field formbuttons" (click)="linkUnlinkDriver()" *ngIf="!modifiable">
         <mat-icon *ngIf="!tankkaart.koppeling">link</mat-icon>
         <mat-icon *ngIf="tankkaart.koppeling">link_off</mat-icon>
         <span class="spacer"></span> Bestuurder

@@ -146,8 +146,8 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // Indien de geldigheidsDatum gekend is, dan is dat de minimum datum, anders vandaag.
-    if (this.tankkaart.geldigheidsDatum != null) {
+    // Indien de tankkaart gekend is, dan is dat de minimum datum, anders vandaag.
+    if ( this.tankkaart != null) {
       this.minDate = this.tankkaart.geldigheidsDatum;
     }
 
@@ -161,6 +161,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
     this.IsModifiable(this.modifiable);
 
+    // Ophalen van de brandstoffen om te kunnen toevoegen aan de brandstof
     this.datastream.GetFuels().subscribe((data: any) => {
       this.KeuzeBrandstoffen = data;
     });
