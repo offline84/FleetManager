@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteConfirmationSheetComponent } from './bestuurder-delete-confirmation-sheet.component';
+import { BestuurderDeleteConfirmationSheetComponent } from './bestuurder-delete-confirmation-sheet.component';
 
 describe('DeleteConfirmationSheetComponent', () => {
-  let component: DeleteConfirmationSheetComponent;
-  let fixture: ComponentFixture<DeleteConfirmationSheetComponent>;
+  let component: BestuurderDeleteConfirmationSheetComponent;
+  let fixture: ComponentFixture<BestuurderDeleteConfirmationSheetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteConfirmationSheetComponent ]
+      declarations: [ BestuurderDeleteConfirmationSheetComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteConfirmationSheetComponent);
+    fixture = TestBed.createComponent(BestuurderDeleteConfirmationSheetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
