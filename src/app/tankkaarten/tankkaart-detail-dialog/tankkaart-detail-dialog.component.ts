@@ -10,6 +10,7 @@ import {TankkaartDeleteConfirmationSheetComponent} from "../tankkaart-delete-con
 import {Brandstof} from "../../objects/brandstof";
 import {mogelijkeBrandstof} from "../../objects/mogelijkeBrandstof";
 import {Router} from "@angular/router";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-tankkaart-detail-dialog',
@@ -196,6 +197,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
         this.datastream.GetDriversToLinkWithFuelCard(this.tankkaart.kaartnummer).subscribe((data: any) => {
           this.unlinkedBestuurders = data;
         });
+        this.patchObjectToForm(res);
       }
     }, error => {
       this.message.nativeElement.innerHTML = error.error;
@@ -384,8 +386,10 @@ export class TankkaartDetailDialogComponent implements OnInit {
   CreateObjectToSend =(): ITankkaart => {
     let fuelcard = new Tankkaart();
 
+    let pipe = new DatePipe('en-GB');
+
     fuelcard.kaartnummer = this.tankkaartForm.controls["kaartnummer"].value;
-    fuelcard.geldigheidsDatum = this.tankkaartForm.controls["geldigheidsdatum"].value;
+    fuelcard.geldigheidsDatum = pipe.transform(this.tankkaartForm.controls["geldigheidsdatum"].value, 'YYYY-MM-dd') as unknown as Date;
     fuelcard.isGeblokkeerd = this.tankkaartForm.controls["isGeblokkeerd"].value;
 
     if(!this.tankkaartForm.controls["pincode"].value){
