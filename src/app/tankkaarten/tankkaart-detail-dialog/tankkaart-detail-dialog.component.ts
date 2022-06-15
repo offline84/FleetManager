@@ -180,7 +180,16 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
     //listener voor het sluiten van de dialog + transfer object naar de tabel.
     this.dialogRef.backdropClick().subscribe(() => {
-      this.dialogRef.close(this.tankkaart);
+      this.datastream.GetSingleFuelCard(this.tankkaart.kaartnummer).subscribe( (data: any) => {
+        let stringbuilder = "";
+        data.mogelijkeBrandstoffen.forEach((mb: any) => {
+          const { typeBrandstof } = mb.brandstof;
+          stringbuilder = stringbuilder.concat(typeBrandstof, ", ");
+        });
+        data.brandstoffenForView = stringbuilder.slice(0, - 2);
+        this.dialogRef.close(data);
+      });
+
     });
   }
 
