@@ -24,7 +24,7 @@ import { DeleteConfirmationSheetComponent } from './voertuigen/voertuig-delete-c
 import { TankkaartDeleteConfirmationSheetComponent } from './tankkaarten/tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component';
 
 const appRoutes: Routes = [
-  { path: '', component: VoertuigComponent },
+  { path: '', component: BestuurderComponent },
   { path: 'voertuigen', component: VoertuigComponent },
   { path: 'tankkaarten', component: TankkaartComponent },
   { path: 'bestuurders', component: BestuurderComponent }
