@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
-import { IBrandstof } from './objects/IBrandstof';
 
 @Injectable({
   providedIn: 'root'
@@ -185,7 +184,7 @@ export class DatastreamService {
    * bewerkt een bestuurder uit de database. Veranderingen aan het rijksregisternummer is niet mogelijk.
    * Aangezien we ervan uit gaan dat een rijksregisternummer uniek is.
    * Indien nodig kan er een nieuwe bestuurder toegevoegd worden.
-   * 
+   *
    * @param bestuurder object van het type Bestuurder
    * @returns undefined, error
    */
@@ -205,11 +204,19 @@ export class DatastreamService {
   //#endregion Bestuurders
 
   //#region Tankkaarten
-
+  /**
+   * Haalt alle niet gearchiveerde tankkaarten op uit de database.
+   * @returns Tankkaarten[]
+   */
   GetAllFuelCards = () => {
     return this.http.get(this.connectionstring + "tankkaart/active");
   }
 
+  /**
+   * Haalt een tankkaart op uit de database a.d.h.v. het kaartnummer.
+   * @param tankkaartId chassisnummer van het voertuig dat men opvragen wil.
+   * @returns Tankkaart
+   */
   GetSingleFuelCard = (tankkaartId: string) => {
     return this.http.get(this.connectionstring + "tankkaart/" + tankkaartId);
   }
@@ -220,15 +227,31 @@ export class DatastreamService {
     return this.http.get(this.connectionstring + "tankkaart/bestuurder", {params});
   }
 
+  /**
+   * Maakt een nieuwe tankkaart aan in de database.
+   * @param tankkaart object van het type Tankkaart
+   * @returns undefined, error
+   */
   PostFuelCard = (tankkaart: any) => {
     return this.http.post(this.connectionstring + "tankkaart", tankkaart).pipe(catchError(this.handleError));
   }
 
-
+  /**
+   * bewerkt een tankkaart uit de database. Veranderingen aan het kaartnummer is niet mogelijk.
+   *
+   * @param tankkaart object van het type Tankkaart
+   * @returns undefined, error
+   */
   UpdateFuelCard  = (tankkaart: any) => {
     return this.http.patch(this.connectionstring + "tankkaart/update", tankkaart).pipe(catchError(this.handleError));
   }
 
+  /**
+   * archiveert een tankkaart uit de database. enkel administratoren kunnen deze bewerking ongedaan maken.
+   *
+   * @param tankkaartId het chassisnummer van de tankkaart
+   * @returns undefined
+   */
   DeleteFuelCard = (tankkaartId: string) => {
     return this.http.delete(this.connectionstring + "tankkaart/delete/" + tankkaartId);
   }
@@ -259,10 +282,23 @@ export class DatastreamService {
     return this.http.patch(this.connectionstring + "voertuig/koppel/" + idNumber + "/" + vehicleId, null).pipe(catchError(this.handleError));
   }
 
+  /**
+   * koppelt een tankkaart los van de bestuurder.
+   *
+   * @param tankkaartId het chassisnummer van de los te koppelen tankkaart.
+   * @returns null
+   */
   UnlinkFuelCard = (tankkaartId: string) => {
     return this.http.get(this.connectionstring + "tankkaart/koppellos/" + tankkaartId).pipe(catchError(this.handleError));
   }
 
+  /**
+   * Koppelt een bestuurder aan een tankkaart.
+   *
+   * @param idNumber het rijksregisternummer van een bestuurder.
+   * @param tankkaartId het chassisnummer van het te koppelen tankkaart.
+   * @returns null
+   */
   LinkFuelCard = ( idNumber: string, tankkaartId: string) => {
     return this.http.get(this.connectionstring + "tankkaart/koppel/" + idNumber + "/" + tankkaartId).pipe(catchError(this.handleError));
   }
