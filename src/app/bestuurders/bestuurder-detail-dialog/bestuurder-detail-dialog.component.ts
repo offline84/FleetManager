@@ -11,7 +11,7 @@ import { IBestuurder } from 'src/app/objects/iBestuurder';
 import { Rijbewijs } from 'src/app/objects/rijbewijs';
 import { ToewijzingRijbewijs } from 'src/app/objects/toewijzingRijbewijs';
 import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
-import { DeleteConfirmationSheetComponent } from '../bestuurder-delete-confirmation-sheet/bestuurder-delete-confirmation-sheet.component';
+import { BestuurderDeleteConfirmationSheetComponent } from '../bestuurder-delete-confirmation-sheet/bestuurder-delete-confirmation-sheet.component';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
@@ -247,7 +247,6 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
           this.datastream.GetFuelCardsToLinkWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
             this.unlinkedTankkaarten = data;
-            console.log(this.unlinkedTankkaarten);
             this.datastream.GetSingleFuelCard(this.bestuurder.koppeling.kaartnummer).subscribe((data: any) => {
               if (data) {
                 this.tankkaartLink = data;
@@ -264,11 +263,11 @@ export class BestuurderDetailDialogComponent implements OnInit {
     //Haalt de steden op nadat de postcode wordt ingevuld
     //Check op geldige postcode
     //deze geeft dan opties weer.
-    this.adresForm.controls["postcode"].valueChanges.pipe(
+    this.adresForm.controls['postcode'].valueChanges.pipe(
       startWith(''),
-      map(value => {
-        if (value >= 1000 && value <= 9999) {
-          this.datastream.GetCityByPostalCode(value).subscribe((data: any) => {
+      map(postcode => {
+        if (postcode >= 1000 && postcode <= 9999 && (this.modifiable || this.forCreation)  ) {
+          this.datastream.GetCityByPostalCode(postcode).subscribe((data: any) => {
             let list = data.postnamen;
             this.autocompleteGemeenteList = list.map((s: any) => s.geografischeNaam.spelling);
             this.adresForm.controls['stad'].enable();
@@ -285,7 +284,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     this.adresForm.controls["straat"].valueChanges.pipe(
       startWith(''),
       map(value => {
-        if (value.length >= 4) {
+        if (value.length >= 4 && (this.modifiable || this.forCreation) ) {
           this.datastream.GetStreetNameByPostalcodeAndQuery(this.adresForm.controls['postcode'].value, value).subscribe((straten: any) => {
             let list = Array.isArray(straten.adresMatches) ? straten.adresMatches.filter((straat: any) => {
               return straat
@@ -344,7 +343,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
   /**
    * Opent de geïnjecteerde instantie van de MatBottomSheetModule voor verwijdering van het bestuurder en definieert de te verwijderen entiteit.
    *
-   * [DeleteConfirmationSheetComponent] {@link DeleteConfirmationSheetComponent}
+   * [BestuurderDeleteConfirmationSheetComponent] {@link BestuurderDeleteConfirmationSheetComponent}
    */
   openDeleteScreen = () => {
     const config = new MatBottomSheetConfig();
@@ -356,7 +355,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
       entity: this.bestuurder
     };
 
-    let bottomsheetRef = this.bottomSheet.open(DeleteConfirmationSheetComponent, config);
+    let bottomsheetRef = this.bottomSheet.open(BestuurderDeleteConfirmationSheetComponent, config);
     bottomsheetRef.afterDismissed().subscribe((deleted: boolean) => {
       if (deleted) {
         this.dialogRef.close();
@@ -381,7 +380,6 @@ export class BestuurderDetailDialogComponent implements OnInit {
   onSelectionChangeVoertuig = (event: any) => {
     if (this.tankkaartLink != null) {
       this.unlinkedVoertuigen.filter((v: any) => v.brandstoffen)
-      console.log('Check uitvoeren op gekozen item -> indien een bepaalde brandstof gekozen is, mag de andere itemLijst alleen maar dezelfde items.brandstof bevatten')
     }
 
     let link = this.unlinkedVoertuigen.find((u: any) => u.chassisnummer == event);
@@ -402,8 +400,6 @@ export class BestuurderDetailDialogComponent implements OnInit {
    */
   onSelectionChangeTankkaart = (event: any) => {
     if (this.voertuigLink != null) {
-      console.log(this.voertuigLink);
-      console.log('Check uitvoeren op gekozen item -> indien een bepaalde brandstof gekozen is, mag de andere itemLijst alleen maar dezelfde items.brandstof bevatten');
     }
     let link = this.unlinkedTankkaarten.find((u: any) => u.kaartnummer == event);
     this.tankkaartLink = link;

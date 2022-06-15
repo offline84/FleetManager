@@ -120,18 +120,38 @@ export class DatastreamService {
   //#endregion Voertuigen
 
   //#region Bestuurders
+
+  /**
+   * Haalt alle niet gearchiveerde bestuurders op uit de database.
+   * @returns Bestuurders[]
+   */
   GetAllDrivers = () => {
     return this.http.get(this.connectionstring + "bestuurder/active");
   }
 
+    /**
+   * Haalt alle rijbewijzen op uit de database.
+   * @returns Bestuurders[]
+   */
   GetDriverLicences = () => {
     return this.http.get(this.connectionstring + "bestuurder/rijbewijzen");
   }
 
+  /**
+   * Haalt een bestuurder op uit de database a.d.h.v. het rijksregisternummer.
+   * @param rijksregisternummer van de bestuurder dat men opvragen wil.
+   * @returns bestuurder
+   */
   GetSingleDriver = (rijksregisternummer: string) => {
     return this.http.get(this.connectionstring + "bestuurder/" + rijksregisternummer);
   }
 
+  /**
+   * Haalt een bestuurder op uit de database a.d.h.v. het chassisnummer en typeBrandstof.
+   * @param chassisnummer van de voertuig dat men opvragen wil.
+   * @param typeBrandstof van de voertuig dat men opvragen wil.
+   * @returns bestuurder
+   */
   GetDriversToLinkWithVehicle = (chassisnummer: string, typeBrandstof: string) => {
     let params = new HttpParams()
         .set('chassisnummer', chassisnummer)
@@ -140,6 +160,11 @@ export class DatastreamService {
         return this.http.get(this.connectionstring + "bestuurder/voertuig", {params});
   }
 
+    /**
+   * Haalt een bestuurder op uit de database a.d.h.v. het kaartnummer.
+   * @param kaartnummer van de tankkaart dat men opvragen wil.
+   * @returns bestuurder
+   */
   GetDriversToLinkWithFuelCard = (kaartnummer: string) => {
     let params = new HttpParams()
       .set('kaartnummer', kaartnummer);
@@ -147,12 +172,35 @@ export class DatastreamService {
     return this.http.get(this.connectionstring + "bestuurder/tankkaart", {params});
   }
 
+  /**
+   * Maakt een nieuw bestuurder aan in de database.
+   * @param bestuurder object van het type Bestuurder
+   * @returns undefined, error
+   */
   PostDriver = (bestuurder: any) => {
     return this.http.post(this.connectionstring + "bestuurder", bestuurder).pipe(catchError(this.handleError));
   }
 
+    /**
+   * bewerkt een bestuurder uit de database. Veranderingen aan het rijksregisternummer is niet mogelijk.
+   * Aangezien we ervan uit gaan dat een rijksregisternummer uniek is.
+   * Indien nodig kan er een nieuwe bestuurder toegevoegd worden.
+   * 
+   * @param bestuurder object van het type Bestuurder
+   * @returns undefined, error
+   */
   UpdateDriver = (bestuurder: any) => {
     return this.http.patch(this.connectionstring + "bestuurder/update", bestuurder).pipe(catchError(this.handleError));
+  }
+
+   /**
+   * archiveert een bestuurde uit de database. enkel administratoren kunnen deze bewerking ongedaan maken.
+   *
+   * @param id het rijksregisternummer van het bestuurder
+   * @returns undefined
+   */
+  DeleteBestuurder = (id: string) =>{
+    return this.http.delete(this.connectionstring +"bestuurder/" + id);
   }
   //#endregion Bestuurders
 
