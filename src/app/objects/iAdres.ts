@@ -22,4 +22,9 @@ export interface IAdres {
   * @ignore
   */
   postcode: number;
+
+  /**
+   * @ignore
+   */
+  adresForView: string;
 }
