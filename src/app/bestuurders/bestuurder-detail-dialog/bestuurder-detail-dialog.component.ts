@@ -14,6 +14,7 @@ import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-s
 import { BestuurderDeleteConfirmationSheetComponent } from '../bestuurder-delete-confirmation-sheet/bestuurder-delete-confirmation-sheet.component';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import {IRijbewijs} from "../../objects/iRijbewijs";
 
 @Component({
   selector: 'app-bestuurder-detail-dialog',
@@ -137,6 +138,8 @@ export class BestuurderDetailDialogComponent implements OnInit {
    * Max Date for geboorteDatum datePicker (will be set to today)
    */
   maxDate = new Date();
+
+  driverLicenses: IRijbewijs[] = [];
 
   /**
      * @param datastream Httpclient naar de back- end toe.
@@ -308,7 +311,28 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
     //listener voor het sluiten van de dialog + transfer object naar de tabel.
     this.dialogRef.backdropClick().subscribe(() => {
-      this.dialogRef.close(this.bestuurder);
+      this.datastream.GetSingleDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
+        this.datastream.GetDriverLicences().subscribe((licences: any) => {
+          this.driverLicenses = licences;
+          let dataString = "";
+          data.toewijzingenRijbewijs.forEach((rijbewijs: any) => {
+            let driverLicense = this.driverLicenses.find(d => d.id == rijbewijs.rijbewijsId);
+            if (driverLicense) {
+              dataString = dataString.concat(driverLicense.typeRijbewijs, ", ");
+            }
+          });
+          data.rijbewijzen = this.driverLicenses;
+          data.rijbewijs = dataString.slice(0, -2);
+
+          if (data.adres.huisnummer == 0 && data.adres.postcode == 0) {
+            data.adres.adresForView = "";
+          } else {
+            data.adres.adresForView = data.adres.straat + " " + data.adres.huisnummer + ", " + data.adres.postcode + " " + data.adres.stad;
+          }
+
+          this.dialogRef.close(data);
+        })
+      });
     });
   }
 
