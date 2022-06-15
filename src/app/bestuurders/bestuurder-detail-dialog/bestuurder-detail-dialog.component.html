@@ -118,36 +118,36 @@
         <hr>
         <br>
         <div class="link-field" appearance="fill">
-          <mat-select class="mat-link-field button-submit" *ngIf="!bestuurder.koppeling.chassisnummer"
+          <mat-select class="mat-link-field button-submit" *ngIf="!voertuigLink"
             (selectionChange)="onSelectionChangeVoertuig($event.value)">
             <mat-option value=null></mat-option>
             <mat-option *ngFor="let voertuig of unlinkedVoertuigen" value={{voertuig.chassisnummer}}>
               {{voertuig.merk}} {{voertuig.model}} - {{voertuig.brandstof.typeBrandstof}}
             </mat-option>
           </mat-select>
-          <button mat-raised-button class="button-submit" *ngIf="bestuurder.koppeling.chassisnummer" type="text"
+          <button mat-raised-button class="button-submit" *ngIf="voertuigLink" type="text"
             (click)="OpenVoertuigenDetails()">{{voertuigLink.chassisnummer}}</button>
 
           <button mat-raised-button class="button-link-field formbuttons button-submit" (click)="linkUnlinkVoertuig()"
             *ngIf="!modifiable">
-            <mat-icon *ngIf="!bestuurder.koppeling.chassisnummer">link</mat-icon>
-            <mat-icon *ngIf="bestuurder.koppeling.chassisnummer">link_off</mat-icon>
+            <mat-icon *ngIf="!voertuigLink">link</mat-icon>
+            <mat-icon *ngIf="voertuigLink">link_off</mat-icon>
             <span class="spacer"></span> Voertuig
           </button>
-          <mat-select class="mat-link-field button-submit" *ngIf="!bestuurder.koppeling.kaartnummer"
+          <mat-select class="mat-link-field button-submit" *ngIf="!tankkaartLink"
             (selectionChange)="onSelectionChangeTankkaart($event.value)">
             <mat-option value=null></mat-option>
             <mat-option *ngFor="let tankkaart of unlinkedTankkaarten" value={{tankkaart.kaartnummer}}>
               {{tankkaart.typeBrandstof}} - {{tankkaart.kaartnummer}}
             </mat-option>
           </mat-select>
-          <button mat-raised-button class="button-submit" *ngIf="bestuurder.koppeling.kaartnummer" type="text"
+          <button mat-raised-button class="button-submit" *ngIf="tankkaartLink" type="text"
             (click)="OpenTankkaartenDetails()">{{tankkaartLink.kaartnummer}}</button>
 
           <button mat-raised-button class="button-link-field formbuttons button-submit" (click)="linkUnlinkTankkaart()"
             *ngIf="!modifiable">
-            <mat-icon *ngIf="!bestuurder.koppeling.kaartnummer">link</mat-icon>
-            <mat-icon *ngIf="bestuurder.koppeling.kaartnummer">link_off</mat-icon>
+            <mat-icon *ngIf="!tankkaartLink">link</mat-icon>
+            <mat-icon *ngIf="tankkaartLink">link_off</mat-icon>
             <span class="spacer"></span> Tankkaart
           </button>
         </div>

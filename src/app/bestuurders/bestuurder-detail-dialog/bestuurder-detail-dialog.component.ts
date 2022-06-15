@@ -202,7 +202,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     this.adresForm.controls['stad'].disable();
     this.adresForm.controls['straat'].disable();
     this.adresForm.controls['huisnummer'].disable();
-   
+
     //Vult de data op voor de datePicker van GeboorteDatum
     let year = moment().year();
     this.minDate = new Date('01/01/' + (year - 100));
@@ -279,7 +279,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
         }
       })).subscribe();
 
-    //Haalt de straten op nadat er 4 characters zijn ingevuld 
+    //Haalt de straten op nadat er 4 characters zijn ingevuld
     //deze geeft dan opties weer.
     this.adresForm.controls["straat"].valueChanges.pipe(
       startWith(''),
@@ -313,7 +313,6 @@ export class BestuurderDetailDialogComponent implements OnInit {
   }
 
 
-
    /**
    * Omvat de creatie van het te verzenden object en de wissel van mode "add" naar "view" + errorbehandeling.
    */
@@ -325,11 +324,18 @@ export class BestuurderDetailDialogComponent implements OnInit {
         this.datastream.GetVehiclesForLinkingWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
           this.unlinkedVoertuigen = data;
         });
+        this.patchObjectToForm(res);
       }
-    });
+    }, error => {
+        this.message.nativeElement.innerHTML = error.error;
+      }, () => {
+        this.IsModifiable(false);
+        this.message.nativeElement.innerHTML = 'Nieuwe bestuurder met rijksregisternummer "' + this.bestuurder.rijksregisternummer + '" is successvol toegevoegd aan de database.';
+      }
+    );
   }
 
-  
+
   /**
    * Past de modus voor modificatie van detailweergave naar editeren aan.
    */
@@ -573,11 +579,15 @@ export class BestuurderDetailDialogComponent implements OnInit {
       });
       this.rijbewijsForm.controls['typeRijbewijs'].setValue(dataArray);
     }
+    if (this.adresForm.controls["postcode"].value == 0) {
+      this.adresForm.controls["postcode"].setValue("");
+    }
+    if (this.adresForm.controls["huisnummer"].value == 0) {
+      this.adresForm.controls["huisnummer"].setValue("");
+    }
 
     this.adresForm.patchValue(this.bestuurder.adres);
   }
-
-
 
    /**
    * Bereidt de entiteit voor voor verzending naar de back- end.
@@ -592,11 +602,21 @@ export class BestuurderDetailDialogComponent implements OnInit {
     bestuurder.naam = this.bestuurderForm.controls["naam"].value;
     bestuurder.achternaam = this.bestuurderForm.controls["achternaam"].value;
     bestuurder.adres.straat = this.adresForm.controls["straat"].value;
-    bestuurder.adres.huisnummer = this.adresForm.controls["huisnummer"].value;
-    bestuurder.adres.postcode = this.adresForm.controls["postcode"].value;
     bestuurder.adres.stad = this.adresForm.controls["stad"].value;
 
-  let pipe = new DatePipe('en-GB');
+    if(!this.adresForm.controls["huisnummer"].value){
+      this.adresForm.controls["huisnummer"].setValue(0);
+    } else {
+      bestuurder.adres.huisnummer = this.adresForm.controls["huisnummer"].value;
+    }
+
+    if(!this.adresForm.controls["postcode"].value){
+      this.adresForm.controls["postcode"].setValue(0);
+    } else {
+      bestuurder.adres.huisnummer = this.adresForm.controls["postcode"].value;
+    }
+
+    let pipe = new DatePipe('en-GB');
     bestuurder.geboorteDatum = pipe.transform(this.bestuurderForm.controls["geboorteDatum"].value, 'yyyy-MM-dd') as unknown as Date;
 
     this.rijbewijsForm.controls["typeRijbewijs"].value.forEach((typeRijbewijs: any) => {

@@ -378,7 +378,6 @@ export class TankkaartDetailDialogComponent implements OnInit {
    * Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden
    * en resulteert tot een error van de API.
    *
-   * Pincode: default 9999
    * MogelijkeBrandstoffen: opbouw van de brandstoffen lijst in de mogelijke brandstoffen
    *
    * @returns new Entity();
