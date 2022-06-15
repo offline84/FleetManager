@@ -66,6 +66,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Deze klasse wordt voornamelijk gebruikt om op correcte wijze een adres aan te maken of te wijzigen, klaar voor verzending naar de back-end.</p>
+<p>Erft over van IAdres.</p>
+
+            </p>
 
 
             <p class="comment">
@@ -76,172 +84,8 @@
             </p>
 
 
-            <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#huisnummer" >huisnummer</a>
-                            </li>
-                            <li>
-                                <a href="#postcode" >postcode</a>
-                            </li>
-                            <li>
-                                <a href="#stad" >stad</a>
-                            </li>
-                            <li>
-                                <a href="#straat" >straat</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor()</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/objects/adres.ts:7</a></div>
-                            </td>
-                        </tr>
-
-            </tbody>
-        </table>
-</section>
-
-            <section>
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="huisnummer"></a>
-                    <span class="name">
-                        <span ><b>huisnummer</b></span>
-                        <a href="#huisnummer"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/app/objects/adres.ts:5</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="postcode"></a>
-                    <span class="name">
-                        <span ><b>postcode</b></span>
-                        <a href="#postcode"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/objects/adres.ts:7</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="stad"></a>
-                    <span class="name">
-                        <span ><b>stad</b></span>
-                        <a href="#stad"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/objects/adres.ts:6</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="straat"></a>
-                    <span class="name">
-                        <span ><b>straat</b></span>
-                        <a href="#straat"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/app/objects/adres.ts:4</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-</section>
 
 
 
@@ -253,16 +97,34 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {IAdres} from &quot;./iAdres&quot;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IAdres } from &quot;./iAdres&quot;
+
+/**
+ * Deze klasse wordt voornamelijk gebruikt om op correcte wijze een adres aan te maken of te wijzigen, klaar voor verzending naar de back-end.
+ *
+ * Erft over van IAdres.
+ */
 export class Adres implements IAdres {
 
+  /**
+   * @ignore
+   */
   straat!: string;
-  huisnummer!: number;
-  stad!: string;
-  postcode!: number;
 
-  constructor()
-  {  }
+  /**
+   * @ignore
+   */
+  huisnummer!: number;
+
+  /**
+   * @ignore
+   */
+  stad!: string;
+
+  /**
+   * @ignore
+   */
+  postcode!: number;
 }
 </code></pre>
     </div>

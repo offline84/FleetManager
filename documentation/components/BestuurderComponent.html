@@ -143,20 +143,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -191,7 +177,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/bestuurders/bestuurder/bestuurder.component.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/bestuurders/bestuurder/bestuurder.component.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -205,6 +191,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -219,6 +206,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>maakt een instantie van het dialoogvenster aan.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>dataService</td>
@@ -231,6 +222,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>injecteert de data exchange service in deze klasse.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -259,58 +254,22 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/bestuurders/bestuurder/bestuurder.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/bestuurders/bestuurder/bestuurder.component.ts:17</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Bevat het voertuig dat is aangemaakt.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
 
 
 
-    <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/app/bestuurders/bestuurder/bestuurder.component.ts:29</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
     <section>
     
     <h3 id="inputs">
@@ -334,10 +293,18 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/bestuurders/bestuurder/bestuurder.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/bestuurders/bestuurder/bestuurder.component.ts:53</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Zorgt voor het openen van een dialoogvenster met de benodigde zaken voor het aanmaken van een nieuwe bestuurder.
+Eerst wordt het dialoogvenster geconfigureerd, daarna wordt de entiteit en de modus meegegeven.
+Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt a.d.h.v. de data exchange service.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -374,10 +341,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/bestuurders/bestuurder/bestuurder.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/bestuurders/bestuurder/bestuurder.component.ts:23</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Geeft al de te gebruiken columns van de tabel weer.
+Wordt gebruikt in de htmlcode voor de aanmaak van de tabel.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -400,7 +374,15 @@ import { BestuurderDetailDialogComponent } from &#x27;../bestuurder-detail-dialo
 })
 export class BestuurderComponent implements OnInit {
 
+    /**
+   * Bevat het voertuig dat is aangemaakt.
+   */
   @Input() entity: any;
+
+    /**
+    * Geeft al de te gebruiken columns van de tabel weer.
+    * Wordt gebruikt in de htmlcode voor de aanmaak van de tabel.
+    */
   properties &#x3D; [
     &quot;rijksregisternummer&quot;,
     &quot;achternaam&quot;,
@@ -412,12 +394,25 @@ export class BestuurderComponent implements OnInit {
     &quot;koppelingTankkaart&quot;
   ];
 
+   /**
+   *
+   * @param dataService injecteert de data exchange service in deze klasse.
+   * @param dialog maakt een instantie van het dialoogvenster aan.
+   */
   constructor(private dialog: MatDialog, private dataService: DataExchangeService) {
   }
 
+  /**
+   * @ignore
+   */
   ngOnInit(): void {
   }
 
+  /**
+   * Zorgt voor het openen van een dialoogvenster met de benodigde zaken voor het aanmaken van een nieuwe bestuurder.
+   * Eerst wordt het dialoogvenster geconfigureerd, daarna wordt de entiteit en de modus meegegeven.
+   * Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt a.d.h.v. de data exchange service.
+   */
   AddNewEntityDialog &#x3D; () &#x3D;&gt; {
     const config &#x3D; new MatDialogConfig();
 
@@ -512,7 +507,7 @@ mat-icon {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="form-block">    <button mat-raised-button id="add-button" (click)="AddNewEntityDialog()">      <mat-icon>add</mat-icon>BESTUURDER TOEVOEGEN    </button>  <div class="formsection">    <div class="field">      <app-bestuurder-list [columnsToDisplay]="properties"></app-bestuurder-list>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'BestuurderDetailDialogComponent', 'selector': 'app-bestuurder-detail-dialog'},{'name': 'BestuurderListComponent', 'selector': 'app-bestuurder-list'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
+    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'BestuurderDeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'BestuurderDetailDialogComponent', 'selector': 'app-bestuurder-detail-dialog'},{'name': 'BestuurderListComponent', 'selector': 'app-bestuurder-list'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BestuurderComponent'};
 </script>

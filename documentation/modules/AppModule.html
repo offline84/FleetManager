@@ -416,7 +416,7 @@ import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
 import { AppRoutingModule } from &#x27;./app-routing.module&#x27;;
 import { BrowserAnimationsModule } from &#x27;@angular/platform-browser/animations&#x27;;
 import { MaterialModule } from &#x27;./material/material.module&#x27;;
-import {Routes, RouterModule} from &quot;@angular/router&quot;;
+import { Routes, RouterModule } from &quot;@angular/router&quot;;
 
 import { Home } from &#x27;./app.home&#x27;;
 import { VoertuigComponent } from &#x27;./voertuigen/voertuig/voertuig.component&#x27;;
@@ -430,16 +430,16 @@ import { BestuurderDetailDialogComponent } from &#x27;./bestuurders/bestuurder-d
 import { TankkaartComponent } from &#x27;./tankkaarten/tankkaart/tankkaart.component&#x27;;
 import { HomeComponent } from &#x27;./home/home.component&#x27;;
 import { TankkaartListComponent } from &#x27;./tankkaarten/tankkaart-list/tankkaart-list.component&#x27;;
-import {  MatNativeDateModule, MAT_DATE_LOCALE } from &#x27;@angular/material/core&#x27;;
+import { MatNativeDateModule, MAT_DATE_LOCALE } from &#x27;@angular/material/core&#x27;;
 import { TankkaartDetailDialogComponent } from &#x27;./tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component&#x27;;
 import { DeleteConfirmationSheetComponent } from &#x27;./voertuigen/voertuig-delete-confirmation-sheet/voertuig-delete-confirmation-sheet.component&#x27;;
 import { TankkaartDeleteConfirmationSheetComponent } from &#x27;./tankkaarten/tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component&#x27;;
 
 const appRoutes: Routes &#x3D; [
-  { path: &#x27;&#x27;, component: HomeComponent},
-  { path: &#x27;voertuigen&#x27;, component: VoertuigComponent},
-  { path: &#x27;tankkaarten&#x27;, component: TankkaartComponent},
-  { path: &#x27;bestuurders&#x27;, component: BestuurderComponent}
+  { path: &#x27;&#x27;, component: HomeComponent },
+  { path: &#x27;voertuigen&#x27;, component: VoertuigComponent },
+  { path: &#x27;tankkaarten&#x27;, component: TankkaartComponent },
+  { path: &#x27;bestuurders&#x27;, component: BestuurderComponent }
 ]
 
 @NgModule({
@@ -474,9 +474,9 @@ const appRoutes: Routes &#x3D; [
   ],
   exports: [],
   providers: [
-    {provide: &quot;API_Url&quot;, useValue: &quot;https://localhost:5001/api/&quot;},
-    {provide: &quot;Adres_API_Url&quot;, useValue: &quot;https://api.basisregisters.vlaanderen.be/v1&quot;},
-    { provide: MAT_DATE_LOCALE, useValue: &#x27;en-GB&#x27; }
+    { provide: &quot;API_Url&quot;, useValue: &quot;https://localhost:5001/api/&quot; },
+    { provide: &quot;Adres_API_Url&quot;, useValue: &quot;https://api.basisregisters.vlaanderen.be/v1&quot; },
+    { provide: MAT_DATE_LOCALE, useValue: &#x27;en-GB&#x27; },
   ],
   bootstrap: [Home],
 })

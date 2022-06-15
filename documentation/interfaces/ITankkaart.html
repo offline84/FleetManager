@@ -69,6 +69,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Deze interface wordt voornamelijk gebruikt op de data op te halen uit de database en als het ware te &quot;patchen&quot; met een object van het type Tankkaart.</p>
+
+            </p>
 
 
         <section>
@@ -452,6 +459,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {mogelijkeBrandstof} from &quot;./mogelijkeBrandstof&quot;;
 
+/**
+ * Deze interface wordt voornamelijk gebruikt op de data op te halen uit de database en als het ware te &quot;patchen&quot; met een object van het type Tankkaart.
+ */
 export interface ITankkaart {
   kaartnummer : string;
   geldigheidsDatum: Date;

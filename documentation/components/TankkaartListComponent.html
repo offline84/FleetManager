@@ -209,7 +209,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -223,6 +223,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -237,6 +238,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>injecteert de datastream service in deze klasse.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>dataService</td>
@@ -249,6 +254,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>injecteert de data exchange service in deze klasse.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>dialog</td>
@@ -261,6 +270,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>maakt een instantie van het dialoogvenster aan.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -289,9 +302,16 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:22</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Geeft al de te gebruiken columns van de tabel weer.
+Wordt gebruikt in de htmlcode voor de aanmaak van de tabel.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -323,14 +343,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:123</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>set de filter komende van de searchbar component.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -341,6 +363,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -355,6 +378,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>de te filteren query.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -392,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:67</a></div>
                 </td>
             </tr>
 
@@ -439,10 +466,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:40</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>deze property behandelt alles van de tabel.
+Ze bevat de data, filters, paginatie, sortering, ... .</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -470,10 +504,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:46</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Deze property verzorgt de correcte behandeling van inkomende data via de data exchange service.
+Bevat het te behandelen dataType, in dit geval: tankkaart.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -505,10 +546,18 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:29</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>behandelt de paginaindeling in de htmlcode voor de tabel.
+deze set de initiele waarde van het aantal rijen, bevat de verschillende opties voor de weergave van aantal rijen
+en het totale aantal van rijen die gebruikt worden voor paginatie.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -531,10 +580,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:57</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bevat de tankkaart dat geselecteerd wordt uit de tabel.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -566,10 +621,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:34</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>behandelt de sortering per kolom in de htmlcode voor de tabel.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -597,10 +658,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:52</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bevat de te manipuleren data voor de tabel.
+wordt opgehaald via de datastreamservice.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -622,11 +690,44 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:135</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>opent de tankkaart-detail-dialog met settings voor viewing.
+Eerst wordt het dialoogvenster geconfigureerd,
+daarna wordt de entiteit en de modus meegegeven.
+Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>selectedRow</td>
+                                                    <td>
+                                                            <code><p>de geselecteerde rij uit de tabel.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
 </section>
@@ -652,16 +753,53 @@ import { TankkaartDetailDialogComponent } from &quot;../tankkaart-detail-dialog/
 })
 export class TankkaartListComponent implements AfterViewInit {
 
+  /**
+   * Geeft al de te gebruiken columns van de tabel weer.
+   * Wordt gebruikt in de htmlcode voor de aanmaak van de tabel.
+   */
   @Input() columnsToDisplay: any;
+
+  /**
+   * behandelt de paginaindeling in de htmlcode voor de tabel.
+   * deze set de initiele waarde van het aantal rijen, bevat de verschillende opties voor de weergave van aantal rijen
+   * en het totale aantal van rijen die gebruikt worden voor paginatie.
+   */
   @ViewChild(MatPaginator) paging!: MatPaginator;
+
+  /**
+   * behandelt de sortering per kolom in de htmlcode voor de tabel.
+   */
   @ViewChild(MatSort) sort!: MatSort;
 
+  /**
+   * deze property behandelt alles van de tabel.
+   * Ze bevat de data, filters, paginatie, sortering, ... .
+   */
   dataSource: MatTableDataSource&lt;any&gt; &#x3D; new MatTableDataSource();
 
+  /**
+   * Deze property verzorgt de correcte behandeling van inkomende data via de data exchange service.
+   * Bevat het te behandelen dataType, in dit geval: tankkaart.
+   */
   entityType: string &#x3D; &#x27;tankkaart&#x27;;
+
+  /**
+   * Bevat de te manipuleren data voor de tabel.
+   * wordt opgehaald via de datastreamservice.
+   */
   tableData: Array&lt;any&gt; &#x3D; new Array&lt;any&gt;();
+
+  /**
+   * Bevat de tankkaart dat geselecteerd wordt uit de tabel.
+   */
   selectedTankkaart: any;
 
+  /**
+   *
+   * @param datastream injecteert de datastream service in deze klasse.
+   * @param dataService injecteert de data exchange service in deze klasse.
+   * @param dialog maakt een instantie van het dialoogvenster aan.
+   */
   constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) { }
 
   ngAfterViewInit() {
@@ -716,14 +854,22 @@ export class TankkaartListComponent implements AfterViewInit {
     });
   }
 
-  //behandelt de algemene filtering komend van de searchbar;
+  /**
+   * set de filter komende van de searchbar component.
+   * @param filter {string} de te filteren query.
+   */
   FilterDataHandler(filter: any): void {
     this.dataSource &#x3D; filter;
   }
 
-  //opent de tankkaart-detail-dialog met settings voor viewing.
-  //Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt via de dataexchangeservice.
-  //Ook hier wordt de brandstoffenForView opgebouwd
+  /**
+   * opent de tankkaart-detail-dialog met settings voor viewing.
+   * Eerst wordt het dialoogvenster geconfigureerd,
+   * daarna wordt de entiteit en de modus meegegeven.
+   * Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt.
+   *
+   * @param selectedRow de geselecteerde rij uit de tabel.
+   */
   ViewDetails &#x3D; (selectedRow: ITankkaart) &#x3D;&gt; {
     const config &#x3D; new MatDialogConfig();
     this.selectedTankkaart &#x3D; selectedRow;
@@ -908,7 +1054,7 @@ button {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="container">    <div id="searchbar">      <app-searchbar [entity]="entityType" [dataToFilter]="dataSource" (passFilteredData)="FilterDataHandler($event)">      </app-searchbar>    </div>  <div class="mat-elevation-z8 table">    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table">      <ng-container class="column" matColumnDef="kaartnummer">        <th mat-header-cell *matHeaderCellDef mat-sort-header="kaartnummer">Kaartnummer</th>        <td mat-cell *matCellDef="let tankkaart">{{tankkaart.kaartnummer}}</td>      </ng-container>      <ng-container matColumnDef="geldigheidsdatum">        <th mat-header-cell *matHeaderCellDef mat-sort-header="geldigheidsdatum">Geldigheidsdatum</th>        <td mat-cell *matCellDef="let tankkaart">{{tankkaart.geldigheidsDatum | date : \'yyyy-MM-dd\'}}</td>      </ng-container>      <ng-container matColumnDef="isGeblokkeerd">        <th mat-header-cell *matHeaderCellDef mat-sort-header="isGeblokkeerd">Geblokkeerd</th>        <td mat-cell *matCellDef="let tankkaart">{{tankkaart.isGeblokkeerd}}</td>      </ng-container>      <ng-container matColumnDef="brandstoffenForView">        <th mat-header-cell *matHeaderCellDef mat-sort-header="brandstoffenForView">Brandstoffen</th>        <td mat-cell *matCellDef="let tankkaart">{{tankkaart.brandstoffenForView}}</td>      </ng-container>      <ng-container matColumnDef="koppeling">        <th mat-header-cell *matHeaderCellDef mat-sort-header="koppeling">Gekoppeld aan bestuurder</th>        <td mat-cell *matCellDef="let tankkaart">{{tankkaart.koppeling != null}}</td>      </ng-container>      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="ViewDetails(row)">      </tr>    </table>    <div></div>    <mat-paginator [length]="0" [pageSize]="15" [pageSizeOptions]="[5, 10, 25, 50, 100]" aria-label="Select page">    </mat-paginator>  </div></div></div>'
-    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'BestuurderDetailDialogComponent', 'selector': 'app-bestuurder-detail-dialog'},{'name': 'BestuurderListComponent', 'selector': 'app-bestuurder-list'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
+    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'BestuurderDeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'BestuurderDetailDialogComponent', 'selector': 'app-bestuurder-detail-dialog'},{'name': 'BestuurderListComponent', 'selector': 'app-bestuurder-list'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TankkaartListComponent'};
 </script>
