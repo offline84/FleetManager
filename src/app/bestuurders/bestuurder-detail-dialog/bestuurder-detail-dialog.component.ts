@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DatastreamService } from '../../datastream.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
+import { FormGroup, FormControl, Validators, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms'
 import { Bestuurder } from '../../objects/bestuurder';
 import { DataExchangeService } from '../../data-exchange.service';
 import { Adres } from 'src/app/objects/adres';
@@ -13,6 +13,7 @@ import { ToewijzingRijbewijs } from 'src/app/objects/toewijzingRijbewijs';
 import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
 import { DeleteConfirmationSheetComponent } from '../bestuurder-delete-confirmation-sheet/bestuurder-delete-confirmation-sheet.component';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-bestuurder-detail-dialog',
@@ -137,9 +138,9 @@ export class BestuurderDetailDialogComponent implements OnInit {
   });
 
   ngOnInit(): void {
-      this.adresForm.controls['stad'].disable();
-      this.adresForm.controls['straat'].disable();
-      this.adresForm.controls['huisnummer'].disable();
+    this.adresForm.controls['stad'].disable();
+    this.adresForm.controls['straat'].disable();
+    this.adresForm.controls['huisnummer'].disable();
     let year = moment().year();
     this.minDate = new Date('01/01/' + (year - 100));
     this.maxDate = moment().toDate();
@@ -190,80 +191,47 @@ export class BestuurderDetailDialogComponent implements OnInit {
       });
     }
 
-
-
-
-
-
-
-    this.bestuurderForm.controls["rijksregisternummer"].valueChanges.pipe(
+    this.adresForm.controls["postcode"].valueChanges.pipe(
       startWith(''),
       map(value => {
-        let dateOfBirth = value;
-        if (dateOfBirth >= 10000000000 && dateOfBirth < 99999999999) {
-          if (value.length == 11) {
-            let date = value.slice(0, 6);
-            let yearPart2 = date.slice(0, 2);
-            let month = date.slice(2, 4);
-            let day = date.slice(4, 6);
-            let yearPart1 = Number(yearPart2) - 100 > 0 ? "20" : "19";
-            date = day.concat("/" + month + "/" + yearPart1 + yearPart2);
-
-            // this.bestuurderForm.controls["geboorteDatum"].markAsTouched;
-            // this.bestuurderForm.controls["geboorteDatum"].touched;
-            this.bestuurderForm.controls["geboorteDatum"].setValue(date);
-
-            console.log(this.bestuurderForm);
-          }
-
+        if (value >= 1000 && value <= 9999) {
+          this.datastream.GetCityByPostalCode(value).subscribe((data: any) => {
+            let list = data.postnamen;
+            this.autocompleteGemeenteList = list.map((s: any) => s.geografischeNaam.spelling);
+            this.adresForm.controls['stad'].enable();
+            this.adresForm.controls['straat'].enable();
+          })
+        } else {
+          this.adresForm.controls['stad'].disable();
+          this.adresForm.controls['straat'].disable();
         }
       })).subscribe();
 
-   
-
-      this.adresForm.controls["postcode"].valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          console.log(value);
-          if (value >= 1000 && value <= 9999) {
-            this.datastream.GetCityByPostalCode(value).subscribe((data: any) => {
-              let list = data.postnamen;
-              this.autocompleteGemeenteList = list.map((s: any) => s.geografischeNaam.spelling);
-              this.adresForm.controls['stad'].enable();
-              this.adresForm.controls['straat'].enable();
-            })
-          } else {
-            this.adresForm.controls['stad'].disable();
-            this.adresForm.controls['straat'].disable();
-          }
-        })).subscribe();
-
-      this.adresForm.controls["straat"].valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          console.log(value);
-          if (value.length >= 4) {
-            this.datastream.GetStreetNameByPostalcodeAndQuery(this.adresForm.controls['postcode'].value, value).subscribe((data: any) => {
-              console.log(data);
-              let list = data;
-              this.autocompleteStraatList = list.map((s: any) => s.straatnaam.geografischeNaam.spelling);
-              console.log(this.autocompleteStraatList);
-              this.adresForm.controls['huisnummer'].enable();
-            })
-          } else {
-            this.adresForm.controls['huisnummer'].disable();
-          }
-        })).subscribe();
+    this.adresForm.controls["straat"].valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        if (value.length >= 4) {
+          this.datastream.GetStreetNameByPostalcodeAndQuery(this.adresForm.controls['postcode'].value, value).subscribe((straten: any) => {
+            let list = Array.isArray(straten.adresMatches) ? straten.adresMatches.filter((straat: any) => {
+              return straat
+            }) : [];
+            this.autocompleteStraatList = list.map((s: any) => s.straatnaam.straatnaam.geografischeNaam.spelling);
+            this.adresForm.controls['huisnummer'].enable();
+          })
+        } else {
+          this.adresForm.controls['huisnummer'].disable();
+        }
+      })).subscribe();
 
 
     // We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
     // Indien ja, patchen we deze in de form.
     if (this.bestuurder) {
-    
+
       this.patchObjectToForm(this.bestuurder);
     };
 
-      
+
 
     //listener voor het sluiten van de dialog + transfer object naar de tabel.
     this.dialogRef.backdropClick().subscribe(() => {
@@ -275,19 +243,22 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
   //Omvat de creatie van het te verzenden object en de wissel van mode "add" naar "view" + errorbehandeling.
   onSubmit = () => {
-    let driver = this.CreateObjectToSend();
-    this.datastream.PostDriver(driver).subscribe((res: any) => {
-      if (res) {
-        this.bestuurder = res;
+    if (this.bestuurderForm.valid && this.rijbewijsForm.valid) {
+
+      let driver = this.CreateObjectToSend();
+      this.datastream.PostDriver(driver).subscribe((res: any) => {
+        if (res) {
+          this.bestuurder = res;
+        }
+      }, error => {
+        this.message.nativeElement.innerHTML = error.error;
+      }, () => {
+        this.IsModifiable(false);
+        let success = 'nieuw bestuurder met rijksregisternummer "' + this.bestuurder.rijksregisternummer + '" is successvol toegevoegd aan de database.';
+        this.message.nativeElement.innerHTML = success;
       }
-    }, error => {
-      this.message.nativeElement.innerHTML = error.error;
-    }, () => {
-      this.IsModifiable(false);
-      let success = 'nieuw bestuurder met rijksregisternummer "' + this.bestuurder.rijksregisternummer + '" is successvol toegevoegd aan de database.';
-      this.message.nativeElement.innerHTML = success;
+      );
     }
-    );
   }
 
   openUpdateScreen = () => {
@@ -315,12 +286,6 @@ export class BestuurderDetailDialogComponent implements OnInit {
     });
 
   }
-
-  onSelectionChangeGeboorteDatum() {
-
-  }
-
-
 
 
   //Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat, implementeren we de selectie handmatig via een eventlistener.
@@ -410,7 +375,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
   linkUnlinkTankkaart = () => {
     if (this.tankkaartLink) {
-      if (this.bestuurder.koppeling) {
+      if (this.bestuurder.koppeling.kaartnummer) {
         this.datastream.UnlinkFuelCard(this.bestuurder.koppeling.kaartnummer).subscribe(() => {
           this.bestuurder.koppeling.kaartnummer = null;
         }, error => {
@@ -420,7 +385,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
           this.message.nativeElement.innerHTML = success;
         });
       } else {
-        this.datastream.LinkVehicle(this.bestuurder.rijksregisternummer, this.tankkaartLink.kaartnummer).subscribe(() => {
+        this.datastream.LinkFuelCard(this.bestuurder.rijksregisternummer, this.tankkaartLink.kaartnummer).subscribe(() => {
         }, error => {
           if (error) { this.message.nativeElement.innerHTML = error.message; }
         }, () => {
@@ -452,15 +417,14 @@ export class BestuurderDetailDialogComponent implements OnInit {
   //De niet gepatched controls worden handmatig ingegeven.
   patchObjectToForm = (entity: Bestuurder) => {
 
-    if(this.bestuurder.rijbewijzen == undefined ){
-      console.log()
+    if (this.bestuurder.rijbewijzen == undefined) {
       this.bestuurder.rijbewijzen = this.rijbewijzen;
     }
 
-    
-      this.adresForm.controls['stad'].enable();
+    this.adresForm.controls['stad'].enable();
     this.adresForm.controls['straat'].enable();
     this.adresForm.controls['huisnummer'].enable();
+
     this.bestuurderForm.patchValue(this.bestuurder);
     if (this.bestuurder.toewijzingenRijbewijs != null) {
       let dataArray: string[] = [];
@@ -470,7 +434,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
           dataArray.push(rijbewijs.typeRijbewijs);
         }
       });
-      this.rijbewijsForm.controls["typeRijbewijs"].setValue(dataArray);
+      this.rijbewijsForm.controls['typeRijbewijs'].setValue(dataArray);
     }
 
     this.adresForm.patchValue(this.bestuurder.adres);
@@ -485,7 +449,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     bestuurder.rijksregisternummer = this.bestuurderForm.controls["rijksregisternummer"].value.toString();
     bestuurder.naam = this.bestuurderForm.controls["naam"].value;
     bestuurder.achternaam = this.bestuurderForm.controls["achternaam"].value;
-    bestuurder.geboorteDatum = new Date(this.bestuurderForm.controls["geboorteDatum"].value.toString());
+    bestuurder.geboorteDatum = new Date(this.bestuurderForm.controls["geboorteDatum"].value);
     bestuurder.adres.straat = this.adresForm.controls["straat"].value;
     bestuurder.adres.huisnummer = this.adresForm.controls["huisnummer"].value;
     bestuurder.adres.postcode = this.adresForm.controls["postcode"].value;
@@ -502,9 +466,6 @@ export class BestuurderDetailDialogComponent implements OnInit {
     return bestuurder;
   }
 
-  private _autocomplete(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.autocompleteGemeenteList.filter((stad: string) => stad.toLowerCase().includes(filterValue));
-  }
+
 }
 

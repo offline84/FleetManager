@@ -45,7 +45,6 @@ export class BestuurderListComponent implements AfterViewInit {
               }
             });
             bestuurder.rijbewijzen = this.driverLicenses;
-            console.log(bestuurder.rijbewijzen);
             bestuurder.rijbewijs = dataString.slice(0, -2);
             listDrivers.push(bestuurder);
           });
@@ -65,7 +64,6 @@ export class BestuurderListComponent implements AfterViewInit {
       }
     };
     this.dataService.observableData.subscribe((data: any) => {
-      console.log("sent data: ", data);
       if (data) {
         if (data.value) {
           if (data.entity == "bestuurder") {

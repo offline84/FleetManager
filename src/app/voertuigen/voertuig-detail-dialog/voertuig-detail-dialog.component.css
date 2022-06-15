@@ -70,3 +70,9 @@ h3 {
   ::ng-deep .mat-form-field-empty.mat-form-field-label {
     color: rgb(113, 109, 109);
   }
+
+  .mat-link-field {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    max-width: 170px;
+  }
