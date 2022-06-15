@@ -421,8 +421,11 @@ export class BestuurderDetailDialogComponent implements OnInit {
    */
   OpenVoertuigenDetails = () => {
     this.dialogRef.close();
-    this.dataService.sendData("voertuig", "view", this.voertuigLink);
-    let navi = this.router.navigate(['/voertuigen']);
+    this.datastream.GetSingleVehicle(this.voertuigLink.chassisnummer).subscribe((data: any) => {
+      this.voertuigLink = data;
+      this.dataService.sendData("voertuig", "view", this.voertuigLink);
+      this.router.navigate(['/voertuigen']);
+    });
   }
 
 
@@ -435,8 +438,11 @@ export class BestuurderDetailDialogComponent implements OnInit {
    */
   OpenTankkaartenDetails = () => {
     this.dialogRef.close();
-    this.dataService.sendData("tankkaart", "view", this.tankkaartLink);
-    let navi = this.router.navigate(['/tankkaarten']);
+    this.datastream.GetSingleFuelCard(this.tankkaartLink.kaartnummer).subscribe((data: any) => {
+      this.tankkaartLink = data;
+      this.dataService.sendData("tankkaart", "view", this.tankkaartLink);
+      this.router.navigate(['/tankkaarten']);
+    });
   }
 
   /**

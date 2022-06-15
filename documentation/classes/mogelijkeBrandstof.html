@@ -66,6 +66,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Deze klasse wordt gebruikt om op correcte wijze de lijst van brandstoffen op te bouwen voor het verzenden naar de Backend.</p>
+<p>Erft over van IMogelijkeBrandstof.</p>
+
+            </p>
 
 
             <p class="comment">
@@ -115,7 +123,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/app/objects/mogelijkeBrandstof.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/objects/mogelijkeBrandstof.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -147,7 +155,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/app/objects/mogelijkeBrandstof.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/objects/mogelijkeBrandstof.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -169,6 +177,11 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {IMogelijkeBrandstof} from &quot;./IMogelijkeBrandstof&quot;;
 import {Brandstof} from &quot;./brandstof&quot;;
 
+/**
+ * Deze klasse wordt gebruikt om op correcte wijze de lijst van brandstoffen op te bouwen voor het verzenden naar de Backend.
+ *
+ * Erft over van IMogelijkeBrandstof.
+ */
 export class mogelijkeBrandstof implements IMogelijkeBrandstof {
   brandstof!: Brandstof;
   constructor() { }

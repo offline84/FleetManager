@@ -59,15 +59,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-768f9f69d1b70f40175db1371b99a69fb9e31915d7f8026b4bb02d50f4b6c76fff271e32f0d7cfed55156b0dc9db376ca5b936d483f8d71aa9de7a2166a2f64e"' : 'data-target="#xs-components-links-module-AppModule-768f9f69d1b70f40175db1371b99a69fb9e31915d7f8026b4bb02d50f4b6c76fff271e32f0d7cfed55156b0dc9db376ca5b936d483f8d71aa9de7a2166a2f64e"' }>
+                                            'data-target="#components-links-module-AppModule-7c2899988b2187a0149e1822fdab8a27cd8a9ae2fe14167f3cb1b4897ce0497361ce67d91ffbeb03c90a878826fc19e030e624a726592e67bfca9b1e6f58c343"' : 'data-target="#xs-components-links-module-AppModule-7c2899988b2187a0149e1822fdab8a27cd8a9ae2fe14167f3cb1b4897ce0497361ce67d91ffbeb03c90a878826fc19e030e624a726592e67bfca9b1e6f58c343"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-768f9f69d1b70f40175db1371b99a69fb9e31915d7f8026b4bb02d50f4b6c76fff271e32f0d7cfed55156b0dc9db376ca5b936d483f8d71aa9de7a2166a2f64e"' :
-                                            'id="xs-components-links-module-AppModule-768f9f69d1b70f40175db1371b99a69fb9e31915d7f8026b4bb02d50f4b6c76fff271e32f0d7cfed55156b0dc9db376ca5b936d483f8d71aa9de7a2166a2f64e"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-7c2899988b2187a0149e1822fdab8a27cd8a9ae2fe14167f3cb1b4897ce0497361ce67d91ffbeb03c90a878826fc19e030e624a726592e67bfca9b1e6f58c343"' :
+                                            'id="xs-components-links-module-AppModule-7c2899988b2187a0149e1822fdab8a27cd8a9ae2fe14167f3cb1b4897ce0497361ce67d91ffbeb03c90a878826fc19e030e624a726592e67bfca9b1e6f58c343"' }>
                                             <li class="link">
                                                 <a href="components/BestuurderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BestuurderComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/BestuurderDetailDialogComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BestuurderDetailDialogComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/BestuurderListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BestuurderListComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/DeleteConfirmationSheetComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DeleteConfirmationSheetComponent</a>
@@ -117,6 +123,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                 </ul>
                 </li>
                     <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#components-links"' :
+                            'data-target="#xs-components-links"' }>
+                            <span class="icon ion-md-cog"></span>
+                            <span>Components</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
+                            <li class="link">
+                                <a href="components/BestuurderDeleteConfirmationSheetComponent.html" data-type="entity-link" >BestuurderDeleteConfirmationSheetComponent</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#classes-links"' :
                             'data-target="#xs-classes-links"' }>
                             <span class="icon ion-ios-paper"></span>
@@ -125,13 +144,25 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
+                                <a href="classes/Adres.html" data-type="entity-link" >Adres</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Bestuurder.html" data-type="entity-link" >Bestuurder</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Brandstof.html" data-type="entity-link" >Brandstof</a>
                             </li>
                             <li class="link">
                                 <a href="classes/mogelijkeBrandstof.html" data-type="entity-link" >mogelijkeBrandstof</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Rijbewijs.html" data-type="entity-link" >Rijbewijs</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Tankkaart.html" data-type="entity-link" >Tankkaart</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ToewijzingRijbewijs.html" data-type="entity-link" >ToewijzingRijbewijs</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Voertuig.html" data-type="entity-link" >Voertuig</a>
@@ -163,13 +194,25 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/IAdres.html" data-type="entity-link" >IAdres</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IBestuurder.html" data-type="entity-link" >IBestuurder</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/IBrandstof.html" data-type="entity-link" >IBrandstof</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IMogelijkeBrandstof.html" data-type="entity-link" >IMogelijkeBrandstof</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/IRijbewijs.html" data-type="entity-link" >IRijbewijs</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/ITankkaart.html" data-type="entity-link" >ITankkaart</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IToewijzingRijbewijs.html" data-type="entity-link" >IToewijzingRijbewijs</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IVoertuig.html" data-type="entity-link" >IVoertuig</a>

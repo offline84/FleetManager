@@ -161,6 +161,9 @@
                                 <a href="#message" >message</a>
                             </li>
                             <li>
+                                <a href="#minDate" >minDate</a>
+                            </li>
+                            <li>
                                 <a href="#modifiable" >modifiable</a>
                             </li>
                             <li>
@@ -174,9 +177,6 @@
                             </li>
                             <li>
                                 <a href="#onSubmit" >onSubmit</a>
-                            </li>
-                            <li>
-                                <a href="#OpenBestuurdersDetails" >OpenBestuurdersDetails</a>
                             </li>
                             <li>
                                 <a href="#openDeleteScreen" >openDeleteScreen</a>
@@ -214,6 +214,9 @@
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
+                            <li>
+                                <a href="#OpenBestuurdersDetails" >OpenBestuurdersDetails</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -232,12 +235,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(datastream: <a href="../injectables/DatastreamService.html" target="_self">DatastreamService</a>, dialogRef: <a href="../classes/Tankkaart.html" target="_self">MatDialogRef&lt;TankkaartDetailDialogComponent&gt;</a>, dataService: <a href="../injectables/DataExchangeService.html" target="_self">DataExchangeService</a>, bottomSheet: MatBottomSheet, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>constructor(datastream: <a href="../injectables/DatastreamService.html" target="_self">DatastreamService</a>, dialogRef: <a href="../classes/Tankkaart.html" target="_self">MatDialogRef&lt;TankkaartDetailDialogComponent&gt;</a>, dataService: <a href="../injectables/DataExchangeService.html" target="_self">DataExchangeService</a>, bottomSheet: MatBottomSheet, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:128</a></div>
                             </td>
                         </tr>
 
@@ -251,6 +254,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -265,6 +269,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Httpclient naar de back- end toe.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>dialogRef</td>
@@ -277,6 +285,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>referentie naar het dialog venster zelf.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>dataService</td>
@@ -289,6 +301,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Service voor het behandelen van data tussen componenten zonder parent - child relatie.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>bottomSheet</td>
@@ -301,6 +317,26 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>instantie nodig voor de initialisatie van het BottomsheetComponent.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>instantie die de routes van de applicatie verzorgt.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>data</td>
@@ -313,6 +349,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>de data die wordt meegegeven bij het openen van het dialogvenster.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -352,14 +392,56 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:149</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OpenBestuurdersDetails"></a>
+                    <span class="name">
+                        <span ><b>OpenBestuurdersDetails</b></span>
+                        <a href="#OpenBestuurdersDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>OpenBestuurdersDetails()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="268"
+                            class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:268</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Deze method opent bij het klikken op de gelinkte bestuurder in de detail-dialog view mode, de view mode in de bestuurdersectie van de applicatie van desbetreffende bestuurder.
+Eerst zorgen we ervoor dat de huidige dialog gesloten wordt, dan geven we via de data exchange service de opdracht om de view dialog te openen
+en vervolgens navigeren we naar de bestuurderssectie van de applicatie.</p>
+<p><a href="../injectables/DataExchangeService.html">DataExchangeService</a></p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -399,10 +481,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:101</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bevat de bestuurder die gelinkt is aan de property tankkaart.
+wordt geïnitialiseerd tijdens OnInit.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -433,10 +522,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:106</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Template voor brandstof</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -458,10 +553,20 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="242" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:242</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="386" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:386</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bereidt de entiteit voor voor verzending naar de back- end.
+Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden
+en resulteert tot een error van de API.</p>
+<p>Pincode: default 9999
+MogelijkeBrandstoffen: opbouw van de brandstoffen lijst in de mogelijke brandstoffen</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -489,10 +594,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:44</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngModel</p>
+<p>forCreation behandelt de modus waarin de input van een tankkaart kan aangemaakt worden.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -520,10 +632,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:75</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngClass</p>
+<p>hide verbergt de pincode</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -545,11 +664,41 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:217</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="342" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:342</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>behandelt de modus waarin de DialogComponent zich op dit moment bevindt.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>ismodifiable</td>
+                                                    <td>
+                                                            <code><p>boolean voor de check of de entiteit bewerkbaar is op dat moment.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
@@ -571,10 +720,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:89</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Omvat alle geseede brandstoftypes uit de database.
+wordt opgevuld tijdens OnInit.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -596,10 +752,18 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:178</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="300" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:300</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Koppelt of ontkoppelt en bestuurder aan de entiteit.</p>
+<p>Omdat we enkel het correcte resultaat willen weergeven en deze in de tabel updaten voor geslaagde patch-bewerkingen naar de API,
+gebruiken we de depricated manier van httpclient. + errormessagebehandeling.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -631,10 +795,54 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:30</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngClass</p>
+<p>HTML Class voor het omschrijven van gebeurtenissen gericht naar de gebruiker.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="minDate"></a>
+                    <span class="name">
+                        <span ><b>minDate</b></span>
+                        <a href="#minDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:114</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Min Date for geldigheidsdatum datePicker (will be set to today)</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -662,10 +870,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:37</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngModel</p>
+<p>modifiable behandelt de modus waarin de input van een tankkaart kan aangepast worden.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -688,10 +903,19 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:56</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngclass</p>
+<p>notEditable verandert de kleur van niet aanpasbare input naar CSS class changeColor</p>
+<div><pre class="line-numbers"><code class="language-html">forCreation = false
+modifiable = true
+notEditable = &quot;changeColor&quot;       =&gt; kleur van input = grijs</code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -713,10 +937,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:158</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:277</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Slaat de veranderingen aan de entiteit op en patched deze veranderingen op de entiteit.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -738,11 +968,46 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:148</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="256" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:256</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat,
+ implementeren we de selectie handmatig via een eventlistener.</p>
+<div><pre class="line-numbers"><code class="language-html"></code></pre></div><div class="formbuttons koppel field" *ngIf="viewOnly">
+<mat-form-field *ngIf="!voertuig.koppeling" class="link-bestuurder" appearance="fill">
+<mat-select (selectionChange)="onSelectionChange($event.value)">
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>event</td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                                <b>Example :</b>
+                                    <div class="jsdoc-example-ul">
+                                        <div class="formbuttons koppel field" *ngIf="viewOnly">
+<mat-form-field *ngIf="!voertuig.koppeling" class="link-bestuurder" appearance="fill">
+<mat-select (selectionChange)="onSelectionChange($event.value)">
+                                    </div>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
@@ -763,35 +1028,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:105</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:190</a></div>
                         </td>
                     </tr>
 
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="OpenBestuurdersDetails"></a>
-                    <span class="name">
-                        <span ><b>OpenBestuurdersDetails</b></span>
-                        <a href="#OpenBestuurdersDetails"><span class="icon ion-ios-link"></span></a>
-                    </span>
+                    <div class="io-description"><p>Omvat de creatie van het te verzenden object en de wissel van mode &quot;add&quot; naar &quot;view&quot; + errorbehandeling.</p>
+</div>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:154</a></div>
-                        </td>
-                    </tr>
-
 
         </tbody>
     </table>
@@ -813,10 +1059,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:129</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:226</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opent de geïnjecteerde instantie van de MatBottomSheetModule voor verwijdering van het voertuig en definieert de te verwijderen entiteit.</p>
+<p>[DeleteConfirmationSheetComponent] <a href="../components/DeleteConfirmationSheetComponent.html">DeleteConfirmationSheetComponent</a></p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -838,10 +1091,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:122</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:214</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Past de modus voor modificatie van detailweergave naar editeren aan.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -863,11 +1122,43 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:228</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="359" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:359</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>indien een entiteit is meegegeven wordt deze via deze method gepatched met de Form(s).
+De niet automatisch gepatchede controls worden handmatig ingegeven.</p>
+<p>Manueel: geldigheidsDatum, mogelijkeBrandstoffen en pincode (0=geen)</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>entity</td>
+                                                    <td>
+                                                            <code><p>de entiteit die in de form dient gegoten te worden.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
@@ -888,10 +1179,18 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:83</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>indien een tankkaart wordt meegegeven door de parent (TankkaartListComponent) of door de DataExchangeService
+wordt deze in deze variabele gegoten.</p>
+<p><a href="../injectables/DataExchangeService.html">DataExchangeService</a></p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -909,9 +1208,9 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>new FormGroup({
-    kaartnummer: new FormControl(&#x27;&#x27;,[Validators.required]),
-    geldigheidsdatum: new FormControl(new Date().toISOString().slice(0,-5),[Validators.required]),
-    pincode: new FormControl(&#x27;&#x27;,),
+    kaartnummer: new FormControl(&#x27;&#x27;,[Validators.required, Validators.pattern(&quot;[0-9]{15,21}&quot;)]),
+    geldigheidsdatum: new FormControl(&#x27;&#x27;,[Validators.required]),
+    pincode: new FormControl(&#x27;&#x27;,[Validators.pattern(&quot;[0-9]{4}&quot;)]),
     isGeblokkeerd: new FormControl(false,[Validators.required]),
     typeBrandstof: new FormControl(&#x27;&#x27;,),
   })</code>
@@ -919,10 +1218,18 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:122</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
+de benodigde properties weer te geven. Later worden deze terug omgezet in objecten.</p>
+<p>[CreateObjectToSend] <a href="CreateObjectToSend()">CreateObjectToSend()</a></p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -945,10 +1252,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:95</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Omvat de lijst van alle Bestuurders die niet gelinkt zijn aan een tankkaart uit de database.
+wordt opgevuld tijdens OnInit.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -971,10 +1285,19 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component.ts:68</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngClass</p>
+<p>viewOnly verandert de kleur van niet aanpasbare input naar CSS class changeColor</p>
+<div><pre class="line-numbers"><code class="language-html">modifiable = false
+forCreation = false
+viewOnly = &quot;changeColor&quot;           =&gt; kleur van input = grijs</code></pre></div></div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -992,11 +1315,11 @@ import {Tankkaart} from &quot;../../objects/tankkaart&quot;;
 import {ITankkaart} from &quot;../../objects/iTankkaart&quot;;
 import {DataExchangeService} from &#x27;../../data-exchange.service&#x27;;
 import {MatBottomSheet, MatBottomSheetConfig} from &#x27;@angular/material/bottom-sheet&#x27;;
-import {
-  TankkaartDeleteConfirmationSheetComponent
-} from &quot;../tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component&quot;;
+import {TankkaartDeleteConfirmationSheetComponent} from &quot;../tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component&quot;;
 import {Brandstof} from &quot;../../objects/brandstof&quot;;
 import {mogelijkeBrandstof} from &quot;../../objects/mogelijkeBrandstof&quot;;
+import {Router} from &quot;@angular/router&quot;;
+import { DatePipe } from &#x27;@angular/common&#x27;;
 
 @Component({
   selector: &#x27;app-tankkaart-detail-dialog&#x27;,
@@ -1006,57 +1329,150 @@ import {mogelijkeBrandstof} from &quot;../../objects/mogelijkeBrandstof&quot;;
 
 export class TankkaartDetailDialogComponent implements OnInit {
 
-  // class in htmlcode voor het omschrijven van gebeurtenissen
+  /**
+   * ngClass
+   *
+   * HTML Class voor het omschrijven van gebeurtenissen gericht naar de gebruiker.
+   *
+   * @return {string} message (nullable)   dynamisch gegenereerd bericht.
+   */
   @ViewChild(&#x27;message&#x27;, { static: false}) message!: ElementRef;
 
+  /**
+   * ngModel
+   *
+   * modifiable behandelt de modus waarin de input van een tankkaart kan aangepast worden.
+   */
   modifiable: boolean &#x3D; true;
+
+  /**
+   * ngModel
+   *
+   * forCreation behandelt de modus waarin de input van een tankkaart kan aangemaakt worden.
+   */
   forCreation: boolean &#x3D; true;
+
+  /**
+   * ngclass
+   *
+   * notEditable verandert de kleur van niet aanpasbare input naar CSS class changeColor
+   *
+   * @example
+   * forCreation &#x3D; false
+   * modifiable &#x3D; true
+   * notEditable &#x3D; &quot;changeColor&quot;       &#x3D;&gt; kleur van input &#x3D; grijs
+   */
   notEditable!: string;
+
+  /**
+   * ngClass
+   *
+   * viewOnly verandert de kleur van niet aanpasbare input naar CSS class changeColor
+   *
+   * @example
+   * modifiable &#x3D; false
+   * forCreation &#x3D; false
+   * viewOnly &#x3D; &quot;changeColor&quot;           &#x3D;&gt; kleur van input &#x3D; grijs
+   */
   viewOnly!: string;
+
+  /**
+   * ngClass
+   *
+   * hide verbergt de pincode
+   */
   hide: boolean &#x3D; true;
+
+  /**
+   * indien een tankkaart wordt meegegeven door de parent (TankkaartListComponent) of door de DataExchangeService
+   * wordt deze in deze variabele gegoten.
+   *
+   * [DataExchangeService]{@link DataExchangeService}
+   */
   tankkaart &#x3D; new Tankkaart();
 
+  /**
+   * Omvat alle geseede brandstoftypes uit de database.
+   * wordt opgevuld tijdens OnInit.
+   */
   KeuzeBrandstoffen: any;
+
+  /**
+   * Omvat de lijst van alle Bestuurders die niet gelinkt zijn aan een tankkaart uit de database.
+   * wordt opgevuld tijdens OnInit.
+   */
   unlinkedBestuurders: any;
+
+  /**
+   * Bevat de bestuurder die gelinkt is aan de property tankkaart.
+   * wordt geïnitialiseerd tijdens OnInit.
+   */
   bestuurderLink: any &#x3D; null;
 
+  /**
+   * Template voor brandstof
+   */
   brandstof&#x3D;{
     id: &quot;&quot;,
     typeBrandstof: &quot;&quot;
   };
 
+  /**
+   * Min Date for geldigheidsdatum datePicker (will be set to today)
+   */
+  minDate: Date &#x3D; new Date();
 
-  // deze Formgroep behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
-  // de benodigde properties weer te geven. Later worden deze terug omgezet in objecten. zie function: CreateObjectToSend
+  /**
+   * Behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
+   * de benodigde properties weer te geven. Later worden deze terug omgezet in objecten.
+   *
+   * [CreateObjectToSend] {@link CreateObjectToSend()}
+   */
   tankkaartForm &#x3D; new FormGroup({
-    kaartnummer: new FormControl(&#x27;&#x27;,[Validators.required]),
-    geldigheidsdatum: new FormControl(new Date().toISOString().slice(0,-5),[Validators.required]),
-    pincode: new FormControl(&#x27;&#x27;,),
+    kaartnummer: new FormControl(&#x27;&#x27;,[Validators.required, Validators.pattern(&quot;[0-9]{15,21}&quot;)]),
+    geldigheidsdatum: new FormControl(&#x27;&#x27;,[Validators.required]),
+    pincode: new FormControl(&#x27;&#x27;,[Validators.pattern(&quot;[0-9]{4}&quot;)]),
     isGeblokkeerd: new FormControl(false,[Validators.required]),
     typeBrandstof: new FormControl(&#x27;&#x27;,),
   });
 
+  /**
+   * @param datastream Httpclient naar de back- end toe.
+   * @param dialogRef referentie naar het dialog venster zelf.
+   * @param dataService Service voor het behandelen van data tussen componenten zonder parent - child relatie.
+   * @param bottomSheet instantie nodig voor de initialisatie van het BottomsheetComponent.
+   * @param router instantie die de routes van de applicatie verzorgt.
+   * @param data {any} de data die wordt meegegeven bij het openen van het dialogvenster.
+   */
   constructor(private datastream: DatastreamService,
               private dialogRef: MatDialogRef&lt;TankkaartDetailDialogComponent&gt;,
               private dataService: DataExchangeService,
               private bottomSheet: MatBottomSheet,
+              private router: Router,
               @Inject(MAT_DIALOG_DATA) private data: any) {
     this.tankkaart &#x3D; data.entity;
     this.modifiable &#x3D; data.modifiable;
+    this.bestuurderLink &#x3D; data.bestuurderLink;
   }
 
   ngOnInit(): void {
 
+    // Indien de tankkaart gekend is, dan is dat de minimum datum, anders vandaag.
+    if ( this.tankkaart !&#x3D; null) {
+      this.minDate &#x3D; this.tankkaart.geldigheidsDatum;
+    }
+
     //We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
     // Indien ja, patchen we deze in de form.
-    if(this.tankkaart){
+    if (this.tankkaart) {
       this.patchObjectToForm(this.tankkaart);
     }
 
-    // zet de mode waarin de dialog zich op dit moment bevindt. de mogelijkheden zijn: boolean modifialbe.
+    // zet de mode waarin de dialog zich op dit moment bevindt.
     //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
     this.IsModifiable(this.modifiable);
 
+    // Ophalen van de brandstoffen om te kunnen toevoegen aan de brandstof
     this.datastream.GetFuels().subscribe((data: any) &#x3D;&gt; {
       this.KeuzeBrandstoffen &#x3D; data;
     });
@@ -1064,22 +1480,12 @@ export class TankkaartDetailDialogComponent implements OnInit {
     // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
     //+ de bestuurder die al dan niet reeds gekoppeld is met de entiteit. deze worden opgeslagen in unlinkedBestuurders
     //en de bestuurder van de koppeling in de var. bestuurderLink.
-    if(!this.tankkaart){
-      this.datastream.GetAllBestuurders().subscribe((data: any) &#x3D;&gt;{
-        this.unlinkedBestuurders &#x3D; data.filter((u: any) &#x3D;&gt; u.koppeling.kaartnummer &#x3D;&#x3D; null);
+    if (this.tankkaart) {
+      this.datastream.GetDriversToLinkWithFuelCard(this.tankkaart.kaartnummer).subscribe((data: any) &#x3D;&gt; {
+        this.unlinkedBestuurders &#x3D; data;
       });
     }
-    else{
-      this.datastream.GetAllBestuurders().subscribe((data: any) &#x3D;&gt;{
-        this.unlinkedBestuurders &#x3D; data.filter((u: any) &#x3D;&gt; u.koppeling.kaartnummer &#x3D;&#x3D; null || u.koppeling.kaartnummer &#x3D;&#x3D; this.tankkaart.kaartnummer);
-        if(this.tankkaart){
-          if(this.tankkaart.koppeling){
-            let link &#x3D; data.filter((u: any) &#x3D;&gt; u.koppeling.kaartnummer &#x3D;&#x3D; this.tankkaart.kaartnummer);
-            this.bestuurderLink &#x3D; link[0];
-          }
-        }
-      });
-    }
+
 
     //listener voor het sluiten van de dialog + transfer object naar de tabel.
     this.dialogRef.backdropClick().subscribe(() &#x3D;&gt; {
@@ -1087,24 +1493,33 @@ export class TankkaartDetailDialogComponent implements OnInit {
     });
   }
 
-  //Omvat de creatie van het te verzenden object en de wissel van mode &quot;add&quot; naar &quot;view&quot; + errorbehandeling.
+  /**
+   * Omvat de creatie van het te verzenden object en de wissel van mode &quot;add&quot; naar &quot;view&quot; + errorbehandeling.
+   */
   onSubmit &#x3D; () &#x3D;&gt; {
 
     let fuelcard &#x3D; this.CreateObjectToSend();
 
-    this.datastream.PostFuelCard(fuelcard).subscribe( (res: any) &#x3D;&gt;{
-        if(res){
-          this.tankkaart &#x3D; res;
-        }
-      }, error &#x3D;&gt; {
-        this.message.nativeElement.innerHTML &#x3D; error.error;
-      }, () &#x3D;&gt; {
-        this.IsModifiable(false);
-      this.message.nativeElement.innerHTML &#x3D; &#x27;Nieuwe tankkaart met kaartnummer &quot;&#x27; + this.tankkaart.kaartnummer + &#x27;&quot; is successvol toegevoegd aan de database.&#x27;;
+    this.datastream.PostFuelCard(fuelcard).subscribe((res: any) &#x3D;&gt; {
+      if (res) {
+        this.tankkaart &#x3D; res;
+        this.datastream.GetDriversToLinkWithFuelCard(this.tankkaart.kaartnummer).subscribe((data: any) &#x3D;&gt; {
+          this.unlinkedBestuurders &#x3D; data;
+        });
+        this.patchObjectToForm(res);
       }
+    }, error &#x3D;&gt; {
+      this.message.nativeElement.innerHTML &#x3D; error.error;
+    }, () &#x3D;&gt; {
+      this.IsModifiable(false);
+      this.message.nativeElement.innerHTML &#x3D; &#x27;Nieuwe tankkaart met kaartnummer &quot;&#x27; + this.tankkaart.kaartnummer + &#x27;&quot; is successvol toegevoegd aan de database.&#x27;;
+    }
     );
   }
 
+  /**
+   * Past de modus voor modificatie van detailweergave naar editeren aan.
+   */
   openUpdateScreen &#x3D; () &#x3D;&gt; {
     this.forCreation &#x3D; false;
     this.IsModifiable(true);
@@ -1112,6 +1527,11 @@ export class TankkaartDetailDialogComponent implements OnInit {
     this.viewOnly &#x3D; &quot;&quot;;
   }
 
+  /**
+   * Opent de geïnjecteerde instantie van de MatBottomSheetModule voor verwijdering van het voertuig en definieert de te verwijderen entiteit.
+   *
+   * [DeleteConfirmationSheetComponent] {@link DeleteConfirmationSheetComponent}
+   */
   openDeleteScreen &#x3D; () &#x3D;&gt; {
     const config &#x3D; new MatBottomSheetConfig();
     config.autoFocus &#x3D; true;
@@ -1130,22 +1550,43 @@ export class TankkaartDetailDialogComponent implements OnInit {
     });
   }
 
-  //Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat, implementeren we de selectie handmatig via een eventlistener.
+  /**
+   * Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat,
+   *  implementeren we de selectie handmatig via een eventlistener.
+   *
+   * @param event
+   *
+   * @example
+   *
+   * &lt;div class&#x3D;&quot;formbuttons koppel field&quot; *ngIf&#x3D;&quot;viewOnly&quot;&gt;
+   &lt;mat-form-field *ngIf&#x3D;&quot;!voertuig.koppeling&quot; class&#x3D;&quot;link-bestuurder&quot; appearance&#x3D;&quot;fill&quot;&gt;
+   &lt;mat-select (selectionChange)&#x3D;&quot;onSelectionChange($event.value)&quot;&gt;
+   */
   onSelectionChange &#x3D; (event: any) &#x3D;&gt; {
     let link &#x3D; this.unlinkedBestuurders.filter((u: any) &#x3D;&gt; u.rijksregisternummer &#x3D;&#x3D; event);
     this.bestuurderLink &#x3D; link[0];
   }
 
-  //To Do route naar bestuurders en open daar automatisch met het behavioursubject de detail dialog voor de meegegeven bestuurder.
-  OpenBestuurdersDetails &#x3D; () &#x3D;&gt; {
+  /**
+   * Deze method opent bij het klikken op de gelinkte bestuurder in de detail-dialog view mode, de view mode in de bestuurdersectie van de applicatie van desbetreffende bestuurder.
+   * Eerst zorgen we ervoor dat de huidige dialog gesloten wordt, dan geven we via de data exchange service de opdracht om de view dialog te openen
+   * en vervolgens navigeren we naar de bestuurderssectie van de applicatie.
+   *
+   * {@link DataExchangeService}
+   */
+  OpenBestuurdersDetails(): void {
+    this.dialogRef.close();
     this.dataService.sendData(&quot;bestuurder&quot;,&quot;view&quot;, this.bestuurderLink);
+    let navi &#x3D;this.router.navigate([&#x27;/bestuurders&#x27;]);
   }
 
+  /**
+   * Slaat de veranderingen aan de entiteit op en patched deze veranderingen op de entiteit.
+   */
   onSave &#x3D; () &#x3D;&gt; {
     let fuelcard &#x3D; this.CreateObjectToSend();
 
     this.datastream.UpdateFuelCard(fuelcard).subscribe( (res: any) &#x3D;&gt;{
-
         if(res){
           this.tankkaart &#x3D; res;
           this.patchObjectToForm(res);
@@ -1159,10 +1600,13 @@ export class TankkaartDetailDialogComponent implements OnInit {
     );
   }
 
-  // Omdat we enkel het correcte resultaat willen weergeven en deze in de tabel updaten voor geslaagde patch-bewerkingen naar de API,
-  //gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
+  /**
+   * Koppelt of ontkoppelt en bestuurder aan de entiteit.
+   *
+   * Omdat we enkel het correcte resultaat willen weergeven en deze in de tabel updaten voor geslaagde patch-bewerkingen naar de API,
+   * gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
+   */
   linkUnlinkDriver &#x3D; () &#x3D;&gt;{
-
     if(this.bestuurderLink){
       if(this.tankkaart.koppeling){
         this.datastream.UnlinkFuelCard(this.tankkaart.kaartnummer).subscribe(() &#x3D;&gt;{
@@ -1199,7 +1643,11 @@ export class TankkaartDetailDialogComponent implements OnInit {
     }
   }
 
-  //behandelt de mode waarin de dialog zich bevindt.
+  /**
+   * behandelt de modus waarin de DialogComponent zich op dit moment bevindt.
+   *
+   * @param ismodifiable {boolean} boolean voor de check of de entiteit bewerkbaar is op dat moment.
+   */
   IsModifiable &#x3D; (ismodifiable: boolean) &#x3D;&gt;{
     this.modifiable &#x3D; ismodifiable
     if(!ismodifiable){
@@ -1209,8 +1657,14 @@ export class TankkaartDetailDialogComponent implements OnInit {
     }
   }
 
-  //indien een tankkaart is meegegeven wordt deze via deze method gepatched met de tankkaartForm.
-  //De niet gepatchede controls worden handmatig ingegeven.
+  /**
+   * indien een entiteit is meegegeven wordt deze via deze method gepatched met de Form(s).
+   * De niet automatisch gepatchede controls worden handmatig ingegeven.
+   *
+   * Manueel: geldigheidsDatum, mogelijkeBrandstoffen en pincode (0&#x3D;geen)
+   *
+   * @param entity de entiteit die in de form dient gegoten te worden.
+   */
   patchObjectToForm &#x3D; (entity: Tankkaart) &#x3D;&gt;{
     this.tankkaartForm.patchValue(this.tankkaart);
     this.tankkaartForm.controls[&quot;geldigheidsdatum&quot;].setValue(entity.geldigheidsDatum.toString());
@@ -1223,19 +1677,32 @@ export class TankkaartDetailDialogComponent implements OnInit {
         this.tankkaartForm.controls[&quot;typeBrandstof&quot;].setValue(lijstBrandstoffen);
       });
     }
+    if (this.tankkaart.pincode &#x3D;&#x3D; 0) {
+      this.tankkaartForm.controls[&quot;pincode&quot;].setValue(&quot;&quot;);
+    }
   }
 
+  /**
+   * Bereidt de entiteit voor voor verzending naar de back- end.
+   * Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden
+   * en resulteert tot een error van de API.
+   *
+   * Pincode: default 9999
+   * MogelijkeBrandstoffen: opbouw van de brandstoffen lijst in de mogelijke brandstoffen
+   *
+   * @returns new Entity();
+   */
   CreateObjectToSend &#x3D;(): ITankkaart &#x3D;&gt; {
     let fuelcard &#x3D; new Tankkaart();
 
+    let pipe &#x3D; new DatePipe(&#x27;en-GB&#x27;);
+
     fuelcard.kaartnummer &#x3D; this.tankkaartForm.controls[&quot;kaartnummer&quot;].value;
-    fuelcard.geldigheidsDatum &#x3D; this.tankkaartForm.controls[&quot;geldigheidsdatum&quot;].value;
+    fuelcard.geldigheidsDatum &#x3D; pipe.transform(this.tankkaartForm.controls[&quot;geldigheidsdatum&quot;].value, &#x27;YYYY-MM-dd&#x27;) as unknown as Date;
     fuelcard.isGeblokkeerd &#x3D; this.tankkaartForm.controls[&quot;isGeblokkeerd&quot;].value;
 
-    // Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden.
-
     if(!this.tankkaartForm.controls[&quot;pincode&quot;].value){
-      this.tankkaartForm.controls[&quot;pincode&quot;].setValue(9999);
+      this.tankkaartForm.controls[&quot;pincode&quot;].setValue(0);
     } else {
       fuelcard.pincode &#x3D; parseInt(this.tankkaartForm.controls[&quot;pincode&quot;].value, 10) ;
     }
@@ -1256,6 +1723,8 @@ export class TankkaartDetailDialogComponent implements OnInit {
       })
     }
 
+    console.log(fuelcard);
+
     return fuelcard;
   }
 }
@@ -1264,147 +1733,105 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div mat-dialog-content&gt;
-  &lt;div mat-dialog-title class&#x3D;&quot;title&quot;&gt;
-    &lt;h2 *ngIf&#x3D;&quot;forCreation&quot;&gt;Tankkaart toevoegen&lt;/h2&gt;
-    &lt;h2 *ngIf&#x3D;&quot;!modifiable&quot;&gt;Tankkaart details&lt;/h2&gt;
-    &lt;h2 *ngIf&#x3D;&quot;modifiable &amp;&amp; !forCreation&quot;&gt;Tankkaart Updaten&lt;/h2&gt;
-  &lt;/div&gt;
-  &lt;div *ngIf&#x3D;&quot;!modifiable&quot;&gt;
-    &lt;div class&#x3D;&quot;formbuttons-top&quot;&gt;
-      &lt;button mat-mini-fab color&#x3D;&quot;warning&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;openUpdateScreen()&quot;&gt;&lt;mat-icon&gt;edit&lt;/mat-icon&gt;&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;div class&#x3D;&quot;formbuttons-top&quot;&gt;
-      &lt;button mat-mini-fab color&#x3D;&quot;warning&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;openDeleteScreen()&quot;&gt;&lt;mat-icon&gt;delete&lt;/mat-icon&gt;&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;div class&#x3D;&quot;clearfix&quot;&gt;
-    &lt;/div&gt;
+  &lt;div mat-dialog-title&gt;
+    &lt;mat-toolbar&gt;
+      &lt;h2 *ngIf&#x3D;&quot;forCreation&quot;&gt;Tankkaart toevoegen&lt;/h2&gt;
+      &lt;h2 *ngIf&#x3D;&quot;!modifiable&quot;&gt;Tankkaart details&lt;/h2&gt;
+      &lt;h2 *ngIf&#x3D;&quot;modifiable &amp;&amp; !forCreation&quot;&gt;Tankkaart Updaten&lt;/h2&gt;
+    &lt;/mat-toolbar&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;div mat-dialog-content&gt;
   &lt;div [formGroup]&#x3D;&quot;tankkaartForm&quot;&gt;
-    &lt;div class&#x3D;&quot;form-block&quot;&gt;
-      &lt;div class&#x3D;&quot;formsection&quot;&gt;
-        &lt;div class&#x3D;&quot;field&quot;&gt;
-          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
-            &lt;mat-label&gt;kaartnummer&lt;/mat-label&gt;
-            &lt;input [ngClass]&#x3D;&quot;notEditable&quot; matInput type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;!forCreation&quot; formControlName&#x3D;&quot;kaartnummer&quot;&gt;
-            &lt;mat-error *ngIf&#x3D;&quot;tankkaartForm.get(&#x27;kaartnummer&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;Veld is vereist&lt;/mat-error&gt;
-          &lt;/mat-form-field&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;field&quot;&gt;
-          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;  class&#x3D;&quot;datepickerMat&quot;&gt;
-            &lt;mat-label&gt;geldigheidsdatum&lt;/mat-label&gt;
-            &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput [matDatepicker]&#x3D;&quot;picker&quot; [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;geldigheidsdatum&quot;&gt;
-            &lt;mat-hint&gt;DD/MM/YYYY&lt;/mat-hint&gt;
-            &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;picker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
-            &lt;mat-datepicker #picker [disabled]&#x3D;&quot;!modifiable&quot;&gt;&lt;/mat-datepicker&gt;
-            &lt;mat-error *ngIf&#x3D;&quot;tankkaartForm.get(&#x27;geldigheidsdatum&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;Veld is vereist&lt;/mat-error&gt;
-          &lt;/mat-form-field&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;field&quot;&gt;
-          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
-            &lt;mat-label&gt;pincode&lt;/mat-label&gt;
-            &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput [type]&#x3D;&quot;hide ? &#x27;password&#x27; : &#x27;text&#x27;&quot; pattern&#x3D;&quot;[0-9]*&quot; [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;pincode&quot;&gt;
-            &lt;button mat-icon-button matSuffix (click)&#x3D;&quot;hide &#x3D; !hide&quot; [attr.aria-label]&#x3D;&quot;&#x27;Hide password&#x27;&quot; [attr.aria-pressed]&#x3D;&quot;hide&quot;&gt;
-              &lt;mat-icon&gt;{{hide ? &#x27;visibility_off&#x27; : &#x27;visibility&#x27;}}&lt;/mat-icon&gt;
-            &lt;/button&gt;
-            &lt;mat-hint&gt;Default: 9999&lt;/mat-hint&gt;
-          &lt;/mat-form-field&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;field&quot;&gt;
-          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
-            &lt;mat-label&gt;Brandstoffen&lt;/mat-label&gt;
-            &lt;mat-select placeholder&#x3D;&quot;brandstoffen&quot; [disabled]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;typeBrandstof&quot; multiple&gt;
-              &lt;mat-option *ngFor&#x3D;&quot;let brand of KeuzeBrandstoffen&quot; value&#x3D;&quot;{{brand.typeBrandstof}}&quot;&gt;{{brand.typeBrandstof}}&lt;/mat-option&gt;
-            &lt;/mat-select&gt;
-          &lt;/mat-form-field&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;field&quot;&gt;
-          &lt;mat-checkbox color&#x3D;&quot;primary&quot; formControlName&#x3D;&quot;isGeblokkeerd&quot; [disabled]&#x3D;&quot;!modifiable || forCreation&quot;&gt;
-            Geblokeerd
-          &lt;/mat-checkbox&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+    &lt;div class&#x3D;&quot;field&quot;&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+        &lt;mat-label&gt;kaartnummer&lt;/mat-label&gt;
+        &lt;input [ngClass]&#x3D;&quot;notEditable&quot; matInput type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;!forCreation&quot; formControlName&#x3D;&quot;kaartnummer&quot;&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;tankkaartForm.get(&#x27;kaartnummer&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;Veld is vereist&lt;/mat-error&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;tankkaartForm.get(&#x27;kaartnummer&#x27;)?.hasError(&#x27;pattern&#x27;)&quot;&gt;Kaartnummer is 15-21 cijfers lang&lt;/mat-error&gt;
+      &lt;/mat-form-field&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;fill&quot; class&#x3D;&quot;datepickerMat&quot;&gt;
+        &lt;mat-label&gt;geldigheidsdatum&lt;/mat-label&gt;
+        &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput [matDatepicker]&#x3D;&quot;picker&quot; [min]&#x3D;&quot;minDate&quot; [readonly]&#x3D;&quot;!modifiable&quot;
+          formControlName&#x3D;&quot;geldigheidsdatum&quot;&gt;
+        &lt;mat-hint&gt;DD/MM/YYYY&lt;/mat-hint&gt;
+        &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;picker&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+        &lt;mat-datepicker #picker [disabled]&#x3D;&quot;!modifiable&quot;&gt;&lt;/mat-datepicker&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;tankkaartForm.get(&#x27;geldigheidsdatum&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;Veld is vereist&lt;/mat-error&gt;
+      &lt;/mat-form-field&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+        &lt;mat-label&gt;pincode&lt;/mat-label&gt;
+        &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput [type]&#x3D;&quot;hide ? &#x27;password&#x27; : &#x27;text&#x27;&quot; pattern&#x3D;&quot;[0-9]*&quot;
+          [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;pincode&quot;&gt;
+        &lt;button mat-icon-button matSuffix (click)&#x3D;&quot;hide &#x3D; !hide&quot; [attr.aria-label]&#x3D;&quot;&#x27;Hide password&#x27;&quot;
+          [attr.aria-pressed]&#x3D;&quot;hide&quot;&gt;
+          &lt;mat-icon&gt;{{hide ? &#x27;visibility_off&#x27; : &#x27;visibility&#x27;}}&lt;/mat-icon&gt;
+        &lt;/button&gt;
+        &lt;mat-error *ngIf&#x3D;&quot;tankkaartForm.get(&#x27;pincode&#x27;)?.hasError(&#x27;pattern&#x27;)&quot;&gt;De Pincode bestaat uit 4 cijfers
+        &lt;/mat-error&gt;
+      &lt;/mat-form-field&gt;
+      &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+        &lt;mat-label&gt;Brandstoffen&lt;/mat-label&gt;
+        &lt;mat-select placeholder&#x3D;&quot;brandstoffen&quot; [disabled]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;typeBrandstof&quot; multiple&gt;
+          &lt;mat-option *ngFor&#x3D;&quot;let brand of KeuzeBrandstoffen&quot; value&#x3D;&quot;{{brand.typeBrandstof}}&quot;&gt;{{brand.typeBrandstof}}
+          &lt;/mat-option&gt;
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
     &lt;/div&gt;
-&lt;!--
-    &lt;div class&#x3D;&quot;form-middle-block&quot;&gt;
-      &lt;h3&gt; uiterlijk&lt;/h3&gt;
-      &lt;div class&#x3D;&quot;formsection&quot;&gt;
-        &lt;div class&#x3D;&quot;field&quot;&gt;
-          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
-            &lt;mat-label&gt;kleur&lt;/mat-label&gt;
-            &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;kleur&quot;&gt;
-          &lt;/mat-form-field&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;field&quot;&gt;
-          &lt;mat-form-field  appearance&#x3D;&quot;fill&quot;&gt;
-            &lt;mat-label&gt;aantal deuren&lt;/mat-label&gt;
-            &lt;input [ngClass]&#x3D;&quot;viewOnly&quot; matInput type&#x3D;&quot;number&quot; [readonly]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;aantalDeuren&quot;&gt;
-            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;aantalDeuren&#x27;)?.hasError(&#x27;min&#x27;)&quot;&gt;getal kan geen negatieve waarde hebben&lt;/mat-error&gt;
-          &lt;/mat-form-field&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;field&quot;&gt;
-          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
-            &lt;mat-select placeholder&#x3D;&quot;categorie *&quot; [disabled]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;typeWagen&quot;&gt;
-              &lt;mat-option value &#x3D; null&gt;&lt;/mat-option&gt;
-              &lt;mat-option *ngFor&#x3D;&quot;let cat of categories&quot; value&#x3D;&quot;{{cat.typeWagen}}&quot;&gt;{{cat.typeWagen}}&lt;/mat-option&gt;
-            &lt;/mat-select&gt;
-            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;typeWagen&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;categorie is vereist&lt;/mat-error&gt;
-          &lt;/mat-form-field&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
---&gt;
-    &lt;!--
-    &lt;div class&#x3D;&quot;form-block&quot;&gt;
-      &lt;h3&gt; overige&lt;/h3&gt;
-      &lt;div class&#x3D;&quot;formsection&quot;&gt;
-        &lt;div class&#x3D;&quot;field&quot;&gt;
-          &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
-            &lt;mat-select placeholder&#x3D;&quot;brandstof *&quot; [disabled]&#x3D;&quot;!modifiable&quot; formControlName&#x3D;&quot;typeBrandstof&quot;&gt;
-              &lt;mat-option value &#x3D; null&gt;&lt;/mat-option&gt;
-              &lt;mat-option *ngFor&#x3D;&quot;let fuel of brandstoffen&quot; value&#x3D;&quot;{{fuel.typeBrandstof}}&quot;&gt;{{fuel.typeBrandstof}}&lt;/mat-option&gt;
-            &lt;/mat-select&gt;
-            &lt;mat-error *ngIf&#x3D;&quot;voertuigForm.get(&#x27;typeBrandstof&#x27;)?.hasError(&#x27;required&#x27;)&quot;&gt;brandstof is vereist&lt;/mat-error&gt;
-          &lt;/mat-form-field&gt;
-        &lt;/div&gt;
-
-      &lt;/div&gt;
-    &lt;/div&gt;
-    --&gt;
-
-    &lt;div class&#x3D;&quot;clearfix&quot;&gt;
-    &lt;/div&gt;
-    &lt;div *ngIf&#x3D;&quot;modifiable &amp;&amp; !tankkaart&quot; class&#x3D;&quot;formbuttons&quot;&gt;
-      &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot; (click)&#x3D;&quot;onSubmit()&quot; [disabled]&#x3D;&quot;!tankkaartForm.valid&quot;&gt;Submit&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;div *ngIf&#x3D;&quot;modifiable &amp;&amp; !forCreation&quot; class&#x3D;&quot;formbuttons&quot;&gt;
-      &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot; (click)&#x3D;&quot;onSave()&quot; [disabled]&#x3D;&quot;!tankkaartForm.valid&quot;&gt;Save&lt;span class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt;&lt;mat-icon&gt;save&lt;/mat-icon&gt;&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-      &lt;div *ngIf&#x3D;&quot;!modifiable&quot; class&#x3D;&quot;formbuttons&quot;&gt;
-        &lt;button mat-raised-button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;linkUnlinkDriver()&quot;&gt;
-          &lt;mat-icon *ngIf&#x3D;&quot;!tankkaart.koppeling&quot;&gt;link&lt;/mat-icon&gt;
-          &lt;mat-icon *ngIf&#x3D;&quot;tankkaart.koppeling&quot;&gt;link_off&lt;/mat-icon&gt;
-          &lt;span class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt; Bestuurder&lt;/button&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;formbuttons koppel field&quot; *ngIf&#x3D;&quot;viewOnly&quot;&gt;
-        &lt;mat-form-field class&#x3D;&quot;link-bestuurder&quot; appearance&#x3D;&quot;fill&quot;&gt;
-          &lt;mat-select *ngIf&#x3D;&quot;!tankkaart.koppeling&quot; (selectionChange)&#x3D;&quot;onSelectionChange($event.value)&quot;&gt;
-            &lt;mat-option value &#x3D; null&gt;&lt;/mat-option&gt;
-            &lt;mat-option *ngFor&#x3D;&quot;let bestuurder of unlinkedBestuurders&quot; value&#x3D;{{bestuurder.rijksregisternummer}}&gt;{{bestuurder.naam}} {{bestuurder.achternaam}}&lt;/mat-option&gt;
-          &lt;/mat-select&gt;
-          &lt;input matInput *ngIf&#x3D;&quot;tankkaart.koppeling&quot; type&#x3D;&quot;text&quot;
-                 value&#x3D;&quot;{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}&quot;
-                 [readonly]&#x3D;&quot;viewOnly&quot;
-                 (click)&#x3D;&quot;OpenBestuurdersDetails()&quot;&gt;
-        &lt;/mat-form-field&gt;
-      &lt;/div&gt;
-
+    &lt;div class&#x3D;&quot;field&quot;&gt;
+      &lt;mat-checkbox formControlName&#x3D;&quot;isGeblokkeerd&quot; [disabled]&#x3D;&quot;!modifiable || forCreation&quot;&gt;
+        Geblokeerd
+      &lt;/mat-checkbox&gt;
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;clearfix&quot;&gt;
     &lt;/div&gt;
-
+    &lt;div *ngIf&#x3D;&quot;modifiable &amp;&amp; !tankkaart&quot; class&#x3D;&quot;formbuttons buttons-submit&quot;&gt;
+      &lt;button mat-raised-button class&#x3D;&quot;button-submit button-color&quot; type&#x3D;&quot;submit&quot; (click)&#x3D;&quot;onSubmit()&quot; [disabled]&#x3D;&quot;!tankkaartForm.valid&quot;&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div *ngIf&#x3D;&quot;!modifiable&quot;&gt;
+      &lt;div class&#x3D;&quot;formbuttons buttons-submit&quot;&gt;
+        &lt;button mat-raised-button class&#x3D;&quot;button-submit button-color&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;openUpdateScreen()&quot;&gt;Edit
+          &lt;span class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt;
+          &lt;mat-icon&gt;edit&lt;/mat-icon&gt;
+        &lt;/button&gt;
+        &lt;button mat-raised-button class&#x3D;&quot;button-submit&quot; color&#x3D;&quot;warn&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;openDeleteScreen()&quot;&gt;Delete
+          &lt;span class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt;
+          &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;field link-section&quot; *ngIf&#x3D;&quot;viewOnly&quot;&gt;
+      &lt;br&gt;
+      &lt;br&gt;
+      &lt;h2&gt;Koppelingen&lt;/h2&gt;
+      &lt;hr&gt;
+      &lt;br&gt;
+      &lt;div class&#x3D;&quot;link-field&quot; appearance&#x3D;&quot;fill&quot;&gt;
+        &lt;mat-select class&#x3D;&quot;mat-link-field button-submit&quot; *ngIf&#x3D;&quot;!tankkaart.koppeling&quot; (selectionChange)&#x3D;&quot;onSelectionChange($event.value)&quot;&gt;
+          &lt;mat-option value&#x3D;null&gt;&lt;/mat-option&gt;
+          &lt;mat-option *ngFor&#x3D;&quot;let bestuurder of unlinkedBestuurders&quot; value&#x3D;{{bestuurder.rijksregisternummer}}&gt;
+            {{bestuurder.naam}} {{bestuurder.achternaam}}&lt;/mat-option&gt;
+        &lt;/mat-select&gt;
+        &lt;button mat-raised-button class&#x3D;&quot;button-submit&quot; *ngIf&#x3D;&quot;tankkaart.koppeling&quot; type&#x3D;&quot;text&quot;
+          (click)&#x3D;&quot;OpenBestuurdersDetails()&quot;&gt;{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}&lt;/button&gt;
+     
+      &lt;button mat-raised-button class&#x3D;&quot;button-link-field formbuttons button-submit&quot; (click)&#x3D;&quot;linkUnlinkDriver()&quot;  *ngIf&#x3D;&quot;!modifiable&quot;&gt;
+        &lt;mat-icon *ngIf&#x3D;&quot;!tankkaart.koppeling&quot;&gt;link&lt;/mat-icon&gt;
+        &lt;mat-icon *ngIf&#x3D;&quot;tankkaart.koppeling&quot;&gt;link_off&lt;/mat-icon&gt;
+        &lt;span class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt; Bestuurder
+      &lt;/button&gt;
+       &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;clearfix&quot;&gt;
+    &lt;/div&gt;
+    &lt;div *ngIf&#x3D;&quot;modifiable &amp;&amp; !forCreation&quot; class&#x3D;&quot;formbuttons buttons-submit&quot;&gt;
+      &lt;button mat-raised-button class&#x3D;&quot;button-submit button-color&quot; (click)&#x3D;&quot;onSave()&quot; [disabled]&#x3D;&quot;!tankkaartForm.valid&quot;&gt;Save&lt;span
+          class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt;
+        &lt;mat-icon&gt;save&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;clearfix&quot;&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;div&gt;
@@ -1428,7 +1855,6 @@ export class TankkaartDetailDialogComponent implements OnInit {
 }
 
 .field {
-
   padding: 1em 1em 1em;
 }
 
@@ -1437,38 +1863,8 @@ h3 {
   text-decoration-color: blue;
 }
 
-.form-middle-block {
-  float: left;
-  padding: 2em;
-}
-
-.formbuttons {
-  padding: 2em 1.5em 1.5em 0em;
-  float: right;
-}
-
-.formbuttons-top {
-  padding: 0em 0.75em 0.5em 1em;
-  float: right;
-}
-
-.title {
-  padding: 0em 0.5em 0.5em 0.5em;
-  width: 75%;
-  float: left;
-}
-
 #error {
   color: red;
-}
-
-.changeColor {
-  background-color: rgb(255, 255, 255);
-  color: rgb(113, 109, 109);
-}
-
-.mat-dialog-title {
-  border-bottom: 0.01em solid black;
 }
 
 .spacer {
@@ -1477,11 +1873,58 @@ h3 {
 
 .koppel {
   width: 25em;
+  float: center;
 }
-.link-bestuurder {
-  width: 100%;
+
+.button-link-field {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  min-width: 170px;
 }
-</code></pre>
+
+.buttons-submit {
+float: right;
+}
+
+.button-submit {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  min-width: 120px;
+}
+
+.button-color {
+  color: #ffff;
+  background-color: #1661EB;
+}
+
+
+mat-toolbar {
+  color: #ffff;
+  background-color: #1661EB;
+}
+
+.mat-form-field {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.link_button {
+  margin-right: 4rem;
+}
+
+.datepickerMat {
+  max-width: 201px;
+}
+
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+  color: rgb(113, 109, 109);
+}
+
+.mat-link-field {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  max-width: 170px;
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -1509,8 +1952,8 @@ h3 {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div mat-dialog-content>  <div mat-dialog-title class="title">    <h2 *ngIf="forCreation">Tankkaart toevoegen</h2>    <h2 *ngIf="!modifiable">Tankkaart details</h2>    <h2 *ngIf="modifiable && !forCreation">Tankkaart Updaten</h2>  </div>  <div *ngIf="!modifiable">    <div class="formbuttons-top">      <button mat-mini-fab color="warning" type="button" (click)="openUpdateScreen()"><mat-icon>edit</mat-icon></button>    </div>    <div class="formbuttons-top">      <button mat-mini-fab color="warning" type="button" (click)="openDeleteScreen()"><mat-icon>delete</mat-icon></button>    </div>    <div class="clearfix">    </div>  </div></div><div mat-dialog-content>  <div [formGroup]="tankkaartForm">    <div class="form-block">      <div class="formsection">        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>kaartnummer</mat-label>            <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="kaartnummer">            <mat-error *ngIf="tankkaartForm.get(\'kaartnummer\')?.hasError(\'required\')">Veld is vereist</mat-error>          </mat-form-field>        </div>        <div class="field">          <mat-form-field  appearance="fill"  class="datepickerMat">            <mat-label>geldigheidsdatum</mat-label>            <input [ngClass]="viewOnly" matInput [matDatepicker]="picker" [readonly]="!modifiable" formControlName="geldigheidsdatum">            <mat-hint>DD/MM/YYYY</mat-hint>            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>            <mat-datepicker #picker [disabled]="!modifiable"></mat-datepicker>            <mat-error *ngIf="tankkaartForm.get(\'geldigheidsdatum\')?.hasError(\'required\')">Veld is vereist</mat-error>          </mat-form-field>        </div>        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>pincode</mat-label>            <input [ngClass]="viewOnly" matInput [type]="hide ? \'password\' : \'text\'" pattern="[0-9]*" [readonly]="!modifiable" formControlName="pincode">            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="\'Hide password\'" [attr.aria-pressed]="hide">              <mat-icon>{{hide ? \'visibility_off\' : \'visibility\'}}</mat-icon>            </button>            <mat-hint>Default: 9999</mat-hint>          </mat-form-field>        </div>        <div class="field">          <mat-form-field appearance="fill">            <mat-label>Brandstoffen</mat-label>            <mat-select placeholder="brandstoffen" [disabled]="!modifiable" formControlName="typeBrandstof" multiple>              <mat-option *ngFor="let brand of KeuzeBrandstoffen" value="{{brand.typeBrandstof}}">{{brand.typeBrandstof}}</mat-option>            </mat-select>          </mat-form-field>        </div>        <div class="field">          <mat-checkbox color="primary" formControlName="isGeblokkeerd" [disabled]="!modifiable || forCreation">            Geblokeerd          </mat-checkbox>        </div>      </div>    </div><!--    <div class="form-middle-block">      <h3> uiterlijk</h3>      <div class="formsection">        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>kleur</mat-label>            <input [ngClass]="viewOnly" matInput type="text" [readonly]="!modifiable" formControlName="kleur">          </mat-form-field>        </div>        <div class="field">          <mat-form-field  appearance="fill">            <mat-label>aantal deuren</mat-label>            <input [ngClass]="viewOnly" matInput type="number" [readonly]="!modifiable" formControlName="aantalDeuren">            <mat-error *ngIf="voertuigForm.get(\'aantalDeuren\')?.hasError(\'min\')">getal kan geen negatieve waarde hebben</mat-error>          </mat-form-field>        </div>        <div class="field">          <mat-form-field appearance="fill">            <mat-select placeholder="categorie *" [disabled]="!modifiable" formControlName="typeWagen">              <mat-option value = null></mat-option>              <mat-option *ngFor="let cat of categories" value="{{cat.typeWagen}}">{{cat.typeWagen}}</mat-option>            </mat-select>            <mat-error *ngIf="voertuigForm.get(\'typeWagen\')?.hasError(\'required\')">categorie is vereist</mat-error>          </mat-form-field>        </div>      </div>    </div>-->    <!--    <div class="form-block">      <h3> overige</h3>      <div class="formsection">        <div class="field">          <mat-form-field appearance="fill">            <mat-select placeholder="brandstof *" [disabled]="!modifiable" formControlName="typeBrandstof">              <mat-option value = null></mat-option>              <mat-option *ngFor="let fuel of brandstoffen" value="{{fuel.typeBrandstof}}">{{fuel.typeBrandstof}}</mat-option>            </mat-select>            <mat-error *ngIf="voertuigForm.get(\'typeBrandstof\')?.hasError(\'required\')">brandstof is vereist</mat-error>          </mat-form-field>        </div>      </div>    </div>    -->    <div class="clearfix">    </div>    <div *ngIf="modifiable && !tankkaart" class="formbuttons">      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!tankkaartForm.valid">Submit</button>    </div>    <div *ngIf="modifiable && !forCreation" class="formbuttons">      <button mat-raised-button color="primary" type="submit" (click)="onSave()" [disabled]="!tankkaartForm.valid">Save<span class="spacer"></span><mat-icon>save</mat-icon></button>    </div>    <div>      <div *ngIf="!modifiable" class="formbuttons">        <button mat-raised-button type="button" (click)="linkUnlinkDriver()">          <mat-icon *ngIf="!tankkaart.koppeling">link</mat-icon>          <mat-icon *ngIf="tankkaart.koppeling">link_off</mat-icon>          <span class="spacer"></span> Bestuurder</button>      </div>      <div class="formbuttons koppel field" *ngIf="viewOnly">        <mat-form-field class="link-bestuurder" appearance="fill">          <mat-select *ngIf="!tankkaart.koppeling" (selectionChange)="onSelectionChange($event.value)">            <mat-option value = null></mat-option>            <mat-option *ngFor="let bestuurder of unlinkedBestuurders" value={{bestuurder.rijksregisternummer}}>{{bestuurder.naam}} {{bestuurder.achternaam}}</mat-option>          </mat-select>          <input matInput *ngIf="tankkaart.koppeling" type="text"                 value="{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}"                 [readonly]="viewOnly"                 (click)="OpenBestuurdersDetails()">        </mat-form-field>      </div>    </div>    <div class="clearfix">    </div>  </div></div><div>  <p #message></p></div></div>'
-    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
+        var COMPONENT_TEMPLATE = '<div><div mat-dialog-content>  <div mat-dialog-title>    <mat-toolbar>      <h2 *ngIf="forCreation">Tankkaart toevoegen</h2>      <h2 *ngIf="!modifiable">Tankkaart details</h2>      <h2 *ngIf="modifiable && !forCreation">Tankkaart Updaten</h2>    </mat-toolbar>  </div></div><div mat-dialog-content>  <div [formGroup]="tankkaartForm">    <div class="field">      <mat-form-field appearance="fill">        <mat-label>kaartnummer</mat-label>        <input [ngClass]="notEditable" matInput type="text" [readonly]="!forCreation" formControlName="kaartnummer">        <mat-error *ngIf="tankkaartForm.get(\'kaartnummer\')?.hasError(\'required\')">Veld is vereist</mat-error>        <mat-error *ngIf="tankkaartForm.get(\'kaartnummer\')?.hasError(\'pattern\')">Kaartnummer is 15-21 cijfers lang</mat-error>      </mat-form-field>      <mat-form-field appearance="fill" class="datepickerMat">        <mat-label>geldigheidsdatum</mat-label>        <input [ngClass]="viewOnly" matInput [matDatepicker]="picker" [min]="minDate" [readonly]="!modifiable"          formControlName="geldigheidsdatum">        <mat-hint>DD/MM/YYYY</mat-hint>        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>        <mat-datepicker #picker [disabled]="!modifiable"></mat-datepicker>        <mat-error *ngIf="tankkaartForm.get(\'geldigheidsdatum\')?.hasError(\'required\')">Veld is vereist</mat-error>      </mat-form-field>      <mat-form-field appearance="fill">        <mat-label>pincode</mat-label>        <input [ngClass]="viewOnly" matInput [type]="hide ? \'password\' : \'text\'" pattern="[0-9]*"          [readonly]="!modifiable" formControlName="pincode">        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="\'Hide password\'"          [attr.aria-pressed]="hide">          <mat-icon>{{hide ? \'visibility_off\' : \'visibility\'}}</mat-icon>        </button>        <mat-error *ngIf="tankkaartForm.get(\'pincode\')?.hasError(\'pattern\')">De Pincode bestaat uit 4 cijfers        </mat-error>      </mat-form-field>      <mat-form-field appearance="fill">        <mat-label>Brandstoffen</mat-label>        <mat-select placeholder="brandstoffen" [disabled]="!modifiable" formControlName="typeBrandstof" multiple>          <mat-option *ngFor="let brand of KeuzeBrandstoffen" value="{{brand.typeBrandstof}}">{{brand.typeBrandstof}}          </mat-option>        </mat-select>      </mat-form-field>    </div>    <div class="field">      <mat-checkbox formControlName="isGeblokkeerd" [disabled]="!modifiable || forCreation">        Geblokeerd      </mat-checkbox>    </div>    <div class="clearfix">    </div>    <div *ngIf="modifiable && !tankkaart" class="formbuttons buttons-submit">      <button mat-raised-button class="button-submit button-color" type="submit" (click)="onSubmit()" [disabled]="!tankkaartForm.valid">Submit</button>    </div>    <div *ngIf="!modifiable">      <div class="formbuttons buttons-submit">        <button mat-raised-button class="button-submit button-color" type="button" (click)="openUpdateScreen()">Edit          <span class="spacer"></span>          <mat-icon>edit</mat-icon>        </button>        <button mat-raised-button class="button-submit" color="warn" type="button" (click)="openDeleteScreen()">Delete          <span class="spacer"></span>          <mat-icon>delete</mat-icon>        </button>      </div>    </div>    <div class="field link-section" *ngIf="viewOnly">      <br>      <br>      <h2>Koppelingen</h2>      <hr>      <br>      <div class="link-field" appearance="fill">        <mat-select class="mat-link-field button-submit" *ngIf="!tankkaart.koppeling" (selectionChange)="onSelectionChange($event.value)">          <mat-option value=null></mat-option>          <mat-option *ngFor="let bestuurder of unlinkedBestuurders" value={{bestuurder.rijksregisternummer}}>            {{bestuurder.naam}} {{bestuurder.achternaam}}</mat-option>        </mat-select>        <button mat-raised-button class="button-submit" *ngIf="tankkaart.koppeling" type="text"          (click)="OpenBestuurdersDetails()">{{bestuurderLink.naam}} {{bestuurderLink.achternaam}}</button>           <button mat-raised-button class="button-link-field formbuttons button-submit" (click)="linkUnlinkDriver()"  *ngIf="!modifiable">        <mat-icon *ngIf="!tankkaart.koppeling">link</mat-icon>        <mat-icon *ngIf="tankkaart.koppeling">link_off</mat-icon>        <span class="spacer"></span> Bestuurder      </button>       </div>    </div>    <div class="clearfix">    </div>    <div *ngIf="modifiable && !forCreation" class="formbuttons buttons-submit">      <button mat-raised-button class="button-submit button-color" (click)="onSave()" [disabled]="!tankkaartForm.valid">Save<span          class="spacer"></span>        <mat-icon>save</mat-icon>      </button>    </div>    <div class="clearfix">    </div>  </div></div><div>  <p #message></p></div></div>'
+    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'BestuurderDeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'BestuurderDetailDialogComponent', 'selector': 'app-bestuurder-detail-dialog'},{'name': 'BestuurderListComponent', 'selector': 'app-bestuurder-list'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TankkaartDetailDialogComponent'};
 </script>

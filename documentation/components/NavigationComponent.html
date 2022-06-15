@@ -125,6 +125,20 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#active" >active</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -136,6 +150,9 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onTabChange" >onTabChange</a>
                             </li>
                         </ul>
                     </td>
@@ -160,7 +177,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/navigation/navigation.component.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/navigation/navigation.component.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -197,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/navigation/navigation.component.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/app/navigation/navigation.component.ts:13</a></div>
                 </td>
             </tr>
 
@@ -212,6 +229,112 @@
                     </div>
                 </td>
             </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTabChange"></a>
+                    <span class="name">
+                        <span ><b>onTabChange</b></span>
+                        <a href="#onTabChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onTabChange(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/app/navigation/navigation.component.ts:16</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="active"></a>
+                    <span class="name">
+                        <span ><b>active</b></span>
+                        <a href="#active"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/navigation/navigation.component.ts:9</a></div>
+                        </td>
+                    </tr>
+
+
         </tbody>
     </table>
 </section>
@@ -228,10 +351,14 @@
   styleUrls: [&#x27;./navigation.component.css&#x27;]
 })
 export class NavigationComponent implements OnInit {
-
+  active &#x3D; 0;
+ 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onTabChange(event: any){
   }
 
 }
@@ -240,13 +367,14 @@ export class NavigationComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div&gt;
-  &lt;h1&gt;Here comes the header header&lt;/h1&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a routerLink&#x3D;&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a routerLink&#x3D;&quot;/voertuigen&quot;&gt;Voertuigen&lt;/a&gt;
-    &lt;li&gt;&lt;a routerLink&#x3D;&quot;/tankkaarten&quot;&gt;Tankkaarten&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a routerLink&#x3D;&quot;/bestuurders&quot;&gt;Bestuurders&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
+  &lt;mat-toolbar&gt;FLEET MANAGEMENT&lt;/mat-toolbar&gt;
+
+ &lt;div mat-fields&gt;
+    &lt;!-- &lt;a routerLink&#x3D;&quot;/&quot;&gt;&lt;button mat-raised-button &gt;HOME&lt;/button&gt;&lt;/a&gt; --&gt;
+    &lt;a routerLink&#x3D;&quot;/bestuurders&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;&lt;button mat-raised-button &gt;BESTUURDERS&lt;/button&gt;&lt;/a&gt;
+    &lt;a routerLink&#x3D;&quot;/voertuigen&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;&lt;button mat-raised-button &gt;VOERTUIGEN&lt;/button&gt;&lt;/a&gt;
+    &lt;a routerLink&#x3D;&quot;/tankkaarten&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;&lt;button mat-raised-button &gt;TANKKAARTEN&lt;/button&gt;&lt;/a&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -255,7 +383,36 @@ export class NavigationComponent implements OnInit {
                 <p class="comment">
                     <code>./navigation.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">mat-toolbar {
+    color: #eee;
+    background-color: #1661EB;
+}
+
+button {
+    left: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+    min-width: 10rem;
+    display: inline-block;
+    background-color: #5D98F1;
+    color: #eee;
+    text-decoration: none;
+}
+
+a:hover button {
+    background-color: #1661EB;
+    color: #eee;
+}
+
+a.active button {
+    background-color: #1661EB;
+    color: #eee;
+}
+
+
+
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -283,8 +440,8 @@ export class NavigationComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div>  <h1>Here comes the header header</h1>  <ul>    <li><a routerLink="/">Home</a></li>    <li><a routerLink="/voertuigen">Voertuigen</a>    <li><a routerLink="/tankkaarten">Tankkaarten</a></li>    <li><a routerLink="/bestuurders">Bestuurders</a></li>  </ul></div></div>'
-    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
+        var COMPONENT_TEMPLATE = '<div><div>  <mat-toolbar>FLEET MANAGEMENT</mat-toolbar> <div mat-fields>    <!-- <a routerLink="/"><button mat-raised-button >HOME</button></a> -->    <a routerLink="/bestuurders" routerLinkActive="active"><button mat-raised-button >BESTUURDERS</button></a>    <a routerLink="/voertuigen" routerLinkActive="active"><button mat-raised-button >VOERTUIGEN</button></a>    <a routerLink="/tankkaarten" routerLinkActive="active"><button mat-raised-button >TANKKAARTEN</button></a>  </div></div></div>'
+    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'BestuurderDeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'BestuurderDetailDialogComponent', 'selector': 'app-bestuurder-detail-dialog'},{'name': 'BestuurderListComponent', 'selector': 'app-bestuurder-list'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NavigationComponent'};
 </script>

@@ -143,6 +143,7 @@ export class BestuurderListComponent implements AfterViewInit {
             if(data.action == "view"){
               if(data.value){
                 this.ViewDetails(data.value);
+                this.dataService.sendData("","", null);
               }
             }
 

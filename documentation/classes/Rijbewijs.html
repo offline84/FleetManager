@@ -28,122 +28,117 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content module">
+               <div class="content class">
                    <div class="content-data">
 
 
 
+
+
+
+
+
+
+
+
+
 <ol class="breadcrumb">
-    <li>Modules</li>
-    <li >MaterialModule</li>
+  <li>Classes</li>
+  <li >Rijbewijs</li>
 </ol>
 
-
 <ul class="nav nav-tabs" role="tablist">
-    <li  class="active" >
-        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-    </li>
-    <li >
-        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-    </li>
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
 </ul>
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="c-info">
-
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/material/material.module.ts</code>
+            <code>src/app/objects/rijbewijs.ts</code>
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Deze klasse wordt voornamelijk gebruikt om op correcte wijze een rijbewijs aan te maken of te wijzigen, klaar voor verzending naar de back-end.</p>
+<p>Erft over van IRijbewijs.</p>
+
+            </p>
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/IRijbewijs.html" target="_self" >IRijbewijs</a></code>
+            </p>
 
 
 
-        <div class="container-fluid module">
-            <div class="row">
-            </div>
-        </div>
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/objects/rijbewijs.ts:18</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
 
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
-import { CommonModule } from &#x27;@angular/common&#x27;;
-import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
-import { MatToolbarModule } from &#x27;@angular/material/toolbar&#x27;;
-import {MatGridListModule} from &#x27;@angular/material/grid-list&#x27;;
-import {MatFormFieldModule} from &#x27;@angular/material/form-field&#x27;;
-import {MatBottomSheetModule} from &#x27;@angular/material/bottom-sheet&#x27;;
-import {MatDialogModule} from &#x27;@angular/material/dialog&#x27;;
-import {MatTableModule} from &#x27;@angular/material/table&#x27;;
-import {MatPaginatorModule } from &#x27;@angular/material/paginator&#x27;;
-import {MatSortModule} from &#x27;@angular/material/sort&#x27;;
-import {MatIconModule} from &#x27;@angular/material/icon&#x27;;
-import { MatInputModule} from &#x27;@angular/material/input&#x27;;
-import { MatSelectModule} from &#x27;@angular/material/select&#x27;;
-import { MatAutocompleteModule} from &#x27;@angular/material/autocomplete&#x27;;
-import {MatDatepickerModule} from &quot;@angular/material/datepicker&quot;;
-import { MatNativeDateModule } from &#x27;@angular/material/core&#x27;;
-import {MatCheckboxModule} from &quot;@angular/material/checkbox&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IRijbewijs } from &quot;./iRijbewijs&quot;
 
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    MatBottomSheetModule,
-    MatDialogModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-    MatAutocompleteModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatCheckboxModule,
-    MatToolbarModule
-  ],
+/**
+ * Deze klasse wordt voornamelijk gebruikt om op correcte wijze een rijbewijs aan te maken of te wijzigen, klaar voor verzending naar de back-end.
+ *
+ * Erft over van IRijbewijs.
+ */
+export class Rijbewijs implements IRijbewijs {
 
-  exports: [
-    MatButtonModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    MatBottomSheetModule,
-    MatDialogModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-    MatAutocompleteModule,
-    MatDatepickerModule,
-    MatCheckboxModule,
-    MatToolbarModule
-  ]
-})
+  /**
+ * @ignore
+ */
+  id!: string
 
-export class MaterialModule { }
-</code></pre>
+  /**
+* @ignore
+*/
+  typeRijbewijs!: string
+
+  constructor() { }
+
+}</code></pre>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -178,8 +173,8 @@ export class MaterialModule { }
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'MaterialModule.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'Rijbewijs.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

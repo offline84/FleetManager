@@ -267,8 +267,13 @@ export class TankkaartDetailDialogComponent implements OnInit {
    */
   OpenBestuurdersDetails(): void {
     this.dialogRef.close();
-    this.dataService.sendData("bestuurder","view", this.bestuurderLink);
-    let navi =this.router.navigate(['/bestuurders']);
+    this.datastream.GetSingleDriver(this.bestuurderLink.rijksregisternummer).subscribe((data: any) => {
+      if(data){
+        this.bestuurderLink = data;
+        this.dataService.sendData("bestuurder","view", this.bestuurderLink);
+        this.router.navigate(['/bestuurders']);
+      }
+    });
   }
 
   /**
