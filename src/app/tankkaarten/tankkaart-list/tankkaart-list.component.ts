@@ -109,6 +109,10 @@ export class TankkaartListComponent implements AfterViewInit {
                 this.tableData.splice(index, 1);
               }
             }
+            if (data.action == "view" ) {
+              this.ViewDetails(data.value);
+              this.dataService.sendData("","", null);
+            }
             this.dataSource.data = this.tableData;
           }
         }

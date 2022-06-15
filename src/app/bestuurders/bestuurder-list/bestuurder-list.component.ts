@@ -132,6 +132,7 @@ export class BestuurderListComponent implements AfterViewInit {
             if(data.action == "view"){
               if(data.value){
                 this.ViewDetails(data.value);
+                this.dataService.sendData("","", null);
               }
             }
 
@@ -161,7 +162,7 @@ export class BestuurderListComponent implements AfterViewInit {
   ViewDetails = (selectedRow: IBestuurder) => {
     const config = new MatDialogConfig();
     this.selectedBestuurder = selectedRow;
-  
+
     this.datastream.GetSingleVehicle(this.selectedBestuurder.koppeling.chassisnummer).subscribe((vehicle: any) => {
       this.datastream.GetSingleFuelCard(this.selectedBestuurder.koppeling.kaartnummer).subscribe((card: any) => {
         config.autoFocus = true;
@@ -171,11 +172,11 @@ export class BestuurderListComponent implements AfterViewInit {
           voertuigLink: vehicle,
           tankkaartLink: card
         };
-    
+
         let dialogRef = this.dialog.open(BestuurderDetailDialogComponent, config);
-    
+
         dialogRef.afterClosed().subscribe((data: any) => {
-    
+
           this.tableData.forEach((element, index) => {
             if (data != undefined && element.rijksregisternummer == data.rijksregisternummer) {
               this.tableData[index] = data;

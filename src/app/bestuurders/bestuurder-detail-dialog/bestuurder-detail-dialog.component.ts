@@ -202,7 +202,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     this.adresForm.controls['stad'].disable();
     this.adresForm.controls['straat'].disable();
     this.adresForm.controls['huisnummer'].disable();
-   
+
     //Vult de data op voor de datePicker van GeboorteDatum
     let year = moment().year();
     this.minDate = new Date('01/01/' + (year - 100));
@@ -279,7 +279,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
         }
       })).subscribe();
 
-    //Haalt de straten op nadat er 4 characters zijn ingevuld 
+    //Haalt de straten op nadat er 4 characters zijn ingevuld
     //deze geeft dan opties weer.
     this.adresForm.controls["straat"].valueChanges.pipe(
       startWith(''),
@@ -329,7 +329,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     });
   }
 
-  
+
   /**
    * Past de modus voor modificatie van detailweergave naar editeren aan.
    */
@@ -415,8 +415,11 @@ export class BestuurderDetailDialogComponent implements OnInit {
    */
   OpenVoertuigenDetails = () => {
     this.dialogRef.close();
-    this.dataService.sendData("voertuig", "view", this.voertuigLink);
-    let navi = this.router.navigate(['/voertuigen']);
+    this.datastream.GetSingleVehicle(this.voertuigLink.chassisnummer).subscribe((data: any) => {
+      this.voertuigLink = data;
+      this.dataService.sendData("voertuig", "view", this.voertuigLink);
+      this.router.navigate(['/voertuigen']);
+    });
   }
 
 
@@ -429,8 +432,11 @@ export class BestuurderDetailDialogComponent implements OnInit {
    */
   OpenTankkaartenDetails = () => {
     this.dialogRef.close();
-    this.dataService.sendData("tankkaart", "view", this.tankkaartLink);
-    let navi = this.router.navigate(['/tankkaarten']);
+    this.datastream.GetSingleFuelCard(this.tankkaartLink.kaartnummer).subscribe((data: any) => {
+      this.tankkaartLink = data;
+      this.dataService.sendData("tankkaart", "view", this.tankkaartLink);
+      this.router.navigate(['/tankkaarten']);
+    });
   }
 
   /**
