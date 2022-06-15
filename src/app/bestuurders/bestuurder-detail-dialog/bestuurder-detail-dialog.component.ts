@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DatastreamService } from '../../datastream.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
+import { FormGroup, FormControl, Validators, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms'
 import { Bestuurder } from '../../objects/bestuurder';
 import { DataExchangeService } from '../../data-exchange.service';
 import { Adres } from 'src/app/objects/adres';
@@ -10,7 +10,11 @@ import { map, Observable, startWith } from 'rxjs';
 import { IBestuurder } from 'src/app/objects/iBestuurder';
 import { Rijbewijs } from 'src/app/objects/rijbewijs';
 import { ToewijzingRijbewijs } from 'src/app/objects/toewijzingRijbewijs';
-
+import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
+import { DeleteConfirmationSheetComponent } from '../bestuurder-delete-confirmation-sheet/bestuurder-delete-confirmation-sheet.component';
+import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
+import { IVoertuig } from 'src/app/objects/iVoertuig';
 
 @Component({
   selector: 'app-bestuurder-detail-dialog',
@@ -20,16 +24,67 @@ import { ToewijzingRijbewijs } from 'src/app/objects/toewijzingRijbewijs';
 
 export class BestuurderDetailDialogComponent implements OnInit {
 
-  // class in htmlcode voor het omschrijven van gebeurtenissen
+  /**
+    * ngClass
+    *
+    * HTML Class voor het omschrijven van gebeurtenissen gericht naar de gebruiker.
+    *
+    * @return {string} message (nullable)   dynamisch gegenereerd bericht.
+    */
   @ViewChild('message', { static: false }) message!: ElementRef;
 
+  /**
+ * ngModel
+ *
+ * modifiable behandelt de modus waarin de input van een voertuig kan aangepast worden.
+ */
   modifiable: boolean = true;
+
+  /**
+  * ngModel
+  *
+  * forCreation behandelt de modus waarin de input van een voertuig kan aangemaakt worden.
+  */
   forCreation: boolean = true;
+
+  /**
+  * ngclass
+  *
+  * notEditable verandert de kleur van niet aanpasbare input naar CSS class changeColor
+  *
+  * @example
+  * forCreation = false
+  * modifiable = true
+  * notEditable = "changeColor"       => kleur van input = grijs
+  */
   notEditable!: string;
+
+  /**
+   * ngClass
+   *
+   * viewOnly verandert de kleur van niet aanpasbare input naar CSS class changeColor
+   *
+   * @example
+   * modifiable = false
+   * forCreation = false
+   * viewOnly = "changeColor"           => kleur van input = grijs
+   */
   viewOnly!: string;
-  adres = new Adres();
+
+
+
+  /**
+ * indien een bestuurder wordt meegegeven door de parent (BestuurderListComponent) of door de DataExchangeService
+ * wordt deze in deze variabele gegoten.
+ *
+ * [DataExchangeService]{@link DataExchangeService}
+ */
   bestuurder = new Bestuurder();
+
+  adres = new Adres();
   autocompleteList: any;
+  autocompleteGemeenteList: any;
+  autocompleteStraatList: any;
   rijbewijzen: Array<Rijbewijs> = [];
   unlinkedVoertuigen: any;
   unlinkedTankkaarten: any;
@@ -37,11 +92,25 @@ export class BestuurderDetailDialogComponent implements OnInit {
   tankkaartLink: any = null;
   autocompleteOptions: Observable<string[]> = new Observable<string[]>();
 
+
   minDate = new Date();
   maxDate = new Date();
 
-
-  constructor(private datastream: DatastreamService, private dialogRef: MatDialogRef<BestuurderDetailDialogComponent>, private dataService: DataExchangeService, @Inject(MAT_DIALOG_DATA) private data: any, private formBuilder: FormBuilder,) {
+  /**
+     * @param datastream Httpclient naar de back- end toe.
+     * @param dialogRef referentie naar het dialog venster zelf.
+     * @param dataService Service voor het behandelen van data tussen componenten zonder parent - child relatie.
+     * @param bottomSheet instantie nodig voor de initialisatie van het BottomsheetComponent.
+     * @param router instantie die de routes van de applicatie verzorgt.
+     * @param data {any} de data die wordt meegegeven bij het openen van het dialogvenster.
+     */
+  constructor(private datastream: DatastreamService,
+    private dialogRef: MatDialogRef<BestuurderDetailDialogComponent>,
+    private dataService: DataExchangeService,
+    private bottomSheet: MatBottomSheet,
+    private router: Router,
+    @Inject(MAT_DIALOG_DATA) private data: any,
+  ) {
     this.bestuurder = data.entity;
     this.modifiable = data.modifiable;
   }
@@ -69,79 +138,106 @@ export class BestuurderDetailDialogComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.adresForm.controls['stad'].disable();
+    this.adresForm.controls['straat'].disable();
+    this.adresForm.controls['huisnummer'].disable();
     let year = moment().year();
-    this.minDate = new Date('01/01/'+(year-100));
+    this.minDate = new Date('01/01/' + (year - 100));
     this.maxDate = moment().toDate();
 
-    // We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
-    // Indien ja, patchen we deze in de form.
-    if (this.bestuurder) {
-      this.patchObjectToForm(this.bestuurder);
-    };
 
     // zet de mode waarin de dialog zich op dit moment bevindt. de mogelijkheden zijn: boolean modifialbe.
     //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
     this.IsModifiable(this.modifiable);
 
+    //Haalt de geseede data van de rijbewijzen op en sorteert deze alfabetisch
     this.datastream.GetDriverLicences().subscribe((rijbewijs: any) => {
       this.rijbewijzen = rijbewijs;
+      this.rijbewijzen.sort(function (a: any, b:any ) {
+        const typeA = a.typeRijbewijs;
+        const typeB = b.typeRijbewijs;
+
+        if(typeA < typeB)
+          return -1
+
+        if(typeA > typeB)
+          return 1
+
+        return 0
+      });
     });
 
     // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
     //+ de bestuurder die al dan niet reeds gekoppeld is met de entiteit. deze worden opgeslagen in unlinkedVoertuigen
     //en de bestuurder van de koppeling in de var. voertuigLink.
-    if (!this.bestuurder) {
-      this.datastream.GetAllVehicles().subscribe((data: any) => {
-        this.unlinkedVoertuigen = data.filter((u: any) => u.koppeling == null)
-      });
-    } else {
-      this.datastream.GetAllVehicles().subscribe((data: any) => {
-        this.unlinkedVoertuigen = data.filter((voertuig: any) => voertuig.koppeling == null || this.bestuurder.koppeling.chassisnummer == voertuig.chassisnummer);
-        if (this.bestuurder) {
-          if (this.bestuurder.koppeling) {
-            let link = data.filter((voertuig: any) => voertuig.chassisnummer == this.bestuurder.koppeling.chassisnummer);
-            if(link){
-            this.voertuigLink = link[0];
-            }
+    if (this.bestuurder) {
+      this.datastream.GetVehiclesForLinkingWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
+        this.unlinkedVoertuigen = data;
+
+        this.datastream.GetSingleVehicle(this.bestuurder.koppeling.chassisnummer).subscribe((data: any) => {
+          if(data){
+            this.voertuigLink = data;
           }
-        }
-      });
-    }
-
-    if (!this.bestuurder) {
-      this.datastream.GetAllFuelCards().subscribe((data: any) => {
-        this.unlinkedTankkaarten = data.filter((u: any) => u.koppeling == null)
-      });
-    } else {
-      this.datastream.GetAllFuelCards().subscribe((data: any) => {
-        this.unlinkedTankkaarten = data.filter((tankkaart: any) => tankkaart.koppeling == null || this.bestuurder.koppeling.kaartnummer == tankkaart.kaartnummer);
-        if (this.bestuurder) {
-          if (this.bestuurder.koppeling) {
-            let link = data.filter((tankkaart: any) => tankkaart.kaartnummer == this.bestuurder.koppeling.kaartnummer);
-            this.tankkaartLink = link[0];
+          else{
+            this.voertuigLink = undefined;
           }
-        }
-      });
-    }
 
-
-   
-  
-  
-
-
-     this.bestuurderForm.controls["rijksregisternummer"].valueChanges.pipe(
+          this.datastream.GetFuelCardsToLinkWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
+            this.unlinkedTankkaarten = data;
+            console.log(this.unlinkedTankkaarten);
+    this.adresForm.controls["postcode"].valueChanges.pipe(
       startWith(''),
-      map(value => {      
-      let dateOfBirth = value;
-      if(dateOfBirth >=  10000000000 && dateOfBirth < 99999999999){
-      // this.AutoCompleteDateOfBirth(dateOfBirth.toString());
-      this._autoCompleteDateOfBirth(value.toString());
-      console.log(value);
-      } })).subscribe();
-    //listener voor de autocompete functie
-    // this.autocompleteOptions = this.bestuurderForm.controls["straat"].valueChanges.pipe(startWith(''),
-    //   map(value => this._autocomplete(value)));
+      map(value => {
+        if (value >= 1000 && value <= 9999) {
+          this.datastream.GetCityByPostalCode(value).subscribe((data: any) => {
+            let list = data.postnamen;
+            this.autocompleteGemeenteList = list.map((s: any) => s.geografischeNaam.spelling);
+            this.adresForm.controls['stad'].enable();
+            this.adresForm.controls['straat'].enable();
+          })
+        } else {
+          this.adresForm.controls['stad'].disable();
+          this.adresForm.controls['straat'].disable();
+        }
+      })).subscribe();
+
+            this.datastream.GetSingleFuelCard(this.bestuurder.koppeling.kaartnummer).subscribe((data: any) => {
+              if(data){
+                this.tankkaartLink = data;
+              }
+              else{
+                this.tankkaartLink = undefined;
+              }
+            });
+          });
+        });
+      });
+  }
+    this.adresForm.controls["straat"].valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        if (value.length >= 4) {
+          this.datastream.GetStreetNameByPostalcodeAndQuery(this.adresForm.controls['postcode'].value, value).subscribe((straten: any) => {
+            let list = Array.isArray(straten.adresMatches) ? straten.adresMatches.filter((straat: any) => {
+              return straat
+            }) : [];
+            this.autocompleteStraatList = list.map((s: any) => s.straatnaam.straatnaam.geografischeNaam.spelling);
+            this.adresForm.controls['huisnummer'].enable();
+          })
+        } else {
+          this.adresForm.controls['huisnummer'].disable();
+        }
+      })).subscribe();
+
+
+    // We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
+    // Indien ja, patchen we deze in de form.
+    if (this.bestuurder) {
+
+      this.patchObjectToForm(this.bestuurder);
+    };
+
+
 
     //listener voor het sluiten van de dialog + transfer object naar de tabel.
     this.dialogRef.backdropClick().subscribe(() => {
@@ -149,7 +245,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     });
   }
 
- 
+
 
   //Omvat de creatie van het te verzenden object en de wissel van mode "add" naar "view" + errorbehandeling.
   onSubmit = () => {
@@ -157,15 +253,11 @@ export class BestuurderDetailDialogComponent implements OnInit {
     this.datastream.PostDriver(driver).subscribe((res: any) => {
       if (res) {
         this.bestuurder = res;
-      }
-    }, error => {
-      this.message.nativeElement.innerHTML = error.error;
-    }, () => {
-      this.IsModifiable(false);
-      let success = 'nieuw bestuurder met rijksregisternummer "' + this.bestuurder.rijksregisternummer + '" is successvol toegevoegd aan de database.';
-      this.message.nativeElement.innerHTML = success;
-    }
-    );
+        this.datastream.GetVehiclesForLinkingWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
+          this.unlinkedVoertuigen = data;
+        });
+      } 
+    });
   }
 
   openUpdateScreen = () => {
@@ -176,14 +268,23 @@ export class BestuurderDetailDialogComponent implements OnInit {
   }
 
   openDeleteScreen = () => {
+    const config = new MatBottomSheetConfig();
+    config.autoFocus = true;
+    config.disableClose = true;
+
+    config.data = {
+      entitytype: "bestuurder",
+      entity: this.bestuurder
+    };
+
+    let bottomsheetRef = this.bottomSheet.open(DeleteConfirmationSheetComponent, config);
+    bottomsheetRef.afterDismissed().subscribe((deleted: boolean) => {
+      if (deleted) {
+        this.dialogRef.close();
+      }
+    });
 
   }
-
-  onSelectionChangeGeboorteDatum() {
-
-  }
-
-
 
 
   //Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat, implementeren we de selectie handmatig via een eventlistener.
@@ -209,11 +310,16 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
   //To Do route naar bestuurders en open daar automatisch met het behavioursubject de detail dialog voor de meegegeven bestuurder.
   OpenVoertuigenDetails = () => {
+    this.dialogRef.close();
     this.dataService.sendData("voertuig", "view", this.voertuigLink);
+    let navi = this.router.navigate(['/voertuigen']);
   }
 
+
   OpenTankkaartenDetails = () => {
+    this.dialogRef.close();
     this.dataService.sendData("tankkaart", "view", this.voertuigLink);
+    let navi = this.router.navigate(['/tankkaarten']);
   }
 
   onSave = () => {
@@ -249,6 +355,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
       } else {
         this.datastream.LinkVehicle(this.bestuurder.rijksregisternummer, this.voertuigLink.chassisnummer).subscribe(() => {
           this.bestuurder.koppeling.chassisnummer = this.voertuigLink.chassisnummer;
+          // hier komt ophalen lijst
         }, error => {
           if (error) { this.message.nativeElement.innerHTML = error.message; }
         }, () => {
@@ -268,7 +375,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
   linkUnlinkTankkaart = () => {
     if (this.tankkaartLink) {
-      if (this.bestuurder.koppeling) {
+      if (this.bestuurder.koppeling.kaartnummer) {
         this.datastream.UnlinkFuelCard(this.bestuurder.koppeling.kaartnummer).subscribe(() => {
           this.bestuurder.koppeling.kaartnummer = null;
         }, error => {
@@ -278,7 +385,10 @@ export class BestuurderDetailDialogComponent implements OnInit {
           this.message.nativeElement.innerHTML = success;
         });
       } else {
-        this.datastream.LinkVehicle(this.bestuurder.rijksregisternummer, this.tankkaartLink.kaartnummer).subscribe(() => {
+        this.datastream.LinkFuelCard(this.bestuurder.rijksregisternummer, this.tankkaartLink.kaartnummer).subscribe(() => {
+          this.datastream.GetVehiclesForLinkingWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
+            this.unlinkedVoertuigen = data;
+          });
         }, error => {
           if (error) { this.message.nativeElement.innerHTML = error.message; }
         }, () => {
@@ -309,6 +419,15 @@ export class BestuurderDetailDialogComponent implements OnInit {
   //indien een bestuurder is meegegeven wordt deze via deze method gepatched met de bestuurderForm.
   //De niet gepatched controls worden handmatig ingegeven.
   patchObjectToForm = (entity: Bestuurder) => {
+
+    if (this.bestuurder.rijbewijzen == undefined) {
+      this.bestuurder.rijbewijzen = this.rijbewijzen;
+    }
+
+    this.adresForm.controls['stad'].enable();
+    this.adresForm.controls['straat'].enable();
+    this.adresForm.controls['huisnummer'].enable();
+
     this.bestuurderForm.patchValue(this.bestuurder);
     if (this.bestuurder.toewijzingenRijbewijs != null) {
       let dataArray: string[] = [];
@@ -318,7 +437,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
           dataArray.push(rijbewijs.typeRijbewijs);
         }
       });
-      this.rijbewijsForm.controls["typeRijbewijs"].setValue(dataArray);
+      this.rijbewijsForm.controls['typeRijbewijs'].setValue(dataArray);
     }
 
     this.adresForm.patchValue(this.bestuurder.adres);
@@ -333,7 +452,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     bestuurder.rijksregisternummer = this.bestuurderForm.controls["rijksregisternummer"].value.toString();
     bestuurder.naam = this.bestuurderForm.controls["naam"].value;
     bestuurder.achternaam = this.bestuurderForm.controls["achternaam"].value;
-    bestuurder.geboorteDatum = new Date(this.bestuurderForm.controls["geboorteDatum"].value.toString());
+    bestuurder.geboorteDatum = this.bestuurderForm.controls["geboorteDatum"].value;
     bestuurder.adres.straat = this.adresForm.controls["straat"].value;
     bestuurder.adres.huisnummer = this.adresForm.controls["huisnummer"].value;
     bestuurder.adres.postcode = this.adresForm.controls["postcode"].value;
@@ -350,26 +469,6 @@ export class BestuurderDetailDialogComponent implements OnInit {
     return bestuurder;
   }
 
-  private _autocomplete(value: string): Observable<void> {
-    const filterValue = value.toLowerCase();
-    return this.autocompleteList.filter((merk: string) => merk.toLowerCase().includes(filterValue));
-  }
 
-  private _autoCompleteDateOfBirth(value: string)  {
-    if (value.length == 11) {
-      let date = value.slice(0,6);
-      let yearPart2 = date.slice(0,2);
-      let month = date.slice(2,4);
-      let day = date.slice(4,6);
-      let yearPart1 = Number(yearPart2)-100 > 0 ? "20":"19";
-       date = day.concat("/"+ month+"/"+19+yearPart2);
-  
-      // this.bestuurderForm.controls["geboorteDatum"].markAsTouched;
-      // this.bestuurderForm.controls["geboorteDatum"].touched;
-      this.bestuurderForm.controls["geboorteDatum"].setValue(date);
-
-      console.log(this.bestuurderForm);
-        }
-  }
 }
 

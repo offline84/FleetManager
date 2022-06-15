@@ -2,19 +2,19 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { DataExchangeService } from '../../data-exchange.service';
 import { DatastreamService } from '../../datastream.service';
-import {TankkaartDetailDialogComponent} from "../tankkaart-detail-dialog/tankkaart-detail-dialog.component";
+import { BestuurderDetailDialogComponent } from '../bestuurder-detail-dialog/bestuurder-detail-dialog.component';
 
 @Component({
-  selector: 'app-tankkaart-delete-confirmation-sheet',
-  templateUrl: './tankkaart-delete-confirmation-sheet.component.html',
-  styleUrls: ['./tankkaart-delete-confirmation-sheet.component.css']
+  selector: 'app-delete-confirmation-sheet',
+  templateUrl: './bestuurder-delete-confirmation-sheet.component.html',
+  styleUrls: ['./bestuurder-delete-confirmation-sheet.component.css']
 })
 
 /**
- * Deze component opent een bottom sheet die waarschuuwt bij de verwijdering van een tankkaart dat deze bewerking onomkeerbaar is.
+ * Dit component opent een bottom sheet die waarschuuwt bij de verwijdering van een bestuurder dat deze bewerking onomkeerbaar is.
  * Men kan deze sheet niet sluiten, men dient een keuze te maken, vooraleer verder te gaan.
  */
-export class TankkaartDeleteConfirmationSheetComponent implements OnInit {
+export class DeleteConfirmationSheetComponent implements OnInit {
 
   /**
    * de te verwijderen entiteit.
@@ -22,7 +22,7 @@ export class TankkaartDeleteConfirmationSheetComponent implements OnInit {
   entity: any;
 
   /**
-   * het type tot welke deze entiteit behoort, in dit geval "voertuig"
+   * het type tot welke deze entiteit behoort, in dit geval "bestuurder"
    */
   entitytype: string;
 
@@ -31,10 +31,10 @@ export class TankkaartDeleteConfirmationSheetComponent implements OnInit {
    *
    * @param datastream injecteert de datastream service in deze klasse.
    * @param dataService injecteert de data exchange service in deze klasse.
-   * @param tankkaartSheetRef referentie naar het geopende matbottomsheet in het tankkaart detail dialog component
+   * @param bestuurderSheetRef referentie naar het geopende matbottomsheet in het bestuurder detail dialog component
    * @param data de data die wordt meegegeven bij het openen van dit component.
    */
-  constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private tankkaartSheetRef: MatBottomSheetRef<TankkaartDetailDialogComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any )
+  constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private bestuurderSheetRef: MatBottomSheetRef<BestuurderDetailDialogComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any )
   {
     this.entity = data.entity;
     this.entitytype = data.entitytype;
@@ -49,24 +49,25 @@ export class TankkaartDeleteConfirmationSheetComponent implements OnInit {
   /**
    * indien men wenst de entiteit niet te verwijderen wordt de bottom sheet enkel gesloten, zonder verdere acties te ondernemen.
    */
-  onCancellation = () => {
-    this.tankkaartSheetRef.dismiss(false);
+  onCancellation() {
+    this.bestuurderSheetRef.dismiss(false);
   }
 
   /**
    * indien men beslist de entiteit te verwijderen, wordt de entiteit en de eventuele koppeling verwijderd,
    * de entiteit wordt uit de tabel verwijderd via de data exchange service en een waarschuwingsbericht wordt weergegeven.
    */
-  onConfirmationDelete = () => {
-    this.datastream.DeleteFuelCard(this.entity.kaartnummer).subscribe(null,
+  onConfirmationDelete() {
+    this.datastream.DeleteVehicle(this.entity.chassisnummer).subscribe(null,
       (error) => {
-        this.tankkaartSheetRef.dismiss(error.message);
+        this.bestuurderSheetRef.dismiss(error.message);
       },
       () => {
-        this.dataService.sendData("tankkaart", "delete", this.entity);
-        this.tankkaartSheetRef.dismiss(true);
-        alert("De tankkaart is successvol verwijderd");
+        this.dataService.sendData("bestuurder", "delete", this.entity);
+        this.bestuurderSheetRef.dismiss(true);
+        alert("Het bestuurder is successvol verwijderd");
       }
     );
   }
+
 }
