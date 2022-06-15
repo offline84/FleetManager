@@ -17,7 +17,6 @@ import { BestuurderComponent } from './bestuurders/bestuurder/bestuurder.compone
 import { BestuurderListComponent } from './bestuurders/bestuurder-list/bestuurder-list.component';
 import { BestuurderDetailDialogComponent } from './bestuurders/bestuurder-detail-dialog/bestuurder-detail-dialog.component';
 import { TankkaartComponent } from './tankkaarten/tankkaart/tankkaart.component';
-import { HomeComponent } from './home/home.component';
 import { TankkaartListComponent } from './tankkaarten/tankkaart-list/tankkaart-list.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { TankkaartDetailDialogComponent } from './tankkaarten/tankkaart-detail-dialog/tankkaart-detail-dialog.component';
@@ -25,7 +24,7 @@ import { DeleteConfirmationSheetComponent } from './voertuigen/voertuig-delete-c
 import { TankkaartDeleteConfirmationSheetComponent } from './tankkaarten/tankkaart-delete-confirmation-sheet/tankkaart-delete-confirmation-sheet.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: BestuurderComponent },
   { path: 'voertuigen', component: VoertuigComponent },
   { path: 'tankkaarten', component: TankkaartComponent },
   { path: 'bestuurders', component: BestuurderComponent }
@@ -43,7 +42,6 @@ const appRoutes: Routes = [
     BestuurderDetailDialogComponent,
     BestuurderListComponent,
     TankkaartComponent,
-    HomeComponent,
     TankkaartListComponent,
     TankkaartDetailDialogComponent,
     DeleteConfirmationSheetComponent,
