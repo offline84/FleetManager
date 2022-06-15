@@ -64,7 +64,6 @@ export class BestuurderListComponent implements AfterViewInit {
       }
     };
     this.dataService.observableData.subscribe((data: any) => {
-      console.log("sent data: ", data);
       if (data) {
         if (data.value) {
           if (data.entity == "bestuurder") {
@@ -78,6 +77,11 @@ export class BestuurderListComponent implements AfterViewInit {
               if (data.value) {
                 let index = this.tableData.findIndex(v => v.rijksregisternummer == data.value.rijksregisternummer);
                 this.tableData.splice(index, 1);
+              }
+            }
+            if(data.action == "view"){
+              if(data.value){
+                this.ViewDetails(data.value);
               }
             }
 
