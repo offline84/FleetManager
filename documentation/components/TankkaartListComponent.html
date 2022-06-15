@@ -323,8 +323,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:83</a></div>
                 </td>
             </tr>
 
@@ -622,7 +622,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/tankkaarten/tankkaart-list/tankkaart-list.component.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -666,12 +666,14 @@ export class TankkaartListComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    //data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
+    // data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
+    // - brandstoffenForView wordt opgebouwd: comma separated list van type brandstoffen
+    // - geldigheidsdatum wordt meegegeven aan de sort.
     this.datastream.GetAllFuelCards().subscribe((data: any) &#x3D;&gt; {
       data.forEach((tankkaart: ITankkaart) &#x3D;&gt; {
         let stringbuilder &#x3D; &quot;&quot;;
-        tankkaart.mogelijkeBrandstoffen.forEach((mb: any ) &#x3D;&gt; {
-          const {typeBrandstof} &#x3D; mb.brandstof;
+        tankkaart.mogelijkeBrandstoffen.forEach((mb: any) &#x3D;&gt; {
+          const { typeBrandstof } &#x3D; mb.brandstof;
           stringbuilder &#x3D; stringbuilder.concat(typeBrandstof, &quot;, &quot;);
         });
         tankkaart &#x3D; tankkaart as ITankkaart;
@@ -681,6 +683,12 @@ export class TankkaartListComponent implements AfterViewInit {
       this.dataSource.data &#x3D; this.tableData;
       this.dataSource.paginator &#x3D; this.paging;
       this.dataSource.sort &#x3D; this.sort;
+      this.dataSource.sortingDataAccessor &#x3D; (item, property) &#x3D;&gt; {
+        switch (property) {
+          case &#x27;geldigheidsdatum&#x27;: return new Date(item.geldigheidsDatum);
+          default: return item[property];
+        }
+      };
     });
 
     // haalt de entiteit voor modificatie van de tabel binnen en kijkt welke bewerking op de tabel dient te worden uitgevoerd.
@@ -715,96 +723,120 @@ export class TankkaartListComponent implements AfterViewInit {
 
   //opent de tankkaart-detail-dialog met settings voor viewing.
   //Bij het sluiten van de dialog wordt de data in de tabel bijgewerkt via de dataexchangeservice.
+  //Ook hier wordt de brandstoffenForView opgebouwd
   ViewDetails &#x3D; (selectedRow: ITankkaart) &#x3D;&gt; {
     const config &#x3D; new MatDialogConfig();
     this.selectedTankkaart &#x3D; selectedRow;
 
-    config.autoFocus &#x3D; true;
-    config.data &#x3D; {
-      modifiable: false,
-      entity: selectedRow
-    };
+    if (this.selectedTankkaart.koppeling) {
+      this.datastream.GetSingleDriver(this.selectedTankkaart.koppeling.rijksregisternummer).subscribe((data: any) &#x3D;&gt; {
 
-    let dialogRef &#x3D; this.dialog.open(TankkaartDetailDialogComponent, config);
+        config.autoFocus &#x3D; true;
+        config.data &#x3D; {
+          modifiable: false,
+          entity: selectedRow,
+          bestuurderLink: data
+        };
 
-    dialogRef.afterClosed().subscribe((data: any) &#x3D;&gt; {
-      if (data) {
-        this.tableData.forEach((element, index) &#x3D;&gt; {
-          if (element.kaartnummer &#x3D;&#x3D; data.kaartnummer) {
-            let stringbuilder &#x3D; &quot;&quot;;
-            data.mogelijkeBrandstoffen.forEach((mb: any ) &#x3D;&gt; {
-              const {typeBrandstof} &#x3D; mb.brandstof;
-              stringbuilder &#x3D; stringbuilder.concat(typeBrandstof, &quot;, &quot;);
+        let dialogRef &#x3D; this.dialog.open(TankkaartDetailDialogComponent, config);
+
+        dialogRef.afterClosed().subscribe((data: any) &#x3D;&gt; {
+          if (data) {
+            this.tableData.forEach((element, index) &#x3D;&gt; {
+              if (element.kaartnummer &#x3D;&#x3D; data.kaartnummer) {
+                let stringbuilder &#x3D; &quot;&quot;;
+                data.mogelijkeBrandstoffen.forEach((mb: any) &#x3D;&gt; {
+                  const { typeBrandstof } &#x3D; mb.brandstof;
+                  stringbuilder &#x3D; stringbuilder.concat(typeBrandstof, &quot;, &quot;);
+                });
+                data.brandstoffenForView &#x3D; stringbuilder.slice(0, - 2);
+                this.tableData[index] &#x3D; data;
+              }
             });
-            data.brandstoffenForView &#x3D; stringbuilder.slice(0, - 2);
-            this.tableData[index] &#x3D; data;
+
+            this.dataSource.data &#x3D; this.tableData;
           }
         });
+      });
+    }
+    else {
+      config.autoFocus &#x3D; true;
+      config.data &#x3D; {
+        modifiable: false,
+        entity: selectedRow
+      };
 
-        this.dataSource.data &#x3D; this.tableData;
-      }
-    });
+      let dialogRef &#x3D; this.dialog.open(TankkaartDetailDialogComponent, config);
+
+      dialogRef.afterClosed().subscribe((data: any) &#x3D;&gt; {
+        if (data) {
+          this.tableData.forEach((element, index) &#x3D;&gt; {
+            if (element.kaartnummer &#x3D;&#x3D; data.kaartnummer) {
+              let stringbuilder &#x3D; &quot;&quot;;
+              data.mogelijkeBrandstoffen.forEach((mb: any) &#x3D;&gt; {
+                const { typeBrandstof } &#x3D; mb.brandstof;
+                stringbuilder &#x3D; stringbuilder.concat(typeBrandstof, &quot;, &quot;);
+              });
+              data.brandstoffenForView &#x3D; stringbuilder.slice(0, - 2);
+              this.tableData[index] &#x3D; data;
+            }
+          });
+
+          this.dataSource.data &#x3D; this.tableData;
+        }
+      });
+    }
   }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;clearfix&quot;&gt;
-  &lt;div id&#x3D;&quot;searchbar&quot;&gt;
-    &lt;app-searchbar [entity]&#x3D;&quot;entityType&quot; [dataToFilter]&#x3D;&quot;dataSource&quot; (passFilteredData)&#x3D;&quot;FilterDataHandler($event)&quot;&gt;&lt;/app-searchbar&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+    &lt;div id&#x3D;&quot;searchbar&quot;&gt;
+      &lt;app-searchbar [entity]&#x3D;&quot;entityType&quot; [dataToFilter]&#x3D;&quot;dataSource&quot; (passFilteredData)&#x3D;&quot;FilterDataHandler($event)&quot;&gt;
+      &lt;/app-searchbar&gt;
+    &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;mat-elevation-z8 table&quot;&gt;
+
+    &lt;table mat-table [dataSource]&#x3D;&quot;dataSource&quot; matSort class&#x3D;&quot;mat-elevation-z8 table&quot;&gt;
+
+      &lt;ng-container class&#x3D;&quot;column&quot; matColumnDef&#x3D;&quot;kaartnummer&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&#x3D;&quot;kaartnummer&quot;&gt;Kaartnummer&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.kaartnummer}}&lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;ng-container matColumnDef&#x3D;&quot;geldigheidsdatum&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&#x3D;&quot;geldigheidsdatum&quot;&gt;Geldigheidsdatum&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.geldigheidsDatum | date : &#x27;yyyy-MM-dd&#x27;}}&lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;ng-container matColumnDef&#x3D;&quot;isGeblokkeerd&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&#x3D;&quot;isGeblokkeerd&quot;&gt;Geblokkeerd&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.isGeblokkeerd}}&lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;ng-container matColumnDef&#x3D;&quot;brandstoffenForView&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&#x3D;&quot;brandstoffenForView&quot;&gt;Brandstoffen&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.brandstoffenForView}}&lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;ng-container matColumnDef&#x3D;&quot;koppeling&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&#x3D;&quot;koppeling&quot;&gt;Gekoppeld aan bestuurder&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.koppeling !&#x3D; null}}&lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;columnsToDisplay&quot;&gt;&lt;/tr&gt;
+      &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: columnsToDisplay;&quot; (click)&#x3D;&quot;ViewDetails(row)&quot;&gt;
+      &lt;/tr&gt;
+
+    &lt;/table&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;mat-paginator [length]&#x3D;&quot;0&quot; [pageSize]&#x3D;&quot;15&quot; [pageSizeOptions]&#x3D;&quot;[5, 10, 25, 50, 100]&quot; aria-label&#x3D;&quot;Select page&quot;&gt;
+    &lt;/mat-paginator&gt;
+
   &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class&#x3D;&quot;mat-elevation-z8 table&quot;&gt;
-
-  &lt;mat-table [dataSource]&#x3D;&quot;dataSource&quot; matSort class&#x3D;&quot;mat-elevation-z8 table&quot;&gt;
-
-    &lt;ng-container class&#x3D;&quot;column&quot; matColumnDef&#x3D;&quot;kaartnummer&quot;&gt;
-      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&#x3D;&quot;kaartnummer&quot;&gt;Kaartnummer&lt;/th&gt;
-      &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.kaartnummer}}&lt;/td&gt;
-    &lt;/ng-container&gt;
-
-    &lt;ng-container matColumnDef&#x3D;&quot;geldigheidsdatum&quot;&gt;
-      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&#x3D;&quot;geldigheidsdatum&quot;&gt;Geldigheidsdatum&lt;/th&gt;
-      &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.geldigheidsDatum | date : &#x27;dd-MM-yyyy&#x27;}}&lt;/td&gt;
-    &lt;/ng-container&gt;
-
-    &lt;!--
-    &lt;ng-container matColumnDef&#x3D;&quot;pincode&quot;&gt;
-      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;Pincode&lt;/th&gt;
-      &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.pincode}}&lt;/td&gt;
-    &lt;/ng-container&gt;
-    --&gt;
-
-    &lt;ng-container matColumnDef&#x3D;&quot;isGeblokkeerd&quot;&gt;
-      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&#x3D;&quot;isGeblokkeerd&quot;&gt;Geblokeerd&lt;/th&gt;
-      &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.isGeblokkeerd}}&lt;/td&gt;
-    &lt;/ng-container&gt;
-
-    &lt;ng-container matColumnDef&#x3D;&quot;brandstoffenForView&quot;&gt;
-      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&#x3D;&quot;brandstoffenForView&quot;&gt;Brandstoffen&lt;/th&gt;
-      &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.brandstoffenForView}}&lt;/td&gt;
-    &lt;/ng-container&gt;
-
-    &lt;ng-container matColumnDef&#x3D;&quot;koppeling&quot;&gt;
-      &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&#x3D;&quot;koppeling&quot;&gt;gekoppeld?&lt;/th&gt;
-      &lt;td mat-cell *matCellDef&#x3D;&quot;let tankkaart&quot;&gt;{{tankkaart.koppeling !&#x3D; null}}&lt;/td&gt;
-    &lt;/ng-container&gt;
-
-    &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;columnsToDisplay&quot;&gt;&lt;/tr&gt;
-    &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: columnsToDisplay;&quot;
-        (click)&#x3D;&quot;ViewDetails(row)&quot;&gt;
-    &lt;/tr&gt;
-
-  &lt;/mat-table&gt;
-  &lt;div&gt;&lt;/div&gt;
-  &lt;mat-paginator [length]&#x3D;&quot;100&quot;
-                 [pageSize]&#x3D;&quot;5&quot;
-                 [pageSizeOptions]&#x3D;&quot;[5, 10, 25, 50, 100]&quot;
-                 aria-label&#x3D;&quot;Select page&quot;&gt;
-  &lt;/mat-paginator&gt;
-
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -813,26 +845,18 @@ export class TankkaartListComponent implements AfterViewInit {
                 <p class="comment">
                     <code>./tankkaart-list.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">.table {
-  width: 99.5%;
-  padding-left: 0.5em;
+                <pre class="line-numbers"><code class="language-scss">
+table {
+  width: 100%;
 }
 
-.mat-row .mat-cell {
-  border-top: 1px solid transparent;
-  text-align: left !important;
-  padding: 2px;
+.mat-header-cell {
   width: 10%;
-  cursor: pointer;
-}
-.mat-header-cell{
-  text-align: center !important;
-  width: 10%;
-  position: sticky;
 }
 
 .mat-row:hover .mat-cell {
-  border-color: currentColor;
+  background-color: #5D98F1;
+  color:#ffffff;
 }
 
 .clearfix::after {
@@ -841,9 +865,19 @@ export class TankkaartListComponent implements AfterViewInit {
   display: table;
 }
 
-#searchbar{
-  float: right
+
+button {
+  background-color: #1661EB;
+  color: #ffffff;
 }
+
+.container {
+  width: 100%;
+  max-width: 1850px;
+  margin: 0 auto;
+}
+
+
 
 </code></pre>
     </div>
@@ -873,8 +907,8 @@ export class TankkaartListComponent implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="clearfix">  <div id="searchbar">    <app-searchbar [entity]="entityType" [dataToFilter]="dataSource" (passFilteredData)="FilterDataHandler($event)"></app-searchbar>  </div></div><div class="mat-elevation-z8 table">  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table">    <ng-container class="column" matColumnDef="kaartnummer">      <th mat-header-cell *matHeaderCellDef mat-sort-header="kaartnummer">Kaartnummer</th>      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.kaartnummer}}</td>    </ng-container>    <ng-container matColumnDef="geldigheidsdatum">      <th mat-header-cell *matHeaderCellDef mat-sort-header="geldigheidsdatum">Geldigheidsdatum</th>      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.geldigheidsDatum | date : \'dd-MM-yyyy\'}}</td>    </ng-container>    <!--    <ng-container matColumnDef="pincode">      <th mat-header-cell *matHeaderCellDef mat-sort-header>Pincode</th>      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.pincode}}</td>    </ng-container>    -->    <ng-container matColumnDef="isGeblokkeerd">      <th mat-header-cell *matHeaderCellDef mat-sort-header="isGeblokkeerd">Geblokeerd</th>      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.isGeblokkeerd}}</td>    </ng-container>    <ng-container matColumnDef="brandstoffenForView">      <th mat-header-cell *matHeaderCellDef mat-sort-header="brandstoffenForView">Brandstoffen</th>      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.brandstoffenForView}}</td>    </ng-container>    <ng-container matColumnDef="koppeling">      <th mat-header-cell *matHeaderCellDef mat-sort-header="koppeling">gekoppeld?</th>      <td mat-cell *matCellDef="let tankkaart">{{tankkaart.koppeling != null}}</td>    </ng-container>    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"        (click)="ViewDetails(row)">    </tr>  </mat-table>  <div></div>  <mat-paginator [length]="100"                 [pageSize]="5"                 [pageSizeOptions]="[5, 10, 25, 50, 100]"                 aria-label="Select page">  </mat-paginator></div></div>'
-    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container">    <div id="searchbar">      <app-searchbar [entity]="entityType" [dataToFilter]="dataSource" (passFilteredData)="FilterDataHandler($event)">      </app-searchbar>    </div>  <div class="mat-elevation-z8 table">    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table">      <ng-container class="column" matColumnDef="kaartnummer">        <th mat-header-cell *matHeaderCellDef mat-sort-header="kaartnummer">Kaartnummer</th>        <td mat-cell *matCellDef="let tankkaart">{{tankkaart.kaartnummer}}</td>      </ng-container>      <ng-container matColumnDef="geldigheidsdatum">        <th mat-header-cell *matHeaderCellDef mat-sort-header="geldigheidsdatum">Geldigheidsdatum</th>        <td mat-cell *matCellDef="let tankkaart">{{tankkaart.geldigheidsDatum | date : \'yyyy-MM-dd\'}}</td>      </ng-container>      <ng-container matColumnDef="isGeblokkeerd">        <th mat-header-cell *matHeaderCellDef mat-sort-header="isGeblokkeerd">Geblokkeerd</th>        <td mat-cell *matCellDef="let tankkaart">{{tankkaart.isGeblokkeerd}}</td>      </ng-container>      <ng-container matColumnDef="brandstoffenForView">        <th mat-header-cell *matHeaderCellDef mat-sort-header="brandstoffenForView">Brandstoffen</th>        <td mat-cell *matCellDef="let tankkaart">{{tankkaart.brandstoffenForView}}</td>      </ng-container>      <ng-container matColumnDef="koppeling">        <th mat-header-cell *matHeaderCellDef mat-sort-header="koppeling">Gekoppeld aan bestuurder</th>        <td mat-cell *matCellDef="let tankkaart">{{tankkaart.koppeling != null}}</td>      </ng-container>      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="ViewDetails(row)">      </tr>    </table>    <div></div>    <mat-paginator [length]="0" [pageSize]="15" [pageSizeOptions]="[5, 10, 25, 50, 100]" aria-label="Select page">    </mat-paginator>  </div></div></div>'
+    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'BestuurderDetailDialogComponent', 'selector': 'app-bestuurder-detail-dialog'},{'name': 'BestuurderListComponent', 'selector': 'app-bestuurder-list'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TankkaartListComponent'};
 </script>

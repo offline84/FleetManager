@@ -211,7 +211,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/searchbar/searchbar.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/searchbar/searchbar.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -237,7 +237,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/searchbar/searchbar.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/searchbar/searchbar.component.ts:13</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -258,7 +258,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/searchbar/searchbar.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/searchbar/searchbar.component.ts:14</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -282,7 +282,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/searchbar/searchbar.component.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/searchbar/searchbar.component.ts:12</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -315,8 +315,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/app/searchbar/searchbar.component.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/app/searchbar/searchbar.component.ts:24</a></div>
                 </td>
             </tr>
 
@@ -384,8 +384,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/app/searchbar/searchbar.component.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/app/searchbar/searchbar.component.ts:20</a></div>
                 </td>
             </tr>
 
@@ -425,7 +425,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/searchbar/searchbar.component.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/searchbar/searchbar.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -456,7 +456,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/searchbar/searchbar.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/searchbar/searchbar.component.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -470,6 +470,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
+import { IBestuurder } from &#x27;../objects/iBestuurder&#x27;;
 import { IVoertuig } from &#x27;../objects/iVoertuig&#x27;;
 
 @Component({
@@ -510,8 +511,17 @@ export class SearchbarComponent implements OnInit {
 
     }
     if(this.entity &#x3D;&#x3D; &quot;bestuurder&quot;){
-
+      this.dataToFilter.filterPredicate &#x3D; (data: IBestuurder, filter: string) &#x3D;&gt; {
+      const adresString &#x3D; &quot;&quot;;
+      const adres &#x3D; adresString.concat(data.adres.straat,&quot; &quot;,data.adres.huisnummer.toString(),&quot; &quot;,data.adres.postcode.toString(),&quot; &quot;,data.adres.stad);
+      console.log(adresString);
+        return data.rijksregisternummer.toLocaleLowerCase().includes(filter) ||
+        data.naam.toLocaleLowerCase().includes(filter) ||
+        data.achternaam.toLocaleLowerCase().includes(filter) ||
+        data.geboorteDatum.toString().toLocaleLowerCase().includes(filter) || 
+        adres.toLocaleLowerCase().includes(filter);
     }
+  }
 
     this.passFilteredData.emit(this.dataToFilter.filter &#x3D; e);
     console.log(&quot;query: &quot;, this.search);
@@ -526,22 +536,67 @@ export class SearchbarComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div&gt;
-  &lt;mat-form-field class&#x3D;&quot;searchbar&quot;&gt;
-    &lt;input matInput type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;search&quot; (ngModelChange)&#x3D;&quot;detectChanges($event)&quot; placeholder&#x3D;&quot;vul uw zoekterm hier in&quot;&gt;
-  &lt;/mat-form-field&gt;
-
-  &lt;button mat-flat-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;clearQuery()&quot;&gt;&lt;mat-icon&gt;cancel&lt;/mat-icon&gt;&lt;/button&gt;
-&lt;/div&gt;
-
-</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;mat-toolbar class&#x3D;&quot;search-toolbar&quot;&gt;
+  &lt;div class&#x3D;&quot;searchbar-cancel&quot;&gt;
+    &lt;mat-form-field class&#x3D;&quot;searchbar&quot;&gt;
+      &lt;input matInput type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;search&quot; (ngModelChange)&#x3D;&quot;detectChanges($event)&quot;
+        placeholder&#x3D;&quot;Vul uw zoekterm hier in&quot;&gt;
+    &lt;/mat-form-field&gt;
+    &lt;button mat-flat-button (click)&#x3D;&quot;clearQuery()&quot;&gt;
+      &lt;mat-icon&gt;clear&lt;/mat-icon&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/mat-toolbar&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
                     <code>./searchbar.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">button {
+  background-color: #1661EB;
+  color: #ffffff;
+  position: absolute;
+  right: 2rem;
+  top: 10.5rem;
+}
+
+.search-toolbar {
+  background-color: #1661EB;
+}
+
+.searchbar-cancel {
+  float: right;
+}
+
+.searchbar {
+  text-align: center;
+  top: 10.5rem;
+  position: fixed;
+  right: 4rem;
+  min-width: 14rem;
+  max-height: 36px;
+  color: #ffffff !important; 
+  width: 100%  ;
+}
+
+::ng-deep .mat-form-field-underline,
+::ng-deep .mat-form-field-ripple {
+  background-color: white !important;
+  color: white !important;
+}
+
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+  color: white;
+}
+
+mat-icon {
+  position: absolute;
+  right: 2rem;
+  top: 0.5rem;
+}
+
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -569,8 +624,8 @@ export class SearchbarComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div>  <mat-form-field class="searchbar">    <input matInput type="text" [(ngModel)]="search" (ngModelChange)="detectChanges($event)" placeholder="vul uw zoekterm hier in">  </mat-form-field>  <button mat-flat-button color="primary" (click)="clearQuery()"><mat-icon>cancel</mat-icon></button></div></div>'
-    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
+        var COMPONENT_TEMPLATE = '<div><mat-toolbar class="search-toolbar">  <div class="searchbar-cancel">    <mat-form-field class="searchbar">      <input matInput type="text" [(ngModel)]="search" (ngModelChange)="detectChanges($event)"        placeholder="Vul uw zoekterm hier in">    </mat-form-field>    <button mat-flat-button (click)="clearQuery()">      <mat-icon>clear</mat-icon>    </button>  </div></mat-toolbar></div>'
+    var COMPONENTS = [{'name': 'BestuurderComponent', 'selector': 'app-bestuurder'},{'name': 'BestuurderDetailDialogComponent', 'selector': 'app-bestuurder-detail-dialog'},{'name': 'BestuurderListComponent', 'selector': 'app-bestuurder-list'},{'name': 'DeleteConfirmationSheetComponent', 'selector': 'app-delete-confirmation-sheet'},{'name': 'Home', 'selector': 'app-root'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'SearchbarComponent', 'selector': 'app-searchbar'},{'name': 'TankkaartComponent', 'selector': 'app-tankkaart'},{'name': 'TankkaartDeleteConfirmationSheetComponent', 'selector': 'app-tankkaart-delete-confirmation-sheet'},{'name': 'TankkaartDetailDialogComponent', 'selector': 'app-tankkaart-detail-dialog'},{'name': 'TankkaartListComponent', 'selector': 'app-tankkaart-list'},{'name': 'VoertuigComponent', 'selector': 'app-voertuig'},{'name': 'VoertuigDetailDialogComponent', 'selector': 'app-voertuig-detail-dialog'},{'name': 'VoertuigListComponent', 'selector': 'app-voertuig-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SearchbarComponent'};
 </script>
