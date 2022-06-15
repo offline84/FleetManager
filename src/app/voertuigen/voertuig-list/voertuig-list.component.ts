@@ -147,7 +147,6 @@ export class VoertuigListComponent implements AfterViewInit {
    * @param selectedRow de geselecteerde rij uit de tabel.
    */
   ViewDetails = (selectedRow: IVoertuig) => {
-
     const config = new MatDialogConfig();
     this.selectedVoertuig = selectedRow;
     var dialogRef;

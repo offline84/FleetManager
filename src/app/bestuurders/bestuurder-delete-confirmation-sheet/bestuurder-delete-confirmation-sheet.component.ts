@@ -14,7 +14,7 @@ import { BestuurderDetailDialogComponent } from '../bestuurder-detail-dialog/bes
  * Dit component opent een bottom sheet die waarschuuwt bij de verwijdering van een bestuurder dat deze bewerking onomkeerbaar is.
  * Men kan deze sheet niet sluiten, men dient een keuze te maken, vooraleer verder te gaan.
  */
-export class DeleteConfirmationSheetComponent implements OnInit {
+export class BestuurderDeleteConfirmationSheetComponent implements OnInit {
 
   /**
    * de te verwijderen entiteit.
@@ -58,7 +58,7 @@ export class DeleteConfirmationSheetComponent implements OnInit {
    * de entiteit wordt uit de tabel verwijderd via de data exchange service en een waarschuwingsbericht wordt weergegeven.
    */
   onConfirmationDelete() {
-    this.datastream.DeleteVehicle(this.entity.chassisnummer).subscribe(null,
+    this.datastream.DeleteBestuurder(this.entity.rijksregisternummer).subscribe(null,
       (error) => {
         this.bestuurderSheetRef.dismiss(error.message);
       },
