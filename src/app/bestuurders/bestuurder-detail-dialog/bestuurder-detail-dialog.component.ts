@@ -619,7 +619,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     if(!this.adresForm.controls["postcode"].value){
       this.adresForm.controls["postcode"].setValue(0);
     } else {
-      bestuurder.adres.huisnummer = this.adresForm.controls["postcode"].value;
+      bestuurder.adres.postcode = this.adresForm.controls["postcode"].value;
     }
 
     let pipe = new DatePipe('en-GB');
