@@ -153,14 +153,14 @@ export class BestuurderDetailDialogComponent implements OnInit {
     //Haalt de geseede data van de rijbewijzen op en sorteert deze alfabetisch
     this.datastream.GetDriverLicences().subscribe((rijbewijs: any) => {
       this.rijbewijzen = rijbewijs;
-      this.rijbewijzen.sort(function (a: any, b:any ) {
+      this.rijbewijzen.sort(function (a: any, b: any) {
         const typeA = a.typeRijbewijs;
         const typeB = b.typeRijbewijs;
 
-        if(typeA < typeB)
+        if (typeA < typeB)
           return -1
 
-        if(typeA > typeB)
+        if (typeA > typeB)
           return 1
 
         return 0
@@ -175,16 +175,29 @@ export class BestuurderDetailDialogComponent implements OnInit {
         this.unlinkedVoertuigen = data;
 
         this.datastream.GetSingleVehicle(this.bestuurder.koppeling.chassisnummer).subscribe((data: any) => {
-          if(data){
+          if (data) {
             this.voertuigLink = data;
           }
-          else{
+          else {
             this.voertuigLink = undefined;
           }
 
           this.datastream.GetFuelCardsToLinkWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
             this.unlinkedTankkaarten = data;
             console.log(this.unlinkedTankkaarten);
+            this.datastream.GetSingleFuelCard(this.bestuurder.koppeling.kaartnummer).subscribe((data: any) => {
+              if (data) {
+                this.tankkaartLink = data;
+              }
+              else {
+                this.tankkaartLink = undefined;
+              }
+            });
+          });
+        });
+      });
+    }
+
     this.adresForm.controls["postcode"].valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -201,18 +214,6 @@ export class BestuurderDetailDialogComponent implements OnInit {
         }
       })).subscribe();
 
-            this.datastream.GetSingleFuelCard(this.bestuurder.koppeling.kaartnummer).subscribe((data: any) => {
-              if(data){
-                this.tankkaartLink = data;
-              }
-              else{
-                this.tankkaartLink = undefined;
-              }
-            });
-          });
-        });
-      });
-  }
     this.adresForm.controls["straat"].valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -256,7 +257,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
         this.datastream.GetVehiclesForLinkingWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
           this.unlinkedVoertuigen = data;
         });
-      } 
+      }
     });
   }
 
@@ -318,7 +319,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
   OpenTankkaartenDetails = () => {
     this.dialogRef.close();
-    this.dataService.sendData("tankkaart", "view", this.voertuigLink);
+    this.dataService.sendData("tankkaart", "view", this.tankkaartLink);
     let navi = this.router.navigate(['/tankkaarten']);
   }
 
