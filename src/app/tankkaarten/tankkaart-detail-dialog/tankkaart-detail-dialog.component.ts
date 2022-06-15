@@ -196,6 +196,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
         this.datastream.GetDriversToLinkWithFuelCard(this.tankkaart.kaartnummer).subscribe((data: any) => {
           this.unlinkedBestuurders = data;
         });
+        this.patchObjectToForm(res);
       }
     }, error => {
       this.message.nativeElement.innerHTML = error.error;
