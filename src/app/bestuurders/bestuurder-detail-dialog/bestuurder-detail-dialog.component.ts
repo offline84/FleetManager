@@ -93,7 +93,6 @@ export class BestuurderDetailDialogComponent implements OnInit {
   autocompleteOptions: Observable<string[]> = new Observable<string[]>();
 
 
-
   minDate = new Date();
   maxDate = new Date();
 
@@ -257,9 +256,8 @@ export class BestuurderDetailDialogComponent implements OnInit {
         this.datastream.GetVehiclesForLinkingWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
           this.unlinkedVoertuigen = data;
         });
-      }
-      );
-    }
+      } 
+    });
   }
 
   openUpdateScreen = () => {
@@ -454,7 +452,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     bestuurder.rijksregisternummer = this.bestuurderForm.controls["rijksregisternummer"].value.toString();
     bestuurder.naam = this.bestuurderForm.controls["naam"].value;
     bestuurder.achternaam = this.bestuurderForm.controls["achternaam"].value;
-    bestuurder.geboorteDatum = new Date(this.bestuurderForm.controls["geboorteDatum"].value);
+    bestuurder.geboorteDatum = this.bestuurderForm.controls["geboorteDatum"].value;
     bestuurder.adres.straat = this.adresForm.controls["straat"].value;
     bestuurder.adres.huisnummer = this.adresForm.controls["huisnummer"].value;
     bestuurder.adres.postcode = this.adresForm.controls["postcode"].value;
