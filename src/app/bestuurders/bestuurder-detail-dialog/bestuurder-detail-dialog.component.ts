@@ -13,8 +13,7 @@ import { ToewijzingRijbewijs } from 'src/app/objects/toewijzingRijbewijs';
 import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
 import { DeleteConfirmationSheetComponent } from '../bestuurder-delete-confirmation-sheet/bestuurder-delete-confirmation-sheet.component';
 import { Router } from '@angular/router';
-import { formatDate } from '@angular/common';
-import { IVoertuig } from 'src/app/objects/iVoertuig';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-bestuurder-detail-dialog',
@@ -81,19 +80,62 @@ export class BestuurderDetailDialogComponent implements OnInit {
  */
   bestuurder = new Bestuurder();
 
+ /**
+ * indien een bestuurder.Adres wordt meegegeven door de parent (BestuurderListComponent) of door de DataExchangeService
+ * wordt deze in deze variabele gegoten.
+ *
+ * [DataExchangeService]{@link DataExchangeService}
+ */
   adres = new Adres();
-  autocompleteList: any;
+
+  /**
+  * Wordt opgevuld voor de autocomplete functie wanneer dat een postcode wordt ingevuld
+  */
   autocompleteGemeenteList: any;
+
+  /**
+  * Wordt opgevuld voor de autocomplete functie wanneer dat een postcode wordt ingevuld
+  */
   autocompleteStraatList: any;
+
+   /**
+   * Omvat alle geseede rijbewijzen uit de database.
+   * wordt opgevuld tijdens OnInit.
+   */
   rijbewijzen: Array<Rijbewijs> = [];
+
+   /**
+   * Omvat de lijst van alle Voertuigen die niet gelinkt zijn aan een bestuurder uit de database.
+   * wordt opgevuld tijdens OnInit.
+   */
   unlinkedVoertuigen: any;
+
+     /**
+   * Omvat de lijst van alle Tankkaarten die niet gelinkt zijn aan een bestuurder uit de database.
+   * wordt opgevuld tijdens OnInit.
+   */
   unlinkedTankkaarten: any;
+
+   /**
+   * Bevat de voertuig die gelinkt is aan de property bestuurder.
+   * wordt geïnitialiseerd tijdens OnInit.
+   */
   voertuigLink: any = null;
+
+   /**
+   * Bevat de tankkaart die gelinkt is aan de property bestuurder.
+   * wordt geïnitialiseerd tijdens OnInit.
+   */
   tankkaartLink: any = null;
-  autocompleteOptions: Observable<string[]> = new Observable<string[]>();
 
-
+ /**
+   * Min Date for geboorteDatum datePicker (will be set to today)
+   */
   minDate = new Date();
+
+   /**
+   * Max Date for geboorteDatum datePicker (will be set to today)
+   */
   maxDate = new Date();
 
   /**
@@ -113,11 +155,17 @@ export class BestuurderDetailDialogComponent implements OnInit {
   ) {
     this.bestuurder = data.entity;
     this.modifiable = data.modifiable;
+    this.voertuigLink = data.voertuigLink;
+    this.tankkaartLink = data.tankkaartLink;
   }
 
 
-  // deze Formgroep behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
-  // de benodigde properties weer te geven. Later worden deze terug omgezet in objecten. zie function: CreateObjectToSend
+   /**
+   * Behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
+   * de benodigde properties weer te geven. Later worden deze terug omgezet in objecten.
+   *
+   * [CreateObjectToSend] {@link CreateObjectToSend()}
+   */
   bestuurderForm = new FormGroup({
     rijksregisternummer: new FormControl('', [Validators.required, Validators.max(99999999999), Validators.min(10000000000)]),
     naam: new FormControl('', [Validators.required]),
@@ -125,6 +173,12 @@ export class BestuurderDetailDialogComponent implements OnInit {
     geboorteDatum: new FormControl('', [Validators.required])
   });
 
+   /**
+   * Behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
+   * de benodigde properties weer te geven. Later worden deze terug omgezet in objecten.
+   *
+   * [CreateObjectToSend] {@link CreateObjectToSend()}
+   */
   adresForm = new FormGroup({
     straat: new FormControl(''),
     huisnummer: new FormControl('', [Validators.min(1), Validators.max(999999)]),
@@ -132,15 +186,24 @@ export class BestuurderDetailDialogComponent implements OnInit {
     postcode: new FormControl('', [Validators.min(1000), Validators.max(9999)]),
   });
 
-
+ /**
+   * Behandelt de validatie en controls van de inputs en selects. Bij objecten is het raadzaam deze te flattenen of enkel
+   * de benodigde properties weer te geven. Later worden deze terug omgezet in objecten.
+   *
+   * [CreateObjectToSend] {@link CreateObjectToSend()}
+   */
   rijbewijsForm = new FormGroup({
     typeRijbewijs: new FormControl(['', Validators.required])
   });
 
   ngOnInit(): void {
+
+    //Disable van de velden, zodanig dat er verplicht eerst de postcode wordt ingevuld.
     this.adresForm.controls['stad'].disable();
     this.adresForm.controls['straat'].disable();
     this.adresForm.controls['huisnummer'].disable();
+   
+    //Vult de data op voor de datePicker van GeboorteDatum
     let year = moment().year();
     this.minDate = new Date('01/01/' + (year - 100));
     this.maxDate = moment().toDate();
@@ -198,6 +261,9 @@ export class BestuurderDetailDialogComponent implements OnInit {
       });
     }
 
+    //Haalt de steden op nadat de postcode wordt ingevuld
+    //Check op geldige postcode
+    //deze geeft dan opties weer.
     this.adresForm.controls["postcode"].valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -214,6 +280,8 @@ export class BestuurderDetailDialogComponent implements OnInit {
         }
       })).subscribe();
 
+    //Haalt de straten op nadat er 4 characters zijn ingevuld 
+    //deze geeft dan opties weer.
     this.adresForm.controls["straat"].valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -234,7 +302,6 @@ export class BestuurderDetailDialogComponent implements OnInit {
     // We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
     // Indien ja, patchen we deze in de form.
     if (this.bestuurder) {
-
       this.patchObjectToForm(this.bestuurder);
     };
 
@@ -248,7 +315,9 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
 
 
-  //Omvat de creatie van het te verzenden object en de wissel van mode "add" naar "view" + errorbehandeling.
+   /**
+   * Omvat de creatie van het te verzenden object en de wissel van mode "add" naar "view" + errorbehandeling.
+   */
   onSubmit = () => {
     let driver = this.CreateObjectToSend();
     this.datastream.PostDriver(driver).subscribe((res: any) => {
@@ -261,6 +330,10 @@ export class BestuurderDetailDialogComponent implements OnInit {
     });
   }
 
+  
+  /**
+   * Past de modus voor modificatie van detailweergave naar editeren aan.
+   */
   openUpdateScreen = () => {
     this.forCreation = false;
     this.IsModifiable(true);
@@ -268,6 +341,11 @@ export class BestuurderDetailDialogComponent implements OnInit {
     this.viewOnly = "";
   }
 
+  /**
+   * Opent de geïnjecteerde instantie van de MatBottomSheetModule voor verwijdering van het bestuurder en definieert de te verwijderen entiteit.
+   *
+   * [DeleteConfirmationSheetComponent] {@link DeleteConfirmationSheetComponent}
+   */
   openDeleteScreen = () => {
     const config = new MatBottomSheetConfig();
     config.autoFocus = true;
@@ -288,7 +366,18 @@ export class BestuurderDetailDialogComponent implements OnInit {
   }
 
 
-  //Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de bestuurderLink een object omvat, implementeren we de selectie handmatig via een eventlistener.
+ /**
+   * Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de voertuigLink een object omvat,
+   *  implementeren we de selectie handmatig via een eventlistener.
+   *
+   * @param event
+   *
+   * @example
+   *
+   * <div class="formbuttons koppel field" *ngIf="viewOnly">
+   <div *ngIf="!bestuurder.koppeling.chassisnummer" class="link-voertuig" appearance="fill">
+   <mat-select (selectionChange)="onSelectionChangeVoertuig($event.value)">
+   */
   onSelectionChangeVoertuig = (event: any) => {
     if (this.tankkaartLink != null) {
       this.unlinkedVoertuigen.filter((v: any) => v.brandstoffen)
@@ -299,6 +388,18 @@ export class BestuurderDetailDialogComponent implements OnInit {
     this.voertuigLink = link;
   }
 
+   /**
+   * Aangezien mat-select werkt met een formcontrol en deze hier niet is aangemaakt omdat de tankkaartLink een object omvat,
+   *  implementeren we de selectie handmatig via een eventlistener.
+   *
+   * @param event
+   *
+   * @example
+   *
+   * <div class="formbuttons koppel field" *ngIf="viewOnly">
+ <div *ngIf="!bestuurder.koppeling.kaartnummer" class="link-tankkaart" appearance="fill">
+   <mat-select (selectionChange)="onSelectionChangeTankkaart($event.value)">
+   */
   onSelectionChangeTankkaart = (event: any) => {
     if (this.voertuigLink != null) {
       console.log(this.voertuigLink);
@@ -309,7 +410,13 @@ export class BestuurderDetailDialogComponent implements OnInit {
   }
 
 
-  //To Do route naar bestuurders en open daar automatisch met het behavioursubject de detail dialog voor de meegegeven bestuurder.
+  /**
+   * Deze method opent bij het klikken op de gelinkte voertuig in de detail-dialog view mode, de view mode in de voertuigssectie van de applicatie van desbetreffende voertuig.
+   * Eerst zorgen we ervoor dat de huidige dialog gesloten wordt, dan geven we via de data exchange service de opdracht om de view dialog te openen
+   * en vervolgens navigeren we naar de voertuigssectie van de applicatie.
+   *
+   * {@link DataExchangeService}
+   */
   OpenVoertuigenDetails = () => {
     this.dialogRef.close();
     this.dataService.sendData("voertuig", "view", this.voertuigLink);
@@ -317,12 +424,22 @@ export class BestuurderDetailDialogComponent implements OnInit {
   }
 
 
+    /**
+   * Deze method opent bij het klikken op de gelinkte tankkaart in de detail-dialog view mode, de view mode in de tankkaartssectie van de applicatie van desbetreffende tankkaart.
+   * Eerst zorgen we ervoor dat de huidige dialog gesloten wordt, dan geven we via de data exchange service de opdracht om de view dialog te openen
+   * en vervolgens navigeren we naar de tankkaartssectie van de applicatie.
+   *
+   * {@link DataExchangeService}
+   */
   OpenTankkaartenDetails = () => {
     this.dialogRef.close();
     this.dataService.sendData("tankkaart", "view", this.tankkaartLink);
     let navi = this.router.navigate(['/tankkaarten']);
   }
 
+  /**
+   * Slaat de veranderingen aan de entiteit op en patchet deze veranderingen op de entiteit.
+   */
   onSave = () => {
     let driver = this.CreateObjectToSend();
     this.datastream.UpdateDriver(driver).subscribe((res: any) => {
@@ -340,8 +457,12 @@ export class BestuurderDetailDialogComponent implements OnInit {
     );
   }
 
-  // Omdat we enkel het correcte resultaat willen weergeven en deze in de tabel updaten voor geslaagde patch-bewerkingen naar de API,
-  //gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
+ /**
+   * Koppelt of ontkoppelt en voertuig aan de entiteit.
+   *
+   * Omdat we enkel het correcte resultaat willen weergeven en deze in de tabel updaten voor geslaagde patch-bewerkingen naar de API,
+   * gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
+   */
   linkUnlinkVoertuig = () => {
     if (this.voertuigLink) {
       if (this.bestuurder.koppeling.chassisnummer) {
@@ -374,6 +495,13 @@ export class BestuurderDetailDialogComponent implements OnInit {
     }
   }
 
+
+   /**
+   * Koppelt of ontkoppelt en tankkaart aan de entiteit.
+   *
+   * Omdat we enkel het correcte resultaat willen weergeven en deze in de tabel updaten voor geslaagde patch-bewerkingen naar de API,
+   * gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
+   */
   linkUnlinkTankkaart = () => {
     if (this.tankkaartLink) {
       if (this.bestuurder.koppeling.kaartnummer) {
@@ -407,7 +535,11 @@ export class BestuurderDetailDialogComponent implements OnInit {
     }
   }
 
-  //behandelt de mode waarin de dialog zich bevindt.
+  /**
+   * behandelt de modus waarin de DialogComponent zich op dit moment bevindt.
+   *
+   * @param ismodifiable {boolean} boolean voor de check of de entiteit bewerkbaar is op dat moment.
+   */
   IsModifiable = (ismodifiable: boolean) => {
     this.modifiable = ismodifiable
     if (!ismodifiable) {
@@ -417,8 +549,12 @@ export class BestuurderDetailDialogComponent implements OnInit {
     }
   }
 
-  //indien een bestuurder is meegegeven wordt deze via deze method gepatched met de bestuurderForm.
-  //De niet gepatched controls worden handmatig ingegeven.
+   /**
+   * indien een entiteit is meegegeven wordt deze via deze method gepatched met de Form(s).
+   * De niet automatisch gepatchede controls worden handmatig ingegeven.
+   *
+   * @param entity de entiteit die in de form dient gegoten te worden.
+   */
   patchObjectToForm = (entity: Bestuurder) => {
 
     if (this.bestuurder.rijbewijzen == undefined) {
@@ -430,6 +566,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     this.adresForm.controls['huisnummer'].enable();
 
     this.bestuurderForm.patchValue(this.bestuurder);
+    this.bestuurderForm.controls["geboorteDatum"].setValue(entity.geboorteDatum.toString());
     if (this.bestuurder.toewijzingenRijbewijs != null) {
       let dataArray: string[] = [];
       this.bestuurder.toewijzingenRijbewijs.forEach(toewijzing => {
@@ -446,18 +583,26 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
 
 
-  // Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden
-  // en resulteert tot een error van de API.
+   /**
+   * Bereidt de entiteit voor voor verzending naar de back- end.
+   * Elke property dient meegegeven te worden aan de api, null waardes voor getallen en strings kunnen niet verwerkt worden
+   * en resulteert tot een error van de API.
+   *
+   * @returns new Entity();
+   */
   CreateObjectToSend = (): IBestuurder => {
     let bestuurder = new Bestuurder;
     bestuurder.rijksregisternummer = this.bestuurderForm.controls["rijksregisternummer"].value.toString();
     bestuurder.naam = this.bestuurderForm.controls["naam"].value;
     bestuurder.achternaam = this.bestuurderForm.controls["achternaam"].value;
-    bestuurder.geboorteDatum = this.bestuurderForm.controls["geboorteDatum"].value;
     bestuurder.adres.straat = this.adresForm.controls["straat"].value;
     bestuurder.adres.huisnummer = this.adresForm.controls["huisnummer"].value;
     bestuurder.adres.postcode = this.adresForm.controls["postcode"].value;
     bestuurder.adres.stad = this.adresForm.controls["stad"].value;
+
+  let pipe = new DatePipe('en-GB');
+    bestuurder.geboorteDatum = pipe.transform(this.bestuurderForm.controls["geboorteDatum"].value, 'yyyy-MM-dd') as unknown as Date;
+
     this.rijbewijsForm.controls["typeRijbewijs"].value.forEach((typeRijbewijs: any) => {
       let rij = this.rijbewijzen.find((v: Rijbewijs) => v.typeRijbewijs == typeRijbewijs);
       if (rij) {
@@ -469,7 +614,5 @@ export class BestuurderDetailDialogComponent implements OnInit {
 
     return bestuurder;
   }
-
-
 }
 
