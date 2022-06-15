@@ -26,4 +26,9 @@ export class Adres implements IAdres {
    * @ignore
    */
   postcode!: number;
+
+  /**
+   * @ignore
+   */
+  adresForView!: string;
 }

@@ -25,7 +25,8 @@ export class BestuurderComponent implements OnInit {
     "achternaam",
     "naam",
     "geboorteDatum",
-    "adres",
+    //"adres",
+    "adresForView",
     "rijbewijs",
     "koppelingVoertuig",
     "koppelingTankkaart"
