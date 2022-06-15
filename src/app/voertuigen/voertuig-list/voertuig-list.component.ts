@@ -1,8 +1,8 @@
-import {AfterViewInit, Input, Component, ViewChild} from '@angular/core';
+import { AfterViewInit, Input, Component, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort, Sort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { DataExchangeService } from '../../data-exchange.service';
 import { DatastreamService } from '../../datastream.service';
 import { IVoertuig } from '../../objects/iVoertuig';
@@ -13,7 +13,7 @@ import { VoertuigDetailDialogComponent } from '../voertuig-detail-dialog/voertui
   templateUrl: './voertuig-list.component.html',
   styleUrls: ['./voertuig-list.component.css']
 })
-export class VoertuigListComponent implements AfterViewInit{
+export class VoertuigListComponent implements AfterViewInit {
 
   /**
    * Geeft al de te gebruiken columns van de tabel weer.
@@ -68,12 +68,12 @@ export class VoertuigListComponent implements AfterViewInit{
    * @param dataService injecteert de data exchange service in deze klasse.
    * @param dialog maakt een instantie van het dialoogvenster aan.
    */
-  constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) {}
+  constructor(private datastream: DatastreamService, private dataService: DataExchangeService, private dialog: MatDialog) { }
 
   ngAfterViewInit() {
 
     //data voor de tabel wordt binnengehaald en in tabelvorm gegoten.
-    this.datastream.GetAllVehicles().subscribe((data: any) =>{
+    this.datastream.GetAllVehicles().subscribe((data: any) => {
       this.tableData = data;
       this.dataSource.data = this.tableData;
       this.dataSource.paginator = this.paging;
@@ -87,37 +87,37 @@ export class VoertuigListComponent implements AfterViewInit{
 
     //Customizing voor sorteren van kolommen die voortkomen uit een object.
     this.dataSource.sortingDataAccessor = (entity, property) => {
-      switch(property){
+      switch (property) {
         case 'status': return entity.status.staat;
         case 'brandstof': return entity.brandstof.typeBrandstof;
-        case 'categorie' : return entity.categorie.typeWagen;
-        case 'koppeling' : return entity.koppeling != null;
+        case 'categorie': return entity.categorie.typeWagen;
+        case 'koppeling': return entity.koppeling != null;
         default: return entity[property];
       }
     };
 
     // haalt de entiteit voor modificatie van de tabel binnen en kijkt welke bewerking op de tabel dient te worden uitgevoerd.
     // Hiervoor wordt gebruik gemaakt van de DataExchangeService.
-    this.dataService.observableData.subscribe((data: any) =>{
+    this.dataService.observableData.subscribe((data: any) => {
       console.log("sent data: ", data);
-      if(data){
-        if(data.value){
-          if(data.entity == this.entityType){
-            if(data.action == "add"){
-              if(data.value){
+      if (data) {
+        if (data.value) {
+          if (data.entity == this.entityType) {
+            if (data.action == "add") {
+              if (data.value) {
                 this.tableData.unshift(data.value);
 
               }
             }
 
-            if(data.action == "delete"){
-              if(data.value){
-                let index = this.tableData.findIndex(v=> v.chassisnummer == data.value.chassisnummer);
+            if (data.action == "delete") {
+              if (data.value) {
+                let index = this.tableData.findIndex(v => v.chassisnummer == data.value.chassisnummer);
                 this.tableData.splice(index, 1);
               }
             }
-            if(data.action == "view"){
-              if(data.value){
+            if (data.action == "view") {
+              if (data.value) {
                 this.ViewDetails(data.value);
               }
             }
@@ -146,31 +146,61 @@ export class VoertuigListComponent implements AfterViewInit{
    *
    * @param selectedRow de geselecteerde rij uit de tabel.
    */
-  ViewDetails = (selectedRow: IVoertuig) =>{
+  ViewDetails = (selectedRow: IVoertuig) => {
+
     const config = new MatDialogConfig();
     this.selectedVoertuig = selectedRow;
+    var dialogRef;
 
-    config.autoFocus = true;
-    config.data = {
-      modifiable: false,
-      entity: selectedRow,
-      merken: this.merken
-    };
+    if (this.selectedVoertuig.koppeling) {
+      this.datastream.GetSingleDriver(this.selectedVoertuig.koppeling.rijksregisternummer).subscribe((data: any) => {
 
-    let dialogRef = this.dialog.open(VoertuigDetailDialogComponent, config);
+        config.autoFocus = true;
+        config.data = {
+          modifiable: false,
+          entity: selectedRow,
+          merken: this.merken,
+          bestuurderLink: data
+        };
+        dialogRef = this.dialog.open(VoertuigDetailDialogComponent, config);
 
-    dialogRef.afterClosed().subscribe((data: any) => {
+        dialogRef.afterClosed().subscribe((data: any) => {
 
-      if(data){
-        this.tableData.forEach((element, index) => {
-          if(element.chassisnummer == data.chassisnummer) {
-            this.tableData[index] = data;
+          if (data) {
+            this.tableData.forEach((element, index) => {
+              if (element.chassisnummer == data.chassisnummer) {
+                this.tableData[index] = data;
+              }
+            });
+
+            this.dataSource.data = this.tableData;
           }
         });
+      });
+    }
+    else{
+      config.autoFocus = true;
+        config.data = {
+          modifiable: false,
+          entity: selectedRow,
+          merken: this.merken
+        };
 
-        this.dataSource.data = this.tableData;
-      }
-    });
+        dialogRef = this.dialog.open(VoertuigDetailDialogComponent, config);
+
+        dialogRef.afterClosed().subscribe((data: any) => {
+
+          if (data) {
+            this.tableData.forEach((element, index) => {
+              if (element.chassisnummer == data.chassisnummer) {
+                this.tableData[index] = data;
+              }
+            });
+
+            this.dataSource.data = this.tableData;
+          }
+        });
+    }
   }
 }
 

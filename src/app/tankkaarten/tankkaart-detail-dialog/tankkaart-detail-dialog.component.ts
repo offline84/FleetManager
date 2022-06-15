@@ -119,7 +119,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
    * [CreateObjectToSend] {@link CreateObjectToSend()}
    */
   tankkaartForm = new FormGroup({
-    kaartnummer: new FormControl('',[Validators.required, Validators.pattern("[0-9a-zA-Z]{15,21}")]),
+    kaartnummer: new FormControl('',[Validators.required, Validators.pattern("[0-9]{15,21}")]),
     geldigheidsdatum: new FormControl('',[Validators.required]),
     pincode: new FormControl('',[Validators.pattern("[0-9]{4}")]),
     isGeblokkeerd: new FormControl(false,[Validators.required]),
@@ -142,13 +142,19 @@ export class TankkaartDetailDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) private data: any) {
     this.tankkaart = data.entity;
     this.modifiable = data.modifiable;
+    this.bestuurderLink = data.bestuurderLink;
   }
 
   ngOnInit(): void {
 
+    // Indien de tankkaart gekend is, dan is dat de minimum datum, anders vandaag.
+    if ( this.tankkaart != null) {
+      this.minDate = this.tankkaart.geldigheidsDatum;
+    }
+
     //We kijken of er een object wordt meegegeven via MAT_DIALOG_DATA.
     // Indien ja, patchen we deze in de form.
-    if(this.tankkaart){
+    if (this.tankkaart) {
       this.patchObjectToForm(this.tankkaart);
     }
 
@@ -156,6 +162,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     //Deze wordt meegegeven in de MAT_DIALOG_DATA bij opening van de dialog.
     this.IsModifiable(this.modifiable);
 
+    // Ophalen van de brandstoffen om te kunnen toevoegen aan de brandstof
     this.datastream.GetFuels().subscribe((data: any) => {
       this.KeuzeBrandstoffen = data;
     });
@@ -163,22 +170,12 @@ export class TankkaartDetailDialogComponent implements OnInit {
     // We hebben voor de koppeling met bestuurders enkel de bestuurders nodig zonder koppeling met de entiteit
     //+ de bestuurder die al dan niet reeds gekoppeld is met de entiteit. deze worden opgeslagen in unlinkedBestuurders
     //en de bestuurder van de koppeling in de var. bestuurderLink.
-    if(!this.tankkaart){
-      this.datastream.GetAllDrivers().subscribe((data: any) =>{
-        this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.kaartnummer == null);
+    if (this.tankkaart) {
+      this.datastream.GetDriversToLinkWithFuelCard(this.tankkaart.kaartnummer).subscribe((data: any) => {
+        this.unlinkedBestuurders = data;
       });
     }
-    else{
-      this.datastream.GetAllDrivers().subscribe((data: any) =>{
-        this.unlinkedBestuurders = data.filter((u: any) => u.koppeling.kaartnummer == null || u.koppeling.kaartnummer == this.tankkaart.kaartnummer);
-        if(this.tankkaart){
-          if(this.tankkaart.koppeling){
-            let link = data.filter((u: any) => u.koppeling.kaartnummer == this.tankkaart.kaartnummer);
-            this.bestuurderLink = link[0];
-          }
-        }
-      });
-    }
+
 
     //listener voor het sluiten van de dialog + transfer object naar de tabel.
     this.dialogRef.backdropClick().subscribe(() => {
@@ -193,16 +190,19 @@ export class TankkaartDetailDialogComponent implements OnInit {
 
     let fuelcard = this.CreateObjectToSend();
 
-    this.datastream.PostFuelCard(fuelcard).subscribe( (res: any) =>{
-        if(res){
-          this.tankkaart = res;
-        }
-      }, error => {
-        this.message.nativeElement.innerHTML = error.error;
-      }, () => {
-        this.IsModifiable(false);
-      this.message.nativeElement.innerHTML = 'Nieuwe tankkaart met kaartnummer "' + this.tankkaart.kaartnummer + '" is successvol toegevoegd aan de database.';
+    this.datastream.PostFuelCard(fuelcard).subscribe((res: any) => {
+      if (res) {
+        this.tankkaart = res;
+        this.datastream.GetDriversToLinkWithFuelCard(this.tankkaart.kaartnummer).subscribe((data: any) => {
+          this.unlinkedBestuurders = data;
+        });
       }
+    }, error => {
+      this.message.nativeElement.innerHTML = error.error;
+    }, () => {
+      this.IsModifiable(false);
+      this.message.nativeElement.innerHTML = 'Nieuwe tankkaart met kaartnummer "' + this.tankkaart.kaartnummer + '" is successvol toegevoegd aan de database.';
+    }
     );
   }
 
@@ -350,7 +350,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
    * indien een entiteit is meegegeven wordt deze via deze method gepatched met de Form(s).
    * De niet automatisch gepatchede controls worden handmatig ingegeven.
    *
-   * Manueel: geldigheidsDatum en mogelijkeBrandstoffen
+   * Manueel: geldigheidsDatum, mogelijkeBrandstoffen en pincode (0=geen)
    *
    * @param entity de entiteit die in de form dient gegoten te worden.
    */
@@ -365,6 +365,9 @@ export class TankkaartDetailDialogComponent implements OnInit {
         }
         this.tankkaartForm.controls["typeBrandstof"].setValue(lijstBrandstoffen);
       });
+    }
+    if (this.tankkaart.pincode == 0) {
+      this.tankkaartForm.controls["pincode"].setValue("");
     }
   }
 
@@ -386,7 +389,7 @@ export class TankkaartDetailDialogComponent implements OnInit {
     fuelcard.isGeblokkeerd = this.tankkaartForm.controls["isGeblokkeerd"].value;
 
     if(!this.tankkaartForm.controls["pincode"].value){
-      this.tankkaartForm.controls["pincode"].setValue(9999);
+      this.tankkaartForm.controls["pincode"].setValue(0);
     } else {
       fuelcard.pincode = parseInt(this.tankkaartForm.controls["pincode"].value, 10) ;
     }
