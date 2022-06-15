@@ -91,6 +91,11 @@ export class BestuurderListComponent implements AfterViewInit {
             });
             bestuurder.rijbewijzen = this.driverLicenses;
             bestuurder.rijbewijs = dataString.slice(0, -2);
+            if (bestuurder.adres.huisnummer == 0 && bestuurder.adres.postcode == 0) {
+              bestuurder.adres.adresForView = "";
+            } else {
+              bestuurder.adres.adresForView = bestuurder.adres.straat + " " + bestuurder.adres.huisnummer + ", " + bestuurder.adres.postcode + " " + bestuurder.adres.stad;
+            }
             listDrivers.push(bestuurder);
           });
         }
@@ -98,6 +103,12 @@ export class BestuurderListComponent implements AfterViewInit {
         this.dataSource.data = this.tableData;
         this.dataSource.paginator = this.paging;
         this.dataSource.sort = this.sort;
+        this.dataSource.sortingDataAccessor = (item, property) => {
+          switch (property) {
+            case 'adresForView': return item.adres.adresForView;
+            default: return item[property];
+          }
+        };
       });
     });
 
@@ -161,7 +172,7 @@ export class BestuurderListComponent implements AfterViewInit {
   ViewDetails = (selectedRow: IBestuurder) => {
     const config = new MatDialogConfig();
     this.selectedBestuurder = selectedRow;
-  
+
     this.datastream.GetSingleVehicle(this.selectedBestuurder.koppeling.chassisnummer).subscribe((vehicle: any) => {
       this.datastream.GetSingleFuelCard(this.selectedBestuurder.koppeling.kaartnummer).subscribe((card: any) => {
         config.autoFocus = true;
@@ -171,11 +182,11 @@ export class BestuurderListComponent implements AfterViewInit {
           voertuigLink: vehicle,
           tankkaartLink: card
         };
-    
+
         let dialogRef = this.dialog.open(BestuurderDetailDialogComponent, config);
-    
+
         dialogRef.afterClosed().subscribe((data: any) => {
-    
+
           this.tableData.forEach((element, index) => {
             if (data != undefined && element.rijksregisternummer == data.rijksregisternummer) {
               this.tableData[index] = data;

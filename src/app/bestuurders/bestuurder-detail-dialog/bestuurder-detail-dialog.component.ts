@@ -579,14 +579,14 @@ export class BestuurderDetailDialogComponent implements OnInit {
       });
       this.rijbewijsForm.controls['typeRijbewijs'].setValue(dataArray);
     }
+
+    this.adresForm.patchValue(this.bestuurder.adres);
     if (this.adresForm.controls["postcode"].value == 0) {
       this.adresForm.controls["postcode"].setValue("");
     }
     if (this.adresForm.controls["huisnummer"].value == 0) {
       this.adresForm.controls["huisnummer"].setValue("");
     }
-
-    this.adresForm.patchValue(this.bestuurder.adres);
   }
 
    /**
