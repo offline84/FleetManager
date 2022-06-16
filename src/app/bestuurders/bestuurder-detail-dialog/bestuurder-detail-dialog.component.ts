@@ -161,7 +161,9 @@ export class BestuurderDetailDialogComponent implements OnInit {
     this.bestuurder = data.entity;
     this.modifiable = data.modifiable;
     this.voertuigLink = data.voertuigLink;
+    this.voertuigRef = data.voertuigLink;
     this.tankkaartLink = data.tankkaartLink;
+    this.tankkaartRef = data.tankkaartLink;
   }
 
 
@@ -295,11 +297,11 @@ export class BestuurderDetailDialogComponent implements OnInit {
               return straat
             }) : [];
             this.autocompleteStraatList = list.map((s: any) => s.straatnaam.straatnaam.geografischeNaam.spelling);
-            this.adresForm.controls['huisnummer'].enable();
           })
         } else {
           this.adresForm.controls['huisnummer'].disable();
         }
+        this.adresForm.controls['huisnummer'].enable();
       })).subscribe();
 
 
