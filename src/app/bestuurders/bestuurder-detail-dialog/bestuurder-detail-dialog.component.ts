@@ -122,12 +122,14 @@ export class BestuurderDetailDialogComponent implements OnInit {
    * wordt geïnitialiseerd tijdens OnInit.
    */
   voertuigLink: any = null;
+  voertuigRef: any = null;
 
    /**
    * Bevat de tankkaart die gelinkt is aan de property bestuurder.
    * wordt geïnitialiseerd tijdens OnInit.
    */
   tankkaartLink: any = null;
+  tankkaartRef: any = null;
 
  /**
    * Min Date for geboorteDatum datePicker (will be set to today)
@@ -408,12 +410,8 @@ export class BestuurderDetailDialogComponent implements OnInit {
    <mat-select (selectionChange)="onSelectionChangeVoertuig($event.value)">
    */
   onSelectionChangeVoertuig = (event: any) => {
-    if (this.tankkaartLink != null) {
-      this.unlinkedVoertuigen.filter((v: any) => v.brandstoffen)
-    }
-
     let link = this.unlinkedVoertuigen.find((u: any) => u.chassisnummer == event);
-    this.voertuigLink = link;
+    this.voertuigRef = link;
   }
 
    /**
@@ -432,7 +430,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
     if (this.voertuigLink != null) {
     }
     let link = this.unlinkedTankkaarten.find((u: any) => u.kaartnummer == event);
-    this.tankkaartLink = link;
+    this.tankkaartRef = link;
   }
 
 
@@ -496,7 +494,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
    * gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
    */
   linkUnlinkVoertuig = () => {
-    if (this.voertuigLink) {
+    if (this.voertuigRef || this.voertuigLink) {
       if (this.bestuurder.koppeling.chassisnummer) {
         this.datastream.UnlinkVehicle(this.bestuurder.koppeling.chassisnummer).subscribe(() => {
           this.bestuurder.koppeling.chassisnummer = null;
@@ -505,15 +503,19 @@ export class BestuurderDetailDialogComponent implements OnInit {
         }, () => {
           let success = "Voertuig met chassisnummer: " + this.voertuigLink.chassisnummer + " is ontkoppeld van de bestuurder";
           this.message.nativeElement.innerHTML = success;
+          this.voertuigLink = null;
         });
       } else {
-        this.datastream.LinkVehicle(this.bestuurder.rijksregisternummer, this.voertuigLink.chassisnummer).subscribe(() => {
-          this.bestuurder.koppeling.chassisnummer = this.voertuigLink.chassisnummer;
-          // hier komt ophalen lijst
+        this.datastream.LinkVehicle(this.bestuurder.rijksregisternummer, this.voertuigRef.chassisnummer).subscribe(() => {
+          this.datastream.GetFuelCardsToLinkWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
+            this.unlinkedTankkaarten = data;
+            this.voertuigLink = this.voertuigRef;
+            this.bestuurder.koppeling.chassisnummer = this.voertuigLink.chassisnummer;
+          });
         }, error => {
           if (error) { this.message.nativeElement.innerHTML = error.message; }
         }, () => {
-          let success = "Voertuig met chassisnummer: " + this.voertuigLink.chassisnummer + " is nu gekoppeld aan de bestuurder";
+          let success = "Voertuig met chassisnummer: " + this.voertuigRef.chassisnummer + " is nu gekoppeld aan de bestuurder";
           this.message.nativeElement.innerHTML = success;
           this.datastream.GetSingleDriver(this.bestuurder.rijksregisternummer).subscribe((res: any) => {
             if (res) {
@@ -535,7 +537,7 @@ export class BestuurderDetailDialogComponent implements OnInit {
    * gebruiken we de depricated manier van httpclient. + errormessagebehandeling.
    */
   linkUnlinkTankkaart = () => {
-    if (this.tankkaartLink) {
+    if (this.tankkaartRef) {
       if (this.bestuurder.koppeling.kaartnummer) {
         this.datastream.UnlinkFuelCard(this.bestuurder.koppeling.kaartnummer).subscribe(() => {
           this.bestuurder.koppeling.kaartnummer = null;
@@ -544,16 +546,18 @@ export class BestuurderDetailDialogComponent implements OnInit {
         }, () => {
           let success = "Tankkaarnummer: " + this.tankkaartLink.kaartnummer + " is ontkoppeld van de bestuurder";
           this.message.nativeElement.innerHTML = success;
+          this.tankkaartLink = null;
         });
       } else {
-        this.datastream.LinkFuelCard(this.bestuurder.rijksregisternummer, this.tankkaartLink.kaartnummer).subscribe(() => {
+        this.datastream.LinkFuelCard(this.bestuurder.rijksregisternummer, this.tankkaartRef.kaartnummer).subscribe(() => {
           this.datastream.GetVehiclesForLinkingWithDriver(this.bestuurder.rijksregisternummer).subscribe((data: any) => {
             this.unlinkedVoertuigen = data;
+            this.tankkaartLink = this.tankkaartRef;
           });
         }, error => {
           if (error) { this.message.nativeElement.innerHTML = error.message; }
         }, () => {
-          let success = "Tankkaarnummer: " + this.tankkaartLink.kaartnummer + " is nu gekoppeld aan de bestuurder";
+          let success = "Tankkaarnummer: " + this.tankkaartRef.kaartnummer + " is nu gekoppeld aan de bestuurder";
           this.message.nativeElement.innerHTML = success;
           this.datastream.GetSingleDriver(this.bestuurder.rijksregisternummer).subscribe((res: any) => {
             if (res) {
